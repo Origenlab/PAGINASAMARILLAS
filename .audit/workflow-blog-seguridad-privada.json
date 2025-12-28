@@ -1,0 +1,298 @@
+{
+  "name": "Paginas Amarillas - Blog Seguridad Privada",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "daysInterval": 3,
+              "triggerAtHour": 8
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [-1936, 48],
+      "id": "d2cf8198-759c-40a2-8579-786f248ac167",
+      "name": "Cada 3 Dias"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [-1936, 224],
+      "id": "3ea6b5f6-94c1-4b47-ac53-eba3120b1973",
+      "name": "Ejecucion Manual"
+    },
+    {
+      "parameters": {
+        "jsCode": "// =====================================================\n// EMPRESAS DE SEGURIDAD PRIVADA - PAGINAS AMARILLAS MX\n// =====================================================\n\nconst empresas = [\n  {\n    id: 'origins-private-security',\n    nombre: 'ORIGINS Private Security',\n    slug: 'origins-private-security',\n    especialidad: 'Seguridad para Condominios y Corporativos',\n    ubicacion: 'CDMX y Estado de Mexico',\n    experiencia: '15+ anos',\n    rating: 4.9,\n    resenas: 245,\n    certificaciones: ['SSC', 'GPS 24/7', 'CNSP'],\n    servicios: ['Guardias certificados SSC', 'Monitoreo GPS 24/7', 'Respuesta en menos de 3 minutos', 'Control de accesos', 'Escoltas ejecutivos'],\n    diferenciador: 'Respuesta en menos de 3 minutos con monitoreo GPS en tiempo real',\n    telefono: '+52-55-3025-5580',\n    email: 'contacto@originsecurity.mx',\n    imagen: 'equipo-seguridad-corporativo.webp',\n    keywords: ['seguridad condominios CDMX', 'guardias certificados SSC', 'monitoreo GPS', 'seguridad residencial']\n  },\n  {\n    id: 'seguridad-privada-mx',\n    nombre: 'SeguridadPrivadaMX',\n    slug: 'seguridad-privada-mx',\n    especialidad: 'Seguridad Inteligente para Condominios',\n    ubicacion: 'CDMX - Benito Juarez',\n    experiencia: '10+ anos',\n    rating: 4.9,\n    resenas: 312,\n    certificaciones: ['SSC 100%', 'Tecnologia Propia'],\n    servicios: ['Guardias 100% certificados SSC', 'App movil propia', 'Camaras HD', 'Control de accesos biometrico', 'Precios transparentes'],\n    diferenciador: 'Primera empresa con tecnologia propia y cotizacion en 4 horas',\n    telefono: '+52-55-1234-5678',\n    email: 'contacto@seguridadprivadamx.com',\n    imagen: 'centro-monitoreo-camaras.webp',\n    keywords: ['seguridad inteligente', 'app movil seguridad', 'precios transparentes', 'tecnologia seguridad']\n  },\n  {\n    id: 'sepri',\n    nombre: 'SEPRI Seguridad para Eventos',\n    slug: 'sepri',\n    especialidad: 'Seguridad Privada para Eventos',\n    ubicacion: 'CDMX - Paseo de la Reforma',\n    experiencia: '12+ anos',\n    rating: 4.9,\n    resenas: 48,\n    certificaciones: ['SSC CDMX', 'CNSP', 'Eventos Masivos'],\n    servicios: ['Control de acceso eventos', 'Seguridad VIP', 'Gestion de multitudes', 'Vigilancia 24/7', 'Seguridad corporativa'],\n    diferenciador: 'Especialistas en eventos corporativos, bodas, conciertos y festivales',\n    telefono: '+52-55-4732-9810',\n    email: 'contacto@sepri.mx',\n    imagen: 'grupo-guardias-edificio.webp',\n    keywords: ['seguridad eventos CDMX', 'seguridad bodas', 'seguridad conciertos', 'control acceso eventos']\n  },\n  {\n    id: 'seguridad-condominios',\n    nombre: 'Seguridad Condominios MX',\n    slug: 'seguridad-condominios',\n    especialidad: 'Seguridad Integral para Fraccionamientos',\n    ubicacion: 'CDMX - Santa Fe y Zona Poniente',\n    experiencia: '15+ anos',\n    rating: 4.9,\n    resenas: 615,\n    certificaciones: ['CNSP', 'Seguridad VIP'],\n    servicios: ['Control de acceso vehicular', 'Vigilancia 24/7', 'Rondines programados', 'Gestion de visitas', 'Asesoria en seguridad'],\n    diferenciador: 'Especialistas en fraccionamientos residenciales con tecnologia de vanguardia',\n    telefono: '+52-55-1234-5600',\n    email: 'contacto@seguridadcondominios.mx',\n    imagen: 'guardia-caseta-residencial.webp',\n    keywords: ['seguridad fraccionamientos', 'control acceso vehicular', 'seguridad residencial CDMX', 'rondines']\n  }\n];\n\n// =====================================================\n// ENFOQUES DE ARTICULOS CON SLUGS SEO\n// =====================================================\n\nconst enfoques = [\n  {\n    tipo: 'resena',\n    slugSuffix: 'resena-completa',\n    titulo: '{empresa}: Resena Completa de Servicios',\n    descripcion: 'Analisis detallado de servicios, precios, opiniones de clientes y experiencia'\n  },\n  {\n    tipo: 'caso-exito',\n    slugSuffix: 'caso-exito',\n    titulo: 'Caso de Exito: {empresa} en Seguridad Privada',\n    descripcion: 'Historia real de implementacion exitosa con resultados medibles'\n  },\n  {\n    tipo: 'guia-servicios',\n    slugSuffix: 'guia-servicios',\n    titulo: 'Guia de Servicios: {empresa}',\n    descripcion: 'Desglose completo de cada servicio, beneficios y como contratarlos'\n  },\n  {\n    tipo: 'opiniones',\n    slugSuffix: 'opiniones-clientes',\n    titulo: 'Opiniones sobre {empresa}: Lo que Dicen los Clientes',\n    descripcion: 'Recopilacion de testimonios y experiencias de clientes satisfechos'\n  },\n  {\n    tipo: 'tecnologia',\n    slugSuffix: 'tecnologia-innovacion',\n    titulo: 'Tecnologia e Innovacion en {empresa}',\n    descripcion: 'Analisis de las herramientas tecnologicas y sistemas que utilizan'\n  }\n];\n\n// =====================================================\n// BANCO DE IMAGENES\n// =====================================================\n\nconst imagenesAdicionales = [\n  'guardia-corporativo-oficina.webp',\n  'rondin-nocturno-condominio.webp',\n  'acceso-biometrico-torniquete.webp',\n  'control-huella-digital.webp',\n  'monitoreo-cctv-central.webp',\n  'operador-videovigilancia.webp',\n  'escolta-ejecutivo-vehiculo.webp',\n  'seguridad-centro-comercial.webp',\n  'guardia-control-acceso-residencial.webp',\n  'vigilante-entrada-corporativa.webp',\n  'seguridad-estacionamiento.webp',\n  'vigilante-caseta-fraccionamiento.webp'\n];\n\n// =====================================================\n// SELECCION ALEATORIA\n// =====================================================\n\nconst empresaIndex = Math.floor(Math.random() * empresas.length);\nconst empresa = empresas[empresaIndex];\n\nconst enfoqueIndex = Math.floor(Math.random() * enfoques.length);\nconst enfoque = enfoques[enfoqueIndex];\n\nconst tituloArticulo = enfoque.titulo.replace('{empresa}', empresa.nombre);\n\n// SLUG SEO-FRIENDLY: empresa-slug + enfoque-suffix (max 60 chars, sin numeros)\nconst slugSEO = `${empresa.slug}-${enfoque.slugSuffix}`.substring(0, 60);\n\nconst imagenesShuffled = [...imagenesAdicionales].sort(() => Math.random() - 0.5);\n\nreturn {\n  empresa: empresa,\n  enfoque: enfoque,\n  tituloArticulo: tituloArticulo,\n  slug: slugSEO,\n  timestamp: new Date().toISOString(),\n  categoria: 'seguridad-privada',\n  categoriaNombre: 'Seguridad Privada',\n  imagenes: {\n    principal: empresa.imagen,\n    contenido1: imagenesShuffled[0],\n    contenido2: imagenesShuffled[1],\n    contenido3: imagenesShuffled[2],\n    contenido4: imagenesShuffled[3] || imagenesShuffled[0]\n  },\n  rutaImagenes: '../../img/img-seguridad-privada/',\n  rutaImagenesAbsoluta: 'https://paginasamarillas.mx/img/img-seguridad-privada/',\n  urlPerfilEmpresa: `../../negocios/seguridad-privada/${empresa.slug}.html`\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-1696, 128],
+      "id": "7d2bcacf-7edd-4917-a99a-aee5e423f088",
+      "name": "Selector de Tema e Imagenes"
+    },
+    {
+      "parameters": {
+        "jsCode": "const datos = $input.first().json;\nconst empresa = datos.empresa;\nconst enfoque = datos.enfoque;\nconst titulo = datos.tituloArticulo;\n\nconst prompt = `Eres un periodista especializado en resenas de empresas de seguridad privada en Mexico para el directorio Paginas Amarillas Mexico.\n\n**EMPRESA:**\n- Nombre: ${empresa.nombre}\n- Especialidad: ${empresa.especialidad}\n- Ubicacion: ${empresa.ubicacion}\n- Experiencia: ${empresa.experiencia}\n- Rating: ${empresa.rating}/5 (${empresa.resenas} resenas)\n- Certificaciones: ${empresa.certificaciones.join(', ')}\n- Servicios: ${empresa.servicios.join(', ')}\n- Diferenciador: ${empresa.diferenciador}\n- Telefono: ${empresa.telefono}\n\n**TIPO DE ARTICULO:** ${enfoque.tipo}\n**TITULO SUGERIDO:** ${titulo}\n\n**REGLAS CRITICAS:**\n1. CONTENIDO ATEMPORAL - NUNCA incluyas fechas, anos o meses especificos\n2. Tono profesional pero conversacional, como asesor experto\n3. Segunda persona (tu/usted) de forma consistente\n4. Parrafos de 80-150 palabras, oraciones de 15-25 palabras\n5. Incluye datos especificos: porcentajes, tiempos de respuesta, numeros de clientes\n\n**ESTRUCTURA HTML OBLIGATORIA:**\n\n1. **LEAD PARAGRAPH** - Clase .lead (150 palabras):\n   - Hook emocional sobre el problema que resuelve\n   - Por que ${empresa.nombre} es la solucion\n\n2. **H2: Conociendo a ${empresa.nombre}** (300 palabras):\n   - Historia y trayectoria (${empresa.experiencia})\n   - Valores y filosofia\n   - Que los hace diferentes\n\n3. **H2: Servicios Destacados** (400 palabras):\n   - H3 para cada servicio principal\n   - Beneficios especificos\n   - Incluir galeria de imagenes (ver formato abajo)\n\n4. **H2: Lo que Dicen los Clientes** (300 palabras):\n   - Testimonios con nombres genericos (\"Carlos M., administrador de condominio\")\n   - Rating: ${empresa.rating}/5 con ${empresa.resenas} resenas\n   - Casos de exito breves\n\n5. **H2: Por Que Elegir ${empresa.nombre}** (300 palabras):\n   - Diferenciador: ${empresa.diferenciador}\n   - Certificaciones: ${empresa.certificaciones.join(', ')}\n   - Comparativa con el mercado\n\n6. **H2: Como Contactar** (150 palabras):\n   - Telefono: ${empresa.telefono}\n   - Proceso de cotizacion\n   - CTA con enlace al perfil\n\n**FORMATO HTML REQUERIDO:**\n\n<p class=\"lead\">Parrafo inicial...</p>\n\n<h2 id=\"conociendo\">Conociendo a ${empresa.nombre}</h2>\n<p>Contenido...</p>\n\n<h2 id=\"servicios\">Servicios Destacados</h2>\n<h3>Nombre del Servicio</h3>\n<p>Descripcion...</p>\n\n<!-- GALERIA DE IMAGENES - Insertar despues de servicios -->\n<div class=\"blog-image-gallery\">\n    <h3>Servicios Profesionales de Seguridad</h3>\n    <div class=\"gallery-grid\">\n        <div class=\"gallery-item\">\n            <img src=\"{{IMG_1}}\" alt=\"{{ALT_1}}\">\n            <p class=\"gallery-caption\">Caption 1</p>\n        </div>\n        <div class=\"gallery-item\">\n            <img src=\"{{IMG_2}}\" alt=\"{{ALT_2}}\">\n            <p class=\"gallery-caption\">Caption 2</p>\n        </div>\n        <div class=\"gallery-item\">\n            <img src=\"{{IMG_3}}\" alt=\"{{ALT_3}}\">\n            <p class=\"gallery-caption\">Caption 3</p>\n        </div>\n        <div class=\"gallery-item\">\n            <img src=\"{{IMG_4}}\" alt=\"{{ALT_4}}\">\n            <p class=\"gallery-caption\">Caption 4</p>\n        </div>\n    </div>\n</div>\n\n<h2 id=\"clientes\">Lo que Dicen los Clientes</h2>\n<p>Contenido...</p>\n\n<h2 id=\"por-que-elegir\">Por Que Elegir ${empresa.nombre}</h2>\n<p>Contenido...</p>\n\n<h2 id=\"contactar\">Como Contactar</h2>\n<p>Contenido con enlace: <a href=\"${datos.urlPerfilEmpresa}\">${empresa.nombre} en Paginas Amarillas</a></p>\n\n**LONGITUD TOTAL:** 1,600-2,000 palabras (~8-10 min lectura)\n\n**RESPUESTA JSON UNICAMENTE:**\n{\n  \"titulo\": \"Titulo SEO max 60 chars con nombre empresa\",\n  \"metaDescripcion\": \"Meta descripcion 150-160 chars\",\n  \"palabrasClave\": [\"${empresa.nombre}\", \"seguridad privada CDMX\", \"keyword3\", \"keyword4\", \"keyword5\"],\n  \"tiempoLectura\": 8,\n  \"contenido\": \"HTML completo del articulo\",\n  \"extractoBlog\": \"Extracto 100-150 chars para card\",\n  \"altImagenPrincipal\": \"Alt text SEO imagen principal\",\n  \"altImagen1\": \"Alt para galeria 1\",\n  \"altImagen2\": \"Alt para galeria 2\",\n  \"altImagen3\": \"Alt para galeria 3\",\n  \"altImagen4\": \"Alt para galeria 4\",\n  \"captionImagen1\": \"Caption galeria 1\",\n  \"captionImagen2\": \"Caption galeria 2\",\n  \"captionImagen3\": \"Caption galeria 3\",\n  \"captionImagen4\": \"Caption galeria 4\",\n  \"tocItems\": [\"Conociendo a ${empresa.nombre}\", \"Servicios Destacados\", \"Lo que Dicen los Clientes\", \"Por Que Elegir ${empresa.nombre}\", \"Como Contactar\"]\n}\n\n**IMPORTANTE:** Responde UNICAMENTE con JSON valido, sin texto adicional.`;\n\nreturn {\n  prompt: prompt,\n  tituloArticulo: titulo,\n  empresa: empresa,\n  enfoque: enfoque,\n  slug: datos.slug,\n  timestamp: datos.timestamp,\n  categoria: datos.categoria,\n  categoriaNombre: datos.categoriaNombre,\n  imagenes: datos.imagenes,\n  rutaImagenes: datos.rutaImagenes,\n  rutaImagenesAbsoluta: datos.rutaImagenesAbsoluta,\n  urlPerfilEmpresa: datos.urlPerfilEmpresa\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-1488, 128],
+      "id": "799cd2e1-1b04-4e2b-acff-376cb64a5bdc",
+      "name": "Constructor de Prompt"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.openai.com/v1/chat/completions",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "openAiApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ model: 'gpt-4o', messages: [{ role: 'user', content: $json.prompt }], temperature: 0.7, max_tokens: 4096 }) }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [-1264, 128],
+      "id": "6000b9ff-7a9f-412a-9caf-8324b0e125a1",
+      "name": "ChatGPT - Generar Articulo",
+      "credentials": {
+        "openAiApi": {
+          "id": "HE22vmcnvyK0nv77",
+          "name": "OpenAi account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const inputJson = $input.first().json;\nconst datosOriginales = $('Constructor de Prompt').first().json;\n\ntry {\n  let respuesta;\n  if (inputJson.choices && inputJson.choices[0] && inputJson.choices[0].message) {\n    respuesta = inputJson.choices[0].message.content;\n  } else if (inputJson.content) {\n    respuesta = inputJson.content;\n  } else {\n    throw new Error('Formato de respuesta no reconocido: ' + JSON.stringify(Object.keys(inputJson)));\n  }\n  \n  if (!respuesta) {\n    throw new Error('Respuesta de ChatGPT vacia');\n  }\n  \n  let respuestaLimpia = respuesta.trim();\n  if (respuestaLimpia.startsWith('```json')) {\n    respuestaLimpia = respuestaLimpia.replace(/^```json\\n?/, '').replace(/\\n?```$/, '');\n  } else if (respuestaLimpia.startsWith('```')) {\n    respuestaLimpia = respuestaLimpia.replace(/^```\\n?/, '').replace(/\\n?```$/, '');\n  }\n  \n  const articulo = JSON.parse(respuestaLimpia);\n  \n  const camposRequeridos = ['titulo', 'metaDescripcion', 'palabrasClave', 'contenido', 'tocItems'];\n  const camposFaltantes = camposRequeridos.filter(campo => !articulo[campo]);\n  if (camposFaltantes.length > 0) {\n    throw new Error('Campos faltantes: ' + camposFaltantes.join(', '));\n  }\n  \n  let contenidoLimpio = articulo.contenido.replace(/```html/g, '').replace(/```/g, '').trim();\n  \n  const img = datosOriginales.imagenes;\n  const ruta = datosOriginales.rutaImagenes;\n  \n  // Reemplazar placeholders de galeria\n  contenidoLimpio = contenidoLimpio\n    .replace(/\\{\\{IMG_1\\}\\}/g, ruta + img.contenido1)\n    .replace(/\\{\\{IMG_2\\}\\}/g, ruta + img.contenido2)\n    .replace(/\\{\\{IMG_3\\}\\}/g, ruta + img.contenido3)\n    .replace(/\\{\\{IMG_4\\}\\}/g, ruta + img.contenido4)\n    .replace(/\\{\\{ALT_1\\}\\}/g, articulo.altImagen1 || 'Servicio de seguridad profesional')\n    .replace(/\\{\\{ALT_2\\}\\}/g, articulo.altImagen2 || 'Equipo de vigilancia capacitado')\n    .replace(/\\{\\{ALT_3\\}\\}/g, articulo.altImagen3 || 'Control de acceso moderno')\n    .replace(/\\{\\{ALT_4\\}\\}/g, articulo.altImagen4 || 'Monitoreo profesional');\n  \n  return {\n    exito: true,\n    titulo: articulo.titulo,\n    metaDescripcion: articulo.metaDescripcion,\n    palabrasClave: articulo.palabrasClave,\n    tiempoLectura: articulo.tiempoLectura || 8,\n    contenido: contenidoLimpio,\n    extractoBlog: articulo.extractoBlog || articulo.metaDescripcion.substring(0, 150),\n    altImagenPrincipal: articulo.altImagenPrincipal || 'Seguridad privada profesional',\n    tocItems: articulo.tocItems,\n    slug: datosOriginales.slug,\n    timestamp: datosOriginales.timestamp,\n    categoria: datosOriginales.categoria,\n    categoriaNombre: datosOriginales.categoriaNombre,\n    imagenes: datosOriginales.imagenes,\n    rutaImagenes: datosOriginales.rutaImagenes,\n    rutaImagenesAbsoluta: datosOriginales.rutaImagenesAbsoluta,\n    empresa: datosOriginales.empresa\n  };\n} catch (error) {\n  return {\n    exito: false,\n    error: error.message,\n    respuestaOriginal: typeof inputJson === 'object' ? JSON.stringify(inputJson).substring(0, 800) : String(inputJson).substring(0, 800)\n  };\n}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-1040, 128],
+      "id": "80aada3f-0aef-47a9-80b8-1099bb2b400f",
+      "name": "Validar y Procesar Respuesta"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "boolean": [
+            {
+              "value1": "={{ $json.exito }}",
+              "value2": true
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [-816, 128],
+      "id": "d8eee9dc-0c7a-4dcc-9c1d-4ceb3a8e606f",
+      "name": "Articulo Valido?"
+    },
+    {
+      "parameters": {
+        "jsCode": "const a = $input.first().json;\n\nif (!a.contenido) {\n  throw new Error('No se recibio contenido del articulo');\n}\n\nconst ruta = a.rutaImagenes || '../../img/img-seguridad-privada/';\nconst rutaAbs = a.rutaImagenesAbsoluta || 'https://paginasamarillas.mx/img/img-seguridad-privada/';\nconst img = a.imagenes || { principal: 'equipo-seguridad-corporativo.webp' };\nconst empresa = a.empresa || { nombre: 'Empresa', slug: 'empresa' };\n\nconst tocItems = a.tocItems || ['Conociendo la Empresa', 'Servicios Destacados', 'Lo que Dicen los Clientes', 'Por Que Elegir', 'Como Contactar'];\nconst tocHTML = tocItems.map((item, i) => {\n  const ids = ['conociendo', 'servicios', 'clientes', 'por-que-elegir', 'contactar'];\n  return `                    <li><a href=\"#${ids[i] || 'seccion-' + (i+1)}\">${item}</a></li>`;\n}).join('\\n');\n\nconst htmlCompleto = `<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta name=\"description\" content=\"${a.metaDescripcion}\">\n    <meta name=\"keywords\" content=\"${(a.palabrasClave || ['seguridad privada']).join(', ')}\">\n    <title>${a.titulo} | Paginas Amarillas</title>\n\n    <meta property=\"og:title\" content=\"${a.titulo}\">\n    <meta property=\"og:description\" content=\"${a.metaDescripcion}\">\n    <meta property=\"og:type\" content=\"article\">\n    <meta property=\"og:image\" content=\"${ruta}${img.principal}\">\n\n    <script type=\"application/ld+json\">\n    {\n        \"@context\": \"https://schema.org\",\n        \"@type\": \"Article\",\n        \"headline\": \"${a.titulo}\",\n        \"description\": \"${a.metaDescripcion}\",\n        \"image\": \"${ruta}${img.principal}\",\n        \"author\": {\n            \"@type\": \"Organization\",\n            \"name\": \"Paginas Amarillas Mexico\"\n        },\n        \"publisher\": {\n            \"@type\": \"Organization\",\n            \"name\": \"Paginas Amarillas Mexico\",\n            \"logo\": {\n                \"@type\": \"ImageObject\",\n                \"url\": \"../../img/logo.svg\"\n            }\n        },\n        \"keywords\": \"${(a.palabrasClave || []).join(', ')}\"\n    }\n    </script>\n\n    <link rel=\"stylesheet\" href=\"../../css/style.css\">\n</head>\n<body>\n  <header class=\"header\" id=\"header\">\n    <div class=\"container\">\n      <nav class=\"navbar\">\n        <div class=\"logo\">\n          <a href=\"/\" aria-label=\"Paginas Amarillas Mexico - Inicio\">\n            <span class=\"logo-text\">Paginas<span class=\"logo-highlight\">Amarillas</span>.mx</span>\n          </a>\n        </div>\n        <button class=\"menu-toggle\" id=\"menuToggle\" aria-label=\"Abrir menu\" aria-expanded=\"false\">\n          <span class=\"hamburger\"></span>\n        </button>\n        <div class=\"nav-menu\" id=\"navMenu\">\n          <ul class=\"nav-list\">\n            <li><a href=\"/\">Inicio</a></li>\n            <li><a href=\"/categorias.html\">Categorias</a></li>\n            <li><a href=\"/blog/\">Blog</a></li>\n          </ul>\n          <div class=\"nav-actions\">\n            <a href=\"#login\" class=\"btn btn-ghost\">Iniciar Sesion</a>\n            <a href=\"#registrar\" class=\"btn btn-primary\">Registrar Negocio</a>\n          </div>\n        </div>\n      </nav>\n    </div>\n  </header>\n\n    <section class=\"breadcrumbs\">\n        <div class=\"container\">\n            <nav aria-label=\"Breadcrumb\">\n                <ol class=\"breadcrumb-list\">\n                    <li><a href=\"/\">Inicio</a></li>\n                    <li><a href=\"../../blog.html\">Blog</a></li>\n                    <li><a href=\"/categoria/seguridad-privada.html\">${a.categoriaNombre}</a></li>\n                    <li aria-current=\"page\">${a.titulo}</li>\n                </ol>\n            </nav>\n        </div>\n    </section>\n\n    <main class=\"container\">\n        <div class=\"blog-article-layout\">\n            <article class=\"blog-article\">\n            \n            <header class=\"blog-article-header\">\n                <h1 class=\"blog-article-title\">${a.titulo}</h1>\n                <div class=\"blog-meta\">\n                    <span class=\"blog-reading-time\">\n                        <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                            <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                            <polyline points=\"12 6 12 12 16 14\"/>\n                        </svg>\n                        ${a.tiempoLectura} min lectura\n                    </span>\n                </div>\n            </header>\n\n            <div class=\"blog-article-hero\">\n                <div class=\"blog-article-hero-image\">\n                    <img src=\"${ruta}${img.principal}\" alt=\"${a.altImagenPrincipal}\">\n                </div>\n            </div>\n\n            <nav class=\"blog-article-toc-inline\">\n                <h4>En este articulo</h4>\n                <ul>\n${tocHTML}\n                </ul>\n            </nav>\n\n            <div class=\"blog-article-content\">\n                ${a.contenido}\n            </div>\n\n            <div class=\"blog-article-tags\">\n                <h3>Temas relacionados:</h3>\n                <div class=\"tags-container\">\n                    <a href=\"/categoria/seguridad-privada.html\" class=\"tag\">Seguridad Privada</a>\n                    <a href=\"#\" class=\"tag\">CNSP</a>\n                    <a href=\"#\" class=\"tag\">Vigilancia</a>\n                    <a href=\"#\" class=\"tag\">Proteccion Empresarial</a>\n                </div>\n            </div>\n\n            <div class=\"blog-related-articles\">\n                <h3>Articulos Relacionados</h3>\n                <div class=\"blog-cards-grid\">\n                    <article class=\"blog-card\">\n                        <div class=\"blog-card-image\">\n                            <img src=\"../../img/img-seguridad-privada/centro-monitoreo-camaras.webp\" alt=\"Sistemas CCTV\">\n                        </div>\n                        <div class=\"blog-card-content\">\n                            <h3 class=\"blog-card-title\">\n                                <a href=\"sistemas-cctv-empresas.html\">Sistemas CCTV para Empresas</a>\n                            </h3>\n                            <p class=\"blog-card-excerpt\">Aprende sobre instalacion de sistemas de videovigilancia profesionales.</p>\n                        </div>\n                    </article>\n                    <article class=\"blog-card\">\n                        <div class=\"blog-card-image\">\n                            <img src=\"../../img/img-seguridad-privada/guardia-caseta-residencial.webp\" alt=\"Seguridad condominios\">\n                        </div>\n                        <div class=\"blog-card-content\">\n                            <h3 class=\"blog-card-title\">\n                                <a href=\"seguridad-condominios.html\">Seguridad en Condominios</a>\n                            </h3>\n                            <p class=\"blog-card-excerpt\">Mejores practicas de seguridad para tu comunidad residencial.</p>\n                        </div>\n                    </article>\n                </div>\n            </div>\n        </article>\n\n        <aside class=\"blog-article-sidebar\">\n            <div class=\"blog-toc\">\n                <h3 class=\"blog-toc-title\">\n                    <svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <line x1=\"8\" y1=\"6\" x2=\"21\" y2=\"6\"></line>\n                        <line x1=\"8\" y1=\"12\" x2=\"21\" y2=\"12\"></line>\n                        <line x1=\"8\" y1=\"18\" x2=\"21\" y2=\"18\"></line>\n                        <line x1=\"3\" y1=\"6\" x2=\"3.01\" y2=\"6\"></line>\n                        <line x1=\"3\" y1=\"12\" x2=\"3.01\" y2=\"12\"></line>\n                        <line x1=\"3\" y1=\"18\" x2=\"3.01\" y2=\"18\"></line>\n                    </svg>\n                    En este articulo\n                </h3>\n                <ul class=\"blog-toc-list\">\n${tocHTML}\n                </ul>\n            </div>\n\n            <div class=\"blog-cta-box\">\n                <h3>Buscas Seguridad Privada?</h3>\n                <p>Encuentra las mejores empresas certificadas en nuestro directorio</p>\n                <a href=\"/categoria/seguridad-privada.html\" class=\"btn\">Ver Empresas</a>\n            </div>\n\n            <div class=\"blog-widget\">\n                <h3 class=\"blog-widget-title\">Empresas Destacadas</h3>\n                <div class=\"blog-popular-posts\">\n                    <article class=\"blog-popular-post\">\n                        <a href=\"../../negocios/seguridad-privada/origins-private-security.html\" class=\"blog-popular-thumb\">\n                            <img src=\"../../img/img-seguridad-privada/equipo-seguridad-corporativo.webp\" alt=\"Origins Security\">\n                        </a>\n                        <div class=\"blog-popular-content\">\n                            <h4 class=\"blog-popular-title\">\n                                <a href=\"../../negocios/seguridad-privada/origins-private-security.html\">ORIGINS Private Security</a>\n                            </h4>\n                        </div>\n                    </article>\n                    <article class=\"blog-popular-post\">\n                        <a href=\"../../negocios/seguridad-privada/seguridad-privada-mx.html\" class=\"blog-popular-thumb\">\n                            <img src=\"../../img/img-seguridad-privada/centro-monitoreo-camaras.webp\" alt=\"SeguridadPrivadaMX\">\n                        </a>\n                        <div class=\"blog-popular-content\">\n                            <h4 class=\"blog-popular-title\">\n                                <a href=\"../../negocios/seguridad-privada/seguridad-privada-mx.html\">SeguridadPrivadaMX</a>\n                            </h4>\n                        </div>\n                    </article>\n                    <article class=\"blog-popular-post\">\n                        <a href=\"../../negocios/seguridad-privada/sepri.html\" class=\"blog-popular-thumb\">\n                            <img src=\"../../img/img-seguridad-privada/grupo-guardias-edificio.webp\" alt=\"SEPRI\">\n                        </a>\n                        <div class=\"blog-popular-content\">\n                            <h4 class=\"blog-popular-title\">\n                                <a href=\"../../negocios/seguridad-privada/sepri.html\">SEPRI</a>\n                            </h4>\n                        </div>\n                    </article>\n                </div>\n            </div>\n        </aside>\n    </div>\n    </main>\n\n  <footer class=\"footer\">\n    <div class=\"footer-main\">\n      <div class=\"container\">\n        <div class=\"footer-grid\">\n          <div class=\"footer-column footer-brand\">\n            <div class=\"footer-logo\">\n              <span class=\"logo-text\">Paginas<span class=\"logo-highlight\">Amarillas</span>.mx</span>\n            </div>\n            <p class=\"footer-text\">\n              El directorio empresarial mas completo de Mexico. Conectamos negocios con clientes desde 2025.\n            </p>\n            <div class=\"footer-contact-info\">\n              <div class=\"footer-contact-item\">\n                <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                  <path d=\"M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z\"/>\n                </svg>\n                <a href=\"mailto:contacto@paginasamarillas.mx\">contacto@paginasamarillas.mx</a>\n              </div>\n            </div>\n          </div>\n          <div class=\"footer-column\">\n            <h4 class=\"footer-heading\">Categorias Populares</h4>\n            <ul class=\"footer-links\">\n              <li><a href=\"/categoria/seguridad-privada.html\">Seguridad Privada</a></li>\n              <li><a href=\"#restaurantes\">Restaurantes</a></li>\n              <li><a href=\"#hoteles\">Hoteles</a></li>\n              <li><a href=\"/categorias.html\">Ver todas</a></li>\n            </ul>\n          </div>\n          <div class=\"footer-column\">\n            <h4 class=\"footer-heading\">Ciudades</h4>\n            <ul class=\"footer-links\">\n              <li><a href=\"#cdmx\">Ciudad de Mexico</a></li>\n              <li><a href=\"#guadalajara\">Guadalajara</a></li>\n              <li><a href=\"#monterrey\">Monterrey</a></li>\n            </ul>\n          </div>\n          <div class=\"footer-column\">\n            <h4 class=\"footer-heading\">Ayuda</h4>\n            <ul class=\"footer-links\">\n              <li><a href=\"../../blog.html\">Blog</a></li>\n              <li><a href=\"#ayuda\">Centro de Ayuda</a></li>\n              <li><a href=\"#contacto\">Contacto</a></li>\n              <li><a href=\"../../sitemap.html\">Mapa del Sitio</a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"footer-bottom\">\n      <div class=\"container\">\n        <div class=\"footer-bottom-content\">\n          <p class=\"copyright\">\n            &copy; 2025 PaginasAmarillas.mx. Todos los derechos reservados.\n          </p>\n          <div class=\"footer-badges\">\n            <span class=\"footer-badge\">Sitio Seguro</span>\n            <span class=\"footer-badge\">Hecho en Mexico</span>\n          </div>\n        </div>\n      </div>\n    </div>\n  </footer>\n\n  <script src=\"../../js/app.js\"></script>\n</body>\n</html>`;\n\nreturn {\n  html: htmlCompleto,\n  nombreArchivo: `${a.slug}.html`,\n  rutaArchivo: `blog/seguridad-privada/${a.slug}.html`,\n  titulo: a.titulo,\n  extractoBlog: a.extractoBlog,\n  metaDescripcion: a.metaDescripcion,\n  tiempoLectura: a.tiempoLectura,\n  imagenPrincipal: `${ruta}${img.principal}`,\n  imagenPrincipalAbsoluta: `${rutaAbs}${img.principal}`,\n  slug: a.slug,\n  categoria: a.categoria,\n  categoriaNombre: a.categoriaNombre,\n  empresaNombre: empresa.nombre,\n  urlPerfilEmpresa: `https://paginasamarillas.mx/negocios/seguridad-privada/${empresa.slug}.html`\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-576, 32],
+      "id": "4b82d235-0589-43e9-8456-a501f06f4fcd",
+      "name": "Construir HTML Profesional"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "owner": "Origenlab",
+        "repository": "PAGINASAMARILLAS",
+        "filePath": "={{ $json.rutaArchivo }}",
+        "fileContent": "={{ $json.html }}",
+        "commitMessage": "=feat(blog): {{ $json.empresaNombre }} - {{ $json.titulo }}"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [-368, 32],
+      "id": "4821da14-f696-41ba-90c8-d3face8ff1e1",
+      "name": "GitHub - Subir Articulo",
+      "webhookId": "27d0a5fd-1389-4538-bfe4-a9d1bfc972ed",
+      "credentials": {
+        "githubApi": {
+          "id": "NFw8kpUQfQRbzSHR",
+          "name": "GitHub account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const datosArticulo = $('Construir HTML Profesional').first().json;\nconst githubResponse = $input.first().json;\n\nconst codigoBlogHTML = `<!-- ${datosArticulo.empresaNombre} -->\n<article class=\"blog-card\">\n    <div class=\"blog-card-image\">\n        <img src=\"${datosArticulo.imagenPrincipal}\" alt=\"${datosArticulo.titulo}\">\n    </div>\n    <div class=\"blog-card-content\">\n        <h3 class=\"blog-card-title\">\n            <a href=\"seguridad-privada/${datosArticulo.slug}.html\">${datosArticulo.titulo}</a>\n        </h3>\n        <p class=\"blog-card-excerpt\">${datosArticulo.extractoBlog}</p>\n        <div class=\"blog-meta\">\n            <span class=\"blog-reading-time\">\n                <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><circle cx=\"12\" cy=\"12\" r=\"10\"/><polyline points=\"12 6 12 12 16 14\"/></svg>\n                ${datosArticulo.tiempoLectura} min\n            </span>\n        </div>\n    </div>\n</article>`;\n\nreturn {\n  exito: true,\n  mensaje: 'Articulo publicado exitosamente',\n  detalles: {\n    empresa: datosArticulo.empresaNombre,\n    titulo: datosArticulo.titulo,\n    urlArticulo: `https://paginasamarillas.mx/${datosArticulo.rutaArchivo}`,\n    urlPerfil: datosArticulo.urlPerfilEmpresa,\n    imagenPrincipal: datosArticulo.imagenPrincipalAbsoluta,\n    tiempoLectura: `${datosArticulo.tiempoLectura} min`,\n    categoria: datosArticulo.categoriaNombre,\n    commitSha: githubResponse.commit?.sha || 'N/A',\n    slug: datosArticulo.slug\n  },\n  codigoParaBlogHTML: codigoBlogHTML,\n  instrucciones: [\n    '1. Agregar el codigo a blog/index.html',\n    '2. Verificar que el articulo aparece correctamente',\n    '3. Compartir en redes sociales'\n  ],\n  timestamp: new Date().toISOString()\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-144, 32],
+      "id": "4310c074-2b7a-4911-ae11-aee1cc9769aa",
+      "name": "Resumen y Codigo para blog.html"
+    },
+    {
+      "parameters": {
+        "chatId": "772938445",
+        "text": "=✅ *Nuevo Articulo Publicado*\n\n🏢 *Empresa:* {{ $json.detalles.empresa }}\n📝 *Titulo:* {{ $json.detalles.titulo }}\n\n📂 *Categoria:* {{ $json.detalles.categoria }}\n⏱ *Lectura:* {{ $json.detalles.tiempoLectura }}\n\n🔗 *URL:* {{ $json.detalles.urlArticulo }}\n\n📋 *Proximos pasos:*\n1. Agregar codigo a blog/index.html\n2. Verificar visualizacion\n3. Compartir en redes\n\n🤖 _Paginas Amarillas Blog Generator_",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [80, 32],
+      "id": "535ec0a9-45a4-480b-a535-5f02cf205146",
+      "name": "Telegram - Notificar Publicacion",
+      "webhookId": "5601dce9-d134-4fa1-a354-02934607118f",
+      "credentials": {
+        "telegramApi": {
+          "id": "c4dCbuRFOO8qk8oI",
+          "name": "Telegram account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const error = $input.first().json;\n\nreturn {\n  exito: false,\n  mensaje: 'Error en la generacion del articulo',\n  error: error.error || 'Error desconocido',\n  respuestaOriginal: error.respuestaOriginal || null,\n  timestamp: new Date().toISOString(),\n  recomendacion: 'Revisa los logs y vuelve a ejecutar el workflow manualmente'\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [-576, 256],
+      "id": "b2f78c40-307f-4097-bd6b-eeaddac1a0ca",
+      "name": "Manejar Error"
+    }
+  ],
+  "connections": {
+    "Cada 3 Dias": {
+      "main": [
+        [
+          {
+            "node": "Selector de Tema e Imagenes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ejecucion Manual": {
+      "main": [
+        [
+          {
+            "node": "Selector de Tema e Imagenes",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Selector de Tema e Imagenes": {
+      "main": [
+        [
+          {
+            "node": "Constructor de Prompt",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Constructor de Prompt": {
+      "main": [
+        [
+          {
+            "node": "ChatGPT - Generar Articulo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatGPT - Generar Articulo": {
+      "main": [
+        [
+          {
+            "node": "Validar y Procesar Respuesta",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Validar y Procesar Respuesta": {
+      "main": [
+        [
+          {
+            "node": "Articulo Valido?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Articulo Valido?": {
+      "main": [
+        [
+          {
+            "node": "Construir HTML Profesional",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Manejar Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Construir HTML Profesional": {
+      "main": [
+        [
+          {
+            "node": "GitHub - Subir Articulo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub - Subir Articulo": {
+      "main": [
+        [
+          {
+            "node": "Resumen y Codigo para blog.html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Resumen y Codigo para blog.html": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Notificar Publicacion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "pinData": {},
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "paginas-amarillas-mx"
+  }
+}
