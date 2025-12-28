@@ -1,2201 +1,1158 @@
-{
-`command`: `cat >> /home/claude/GUIA-MAESTRA-ARTICULOS-BLOG-V2.md << 'EOF'
+# GUIA MAESTRA DE ARTICULOS - PAGINAS AMARILLAS MEXICO
 
-> 500ms (percibidas como lentas)
+## Sistema Profesional de Generacion de Contenido SEO
 
-- ❌ Usar `all` en transition (ineficiente, afecta performance)
-- ❌ Animar propiedades que causan reflow (`width`, `height`, `top`, `left`)
-
-**PREFERIR:**
-
-- ✅ `transform: translateX/Y/Z()` en lugar de `left/top`
-- ✅ `opacity` en lugar de `visibility`
-- ✅ `scale()` en lugar de `width/height`
-- ✅ Propiedades específicas en transition: `transition: transform 0.3s ease, opacity 0.3s ease`
+**Version:** 2.0 PRO
+**Categoria:** Seguridad Privada
+**Plataforma:** PaginasAmarillas.mx
 
 ---
 
-## 5. ESTRATEGIA SEO ON-PAGE AVANZADA
+# SECCION 1: ESTRUCTURA HERO DE DOS COLUMNAS
 
-### 5.1 Research de Keywords Pre-Producción
+## 1.1 Arquitectura del Hero Section
 
-#### 5.1.1 Metodología de Investigación
+El hero es el primer impacto visual del articulo. Debe capturar atencion en 3 segundos.
 
-**Proceso de 5 pasos:**
-
-**PASO 1: Identificación de Keyword Principal**
-
-Criterios de selección:
-
-- ✅ Volumen de búsqueda: Mínimo 500 búsquedas/mes (ideal: 1,000-10,000)
-- ✅ Dificultad: Baja-Media (KD < 50 en Ahrefs/SEMrush)
-- ✅ Intención de búsqueda: Alineada con contenido del artículo
-- ✅ Relevancia comercial: Conecta con servicios del directorio
-
-**Herramientas:**
-
-- Google Keyword Planner
-- Ahrefs Keywords Explorer
-- SEMrush Keyword Magic Tool
-- Ubersuggest
-
-**PASO 2: Análisis de Intención de Búsqueda**
-
-Tipos de intención:
-
-| Intención         | Indicadores                 | Ejemplo                          | Tipo de Contenido        |
-| ----------------- | --------------------------- | -------------------------------- | ------------------------ |
-| **Informacional** | qué, cómo, por qué, guía    | \"qué es seguridad privada\"     | Guía educativa           |
-| **Navegacional**  | nombre de marca, específico | \"Origins Private Security\"     | Página de empresa        |
-| **Transaccional** | contratar, precio, mejor    | \"contratar seguridad privada\"  | Comparativa + directorio |
-| **Comercial**     | comparar, vs, alternativas  | \"seguridad privada vs pública\" | Artículo comparativo     |
-
-**PASO 3: Mapeo de Keywords Secundarias (3-5)**
-
-Criterios:
-
-- ✅ Relacionadas semánticamente con principal
-- ✅ Long-tail (3-5 palabras)
-- ✅ Complementan la narrativa del artículo
-- ✅ Menor competencia que principal
-
-**Ejemplo para \"seguridad privada México\":**
-
-- Secundaria 1: \"empresas de seguridad privada certificadas\"
-- Secundaria 2: \"guardias de seguridad profesionales\"
-- Secundaria 3: \"servicios de vigilancia CDMX\"
-- Secundaria 4: \"certificación CNSP México\"
-
-**PASO 4: Extracción de LSI Keywords (8-12)**
-
-LSI (Latent Semantic Indexing) = términos relacionados contextualmente
-
-**Métodos de extracción:**
-
-1. Google \"búsquedas relacionadas\" (pie de página de SERPs)
-2. Google \"la gente también pregunta\" (People Also Ask)
-3. LSIGraph.com
-4. Análisis de top 10 competidores
-
-**Ejemplo para \"seguridad privada\":**
-
-- vigilancia, protección, monitoreo
-- guardias, vigilantes, custodios
-- CNSP, certificación, regulación
-- empresas, proveedores, servicios
-- residencial, corporativo, industrial
-
-**PASO 5: Análisis Competitivo SERP**
-
-Analizar top 10 resultados para keyword principal:
-
-```
-Datos a extraer por competidor:
-- Longitud del artículo (palabras)
-- Número de H2/H3
-- Estructura de contenido
-- Keywords en title/description
-- Calidad de imágenes
-- Schema implementado
-- Autoridad de dominio (DA/DR)
-- Backlinks a la página
-```
-
-**Output del análisis:**
-
-- Longitud objetivo (promedio top 10 + 10-20%)
-- Estructura de encabezados común
-- Gaps de contenido (temas no cubiertos)
-- Oportunidades de diferenciación
-
-#### 5.1.2 Documento de Keyword Strategy
-
-**Template obligatorio:**
-
-```markdown
-# Keyword Strategy: [Título del Artículo]
-
-## Keyword Principal
-
-- **Término**: [keyword principal]
-- **Volumen**: [búsquedas/mes]
-- **Dificultad**: [KD score]
-- **Intención**: [Informacional/Transaccional/etc.]
-
-## Keywords Secundarias (3-5)
-
-1. [Secundaria 1] - [volumen] - [KD]
-2. [Secundaria 2] - [volumen] - [KD]
-3. [Secundaria 3] - [volumen] - [KD]
-
-## LSI Keywords (8-12)
-
-- [LSI 1]
-- [LSI 2]
-- [LSI 3]
-  ...
-
-## Análisis Competitivo
-
-**Top 3 competidores:**
-
-1. [URL] - [palabras] - DA [X] - [fortalezas/debilidades]
-2. [URL] - [palabras] - DA [X] - [fortalezas/debilidades]
-3. [URL] - [palabras] - DA [X] - [fortalezas/debilidades]
-
-**Longitud objetivo**: [X] palabras
-**Gaps identificados**: [Temas no cubiertos por competencia]
-**Diferenciadores**: [Ángulo único de nuestro artículo]
-```
-
-### 5.2 Optimización de Title Tag Profesional
-
-#### 5.2.1 Fórmulas Comprobadas
-
-**Fórmula 1: Descriptor + Keyword + Geo + Marca**
-
-```
-[Tipo Contenido] de [Keyword] en [Geo] | [Marca]
-
-Ejemplos:
-✅ Guía Completa de Seguridad Privada en México | Páginas Amarillas
-✅ Tutorial de Control de Acceso en CDMX | Páginas Amarillas
-```
-
-**Fórmula 2: Número + Keyword + Beneficio + Marca**
-
-```
-[#] [Keyword] para [Beneficio] | [Marca]
-
-Ejemplos:
-✅ 10 Empresas de Seguridad para Proteger tu Negocio | Páginas Amarillas
-✅ 7 Tipos de Vigilancia para Condominios en México | Páginas Amarillas
-```
-
-**Fórmula 3: Cómo + Acción + Keyword + (Año)**
-
-```
-Cómo [Acción] [Keyword] [Geo/Modificador] [Año] | [Marca]
-
-Ejemplos:
-✅ Cómo Elegir Seguridad Privada Certificada 2025 | Páginas Amarillas
-✅ Cómo Contratar Guardias Profesionales en CDMX | Páginas Amarillas
-```
-
-**Fórmula 4: Keyword + Comparativa/VS**
-
-```
-[Keyword A] vs [Keyword B]: [Pregunta] | [Marca]
-
-Ejemplos:
-✅ Seguridad Privada vs Pública: ¿Cuál Necesitas? | Páginas Amarillas
-```
-
-#### 5.2.2 Optimización Técnica
-
-**Análisis de longitud:**
-
-```
-Caracteres:        50        55        60        65        70
-               |---------|---------|---------|---------|---------|
-Óptimo:        [================================]
-Riesgo corte:                                  [===============...]
-Demasiado corto: [=====]
-```
-
-**Reglas de oro:**
-
-- ✅ **50-65 caracteres** total (incluyendo marca)
-- ✅ Keyword principal en **primeras 5 palabras**
-- ✅ Marca al final tras separador `|` o `-`
-- ✅ Capitalización Title Case (excepto artículos/preposiciones)
-- ❌ NO usar ALL CAPS
-- ❌ NO usar puntuación excesiva (!!!, ???)
-- ❌ NO keyword stuffing
-
-**Testing de CTR:**
-
-Variables a testear (si aplica):
-
-- Uso de números vs no números
-- Año actual (2025) vs sin año
-- Emojis (⚡✅🔥) vs sin emojis
-- Pregunta vs afirmación
-- Urgencia (\"Ahora\", \"2025\") vs neutro
-
-#### 5.2.3 Ejemplos Categorizados
-
-**Para guías informacionales:**
-
-```
-✅ Guía Completa de [Topic] en México 2025 | Páginas Amarillas
-✅ Todo sobre [Topic]: Guía Definitiva | Páginas Amarillas
-✅ [Topic] en México: Qué Necesitas Saber | Páginas Amarillas
-```
-
-**Para artículos transaccionales:**
-
-```
-✅ Mejores Empresas de [Servicio] en CDMX | Páginas Amarillas
-✅ Dónde Contratar [Servicio] Certificado | Páginas Amarillas
-✅ [Servicio] Profesional: Precios y Opciones | Páginas Amarillas
-```
-
-**Para contenido comparativo:**
-
-```
-✅ [A] vs [B]: Comparativa Completa 2025 | Páginas Amarillas
-✅ Diferencias entre [A] y [B] en México | Páginas Amarillas
-```
-
-**Para tutoriales:**
-
-```
-✅ Cómo [Acción]: Guía Paso a Paso | Páginas Amarillas
-✅ [Acción] en México: Tutorial Completo | Páginas Amarillas
-```
-
-### 5.3 Meta Description Persuasiva
-
-#### 5.3.1 Anatomía de una Meta Description Efectiva
-
-**Estructura de 3 componentes (140-160 caracteres):**
-
-```
-[Hook/Beneficio] + [Contenido/Qué incluye] + [CTA implícito]
-
-Ejemplo desglosado:
-\"Descubre cómo elegir seguridad privada certificada. [HOOK]
-Regulaciones, precios, empresas confiables y más. [CONTENIDO]
-Guía completa 2025 para México.\" [CTA IMPLÍCITO]
-= 158 caracteres ✅
-```
-
-**Fórmulas probadas:**
-
-**Fórmula 1: Descubre + Lista + Guía**
-
-```
-Descubre [tema]: [beneficio 1], [beneficio 2], [beneficio 3]. Guía completa [año] para [geo].
-
-Ejemplo:
-\"Descubre seguridad privada en México: servicios, precios, certificaciones y cómo elegir la mejor empresa. Guía completa 2025 para tu negocio.\"
-(159 caracteres)
-```
-
-**Fórmula 2: Aprende + Proceso + Resultado**
-
-```
-Aprende [qué hacer] en [tiempo/pasos]. [Resultado esperado]. [Autoridad/credibilidad].
-
-Ejemplo:
-\"Aprende a contratar seguridad privada en 5 pasos. Protege tu empresa con guardias certificados CNSP. Guía de expertos en México.\"
-(140 caracteres)
-```
-
-**Fórmula 3: Pregunta + Respuesta + Llamado**
-
-```
-¿[Pregunta relevante]? [Respuesta breve]. [Qué encontrarás] en esta guía de [marca].
-
-Ejemplo:
-\"¿Buscas seguridad privada confiable? Compara empresas certificadas, precios y servicios. Todo lo que necesitas en Páginas Amarillas MX.\"
-(148 caracteres)
-```
-
-**Fórmula 4: Estadística + Solución + Acción**
-
-```
-[Dato impactante]. [Solución que ofreces]. [Qué hacer ahora].
-
-Ejemplo:
-\"70% de empresas sufren robos sin seguridad profesional. Encuentra proveedores certificados CNSP en México. Compara y contrata hoy.\"
-(142 caracteres)
-```
-
-#### 5.3.2 Principios Psicológicos
-
-**1. Principio de Especificidad**
-❌ \"Artículo sobre seguridad\"
-✅ \"Guía de 10 pasos para contratar seguridad privada certificada\"
-
-**2. Principio de Beneficio Claro**
-❌ \"Información sobre extintores\"
-✅ \"Protege tu negocio: cómo elegir extintores que cumplen NOM\"
-
-**3. Principio de Urgencia/Relevancia**
-❌ \"Guía de seguridad\"
-✅ \"Guía completa 2025: seguridad privada en México\"
-
-**4. Principio de Inclusión**
-❌ \"Todo sobre seguridad privada\"
-✅ \"Seguridad privada: tipos, precios, certificaciones, contratación\"
-
-**5. Principio de Prueba Social Implícita**
-❌ \"Encuentra empresas de seguridad\"
-✅ \"Compara las mejores empresas certificadas de México\"
-
-#### 5.3.3 Testing y Optimización
-
-**Variables a testear:**
-
-| Variable | Opción A               | Opción B                       | Métrica |
-| -------- | ---------------------- | ------------------------------ | ------- |
-| Tono     | Profesional formal     | Conversacional                 | CTR     |
-| Longitud | 145 chars              | 158 chars                      | CTR     |
-| Números  | \"múltiples opciones\" | \"10+ opciones\"               | CTR     |
-| CTA      | Implícito              | Explícito (\"Descubre ahora\") | CTR     |
-| Año      | Con \"2025\"           | Sin año                        | CTR     |
-
-**Herramientas de preview:**
-
-- SERP Simulator de Portent
-- Yoast SEO (WordPress)
-- Preview de Google Search Console
-
-### 5.4 Optimización de URL (Slug)
-
-#### 5.4.1 Construcción de Slug SEO-Friendly
-
-**Proceso de creación:**
-
-```
-Título original:
-\"Guía Completa de Seguridad Privada en México: Todo lo que Necesitas Saber\"
-
-PASO 1: Extraer keywords principales
-seguridad privada + México + guía
-
-PASO 2: Eliminar stop words
-de, en, todo, lo, que
-
-PASO 3: Construir slug
-guia-seguridad-privada-mexico
-
-PASO 4: Validar longitud
-27 caracteres ✅ (< 60)
-
-Slug final:
-blog/seguridad-privada/guia-seguridad-privada-mexico.html
-```
-
-**Stop words a eliminar:**
-
-- Artículos: el, la, los, las, un, una, unos, unas
-- Preposiciones: de, del, en, con, por, para, sin, sobre
-- Conjunciones: y, o, pero, aunque
-- Pronombres: que, qué, como, cómo
-- Otros: todo, más, muy, mucho
-
-**MANTENER si son parte de la keyword:**
-
-- \"cómo hacer\" → `como-hacer` (keyword long-tail)
-- \"paso a paso\" → `paso-a-paso` (frase común de búsqueda)
-
-#### 5.4.2 Reglas Técnicas de Slug
-
-**OBLIGATORIO:**
-
-```
-✅ Solo minúsculas: guia-completa
-❌ Mayúsculas: Guia-Completa
-
-✅ Guiones para separar: seguridad-privada
-❌ Underscores: seguridad_privada
-❌ Espacios: seguridad privada
-
-✅ Sin acentos: mexico (no méxico)
-❌ Con acentos: méxico
-
-✅ Sin eñes: espanol (no español)
-❌ Con eñes: español
-
-✅ Sin caracteres especiales: que-es
-❌ Con signos: que-es?
-
-✅ Máximo 60 caracteres antes de .html
-❌ URLs largas: guia-completa-de-seguridad-privada-en-mexico-con-empresas-certificadas.html
-```
-
-**Estructura de ruta completa:**
-
-```
-https://paginasamarillas.mx/blog/[categoria]/[slug].html
-
-Componentes:
-- Dominio: paginasamarillas.mx
-- Sección: /blog/
-- Categoría: /seguridad-privada/
-- Slug: guia-seguridad-privada-mexico.html
-```
-
-#### 5.4.3 Ejemplos por Tipo de Contenido
-
-**Guías:**
-
-```
-Título: \"Guía Completa de X en México\"
-Slug: guia-completa-x-mexico.html
-```
-
-**Tutoriales:**
-
-```
-Título: \"Cómo Hacer X Paso a Paso\"
-Slug: como-hacer-x-paso-a-paso.html
-```
-
-**Comparativas:**
-
-```
-Título: \"X vs Y: ¿Cuál es Mejor?\"
-Slug: x-vs-y-comparativa.html
-```
-
-**Listas:**
-
-```
-Título: \"10 Mejores Empresas de X en CDMX\"
-Slug: 10-mejores-empresas-x-cdmx.html
-```
-
-**Definiciones:**
-
-```
-Título: \"¿Qué es X y Para Qué Sirve?\"
-Slug: que-es-x.html
-```
-
-### 5.5 Optimización de Encabezados (H1-H3)
-
-#### 5.5.1 H1: Título Principal
-
-**Reglas absolutas:**
-
-1. ✅ **Único en la página** (solo 1 H1)
-2. ✅ **Keyword principal incluida** (preferiblemente al inicio)
-3. ✅ **40-70 caracteres** (legibilidad óptima)
-4. ✅ **Descriptivo y claro** (promesa de valor evidente)
-5. ✅ **Puede diferir del title tag** (optimización dual)
-
-**Comparación Title vs H1:**
-
-```
-Title Tag (SEO-focused):
-\"Guía de Seguridad Privada en México 2025 | Páginas Amarillas\"
-(65 caracteres, incluye marca y año)
-
-H1 (User-focused):
-\"Guía Completa de Seguridad Privada en México\"
-(49 caracteres, más limpio visualmente)
-```
-
-**Fórmulas para H1:**
-
-```
-Fórmula 1: [Tipo] de [Keyword] en [Geo]
-Ejemplo: \"Guía Completa de Seguridad Privada en México\"
-
-Fórmula 2: [Keyword]: [Subtítulo Descriptivo]
-Ejemplo: \"Seguridad Privada: Todo lo que Necesitas Saber\"
-
-Fórmula 3: Cómo [Acción] [Keyword] [Modificador]
-Ejemplo: \"Cómo Elegir Seguridad Privada Certificada\"
-
-Fórmula 4: [#] [Keyword] para [Beneficio]
-Ejemplo: \"10 Empresas de Seguridad para Proteger tu Negocio\"
-```
-
-#### 5.5.2 H2: Secciones Principales
-
-**Estrategia de H2:**
-
-**Cantidad óptima:** 5-7 H2 para artículos de 2,000-3,500 palabras
-
-**Distribución de keywords:**
-
-```
-H2 #1: Incluir keyword principal o variación
-Ejemplo: \"Entendiendo la Seguridad Privada en México\"
-
-H2 #2: Keyword secundaria o LSI
-Ejemplo: \"Marco Legal y Certificación CNSP\"
-
-H2 #3: Variación de keyword principal
-Ejemplo: \"Tipos de Servicios de Seguridad Privada\"
-
-H2 #4: Long-tail keyword (intención transaccional)
-Ejemplo: \"Cómo Elegir una Empresa de Seguridad\"
-
-H2 #5-7: Temas relacionados sin forzar keywords
-Ejemplo: \"Beneficios de Invertir en Seguridad Profesional\"
-```
-
-**Balance entre SEO y Engagement:**
-
-❌ **Títulos planos (solo SEO):**
-
-- \"Marco Legal de Seguridad Privada\"
-- \"Tipos de Servicios\"
-- \"Cómo Elegir Empresa\"
-
-✅ **Títulos conversacionales (SEO + engagement):**
-
-- \"El Marco Legal: Más Importante de lo que Imaginas\"
-- \"Los Diferentes Rostros de la Seguridad Privada\"
-- \"Cómo Elegir una Empresa Sin Morir en el Intento\"
-
-**Técnicas de copywriting para H2:**
-
-1. **Pregunta retórica:**
-   \"¿Por Qué la Seguridad Privada es Esencial?\"
-
-2. **Beneficio implícito:**
-   \"Cómo la Certificación CNSP Protege tu Inversión\"
-
-3. **Contraste/sorpresa:**
-   \"Lo que las Empresas No Te Dicen sobre Seguridad\"
-
-4. **Especificidad:**
-   \"5 Señales de que Necesitas Seguridad Profesional\"
-
-5. **Urgencia/relevancia:**
-   \"Nuevas Regulaciones 2025 que Debes Conocer\"
-
-#### 5.5.3 H3: Sub-secciones
-
-**Uso estratégico de H3:**
-
-H3 debe usarse para:
-
-1. ✅ Dividir secciones H2 muy largas (>500 palabras)
-2. ✅ Introducir listas o enumeraciones
-3. ✅ Destacar sub-temas específicos
-4. ✅ Crear estructura en galerías/FAQs
-
-**Ejemplo de jerarquía correcta:**
+### Estructura HTML Obligatoria
 
 ```html
-<h2>Los Diferentes Rostros de la Seguridad Privada</h2>
-<p>[Intro a los tipos de servicios...]</p>
-
-<h3>Seguridad Residencial</h3>
-<p>[Explicación de servicios para hogares...]</p>
-
-<h3>Seguridad Corporativa</h3>
-<p>[Explicación de servicios para empresas...]</p>
-
-<h3>Seguridad en Eventos</h3>
-<p>[Explicación de servicios temporales...]</p>
-```
-
-**PROHIBIDO (jerarquía rota):**
-
-```html
-❌
-<h1>Título</h1>
-<h3>Subtítulo</h3>
-<!-- Saltó H2 -->
-
-❌
-<h2>Sección</h2>
-<h4>Sub-sección</h4>
-<!-- Saltó H3 -->
-```
-
-**Densidad de keywords en H3:**
-
-- ✅ H3 pueden incluir keywords, pero **no forzar**
-- ✅ Priorizar claridad y estructura sobre keyword stuffing
-- ✅ Si keyword cabe naturalmente, incluirla
-
-### 5.6 Densidad de Keywords y Distribución
-
-#### 5.6.1 Fórmula de Densidad Óptima
-
-**Cálculo:**
-
-```
-Densidad = (Número de veces que aparece keyword / Total palabras) × 100
-
-Ejemplo:
-Keyword: \"seguridad privada\"
-Apariciones: 35 veces
-Total palabras artículo: 2,850
-Densidad = (35 / 2,850) × 100 = 1.23% ✅
-```
-
-**Rangos recomendados:**
-
-| Tipo de Keyword | Densidad Óptima | Apariciones en 2,500 palabras |
-| --------------- | --------------- | ----------------------------- |
-| Principal       | 1.0% - 1.5%     | 25-37 veces                   |
-| Secundaria      | 0.5% - 1.0%     | 12-25 veces                   |
-| LSI (cada una)  | 0.3% - 0.7%     | 7-17 veces                    |
-
-**⚠️ ADVERTENCIA:**
-
-- Densidad > 2.5% = Riesgo de keyword stuffing
-- Densidad < 0.5% = Insuficiente señal SEO
-
-#### 5.6.2 Distribución Estratégica (On-Page SEO)
-
-**Ubicaciones críticas (ponderar más):**
-
-```
-[PESO SEO: ALTO]
-1. Title tag (meta title) ✅ OBLIGATORIO
-2. Meta description ✅ OBLIGATORIO
-3. H1 ✅ OBLIGATORIO
-4. Primeras 100 palabras del artículo ✅ OBLIGATORIO
-5. URL/slug ✅ OBLIGATORIO
-
-[PESO SEO: MEDIO]
-6. Al menos 1 H2 ✅ RECOMENDADO
-7. Alt text de imagen hero ✅ RECOMENDADO
-8. Último párrafo (conclusión) ✅ RECOMENDADO
-
-[PESO SEO: BAJO]
-9. Otros H2/H3 (natural, no forzar) ⚪ OPCIONAL
-10. Anchors de enlaces internos ⚪ OPCIONAL
-11. Alt text de otras imágenes ⚪ OPCIONAL
-```
-
-**Checklist de distribución:**
-
-```
-☐ Keyword principal en title tag
-☐ Keyword principal en meta description
-☐ Keyword principal en H1
-☐ Keyword principal en primeras 100 palabras
-☐ Keyword principal en URL
-☐ Keyword principal o variación en mínimo 1 H2
-☐ Keyword principal en imagen hero alt text
-☐ Keyword principal en último párrafo/conclusión
-☐ Keywords secundarias distribuidas naturalmente (2-3 veces cada una)
-☐ LSI keywords integradas en contexto (5-10 veces total)
-```
-
-#### 5.6.3 Variaciones y Sinónimos (Evitar Repetición)
-
-**Ejemplo: Keyword principal \"seguridad privada\"**
-
-Usar variaciones naturales:
-
-- seguridad privada ← forma exacta
-- servicios de seguridad ← variación
-- protección profesional ← sinónimo
-- vigilancia privada ← sinónimo
-- empresas de seguridad ← variación contextual
-- proveedores de seguridad ← sinónimo
-- guardias profesionales ← especificación
-
-**Técnica de rotación en texto:**
-
-```
-Párrafo 1: \"La seguridad privada en México...\"
-Párrafo 3: \"Los servicios de seguridad incluyen...\"
-Párrafo 5: \"Contratar vigilancia privada requiere...\"
-Párrafo 8: \"Las empresas de seguridad certificadas...\"
-```
-
-**PROHIBIDO (keyword stuffing):**
-
-```
-❌ \"La seguridad privada es importante. Contratar seguridad
-    privada en México requiere verificar que la seguridad
-    privada esté certificada. Nuestra seguridad privada...\"
-```
-
-✅ **CORRECTO (variación natural):**
-
-```
-✅ \"La seguridad privada es importante. Contratar servicios
-    profesionales en México requiere verificar certificaciones.
-    Los proveedores confiables cuentan con...\"
-```
-
-### 5.7 Schema.org Structured Data Avanzado
-
-#### 5.7.1 Article Schema Completo
-
-**Implementación profesional:**
-
-```json
-<script type=\"application/ld+json\">
-{
-    \"@context\": \"https://schema.org\",
-    \"@type\": \"Article\",
-
-    \"headline\": \"[Título H1 - máx 110 caracteres]\",
-    \"alternativeHeadline\": \"[Subtítulo opcional]\",
-    \"description\": \"[Meta description completa]\",
-
-    \"image\": {
-        \"@type\": \"ImageObject\",
-        \"url\": \"https://paginasamarillas.mx/img/img-[cat]/[hero].webp\",
-        \"width\": 1200,
-        \"height\": 800,
-        \"caption\": \"[Descripción de la imagen]\"
-    },
-
-    \"datePublished\": \"2025-11-16T10:00:00-06:00\",
-    \"dateModified\": \"2025-11-16T14:30:00-06:00\",
-
-    \"author\": {
-        \"@type\": \"Organization\",
-        \"name\": \"Páginas Amarillas México\",
-        \"url\": \"https://paginasamarillas.mx\",
-        \"logo\": {
-            \"@type\": \"ImageObject\",
-            \"url\": \"https://paginasamarillas.mx/img/logo.svg\",
-            \"width\": 250,
-            \"height\": 60
-        }
-    },
-
-    \"publisher\": {
-        \"@type\": \"Organization\",
-        \"name\": \"Páginas Amarillas México\",
-        \"url\": \"https://paginasamarillas.mx\",
-        \"logo\": {
-            \"@type\": \"ImageObject\",
-            \"url\": \"https://paginasamarillas.mx/img/logo.svg\",
-            \"width\": 250,
-            \"height\": 60
-        }
-    },
-
-    \"mainEntityOfPage\": {
-        \"@type\": \"WebPage\",
-        \"@id\": \"https://paginasamarillas.mx/blog/[cat]/[slug].html\"
-    },
-
-    \"keywords\": \"[keyword1, keyword2, keyword3, keyword4, keyword5]\",
-    \"articleSection\": \"[Categoría del Blog]\",
-    \"articleBody\": \"[Extracto del contenido - primeros 200 caracteres]\",
-
-    \"wordCount\": 2850,
-    \"timeRequired\": \"PT8M\",
-    \"inLanguage\": \"es-MX\",
-    \"isAccessibleForFree\": true,
-
-    \"about\": {
-        \"@type\": \"Thing\",
-        \"name\": \"[Tema principal del artículo]\"
-    }
-}
-</script>
-```
-
-**Análisis de propiedades:**
-
-| Propiedad          | Obligatoria    | Descripción                           | Ejemplo                       |
-| ------------------ | -------------- | ------------------------------------- | ----------------------------- |
-| `headline`         | ✅ Sí          | Título principal (H1)                 | \"Guía de Seguridad Privada\" |
-| `description`      | ✅ Sí          | Meta description                      | \"Guía completa sobre...\"    |
-| `image`            | ✅ Sí          | Imagen destacada                      | URL completa WebP             |
-| `datePublished`    | ✅ Sí          | Fecha de publicación ISO 8601         | \"2025-11-16T10:00:00-06:00\" |
-| `dateModified`     | ⚪ Recomendada | Última actualización                  | \"2025-11-16T14:30:00-06:00\" |
-| `author`           | ✅ Sí          | Organización autora                   | Páginas Amarillas México      |
-| `publisher`        | ✅ Sí          | Publicador (mismo que author)         | Páginas Amarillas México      |
-| `mainEntityOfPage` | ⚪ Recomendada | URL canónica del artículo             | URL completa                  |
-| `wordCount`        | ⚪ Opcional    | Número de palabras                    | 2850                          |
-| `timeRequired`     | ⚪ Opcional    | Tiempo de lectura (ISO 8601 duration) | \"PT8M\" (8 minutos)          |
-
-**Formato de fecha ISO 8601:**
-
-```
-YYYY-MM-DDTHH:MM:SS±HH:MM
-
-Ejemplo:
-2025-11-16T10:00:00-06:00
-│    │  │  │  │  │  └─ Timezone (México GMT-6)
-│    │  │  │  │  └──── Segundos
-│    │  │  │  └─────── Minutos
-│    │  │  └────────── Horas (24h)
-│    │  └───────────── Día
-│    └──────────────── Mes
-└───────────────────── Año
-```
-
-**Duración ISO 8601 (timeRequired):**
-
-```
-PT#M = # minutos
-PT#H#M = # horas # minutos
-
-Ejemplos:
-PT5M = 5 minutos
-PT8M = 8 minutos
-PT1H30M = 1 hora 30 minutos
-```
-
-#### 5.7.2 FAQPage Schema (OBLIGATORIO)
-
-**Implementación:**
-
-```json
-<script type=\"application/ld+json\">
-{
-    \"@context\": \"https://schema.org\",
-    \"@type\": \"FAQPage\",
-    \"mainEntity\": [
-        {
-            \"@type\": \"Question\",
-            \"name\": \"¿Qué es la seguridad privada en México?\",
-            \"acceptedAnswer\": {
-                \"@type\": \"Answer\",
-                \"text\": \"<p>La seguridad privada en México es un servicio profesional regulado por el Consejo Nacional de Seguridad Privada (CNSP) que protege personas, propiedades e información mediante vigilancia, monitoreo y protocolos especializados.</p>\"
-            }
-        },
-        {
-            \"@type\": \"Question\",
-            \"name\": \"¿Cuánto cuesta contratar seguridad privada en México?\",
-            \"acceptedAnswer\": {
-                \"@type\": \"Answer\",
-                \"text\": \"<p>Los costos varían según el tipo de servicio: vigilancia básica desde $8,000-$12,000 MXN mensuales por guardia, protección ejecutiva desde $25,000 MXN, y monitoreo electrónico desde $3,000 MXN mensuales. Los precios dependen de la zona, horarios y nivel de especialización requerido.</p>\"
-            }
-        },
-        {
-            \"@type\": \"Question\",
-            \"name\": \"¿Cómo verificar que una empresa de seguridad esté certificada por CNSP?\",
-            \"acceptedAnswer\": {
-                \"@type\": \"Answer\",
-                \"text\": \"<p>Puedes verificar la certificación CNSP de una empresa en el Registro Nacional de Empresas de Seguridad Privada (RENESP) accediendo al portal oficial de la Secretaría de Seguridad Pública. Solicita el número de registro y verifica que esté vigente. Empresas certificadas deben mostrar su registro públicamente.</p>\"
-            }
-        }
-        // ... más preguntas (mínimo 5 total)
-    ]
-}
-</script>
-```
-
-**Reglas de implementación:**
-
-1. ✅ **Mínimo 5 preguntas** por artículo
-2. ✅ **Text en `acceptedAnswer`** puede incluir HTML básico (`<p>`, `<strong>`, `<em>`, `<ul>`, `<li>`)
-3. ✅ **Preguntas en segunda persona** (\"¿Cómo puedes...?\", \"¿Qué necesitas...?\")
-4. ✅ **Respuestas completas** (2-4 oraciones, 100-200 palabras)
-5. ✅ **Sincronización**: FAQ Schema debe coincidir exactamente con FAQs en HTML
-
-**Beneficios SEO:**
-
-- 📈 Aparición en Rich Results de Google
-- 📈 Mayor espacio en SERPs (featured snippets)
-- 📈 Mejor CTR (click-through rate)
-- 📈 Autoridad percibida
-
-#### 5.7.2.1 Implementación de FAQ Accordion (OBLIGATORIO)
-
-**⚠️ IMPORTANTE**: Las FAQs deben implementarse con funcionalidad accordion/collapse para mejorar la experiencia de usuario. Los usuarios verán solo las preguntas inicialmente, y al hacer clic se desplegará la respuesta.
-
-**Estructura HTML con Accordion:**
-
-```html
-<section class="faq-section">
-    <h2>Preguntas Frecuentes</h2>
-
-    <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-            <span>¿Qué es la seguridad privada en México?</span>
-            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </button>
-        <div class="faq-answer">
-            <p>La seguridad privada en México es un servicio profesional regulado por el Consejo Nacional de Seguridad Privada (CNSP) que protege personas, propiedades e información mediante vigilancia, monitoreo y protocolos especializados.</p>
+<section class="blog-hero-section">
+    <div class="container">
+        <div class="blog-hero-grid">
+            <!-- COLUMNA IZQUIERDA: IMAGEN -->
+            <div class="blog-hero-image">
+                <img
+                    src="../../img/img-seguridad-privada/{imagen-hero}.webp"
+                    alt="{alt-text-seo}"
+                    loading="eager"
+                    width="600"
+                    height="400"
+                >
+                <div class="image-overlay">
+                    <span class="image-badge">{categoria}</span>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: CONTENIDO -->
+            <div class="blog-hero-content">
+                <!-- Badge de categoria -->
+                <span class="category-badge">{Seguridad Privada}</span>
+
+                <!-- H1 Principal -->
+                <h1 class="hero-title">{Titulo SEO Optimizado}</h1>
+
+                <!-- Parrafo 1: GANCHO EMOCIONAL -->
+                <p class="hero-hook">
+                    {Parrafo de 60-80 palabras que presenta el problema
+                    principal y genera interes inmediato. Debe incluir
+                    la keyword principal de forma natural.}
+                </p>
+
+                <!-- Parrafo 2: PROPUESTA DE VALOR -->
+                <p class="hero-value">
+                    {Parrafo de 50-70 palabras que presenta la solucion
+                    y el valor que obtendra el lector. Incluye beneficios
+                    especificos y keywords secundarias.}
+                </p>
+
+                <!-- Meta informacion -->
+                <div class="hero-meta">
+                    <span class="reading-time">
+                        <svg>...</svg> {X} min lectura
+                    </span>
+                    <span class="article-type">{Tipo: Guia/Resena/Tutorial}</span>
+                </div>
+
+                <!-- CTA del Hero -->
+                <a href="#contenido" class="hero-cta">
+                    Comenzar Lectura
+                    <svg>...</svg>
+                </a>
+            </div>
         </div>
     </div>
-
-    <div class="faq-item">
-        <button class="faq-question" aria-expanded="false">
-            <span>¿Cuánto cuesta contratar seguridad privada en México?</span>
-            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="6 9 12 15 18 9"></polyline>
-            </svg>
-        </button>
-        <div class="faq-answer">
-            <p>Los costos varían según el tipo de servicio: vigilancia básica desde $8,000-$12,000 MXN mensuales por guardia, protección ejecutiva desde $25,000 MXN, y monitoreo electrónico desde $3,000 MXN mensuales.</p>
-        </div>
-    </div>
-
-    <!-- Repetir para las 5+ preguntas -->
 </section>
 ```
 
-**Características clave de la estructura:**
-
-- ✅ **`<button>` semántico** en lugar de `<h3>` o `<div>` para accesibilidad
-- ✅ **`aria-expanded="false"`** para lectores de pantalla
-- ✅ **Icono SVG chevron** que rota al expandir
-- ✅ **`<span>` wrapper** para el texto de la pregunta
-- ✅ **`.faq-answer`** contiene el contenido colapsable
-
-**JavaScript para Accordion:**
-
-```javascript
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const faqQuestions = document.querySelectorAll('.faq-question');
-
-  faqQuestions.forEach(function(question) {
-    question.addEventListener('click', function() {
-      const faqItem = this.parentElement;
-      const answer = faqItem.querySelector('.faq-answer');
-      const isExpanded = this.getAttribute('aria-expanded') === 'true';
-
-      // Cerrar todas las demás FAQs (comportamiento single-open)
-      faqQuestions.forEach(function(q) {
-        if (q !== question) {
-          q.setAttribute('aria-expanded', 'false');
-          q.parentElement.querySelector('.faq-answer').style.maxHeight = null;
-        }
-      });
-
-      // Toggle la FAQ actual
-      if (isExpanded) {
-        this.setAttribute('aria-expanded', 'false');
-        answer.style.maxHeight = null;
-      } else {
-        this.setAttribute('aria-expanded', 'true');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    });
-  });
-});
-</script>
-```
-
-**Comportamiento del accordion:**
-
-- ✅ **Single-open**: Solo una FAQ abierta a la vez (cierra las demás al abrir una nueva)
-- ✅ **Toggle suave**: Animación con `max-height` calculado dinámicamente
-- ✅ **Accesibilidad**: Actualiza `aria-expanded` en cada interacción
-- ✅ **Progressive enhancement**: Si JavaScript falla, el contenido sigue siendo accesible
-
-**CSS para Accordion:**
+### 1.2 Estilos CSS del Hero
 
 ```css
-<style>
-.faq-section {
-  margin: 3rem 0;
+.blog-hero-section {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 4rem 0;
+    margin-bottom: 3rem;
 }
 
-.faq-item {
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  margin-bottom: 1rem;
-  overflow: hidden;
-  transition: box-shadow 0.3s ease;
+.blog-hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
 }
 
-.faq-item:hover {
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+.blog-hero-image {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 }
 
-.faq-question {
-  width: 100%;
-  background: #fff;
-  border: none;
-  padding: 1.25rem 1.5rem;
-  text-align: left;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1f2937;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background-color 0.3s ease;
+.blog-hero-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
 }
 
-.faq-question:hover {
-  background: #f9fafb;
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.7));
+    padding: 2rem 1.5rem 1rem;
 }
 
-.faq-question:focus {
-  outline: 2px solid #f59e0b;
-  outline-offset: -2px;
+.blog-hero-content {
+    color: #fff;
 }
 
-.faq-question span {
-  flex: 1;
-  padding-right: 1rem;
+.category-badge {
+    display: inline-block;
+    background: #f59e0b;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 1.5rem;
 }
 
-.faq-icon {
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
-  color: #6b7280;
+.hero-title {
+    font-size: 2.75rem;
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    color: #fff;
 }
 
-.faq-question[aria-expanded="true"] {
-  background: #fafafa;
+.hero-hook {
+    font-size: 1.25rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 1rem;
+    font-weight: 500;
 }
 
-.faq-question[aria-expanded="true"] .faq-icon {
-  transform: rotate(180deg);
-  color: #f59e0b;
+.hero-value {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 2rem;
 }
 
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-  background: #fafafa;
+.hero-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    color: rgba(255,255,255,0.6);
 }
 
-.faq-answer p {
-  padding: 1.5rem;
-  margin: 0;
-  color: #4b5563;
-  line-height: 1.7;
+.hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #f59e0b;
+    color: #000;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
 }
-</style>
+
+.hero-cta:hover {
+    background: #fbbf24;
+    transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .blog-hero-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+}
 ```
 
-**Detalles de estilo:**
+### 1.3 Contenido del Hero - Formulas de Redaccion
 
-- ✅ **Bordes redondeados** (8px) para look moderno
-- ✅ **Hover states** en botón y contenedor
-- ✅ **Focus visible** (outline dorado) para navegación por teclado
-- ✅ **Rotación de icono** 180° al expandir
-- ✅ **Color dorado** (#f59e0b) en estado activo (coincide con marca)
-- ✅ **Transiciones suaves** en todos los estados (0.3s)
-- ✅ **Box shadow sutil** en hover para profundidad
+#### Parrafo 1: GANCHO (Hook)
 
-**Accesibilidad obligatoria:**
+**Formula:** Problema + Emocion + Curiosidad
 
+**Plantilla:**
 ```
-☐ Usar <button> (no <div> con onclick)
-☐ Atributo aria-expanded actualizado dinámicamente
-☐ Navegación por teclado funcional (Tab, Enter, Space)
-☐ Focus visible con outline claro
-☐ Color de contraste adecuado (WCAG AA mínimo)
-☐ Texto legible sin JavaScript activado
+{Situacion problematica que el lector reconoce}. {Consecuencia
+emocional o practica}. {Pregunta o afirmacion que genera curiosidad
+sobre la solucion}.
 ```
 
-**Testing de implementación:**
-
+**Ejemplo para Seguridad Privada:**
 ```
-☐ Probar en Chrome, Firefox, Safari
-☐ Probar en móvil (iOS y Android)
-☐ Verificar animación suave sin lag
-☐ Confirmar que solo una FAQ abre a la vez
-☐ Validar navegación con teclado
-☐ Probar con lector de pantalla (NVDA/VoiceOver)
-☐ Verificar comportamiento si JavaScript está deshabilitado
+La inseguridad en Mexico no es un tema menor: cada hora, empresas
+y hogares sufren perdidas que pudieron evitarse. Mientras algunos
+confian en cerraduras y camaras basicas, otros han descubierto que
+la verdadera proteccion requiere un enfoque profesional. La pregunta
+es: ¿conoces las opciones que realmente funcionan?
 ```
 
-**⚠️ NOTA IMPORTANTE**: Este accordion debe implementarse en TODOS los artículos nuevos. No es opcional. La experiencia de usuario mejorada y el engagement son críticos para el rendimiento SEO.
+#### Parrafo 2: PROPUESTA DE VALOR
 
-#### 5.7.3 BreadcrumbList Schema
+**Formula:** Solucion + Beneficios Especificos + Promesa
 
-**Implementación:**
+**Plantilla:**
+```
+En {este articulo/esta guia} descubriras {que aprendera}. Te
+mostraremos {beneficio 1}, {beneficio 2} y {beneficio 3}. Al
+terminar, tendras {resultado tangible que obtendra}.
+```
+
+**Ejemplo:**
+```
+En esta guia completa descubriras como funcionan las tecnologias
+emergentes en seguridad privada. Te mostraremos desde inteligencia
+artificial hasta drones de vigilancia, con casos reales en Mexico.
+Al terminar, sabras exactamente que soluciones necesita tu empresa
+o condominio para protegerse de manera inteligente.
+```
+
+---
+
+# SECCION 2: ESTRUCTURA COMPLETA DEL ARTICULO
+
+## 2.1 Jerarquia de Contenido
+
+```
+HERO SECTION (Dos columnas)
+    |
+    v
+TABLA DE CONTENIDOS (Navegable)
+    |
+    v
+SECCION 1: INTRODUCCION CONTEXTUAL
+    - Lead paragraph (clase .lead)
+    - Contexto del problema
+    - Por que importa ahora
+    |
+    v
+SECCION 2-6: DESARROLLO DE CONTENIDO
+    - H2 con keywords estrategicas
+    - H3 para sub-secciones
+    - Galerias de imagenes
+    - Modulos de interes
+    - Listas y tablas
+    |
+    v
+SECCION 7: IMPLEMENTACION PRACTICA
+    - Paso a paso
+    - Checklist
+    - Consideraciones
+    |
+    v
+SECCION 8: CONCLUSION + CTA
+    - Resumen de puntos clave
+    - Llamado a accion
+    - Enlace al directorio
+    |
+    v
+SECCION 9: FAQs (5-7 preguntas)
+    - Accordion interactivo
+    - Schema FAQPage
+    |
+    v
+ARTICULOS RELACIONADOS
+    |
+    v
+SIDEBAR (Desktop)
+    - TOC sticky
+    - CTA Box
+    - Empresas destacadas
+```
+
+## 2.2 Estructura de Cada Seccion H2
+
+### Template de Seccion
+
+```html
+<section class="article-section" id="{seccion-id}">
+    <h2 class="section-title">{Titulo H2 con Keyword}</h2>
+
+    <!-- Parrafo introductorio (80-100 palabras) -->
+    <p class="section-intro">
+        {Contexto de la seccion. Que va a aprender el lector.
+        Por que es importante. Transicion suave desde seccion anterior.}
+    </p>
+
+    <!-- Contenido principal -->
+    <div class="section-content">
+        <!-- Parrafos de desarrollo -->
+        <p>{Contenido detallado...}</p>
+
+        <!-- Sub-secciones si aplica -->
+        <h3>{Subtitulo H3}</h3>
+        <p>{Contenido del subtema...}</p>
+
+        <!-- Listas cuando aplique -->
+        <ul class="feature-list">
+            <li><strong>{Punto clave}:</strong> {Explicacion}</li>
+            <li><strong>{Punto clave}:</strong> {Explicacion}</li>
+        </ul>
+    </div>
+
+    <!-- Modulo de interes (1 por cada 2-3 secciones) -->
+    <div class="interest-module">
+        <div class="module-icon">{emoji/icono}</div>
+        <div class="module-content">
+            <h4>{Titulo del modulo}</h4>
+            <p>{Dato importante, estadistica o tip practico}</p>
+        </div>
+    </div>
+</section>
+```
+
+### Tipos de Modulos de Interes
+
+#### 1. Modulo de Estadistica
+
+```html
+<div class="interest-module stat-module">
+    <div class="stat-number">87%</div>
+    <div class="stat-content">
+        <h4>Dato Clave</h4>
+        <p>De las empresas que implementaron IA en seguridad reportaron
+        reduccion significativa en incidentes.</p>
+        <cite>Fuente: Estudio CNSP 2024</cite>
+    </div>
+</div>
+```
+
+#### 2. Modulo de Tip Practico
+
+```html
+<div class="interest-module tip-module">
+    <div class="tip-icon">💡</div>
+    <div class="tip-content">
+        <h4>Consejo de Experto</h4>
+        <p>Antes de invertir en tecnologia, realiza una auditoria de
+        seguridad. El 60% de los problemas se resuelven optimizando
+        procesos existentes.</p>
+    </div>
+</div>
+```
+
+#### 3. Modulo de Alerta/Importante
+
+```html
+<div class="interest-module alert-module">
+    <div class="alert-icon">⚠️</div>
+    <div class="alert-content">
+        <h4>Importante</h4>
+        <p>Verifica siempre que tu proveedor cuente con certificacion
+        CNSP vigente. Operar sin ella es ilegal y anula garantias.</p>
+    </div>
+</div>
+```
+
+#### 4. Modulo de Cita/Testimonio
+
+```html
+<div class="interest-module quote-module">
+    <blockquote>
+        "La inteligencia artificial no reemplaza a los guardias,
+        los hace 10 veces mas efectivos."
+    </blockquote>
+    <cite>— Carlos Rodriguez, Director de Seguridad Corporativa</cite>
+</div>
+```
+
+---
+
+# SECCION 3: GALERIA DE IMAGENES PROFESIONAL
+
+## 3.1 Estructura de Galeria
+
+```html
+<div class="blog-image-gallery">
+    <h3 class="gallery-title">{Titulo descriptivo de la galeria}</h3>
+
+    <div class="gallery-grid">
+        <!-- Imagen 1 -->
+        <figure class="gallery-item">
+            <img
+                src="../../img/img-seguridad-privada/{imagen-1}.webp"
+                alt="{alt-text-descriptivo-seo}"
+                loading="lazy"
+                width="400"
+                height="300"
+            >
+            <figcaption class="gallery-caption">
+                <strong>{Titulo corto}</strong>
+                <span>{Descripcion breve del servicio mostrado}</span>
+            </figcaption>
+        </figure>
+
+        <!-- Imagen 2 -->
+        <figure class="gallery-item">
+            <img
+                src="../../img/img-seguridad-privada/{imagen-2}.webp"
+                alt="{alt-text-descriptivo-seo}"
+                loading="lazy"
+            >
+            <figcaption class="gallery-caption">
+                <strong>{Titulo corto}</strong>
+                <span>{Descripcion breve}</span>
+            </figcaption>
+        </figure>
+
+        <!-- Imagen 3 -->
+        <figure class="gallery-item">
+            <img
+                src="../../img/img-seguridad-privada/{imagen-3}.webp"
+                alt="{alt-text-descriptivo-seo}"
+                loading="lazy"
+            >
+            <figcaption class="gallery-caption">
+                <strong>{Titulo corto}</strong>
+                <span>{Descripcion breve}</span>
+            </figcaption>
+        </figure>
+
+        <!-- Imagen 4 -->
+        <figure class="gallery-item">
+            <img
+                src="../../img/img-seguridad-privada/{imagen-4}.webp"
+                alt="{alt-text-descriptivo-seo}"
+                loading="lazy"
+            >
+            <figcaption class="gallery-caption">
+                <strong>{Titulo corto}</strong>
+                <span>{Descripcion breve}</span>
+            </figcaption>
+        </figure>
+    </div>
+</div>
+```
+
+## 3.2 CSS de Galeria
+
+```css
+.blog-image-gallery {
+    margin: 3rem 0;
+    padding: 2rem;
+    background: #f8fafc;
+    border-radius: 16px;
+}
+
+.gallery-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #1f2937;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.gallery-item {
+    margin: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    padding: 1rem;
+}
+
+.gallery-caption strong {
+    display: block;
+    font-size: 1rem;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.gallery-caption span {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+@media (max-width: 640px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+```
+
+## 3.3 Optimizacion de Imagenes
+
+### Especificaciones Tecnicas
+
+| Atributo | Valor Recomendado |
+|----------|-------------------|
+| Formato | WebP (con fallback JPG) |
+| Ancho Hero | 1200px |
+| Ancho Galeria | 600px |
+| Calidad | 80-85% |
+| Peso maximo | 150KB (hero), 80KB (galeria) |
+| Alt text | 5-15 palabras descriptivas con keyword |
+
+### Nombres de Archivo SEO
+
+**Formato:** `{descripcion}-{contexto}.webp`
+
+**Ejemplos correctos:**
+- `guardia-seguridad-corporativo-oficina.webp`
+- `centro-monitoreo-cctv-profesional.webp`
+- `control-acceso-biometrico-edificio.webp`
+
+**Ejemplos incorrectos:**
+- `IMG_001.webp`
+- `foto-nueva.webp`
+- `seguridad.webp`
+
+---
+
+# SECCION 4: OPTIMIZACION SEO AVANZADA
+
+## 4.1 Meta Tags Obligatorios
+
+```html
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO Basico -->
+    <title>{Titulo} | Paginas Amarillas</title>
+    <meta name="description" content="{Meta descripcion 150-160 caracteres}">
+    <meta name="keywords" content="{keyword1}, {keyword2}, {keyword3}, {keyword4}, {keyword5}">
+    <meta name="author" content="Paginas Amarillas Mexico">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://paginasamarillas.mx/blog/seguridad-privada/{slug}.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{Titulo optimizado para redes}">
+    <meta property="og:description" content="{Descripcion persuasiva para compartir}">
+    <meta property="og:image" content="https://paginasamarillas.mx/img/img-seguridad-privada/{og-image}.webp">
+    <meta property="og:url" content="https://paginasamarillas.mx/blog/seguridad-privada/{slug}.html">
+    <meta property="og:site_name" content="Paginas Amarillas Mexico">
+    <meta property="og:locale" content="es_MX">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{Titulo}">
+    <meta name="twitter:description" content="{Descripcion}">
+    <meta name="twitter:image" content="{URL imagen}">
+
+    <!-- Article Meta -->
+    <meta property="article:section" content="Seguridad Privada">
+    <meta property="article:tag" content="{tag1}">
+    <meta property="article:tag" content="{tag2}">
+    <meta property="article:tag" content="{tag3}">
+</head>
+```
+
+## 4.2 Schema.org Structured Data
+
+### Article Schema
 
 ```json
-<script type=\"application/ld+json\">
 {
-    \"@context\": \"https://schema.org\",
-    \"@type\": \"BreadcrumbList\",
-    \"itemListElement\": [
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "{Titulo del articulo}",
+    "description": "{Meta descripcion}",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://paginasamarillas.mx/img/img-seguridad-privada/{imagen}.webp",
+        "width": 1200,
+        "height": 800
+    },
+    "author": {
+        "@type": "Organization",
+        "name": "Paginas Amarillas Mexico",
+        "url": "https://paginasamarillas.mx"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Paginas Amarillas Mexico",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://paginasamarillas.mx/img/logo.svg"
+        }
+    },
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://paginasamarillas.mx/blog/seguridad-privada/{slug}.html"
+    },
+    "keywords": "{keywords separadas por coma}",
+    "articleSection": "Seguridad Privada",
+    "wordCount": {numero-palabras},
+    "timeRequired": "PT{X}M",
+    "inLanguage": "es-MX"
+}
+```
+
+### FAQPage Schema
+
+```json
+{
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
         {
-            \"@type\": \"ListItem\",
-            \"position\": 1,
-            \"name\": \"Inicio\",
-            \"item\": \"https://paginasamarillas.mx/\"
+            "@type": "Question",
+            "name": "{Pregunta 1}",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{Respuesta completa 80-150 palabras}"
+            }
         },
         {
-            \"@type\": \"ListItem\",
-            \"position\": 2,
-            \"name\": \"Blog\",
-            \"item\": \"https://paginasamarillas.mx/blog/\"
-        },
-        {
-            \"@type\": \"ListItem\",
-            \"position\": 3,
-            \"name\": \"Seguridad Privada\",
-            \"item\": \"https://paginasamarillas.mx/categoria/seguridad-privada.html\"
-        },
-        {
-            \"@type\": \"ListItem\",
-            \"position\": 4,
-            \"name\": \"Guía Completa de Seguridad Privada\",
-            \"item\": \"https://paginasamarillas.mx/blog/seguridad-privada/guia-completa.html\"
+            "@type": "Question",
+            "name": "{Pregunta 2}",
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{Respuesta completa}"
+            }
         }
     ]
 }
-</script>
 ```
 
-**⚠️ NOTA**: Este Schema debe coincidir exactamente con los breadcrumbs visibles en HTML (sección 3.1.3).
+## 4.3 Estrategia de Keywords
 
-### 5.8 Open Graph Completo
+### Distribucion Obligatoria
 
-**Implementación exhaustiva:**
+| Ubicacion | Keyword Principal | Keywords Secundarias |
+|-----------|-------------------|----------------------|
+| Title Tag | Si (primeras 5 palabras) | 1 si cabe |
+| Meta Description | Si | 1-2 naturalmente |
+| H1 | Si | No |
+| URL/Slug | Si | No |
+| Primer parrafo | Si (primeras 100 palabras) | 1 |
+| H2 (minimo 1) | Si o variacion | Distribuidas |
+| Alt imagen hero | Si | No |
+| Ultimo parrafo | Si | 1 |
+
+### Densidad Optima
+
+- **Keyword principal:** 1.0% - 1.5%
+- **Keywords secundarias:** 0.5% - 1.0% cada una
+- **LSI keywords:** 0.3% - 0.5% cada una
+
+### Ejemplo de Keywords para Seguridad Privada
+
+**Principal:**
+- inteligencia artificial en seguridad privada
+
+**Secundarias:**
+- tecnologias emergentes seguridad
+- IA videovigilancia Mexico
+- drones seguridad privada
+- IoT seguridad empresarial
+
+**LSI (Latent Semantic):**
+- monitoreo, vigilancia, proteccion
+- camaras, sensores, detectores
+- analisis, prediccion, automatizacion
+- empresas, corporativos, condominios
+
+---
+
+# SECCION 5: REDACCION PROFESIONAL
+
+## 5.1 Tono y Estilo
+
+### Caracteristicas Obligatorias
+
+| Aspecto | Descripcion |
+|---------|-------------|
+| Persona | Segunda persona (tu/usted) consistente |
+| Tono | Profesional pero accesible, como asesor experto |
+| Voz | Activa sobre pasiva |
+| Autoridad | Conocimiento compartido, no impuesto |
+| Empatia | Reconocer problemas del lector |
+
+### Ejemplos de Tono Correcto
+
+**CORRECTO:**
+```
+Cuando buscas un sistema de seguridad con IA, la primera pregunta
+es: ¿realmente necesito esta tecnologia? La respuesta depende de
+tu contexto. Un condominio con 50 departamentos tiene necesidades
+muy diferentes a una nave industrial. Veamos como identificar
+exactamente que tipo de solucion te conviene.
+```
+
+**INCORRECTO (muy formal):**
+```
+La seleccion de sistemas de seguridad basados en inteligencia
+artificial requiere una evaluacion exhaustiva de los requerimientos
+especificos del inmueble en cuestion, considerando variables
+multiples que determinan la viabilidad de implementacion.
+```
+
+**INCORRECTO (muy casual):**
+```
+Oye, ¿quieres saber si la IA es buena para tu negocio? Pues
+depende de mil cosas, pero aqui te cuento el chisme completo
+para que no te vean la cara.
+```
+
+## 5.2 Estructura de Parrafos
+
+### Reglas de Oro
+
+- **Longitud:** 80-150 palabras por parrafo
+- **Oraciones:** 3-6 por parrafo
+- **Palabras por oracion:** 15-25 promedio
+- **Estructura:** Idea principal + soporte + transicion
+
+### Template de Parrafo
+
+```
+[ORACION PRINCIPAL - Tesis del parrafo]
+La certificacion CNSP no es un simple tramite burocratico.
+
+[ORACION SOPORTE 1 - Desarrollo]
+Es tu principal garantia de que estas contratando un servicio
+profesional y legalmente establecido.
+
+[ORACION SOPORTE 2 - Evidencia]
+Empresas certificadas han pasado por auditorias que verifican
+desde la capacitacion de su personal hasta la legalidad de
+sus equipos.
+
+[ORACION TRANSICION - Conecta con siguiente parrafo]
+Pero verificar la certificacion es solo el primer paso en
+tu proceso de seleccion.
+```
+
+## 5.3 Tecnicas de Engagement
+
+### 1. Preguntas Retoricas
+
+**Uso:** Inicio de secciones H2, antes de revelar informacion clave
+
+```
+¿Alguna vez te has preguntado por que algunas empresas de
+seguridad cobran el doble que otras? La diferencia no esta
+solo en el uniforme.
+```
+
+### 2. Datos Especificos
+
+**Regla:** Numeros concretos > palabras vagas
+
+```
+INCORRECTO: "La mayoria de empresas vieron mejoras"
+CORRECTO: "El 87% de empresas redujeron incidentes en 6 meses"
+```
+
+### 3. Ejemplos Contextualizados
+
+```
+Una empresa de logistica en CDMX redujo sus perdidas por robo
+en 87% tras implementar camaras con IA. En seis meses, el
+ahorro supero el costo anual del sistema.
+```
+
+### 4. Listas Escaneables
 
 ```html
-<!-- Open Graph Básico -->
-<meta property=\"og:type\" content=\"article\"> <meta property=\"og:title\"
-content=\"[Título del artículo - puede diferir de meta title]\"> <meta
-property=\"og:description\" content=\"[Descripción persuasiva - puede diferir de
-meta description]\"> <meta property=\"og:url\"
-content=\"https://paginasamarillas.mx/blog/[cat]/[slug].html\"> <meta
-property=\"og:site_name\" content=\"Páginas Amarillas México\"> <meta
-property=\"og:locale\" content=\"es_MX\">
-
-<!-- Open Graph Imagen -->
-<meta property=\"og:image\"
-content=\"https://paginasamarillas.mx/img/img-[cat]/[og-image].jpg\"> <meta
-property=\"og:image:secure_url\"
-content=\"https://paginasamarillas.mx/img/img-[cat]/[og-image].jpg\"> <meta
-property=\"og:image:type\" content=\"image/jpeg\"> <meta
-property=\"og:image:width\" content=\"1200\"> <meta property=\"og:image:height\"
-content=\"630\"> <meta property=\"og:image:alt\" content=\"[Descripción de la
-imagen OG]\">
-
-<!-- Open Graph Article (específico para artículos) -->
-<meta property=\"article:published_time\" content=\"2025-11-16T10:00:00-06:00\">
-<meta property=\"article:modified_time\" content=\"2025-11-16T14:30:00-06:00\">
-<meta property=\"article:author\" content=\"https://paginasamarillas.mx/about\">
-<meta property=\"article:section\" content=\"Seguridad Privada\"> <meta
-property=\"article:tag\" content=\"seguridad privada\"> <meta
-property=\"article:tag\" content=\"CNSP\"> <meta property=\"article:tag\"
-content=\"guardias de seguridad\">
-
-<!-- Twitter Card -->
-<meta name=\"twitter:card\" content=\"summary_large_image\"> <meta
-name=\"twitter:site\" content=\"@PaginasAmarillas\"> <meta
-name=\"twitter:creator\" content=\"@PaginasAmarillas\"> <meta
-name=\"twitter:title\" content=\"[Título del artículo]\"> <meta
-name=\"twitter:description\" content=\"[Descripción]\"> <meta
-name=\"twitter:image\"
-content=\"https://paginasamarillas.mx/img/img-[cat]/[twitter-image].jpg\"> <meta
-name=\"twitter:image:alt\" content=\"[Descripción imagen]\">
-```
-
-**Especificaciones de imagen OG:**
-
-| Requisito   | Valor           | Justificación                  |
-| ----------- | --------------- | ------------------------------ |
-| Dimensiones | 1200×630 px     | Estándar Facebook/LinkedIn     |
-| Ratio       | 1.91:1          | Óptimo para preview            |
-| Formato     | JPG o PNG       | Compatibilidad universal       |
-| Peso máximo | 300 KB          | Performance                    |
-| Contenido   | Título + visual | Legibilidad en preview pequeño |
-
-**Testing obligatorio:**
-
-Validar en:
-
-- Facebook Sharing Debugger: https://developers.facebook.com/tools/debug/
-- Twitter Card Validator: https://cards-dev.twitter.com/validator
-- LinkedIn Post Inspector: https://www.linkedin.com/post-inspector/
-
-### 5.9 Enlaces Internos Estratégicos
-
-#### 5.9.1 Estrategia de Linking Interno
-
-**Objetivos:**
-
-1. **SEO**: Distribuir PageRank interno (link juice)
-2. **UX**: Facilitar navegación y descubrimiento de contenido
-3. **Conversión**: Dirigir tráfico hacia páginas comerciales (directorio)
-4. **Engagement**: Aumentar tiempo en sitio, reducir bounce rate
-
-**Arquitectura de enlaces:**
-
-```
-Artículo de Blog
-    │
-    ├─ Enlaces a Empresas del Directorio (3-5)
-    │   ├─ Anchor text: Nombre de empresa
-    │   └─ Contexto: Mencionadas como ejemplo de caso de éxito
-    │
-    ├─ Enlaces a Categorías (1-2)
-    │   ├─ Anchor text: \"empresas de [categoría]\", \"[categoría] certificadas\"
-    │   └─ Contexto: Recomendación de explorar directorio
-    │
-    ├─ Enlaces a Otros Artículos del Blog (2-3)
-    │   ├─ Anchor text: Título del artículo o variación
-    │   └─ Contexto: \"También te puede interesar\", \"Profundiza en este tema\"
-    │
-    └─ Enlace a Página Principal (1)
-        ├─ Breadcrumb
-        └─ Logo header
-```
-
-**Densidad recomendada:**
-
-```
-Artículo de 2,500 palabras = 8-12 enlaces internos totales
-
-Distribución:
-- Empresas directorio: 40% (3-5 enlaces)
-- Categorías: 15% (1-2 enlaces)
-- Otros artículos: 30% (2-3 enlaces)
-- Navegación global: 15% (breadcrumb, menú)
-```
-
-#### 5.9.2 Anchor Text Optimization
-
-**Tipos de anchor text:**
-
-| Tipo                   | Ejemplo                                  | Uso                          | SEO Value  |
-| ---------------------- | ---------------------------------------- | ---------------------------- | ---------- |
-| **Exact match**        | \"seguridad privada México\"             | Moderado (1-2 por artículo)  | Alto       |
-| **Partial match**      | \"empresas de seguridad certificadas\"   | Frecuente                    | Medio-Alto |
-| **Branded**            | \"Origins Private Security\"             | Para empresas del directorio | Medio      |
-| **Generic**            | \"haz clic aquí\"                        | ❌ Evitar                    | Bajo       |
-| **Natural/Contextual** | \"proveedores confiables de vigilancia\" | Preferido                    | Medio-Alto |
-| **Título de artículo** | \"Cómo Elegir Extintores Certificados\"  | Para artículos relacionados  | Medio      |
-
-**Distribución recomendada:**
-
-```
-En artículo de 2,500 palabras con 10 enlaces:
-
-1x Exact match (keyword principal)
-3x Partial match (variaciones de keyword)
-3x Branded (nombres de empresas)
-3x Natural/Contextual (descriptivos)
-0x Generic (nunca usar)
-```
-
-**Ejemplos contextuales:**
-
-❌ **MALO (generic anchor text):**
-
-```
-\"Si quieres saber más sobre certificaciones, haz clic aquí.\"
-```
-
-✅ **BUENO (natural, descriptivo):**
-
-```
-\"La certificación CNSP es obligatoria para operar legalmente
-en México. Empresas como Origins Private Security cuentan con
-todas las acreditaciones necesarias para garantizar
-un servicio profesional.\"
-```
-
-#### 5.9.3 Atributos de Enlaces
-
-**Enlaces internos (mismo dominio):**
-
-```html
-<!-- Estándar (mayoría) -->
-<a href=\"/blog/categoria/articulo.html\">Anchor text</a>
-
-<!-- Con title (accesibilidad) -->
-<a href=\"/categoria/empresas.html\"
-   title=\"Ver empresas certificadas de seguridad privada\">
-   empresas certificadas
-</a>
-```
-
-**NO usar en internos:**
-
-- ❌ `target=\"_blank\"` (confunde navegación)
-- ❌ `rel=\"nofollow\"` (bloquea PageRank)
-
-**Enlaces externos:**
-
-```html
-<a href=\"https://sitioexterno.com\"
-   target=\"_blank\"
-   rel=\"noopener noreferrer\">
-   Anchor text
-</a>
-```
-
-**Atributos obligatorios externos:**
-
-- ✅ `target=\"_blank\"` (abre en nueva pestaña)
-- ✅ `rel=\"noopener\"` (seguridad, evita window.opener)
-- ✅ `rel=\"noreferrer\"` (privacidad, no envía referrer)
-- ⚪ `rel=\"nofollow\"` (opcional, si no quieres pasar PageRank)
-
-#### 5.9.4 Colocación Estratégica
-
-**Ubicaciones de alto valor:**
-
-1. **Primeros párrafos** (above the fold)
-
-   - Mayor tasa de click
-   - Señal de relevancia temprana
-
-2. **Dentro de listas/enumeraciones**
-
-   - Escaneabilidad alta
-   - Contexto claro
-
-3. **Módulos de interés** (highlights)
-
-   - Visualmente destacados
-   - Atención enfocada
-
-4. **Conclusión/último párrafo**
-   - Natural call-to-action
-   - Usuarios comprometidos
-
-**Ubicaciones de bajo valor:**
-
-- ❌ Pie de página (percibido como spam)
-- ❌ Sidebar excesivo (banner blindness)
-- ❌ Inicio de todos los párrafos (patrón artificial)
-
----
-
-## 6. METODOLOGÍA DE PRODUCCIÓN DE CONTENIDO
-
-### 6.1 Brief Editorial y Análisis Inicial
-
-#### 6.1.1 Template de Brief
-
-**Documento de entrada (proporcionado por cliente/editor):**
-
-```markdown
-# BRIEF EDITORIAL - [Título Tentativo]
-
-## Información Básica
-
-- **Categoría**: [Seguridad Privada / Entretenimiento / etc.]
-- **Keyword Principal**: [keyword objetivo]
-- **Fecha de entrega**: [YYYY-MM-DD]
-- **Prioridad**: [Alta / Media / Baja]
-
-## Audiencia Objetivo
-
-- **Perfil**: [B2B empresas / B2C hogares / Mixto]
-- **Nivel de conocimiento**: [Principiante / Intermedio / Experto]
-- **Pain point principal**: [Problema que resuelve el artículo]
-
-## Objetivos del Artículo
-
-1. [Objetivo 1: ej. Educar sobre regulaciones CNSP]
-2. [Objetivo 2: ej. Generar tráfico para categoría del directorio]
-3. [Objetivo 3: ej. Posicionar keyword principal en top 10]
-
-## Enfoque/Ángulo
-
-[Descripción del enfoque único del artículo, qué lo diferencia
-de la competencia]
-
-## Referencias
-
-- URL competidor 1: [link]
-- URL competidor 2: [link]
-- Fuentes oficiales: [links a fuentes autorizadas]
-
-## Contenido a Incluir (Obligatorio)
-
-- [Tema/sección específica 1]
-- [Tema/sección específica 2]
-- [Estadísticas/datos duros]
-
-## Enlaces Internos Sugeridos
-
-- [URL empresa 1 del directorio]
-- [URL categoría relevante]
-- [URL artículo relacionado existente]
-
-## Material de Apoyo
-
-- [Imágenes proporcionadas: sí/no]
-- [Infografías: sí/no]
-- [Entrevistas a realizar: sí/no]
-```
-
-#### 6.1.2 Análisis del Brief (Checklist)
-
-**Redactor debe validar:**
-
-```
-☐ Brief leído completamente (2 lecturas)
-☐ Keyword principal identificada y validada (herramientas SEO)
-☐ Audiencia objetivo comprendida
-☐ Pain point claro
-☐ Objetivos realistas y medibles
-☐ Enfoque diferenciador definido
-☐ Competidores analizados (top 10 SERPs)
-☐ Fuentes de información identificadas y accesibles
-☐ Material de apoyo disponible o plan para crearlo
-☐ Deadline factible
-```
-
-**Red flags que requieren aclaración:**
-
-- ⚠️ Keyword con volumen < 100 búsquedas/mes
-- ⚠️ Keyword con dificultad > 70 (muy competitiva)
-- ⚠️ Audiencia no claramente definida
-- ⚠️ Enfoque genérico sin diferenciación
-- ⚠️ Deadline < 3 días para artículo complejo
-
-### 6.2 Investigación y Curación de Fuentes
-
-#### 6.2.1 Tipos de Fuentes Confiables
-
-**Jerarquía de autoridad:**
-
-```
-NIVEL 1 - Máxima Autoridad (Preferir siempre):
-├─ Gobierno: Secretarías, CNSP, STPS, organismos oficiales
-├─ Instituciones: Universidades, centros de investigación
-├─ Normativas: NOMs, leyes federales, reglamentos
-└─ Estadísticas oficiales: INEGI, Bancos de México
-
-NIVEL 2 - Alta Autoridad:
-├─ Asociaciones de industria: Cámaras, federaciones
-├─ Medios especializados: Publicaciones de industria
-├─ Empresas líderes: Informes corporativos, white papers
-└─ Expertos reconocidos: Entrevistas, columnas
-
-NIVEL 3 - Autoridad Moderada (Validar):
-├─ Medios generalistas: Periódicos, revistas
-├─ Blogs especializados: Con trayectoria comprobable
-└─ Redes sociales: Solo para tendencias, no como fuente principal
-
-NIVEL 4 - Baja Autoridad (Evitar):
-├─ Wikipedia (usar solo como punto de partida)
-├─ Foros/Yahoo Answers
-└─ Sitios sin autor identificable
-```
-
-#### 6.2.2 Validación de Fuentes (Método CRAAP)
-
-**CRAAP Test:**
-
-| Criterio                   | Preguntas a Validar                             | Acción                                  |
-| -------------------------- | ----------------------------------------------- | --------------------------------------- |
-| **Currency** (Actualidad)  | ¿Cuándo se publicó? ¿Está actualizado?          | Preferir < 2 años                       |
-| **Relevance** (Relevancia) | ¿Es relevante para el tema? ¿Para la audiencia? | Debe ser específico                     |
-| **Authority** (Autoridad)  | ¿Quién es el autor? ¿Credenciales?              | Verificar expertise                     |
-| **Accuracy** (Precisión)   | ¿Datos verificables? ¿Referencias?              | Contrastar con otras fuentes            |
-| **Purpose** (Propósito)    | ¿Informar o vender? ¿Sesgos?                    | Evitar fuentes con conflicto de interés |
-
-**Checklist de fuente confiable:**
-
-```
-☐ Autor identificable con credenciales verificables
-☐ Fecha de publicación visible y reciente (< 2 años ideal)
-☐ Organización/institución respaldatoria reconocida
-☐ Datos con referencias a fuentes primarias
-☐ Sin conflictos de interés evidentes
-☐ Coincide con información de otras fuentes (triangulación)
-☐ Formato profesional (no blog personal amateur)
-```
-
-#### 6.2.3 Documentación de Fuentes
-
-**Sistema de registro:**
-
-```markdown
-## Fuentes Utilizadas - [Título del Artículo]
-
-### Fuentes Primarias
-
-1. **[Título/Nombre de documento]**
-
-   - URL: [link completo]
-   - Autor/Organización: [nombre]
-   - Fecha: [YYYY-MM-DD]
-   - Dato extraído: [cita o dato específico]
-   - Ubicación en artículo: [sección donde se usa]
-
-2. **[Siguiente fuente]**
-   ...
-
-### Fuentes Secundarias
-
-[Mismo formato]
-
-### Imágenes/Multimedia
-
-- Imagen 1: [URL] - Licencia: [CC BY, dominio público, etc.]
-- Imagen 2: [URL] - Licencia: [...]
-```
-
-**⚠️ IMPORTANTE**: Guardar este documento junto al artículo para futuras actualizaciones o auditorías.
-
-### 6.3 Creación del Outline (Esquema)
-
-#### 6.3.1 Metodología de Estructuración
-
-**Proceso de 7 pasos:**
-
-**PASO 1: Brainstorming de H2**
-
-Listado libre de todos los H2 posibles:
-
-```
-- ¿Qué es seguridad privada?
-- Marco legal en México
-- Tipos de servicios
-- Cómo elegir empresa
-- Costos y presupuesto
-- Certificaciones necesarias
-- Beneficios vs seguridad pública
-- Tendencias futuras
-- Casos de éxito
-- Errores comunes
-- FAQ
-- Conclusión
-```
-
-**PASO 2: Agrupación Temática**
-
-Agrupar H2 relacionados:
-
-```
-GRUPO 1 - Fundamentos:
-- ¿Qué es seguridad privada?
-- Marco legal en México
-
-GRUPO 2 - Oferta de servicios:
-- Tipos de servicios
-- Certificaciones necesarias
-
-GRUPO 3 - Proceso de selección:
-- Cómo elegir empresa
-- Costos y presupuesto
-- Errores comunes
-
-GRUPO 4 - Valor:
-- Beneficios vs seguridad pública
-- Casos de éxito
-
-GRUPO 5 - Futuro y cierre:
-- Tendencias futuras
-- Conclusión
-- FAQ
-```
-
-**PASO 3: Priorización (Top 5-7 H2)**
-
-Seleccionar los H2 esenciales:
-
-```
-H2 #1: Entendiendo la Seguridad Privada en México
-H2 #2: El Marco Legal: Más Importante de lo que Imaginas
-H2 #3: Los Diferentes Rostros de la Seguridad Privada
-H2 #4: Cómo Elegir una Empresa Sin Morir en el Intento
-H2 #5: Por Qué Vale la Pena Invertir en Seguridad
-H2 #6: Hacia Dónde Va la Industria
-H2 #7: Reflexión Final
-H2 #8: Preguntas Frecuentes
-```
-
-**PASO 4: Añadir H3 donde aplique**
-
-Expandir H2 complejos:
-
-```
-H2 #3: Los Diferentes Rostros de la Seguridad Privada
-   H3: Seguridad Residencial
-   H3: Seguridad Corporativa
-   H3: Seguridad en Eventos
-   H3: Protección Ejecutiva
-```
-
-**PASO 5: Asignar Longitudes Objetivo**
-
-```
-H1 + Lead: 200 palabras
-H2 #1: 400 palabras
-H2 #2: 450 palabras (incluye módulo de interés)
-H2 #3: 500 palabras (incluye 4 H3 de 100 palabras cada uno + galería)
-H2 #4: 400 palabras
-H2 #5: 350 palabras (incluye módulo de interés)
-H2 #6: 300 palabras (incluye módulo de interés)
-H2 #7: 250 palabras
-H2 #8 (FAQs): 500 palabras (5 FAQs de 100 palabras c/u)
-
-TOTAL ESTIMADO: 3,350 palabras ✅
-```
-
-**PASO 6: Marcar Ubicación de Elementos Especiales**
-
-```
-- Imagen hero: Tras H1
-- Galería: En H2 #3 (servicios)
-- Módulo interés 1: Tras H2 #2 (marco legal)
-- Módulo interés 2: En H2 #5 (beneficios)
-- Módulo interés 3: Antes de H2 #7 (conclusión)
-- Enlaces internos: 2 en H2 #3, 2 en H2 #4, 1 en conclusión
-```
-
-**PASO 7: Validar con Competencia**
-
-Comparar con top 3 competidores:
-
-```
-Competidor 1: 8 H2, 2,900 palabras
-Competidor 2: 7 H2, 3,200 palabras
-Competidor 3: 6 H2, 2,500 palabras
-
-Nuestro outline: 8 H2, ~3,350 palabras ✅ (superior al promedio)
-```
-
-#### 6.3.2 Template de Outline Completo
-
-```markdown
-# OUTLINE: [Título del Artículo]
-
-**Keyword Principal**: [keyword]
-**Longitud Objetivo**: 3,000-3,500 palabras
-**Fecha de Inicio**: [YYYY-MM-DD]
-
----
-
-## H1: [Título Principal]
-
-**Palabras**: 50-100
-**Elementos**: Título H1 único
-
-## LEAD PARAGRAPH (Clase .lead)
-
-**Palabras**: 100-150
-**Elementos**:
-
-- Hook emocional
-- Promesa de valor
-- Keyword principal incluida
-
----
-
-## H2 #1: [Título Sección 1]
-
-**Palabras**: 400
-**Keywords**: [keyword secundaria o LSI]
-**Contenido**:
-
-- Punto clave 1
-- Punto clave 2
-- Ejemplo concreto
-
-**Elementos especiales**: Ninguno
-
----
-
-## H2 #2: [Título Sección 2]
-
-**Palabras**: 450
-**Keywords**: [keyword secundaria]
-**Contenido**:
-
-- Sub-tema A
-- Sub-tema B
-- Estadística relevante
-
-**Elementos especiales**:
-
-- 💡 Módulo de interés (estadística/dato duro)
-
----
-
-## H2 #3: [Título Sección 3]
-
-**Palabras**: 500
-**Keywords**: [variación keyword principal]
-**Estructura**:
-
-### H3: [Sub-sección A]
-
-- Contenido A (100 palabras)
-
-### H3: [Sub-sección B]
-
-- Contenido B (100 palabras)
-
-### H3: [Sub-sección C]
-
-- Contenido C (100 palabras)
-
-### H3: [Sub-sección D]
-
-- Contenido D (100 palabras)
-
-**Elementos especiales**:
-
-- Galería de 4 imágenes (tras H3s)
-- 2 enlaces internos a empresas del directorio
-
----
-
-## H2 #4: [Título Sección 4 - Guía Práctica]
-
-**Palabras**: 400
-**Keywords**: [long-tail transaccional]
-**Contenido**:
-
-- Checklist de criterios (lista ordenada)
-- Proceso paso a paso
-- Errores comunes a evitar
-
-**Elementos especiales**:
-
-- Lista numerada (6-8 items)
-- 2 enlaces internos
-
----
-
-## H2 #5: [Título Sección 5 - Beneficios]
-
-**Palabras**: 350
-**Keywords**: [LSI keywords]
-**Contenido**:
-
-- Beneficio 1 (ROI)
-- Beneficio 2 (Seguridad/tranquilidad)
-- Beneficio 3 (Compliance/legal)
-
-**Elementos especiales**:
-
-- ✅ Módulo de interés (tip práctico)
-
----
-
-## H2 #6: [Título Sección 6 - Futuro/Tendencias]
-
-**Palabras**: 300
-**Keywords**: [keywords de tendencias]
-**Contenido**:
-
-- Tendencia 1 (tecnología)
-- Tendencia 2 (regulaciones)
-- Recomendación prospectiva
-
-**Elementos especiales**:
-
-- 📌 Módulo de interés (prospectiva)
-
----
-
-## H2 #7: Reflexión Final
-
-**Palabras**: 250
-**Contenido**:
-
-- Resumen de puntos clave (bullet points)
-- Call to action (visitar directorio)
-- Cierre inspirador
-
-**Elementos especiales**:
-
-- 1 enlace a categoría del directorio
-
----
-
-## H2 #8: Preguntas Frecuentes
-
-**Palabras**: 500 (5 FAQs × 100 palabras c/u)
-**Estructura**:
-
-1. ¿[Pregunta 1]?
-   - Respuesta (100 palabras)
-2. ¿[Pregunta 2]?
-   - Respuesta (100 palabras)
-3. ¿[Pregunta 3]?
-   - Respuesta (100 palabras)
-4. ¿[Pregunta 4]?
-   - Respuesta (100 palabras)
-5. ¿[Pregunta 5]?
-   - Respuesta (100 palabras)
-
-**Elementos especiales**:
-
-- Schema FAQPage JSON-LD (obligatorio)
-
----
-
-## RESUMEN DE ELEMENTOS
-
-- **Total palabras**: ~3,350
-- **Total H2**: 8
-- **Total H3**: 4 (en H2 #3)
-- **Módulos de interés**: 3
-- **Galería de imágenes**: 1 (4 imágenes)
-- **Enlaces internos**: Mínimo 5
-- **FAQs**: 5 con Schema
-
----
-
-## CHECKLIST PRE-REDACCIÓN
-
-☐ Outline revisado por editor
-☐ Keywords validadas con herramientas
-☐ Longitud total ~3,000+ palabras
-☐ Mínimo 5 H2 (sin contar FAQs)
-☐ Enlaces internos planificados
-☐ Módulos de interés ubicados
-☐ FAQs definidas
-☐ Fuentes de información identificadas
-```
-
-### 6.4 Redacción Profesional
-
-#### 6.4.1 Principios de Estilo Editorial
-
-**1. Tono y Voz (Voice & Tone)**
-
-**Características obligatorias:**
-
-- ✅ **Segunda persona** (tú/usted) de forma consistente
-- ✅ **Conversacional pero profesional** (como asesor experto)
-- ✅ **Autoridad sin arrogancia** (conocimiento compartido, no impuesto)
-- ✅ **Empatía con el lector** (reconocer sus problemas/dudas)
-- ✅ **Claridad sobre sofisticación** (explicar términos técnicos)
-
-**Ejemplos de tono correcto:**
-
-✅ **Bueno - Conversacional y profesional:**
-
-```
-\"Cuando buscas un proveedor de seguridad privada, la primera
-pregunta que surge es: ¿cómo sé que es confiable? La respuesta
-está en las certificaciones. El CNSP (Consejo Nacional de Seguridad
-Privada) es el organismo que regula esta industria en México,
-y verificar que una empresa esté registrada es más fácil de lo
-que imaginas.\"
-```
-
-❌ **Malo - Demasiado formal/corporativo:**
-
-```
-\"La identificación de un proveedor de servicios de seguridad
-privada confiable requiere la verificación de credenciales emitidas
-por el organismo regulador competente, a saber, el Consejo Nacional
-de Seguridad Privada (CNSP).\"
-```
-
-❌ **Malo - Demasiado casual/informal:**
-
-```
-\"Oye, ¿quieres saber cómo encontrar una empresa de seguridad
-chida? Pues resulta que hay un rollo del CNSP que te ayuda
-un chorro. ¡Es súper fácil!\"
-```
-
-**2. Estructura de Párrafos**
-
-**Reglas de oro:**
-
-```
-Longitud óptima: 80-150 palabras
-Oraciones por párrafo: 3-6
-Palabras por oración: 15-25 (promedio)
-
-Estructura interna:
-1. Oración principal (tesis del párrafo)
-2. Oraciones de soporte (2-4)
-3. Oración de transición (conecta con siguiente párrafo)
-```
-
-**Ejemplo de párrafo bien estructurado:**
-
-```
-[ORACIÓN PRINCIPAL]
-La certificación CNSP no es un simple trámite burocrático:
-es tu principal garantía de que estás contratando un servicio
-profesional y legal.
-
-[SOPORTE 1]
-Empresas certificadas han pasado por auditorías que verifican
-desde la capacitación de su personal hasta la legalidad de sus
-equipos de comunicación.
-
-[SOPORTE 2]
-Además, están sujetas a supervisión constante, lo que significa
-que mantienen estándares de calidad año con año.
-
-[TRANSICIÓN]
-Pero verificar la certificación es solo el primer paso en tu
-proceso de selección.
-
-[ANÁLISIS]
-- Palabras totales: 85 ✅
-- Oraciones: 4 ✅
-- Palabras por oración: 21 promedio ✅
-- Transición al siguiente tema: ✅
-```
-
-**3. Uso de Ejemplos Concretos**
-
-**Principio**: \"Show, don't tell\"
-
-❌ **Malo - Abstracto:**
-
-```
-\"La seguridad privada ofrece múltiples beneficios para las empresas.\"
-```
-
-✅ **Bueno - Específico:**
-
-```
-\"Una empresa de logística en CDMX redujo sus pérdidas por robo
-en 87% tras contratar vigilancia 24/7. En seis meses, el ahorro
-superó el costo anual del servicio.\"
-```
-
-**Tipos de ejemplos efectivos:**
-
-- Estadísticas específicas (87%, no \"la mayoría\")
-- Casos de uso reales (empresa de logística)
-- Números concretos (6 meses, costo anual)
-- Comparativas antes/después
-
-**4. Transiciones Suaves**
-
-**Palabras y frases de transición:**
-
-| Función          | Palabras/Frases                                             |
-| ---------------- | ----------------------------------------------------------- |
-| **Añadir info**  | Además, Asimismo, Por otro lado, También                    |
-| **Contrastar**   | Sin embargo, No obstante, A diferencia de, Por el contrario |
-| **Causa-efecto** | Por lo tanto, Como resultado, Debido a, Por esta razón      |
-| **Secuencia**    | Primero, Luego, Finalmente, A continuación                  |
-| **Ejemplificar** | Por ejemplo, Como es el caso de, Específicamente            |
-| **Concluir**     | En resumen, Para concluir, Finalmente, En definitiva        |
-
-**Ejemplo de transiciones fluidas:**
-
-```
-[PÁRRAFO 1 - Problema]
-\"Las pequeñas empresas a menudo subestiman la importancia
-de la seguridad profesional. [...]\"
-
-[TRANSICIÓN]
-Sin embargo, esta percepción cambia radicalmente tras el
-primer incidente.
-
-[PÁRRAFO 2 - Solución]
-\"La prevención siempre es más económica que la reacción. [...]\"
-```
-
-#### 6.4.2 Técnicas de Engagement
-
-**1. Preguntas Retóricas**
-
-Uso estratégico:
-
-- Inicio de secciones H2 (genera curiosidad)
-- Antes de revelar información importante
-- Para validar experiencia del lector
-
-**Ejemplos:**
-
-```
-\"¿Alguna vez te has preguntado por qué algunas empresas de
-seguridad cobran el doble que otras?\"
-→ [Respuesta en párrafo siguiente]
-
-\"¿Tu proveedor actual tiene certificación CNSP vigente?
-Si no lo sabes con certeza, es momento de verificarlo.\"
-→ [Call to action implícito]
-```
-
-**⚠️ Precaución**: No abusar (máximo 2-3 por artículo de 3,000 palabras)
-
-**2. Listas y Enumeraciones**
-
-**Cuándo usar listas:**
-
-- ✅ Enumeraciones de 3+ items
-- ✅ Pasos de un proceso
-- ✅ Criterios de selección
-- ✅ Checklist
-
-**Formato de listas:**
-
-```html
-<!-- Lista ordenada (secuencia importa) -->
-<ol>
-  <li>Verifica certificación CNSP en registro oficial</li>
-  <li>Solicita referencias de clientes actuales</li>
-  <li>Revisa pólizas de seguro y garantías</li>
-  <li>Compara propuestas de mínimo 3 proveedores</li>
-</ol>
-
-<!-- Lista desordenada (sin secuencia) -->
-<ul>
-  <li>Vigilancia 24/7 en instalaciones</li>
-  <li>Monitoreo electrónico con CCTV</li>
-  <li>Control de acceso biométrico</li>
-  <li>Patrullaje perimetral</li>
+<ul class="feature-list">
+    <li>
+        <strong>Deteccion de comportamientos:</strong>
+        Identifica movimientos sospechosos automaticamente
+    </li>
+    <li>
+        <strong>Reconocimiento facial:</strong>
+        Funciona incluso con cubrebocas y lentes
+    </li>
+    <li>
+        <strong>Alertas en tiempo real:</strong>
+        Notificaciones a movil en menos de 3 segundos
+    </li>
 </ul>
 ```
 
-**3. Datos y Estadísticas**
+---
 
-**Reglas de uso:**
+# SECCION 6: LLAMADOS A ACCION (CTAs)
 
-```
-✅ Siempre citar fuente:
-\"Según el INEGI, 70% de las empresas en México han sufrido
-algún tipo de robo (Encuesta Nacional de Seguridad Pública
-Urbana, 2024).\"
+## 6.1 Tipos de CTA por Ubicacion
 
-✅ Usar números específicos:
-\"87%\" en lugar de \"la gran mayoría\"
-\"6 meses\" en lugar de \"poco tiempo\"
+### CTA Hero (Principal)
 
-✅ Contextualizar:
-\"$12,000 MXN mensuales por guardia (aproximadamente $400 USD)\"
+```html
+<a href="#contenido" class="cta-primary">
+    Descubre Como Funciona
+    <svg class="cta-arrow">...</svg>
+</a>
 ```
 
-**Fuentes confiables para estadísticas México:**
+### CTA Mid-Content (En secciones)
 
-- INEGI (Instituto Nacional de Estadística y Geografía)
-- Secretaría de Seguridad y Protección Ciudadana
-- Banxico (datos económicos)
-- Cámaras de comercio e industria
-
-#### 6.4.3 Optimización de Legibilidad
-
-**Herramientas de medición:**
-
-| Herramienta              | Métrica                 | Objetivo                |
-| ------------------------ | ----------------------- | ----------------------- |
-| **Hemingway Editor**     | Grado de lectura        | Grado 9-10 (secundaria) |
-| **Flesch Reading Ease**  | Score 0-100             | 60-70 (estándar)        |
-| **Flesch-Kincaid Grade** | Nivel escolar           | 9-10                    |
-| **Yoast SEO**            | Análisis de legibilidad | Verde (bueno)           |
-
-**Principios de legibilidad:**
-
-**1. Oraciones cortas:**
-
-```
-❌ Malo (42 palabras):
-\"La seguridad privada en México, que está regulada por el Consejo
-Nacional de Seguridad Privada (CNSP), requiere que todas las empresas
-que ofrecen estos servicios cuenten con un registro oficial que
-garantice que cumplen con los estándares mínimos de calidad y
-profesionalismo establecidos por la autoridad competente.\"
-
-✅ Bueno (3 oraciones, 15 palabras promedio):
-\"La seguridad privada en México está regulada por el CNSP. Todas
-las empresas deben contar con registro oficial. Este requisito
-garantiza estándares mínimos de calidad y profesionalismo.\"
+```html
+<div class="cta-inline">
+    <p>¿Buscas empresas de seguridad certificadas en tu zona?</p>
+    <a href="/categoria/seguridad-privada.html" class="cta-secondary">
+        Ver Directorio de Empresas
+    </a>
+</div>
 ```
 
-**2. Voz activa sobre pasiva:**
+### CTA Box (Sidebar/Final)
 
-```
-❌ Pasiva:
-\"Las regulaciones son establecidas por el CNSP.\"
-
-✅ Activa:
-\"El CNSP establece las regulaciones.\"
-```
-
-**3. Evitar jerga innecesaria:**
-
-```
-❌ Con jerga:
-\"El sistema implementa protocolos de failover redundantes con
-alta disponibilidad mediante clustering activo-pasivo.\"
-
-✅ Claro:
-\"El sistema cuenta con respaldo automático: si un componente
-falla, otro toma su lugar inmediatamente sin interrumpir el servicio.\"
+```html
+<div class="cta-box">
+    <h3>¿Listo para Proteger tu Negocio?</h3>
+    <p>Encuentra las mejores empresas de seguridad privada
+    certificadas en Mexico.</p>
+    <a href="/categoria/seguridad-privada.html" class="cta-button">
+        Explorar Directorio
+    </a>
+    <span class="cta-note">+500 empresas verificadas</span>
+</div>
 ```
 
-**4. Palabras de transición (30% mínimo):**
+### CTA Final de Articulo
 
-- Hemingway Editor marca en verde los párrafos con buenas transiciones
-- Objetivo: Mínimo 30% de párrafos con palabras de transición
-
-**5. Distribución de oraciones:**
-
-```
-Ideal por párrafo:
-- 0-1 oraciones muy cortas (< 10 palabras)
-- 2-3 oraciones medias (10-20 palabras)
-- 1-2 oraciones largas (20-30 palabras)
-- 0 oraciones muy largas (> 30 palabras)
-```
-
-### 6.5 Integración de Keywords Naturales
-
-#### 6.5.1 Técnica de Variación Semántica
-
-**Evitar repetición mecánica:**
-
-❌ **Keyword stuffing (detectado como spam):**
-
-```
-\"La seguridad privada es importante. Contratar seguridad privada
-requiere investigación. Las empresas de seguridad privada ofrecen
-servicios de seguridad privada variados. Si buscas seguridad
-privada profesional...\"
+```html
+<div class="article-cta-final">
+    <div class="cta-content">
+        <h3>Da el Siguiente Paso</h3>
+        <p>Ahora que conoces las tecnologias disponibles, es momento
+        de encontrar el proveedor ideal para tu empresa.</p>
+    </div>
+    <div class="cta-actions">
+        <a href="/categoria/seguridad-privada.html" class="cta-primary">
+            Ver Empresas Certificadas
+        </a>
+        <a href="/contacto.html" class="cta-secondary">
+            Solicitar Asesoria
+        </a>
+    </div>
+</div>
 ```
 
-✅ **Variación natural:**
+## 6.2 Formulas de CTA Efectivos
+
+### Formula 1: Beneficio + Accion
 
 ```
-\"La seguridad privada es importante. Contratar este servicio
-requiere investigación. Los proveedores profesionales ofrecen
-soluciones variadas. Si buscas protección confiable para tu
-negocio...\"
+"Protege tu negocio hoy" → Ver Opciones
 ```
 
-**Banco de variaciones (ejemplo: \"seguridad privada\"):**
-
-| Uso # | Variación                | Contexto                                       |
-| ----- | ------------------------ | ---------------------------------------------- |
-| 1     | seguridad privada        | Primera mención (keyword exacta)               |
-| 2     | este servicio            | Referencia cercana                             |
-| 3     | proveedores de seguridad | Mención de empresas                            |
-| 4     | vigilancia profesional   | Servicio específico                            |
-| 5     | protección privada       | Sinónimo                                       |
-| 6     | empresas especializadas  | Genérico                                       |
-| 7     | seguridad privada        | Repetición estratégica (cada 300-400 palabras) |
-| 8     | soluciones de protección | Variante                                       |
-
-#### 6.5.2 Ubicaciones Estratégicas (Repaso)
-
-**Checklist de ubicación obligatoria:**
+### Formula 2: Pregunta + Solucion
 
 ```
-☐ Title tag (meta title)
-☐ Meta description
-☐ H1
-☐ Primeras 100 palabras
-☐ URL/slug
-☐ Mínimo 1 H2
-☐ Alt text imagen hero
-☐ Último párrafo/conclusión
-☐ Distribuido naturalmente en cuerpo (densidad 1-1.5%)
+"¿Buscas seguridad confiable?" → Encuentra Empresas
 ```
 
-#### 6.5.3 LSI Keywords en Contexto
-
-**Integración de LSI sin forzar:**
+### Formula 3: Urgencia + Valor
 
 ```
-Keyword principal: \"seguridad privada\"
-
-LSI keywords a incluir:
-- vigilancia, guardias, monitoreo
-- protección, custodia, resguardo
-- CNSP, certificación, regulación
-- empresas, proveedores, servicios
-- residencial, corporativo, eventos
-
-Integración natural:
-\"Los servicios de seguridad privada en México abarcan desde
-vigilancia residencial hasta protección corporativa compleja.
-Las empresas certificadas por el CNSP ofrecen guardias capacitados,
-monitoreo electrónico 24/7 y protocolos de resguardo adaptados
-a cada sector.\"
-
-[Análisis]
-Keyword principal: 1 vez ✅
-LSI incluidos: vigilancia, protección, empresas, certificadas,
-               CNSP, guardias, monitoreo, resguardo ✅
-Densidad natural: ✅
-Lectura fluida: ✅
+"Empresas disponibles ahora" → Cotiza Gratis
 ```
+
+### Formula 4: Numero + Prueba Social
+
+```
+"+500 empresas verificadas" → Explorar Directorio
+```
+
+---
+
+# SECCION 7: SECCION DE FAQs
+
+## 7.1 Estructura HTML con Accordion
+
+```html
+<section class="faq-section" id="preguntas-frecuentes">
+    <h2>Preguntas Frecuentes</h2>
+    <p class="faq-intro">
+        Respondemos las dudas mas comunes sobre {tema del articulo}.
+    </p>
+
+    <div class="faq-accordion">
+        <!-- FAQ 1 -->
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                <span>{Pregunta 1 con keyword si aplica}</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <p>{Respuesta completa de 80-150 palabras. Incluye
+                informacion practica y, si aplica, enlace a recursos
+                adicionales o empresas del directorio.}</p>
+            </div>
+        </div>
+
+        <!-- FAQ 2 -->
+        <div class="faq-item">
+            <button class="faq-question" aria-expanded="false">
+                <span>{Pregunta 2}</span>
+                <svg class="faq-chevron" viewBox="0 0 24 24">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </button>
+            <div class="faq-answer">
+                <p>{Respuesta completa...}</p>
+            </div>
+        </div>
+
+        <!-- Repetir para 5-7 FAQs -->
+    </div>
+</section>
+```
+
+## 7.2 Criterios para FAQs Efectivas
+
+### Seleccion de Preguntas
+
+1. **Preguntas reales:** Basadas en "People Also Ask" de Google
+2. **Keywords:** Incluir keyword principal o secundarias naturalmente
+3. **Intencion:** Mezclar informacionales y transaccionales
+4. **Valor:** Respuestas que realmente ayuden al lector
+
+### Ejemplos para Seguridad con IA
+
+```
+FAQ 1 (Informacional - Keyword):
+¿Como funciona la inteligencia artificial en seguridad privada?
+
+FAQ 2 (Transaccional):
+¿Cuanto cuesta implementar un sistema de seguridad con IA?
+
+FAQ 3 (Comparativa):
+¿Es mejor la IA que la vigilancia humana tradicional?
+
+FAQ 4 (Practica):
+¿Que requisitos tecnicos necesito para instalar camaras con IA?
+
+FAQ 5 (Confianza):
+¿Las camaras con IA violan la privacidad de los empleados?
+```
+
+---
+
+# SECCION 8: SIDEBAR Y ELEMENTOS COMPLEMENTARIOS
+
+## 8.1 Estructura del Sidebar
+
+```html
+<aside class="blog-article-sidebar">
+    <!-- TOC Sticky -->
+    <nav class="sidebar-toc">
+        <h3>En este articulo</h3>
+        <ul>
+            <li><a href="#seccion-1">{Titulo seccion 1}</a></li>
+            <li><a href="#seccion-2">{Titulo seccion 2}</a></li>
+            <li><a href="#seccion-3">{Titulo seccion 3}</a></li>
+            <!-- ... -->
+        </ul>
+    </nav>
+
+    <!-- CTA Box -->
+    <div class="sidebar-cta">
+        <h3>¿Buscas Seguridad Profesional?</h3>
+        <p>Empresas certificadas en tu zona</p>
+        <a href="/categoria/seguridad-privada.html" class="btn-primary">
+            Ver Directorio
+        </a>
+    </div>
+
+    <!-- Empresas Destacadas -->
+    <div class="sidebar-empresas">
+        <h3>Empresas Destacadas</h3>
+        <div class="empresa-cards">
+            <a href="/negocios/seguridad-privada/{empresa-1}.html" class="empresa-card">
+                <img src="../../img/img-seguridad-privada/{img}.webp" alt="{Empresa}">
+                <span>{Nombre Empresa}</span>
+            </a>
+            <!-- Repetir para 3-4 empresas -->
+        </div>
+    </div>
+</aside>
+```
+
+---
+
+# SECCION 9: CHECKLIST DE PUBLICACION
+
+## Pre-Publicacion
+
+```
+ESTRUCTURA
+☐ Hero de dos columnas con imagen y contenido
+☐ H1 unico con keyword principal
+☐ Minimo 6 secciones H2
+☐ H3 donde aplique (secciones largas)
+☐ Lead paragraph con clase .lead
+☐ Galeria de 4 imagenes con captions
+☐ 3 modulos de interes distribuidos
+☐ Seccion FAQ con 5-7 preguntas
+☐ CTA final antes de footer
+
+SEO
+☐ Title tag 50-65 caracteres con keyword
+☐ Meta description 150-160 caracteres
+☐ URL slug SEO-friendly (sin numeros)
+☐ Keyword en primeras 100 palabras
+☐ Densidad keyword 1-1.5%
+☐ Alt text en todas las imagenes
+☐ Schema Article implementado
+☐ Schema FAQPage implementado
+☐ Open Graph completo
+
+CONTENIDO
+☐ 1,800-2,500 palabras total
+☐ Tiempo lectura calculado
+☐ Fuentes citadas donde aplique
+☐ Enlaces internos (5-8 minimo)
+☐ Enlaces a empresas del directorio (3-5)
+☐ Sin errores ortograficos
+
+TECNICO
+☐ Imagenes WebP optimizadas
+☐ Rutas relativas correctas (../../)
+☐ CSS y JS cargando correctamente
+☐ Mobile responsive verificado
+☐ Links funcionando
+```
+
+---
+
+# SECCION 10: EJEMPLOS DE CONTENIDO
+
+## 10.1 Ejemplo de Lead Paragraph
+
+```html
+<p class="lead">
+    Hace unos meses, visite las oficinas de una empresa tecnologica
+    en Santa Fe. Lo primero que note fueron robots patrullando los
+    pasillos mientras docenas de camaras seguian cada movimiento con
+    precision casi humana. "¿Cuanto costo todo esto?", pregunte
+    esperando una cifra astronómica. La respuesta me sorprendio:
+    menos que su sistema de vigilancia tradicional anterior. Esta
+    experiencia me llevo a investigar como las tecnologias emergentes
+    estan transformando la seguridad privada en Mexico.
+</p>
+```
+
+## 10.2 Ejemplo de Seccion H2 Completa
+
+```html
+<section class="article-section" id="inteligencia-artificial">
+    <h2>Inteligencia Artificial: El Cerebro de la Nueva Seguridad</h2>
+
+    <p class="section-intro">
+        La inteligencia artificial ha dejado de ser ciencia ficcion
+        para convertirse en la columna vertebral de los sistemas de
+        seguridad modernos. Pero, ¿que puede hacer realmente la IA
+        que un guardia humano no pueda? Veamos las capacidades que
+        estan revolucionando la industria.
+    </p>
+
+    <h3>Analitica de Video Inteligente</h3>
+
+    <p>
+        Las camaras con IA no solo graban: piensan. Un sistema moderno
+        puede analizar miles de horas de video en segundos, detectando
+        patrones que el ojo humano jamas notaria. Empresas como
+        <a href="/negocios/seguridad-privada/origins-private-security.html">
+        ORIGINS Private Security</a> ya ofrecen este tipo de soluciones
+        en Mexico.
+    </p>
+
+    <ul class="feature-list">
+        <li>
+            <strong>Deteccion de comportamientos anomalos:</strong>
+            Identifica movimientos erraticos, merodeadores y
+            objetos abandonados automaticamente.
+        </li>
+        <li>
+            <strong>Reconocimiento facial avanzado:</strong>
+            Funciona con cubrebocas, lentes y en condiciones
+            de baja iluminacion.
+        </li>
+        <li>
+            <strong>Conteo y analisis de flujo:</strong>
+            Mide ocupacion en tiempo real y predice congestiones.
+        </li>
+    </ul>
+
+    <div class="interest-module stat-module">
+        <div class="stat-number">94%</div>
+        <div class="stat-content">
+            <h4>Precision en Deteccion</h4>
+            <p>Los sistemas de IA actuales alcanzan tasas de precision
+            del 94% en identificacion de amenazas, superando
+            significativamente a la vigilancia humana tradicional.</p>
+        </div>
+    </div>
+</section>
+```
+
+---
+
+# SECCION 11: BANCO DE IMAGENES DISPONIBLES
+
+## Categoria: Seguridad Privada
+
+| Archivo | Descripcion | Uso Recomendado |
+|---------|-------------|-----------------|
+| equipo-seguridad-corporativo.webp | Equipo de guardias profesionales | Hero, cabeceras |
+| centro-monitoreo-camaras.webp | Operador en centro de monitoreo | Seccion tecnologia |
+| guardia-caseta-residencial.webp | Guardia en caseta de condominio | Seccion residencial |
+| acceso-biometrico-torniquete.webp | Control de acceso moderno | Galeria, tecnologia |
+| rondin-nocturno-condominio.webp | Patrullaje nocturno | Seccion servicios |
+| escolta-ejecutivo-vehiculo.webp | Proteccion VIP | Seccion escoltas |
+| vigilante-caseta-fraccionamiento.webp | Vigilancia residencial | Galeria |
+| operador-videovigilancia.webp | Monitoreo CCTV | Hero alternativo |
+| control-huella-digital.webp | Biometrico primer plano | Galeria |
+| grupo-guardias-edificio.webp | Equipo corporativo | Hero, equipo |
+
+---
+
+*Documento actualizado: Diciembre 2024*
+*Version: 2.0 PRO*
+*Plataforma: PaginasAmarillas.mx*
