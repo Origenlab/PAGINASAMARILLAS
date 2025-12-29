@@ -1,0 +1,532 @@
+{
+  "name": "Blog Paginas Amarillas - Generador de Articulos SEO v2.0",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "days",
+              "daysInterval": 3,
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "id": "schedule-trigger",
+      "name": "Schedule Trigger - Cada 3 Dias",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0],
+      "notes": "Ejecuta el workflow cada 3 dias a las 9:00 AM"
+    },
+    {
+      "parameters": {
+        "method": "GET",
+        "url": "https://api.github.com/repos/{{ $env.GITHUB_OWNER }}/{{ $env.GITHUB_REPO }}/contents/blog/blog-config.json",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "githubApi",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Accept",
+              "value": "application/vnd.github.v3.raw"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "get-config",
+      "name": "GitHub - Obtener Configuracion",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [220, 0],
+      "credentials": {
+        "githubApi": {
+          "id": "github-credentials",
+          "name": "GitHub API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parsear configuracion del blog\nconst config = JSON.parse($input.first().json.body || $input.first().json);\n\n// Obtener solo categoria seguridad-privada\nconst category = config.categories.find(c => c.id === 'seguridad-privada');\nconst businesses = config.businesses['seguridad-privada'];\nconst articleTypes = config.articleTypes;\nconst images = config.images['seguridad-privada'];\n\n// Seleccion aleatoria de empresa\nconst randomBusiness = businesses[Math.floor(Math.random() * businesses.length)];\n\n// Seleccion aleatoria de tipo de articulo\nconst randomArticleType = articleTypes[Math.floor(Math.random() * articleTypes.length)];\n\n// Seleccion aleatoria de imagenes (excluyendo la principal del negocio)\nconst availableImages = images.filter(img => img !== randomBusiness.mainImage);\nconst shuffledImages = availableImages.sort(() => Math.random() - 0.5);\nconst heroImage = shuffledImages[0];\nconst galleryImages = shuffledImages.slice(1, 5);\n\n// Generar fecha\nconst now = new Date();\nconst dateISO = now.toISOString().split('T')[0];\nconst dateYYYYMM = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;\n\n// Generar slug unico\nconst slugBase = `${randomBusiness.slug}-${randomArticleType.slug}`;\nconst slugUnique = `${slugBase}-${Date.now().toString(36)}`;\n\nreturn {\n  config: config,\n  category: category,\n  business: randomBusiness,\n  articleType: randomArticleType,\n  heroImage: heroImage,\n  galleryImages: galleryImages,\n  dateISO: dateISO,\n  dateYYYYMM: dateYYYYMM,\n  slugBase: slugBase,\n  slugUnique: slugUnique,\n  imagesPath: `/img/img-${category.slug}/`\n};"
+      },
+      "id": "process-config",
+      "name": "Code - Procesar Configuracion",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-business",
+              "leftValue": "={{ $json.business.id }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "validate-selection",
+      "name": "IF - Validar Seleccion",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 0]
+    },
+    {
+      "parameters": {
+        "resource": "chat",
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "content": "=Eres un redactor SEO profesional especializado en seguridad privada en Mexico. Tu trabajo es crear articulos de blog de alta calidad que posicionen en Google y generen leads para empresas de seguridad.\n\nSIGUE ESTAS REGLAS ESTRICTAMENTE:\n1. Escribe en espanol mexicano profesional\n2. Usa datos reales y estadisticas verificables de Mexico\n3. Incluye keywords naturalmente en el texto\n4. Estructura el contenido para featured snippets\n5. Crea contenido que demuestre E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)\n6. NO uses emojis en el contenido\n7. Evita lenguaje promocional excesivo"
+            },
+            {
+              "content": "=Genera un articulo profesional tipo \"{{ $json.articleType.name }}\" para la empresa de seguridad privada.\n\n## DATOS DE LA EMPRESA\n- Nombre: {{ $json.business.name }}\n- Servicios: {{ $json.business.services.join(', ') }}\n- Ubicacion: {{ $json.business.location }}\n- Keywords principales: {{ $json.business.keywords.join(', ') }}\n- Pagina del negocio: {{ $json.business.businessPage }}\n\n## TIPO DE ARTICULO\n- Tipo: {{ $json.articleType.name }}\n- Descripcion: {{ $json.articleType.description }}\n- Secciones sugeridas: {{ $json.articleType.sections.join(', ') }}\n\n## ESTRUCTURA REQUERIDA (OBLIGATORIO)\n\nResponde UNICAMENTE con un JSON valido con esta estructura exacta:\n\n```json\n{\n  \"title\": \"Titulo SEO optimizado (max 60 caracteres)\",\n  \"titleShort\": \"Titulo corto para breadcrumbs (max 40 caracteres)\",\n  \"slug\": \"slug-url-friendly-sin-acentos\",\n  \"metaDescription\": \"Meta description de 150-160 caracteres que incluya keyword principal y CTA implicito\",\n  \"keywords\": \"keyword1, keyword2, keyword3, keyword4, keyword5\",\n  \"readingTime\": 10,\n  \"wordCount\": 2500,\n  \"heroHook\": \"Parrafo enganchador de 60-80 palabras que capture atencion inmediatamente. Debe incluir un dato impactante o historia real.\",\n  \"tocItems\": [\n    {\"id\": \"seccion-1\", \"title\": \"Titulo Seccion 1\"},\n    {\"id\": \"seccion-2\", \"title\": \"Titulo Seccion 2\"},\n    {\"id\": \"seccion-3\", \"title\": \"Titulo Seccion 3\"},\n    {\"id\": \"seccion-4\", \"title\": \"Titulo Seccion 4\"},\n    {\"id\": \"seccion-5\", \"title\": \"Titulo Seccion 5\"},\n    {\"id\": \"preguntas-frecuentes\", \"title\": \"Preguntas Frecuentes\"}\n  ],\n  \"sections\": [\n    {\n      \"id\": \"seccion-1\",\n      \"title\": \"Titulo H2 de la seccion\",\n      \"content\": \"Contenido HTML con <p>, <ul>, <li>, <strong>, <a href>. Minimo 300 palabras por seccion.\"\n    }\n  ],\n  \"statModule\": {\n    \"number\": \"95%\",\n    \"title\": \"Titulo del dato\",\n    \"description\": \"Explicacion del dato estadistico\"\n  },\n  \"tipModule\": {\n    \"content\": \"Consejo profesional de 2-3 oraciones\"\n  },\n  \"alertModule\": {\n    \"content\": \"Advertencia importante de 2-3 oraciones\"\n  },\n  \"quoteModule\": {\n    \"text\": \"Cita textual de un cliente o experto\",\n    \"author\": \"Nombre del autor\",\n    \"title\": \"Cargo o empresa\"\n  },\n  \"faqs\": [\n    {\n      \"question\": \"Pregunta frecuente 1?\",\n      \"answer\": \"Respuesta completa de 2-4 oraciones.\"\n    },\n    {\n      \"question\": \"Pregunta frecuente 2?\",\n      \"answer\": \"Respuesta completa de 2-4 oraciones.\"\n    },\n    {\n      \"question\": \"Pregunta frecuente 3?\",\n      \"answer\": \"Respuesta completa de 2-4 oraciones.\"\n    },\n    {\n      \"question\": \"Pregunta frecuente 4?\",\n      \"answer\": \"Respuesta completa de 2-4 oraciones.\"\n    },\n    {\n      \"question\": \"Pregunta frecuente 5?\",\n      \"answer\": \"Respuesta completa de 2-4 oraciones.\"\n    }\n  ],\n  \"excerpt\": \"Extracto de 80-120 caracteres para la card del blog\",\n  \"ctaTitle\": \"Titulo del CTA final\",\n  \"ctaDescription\": \"Descripcion del CTA\",\n  \"ctaButton\": \"Texto del boton\",\n  \"tags\": [\"Tag 1\", \"Tag 2\", \"Tag 3\", \"Tag 4\"]\n}\n```\n\n## REQUISITOS DE CALIDAD\n1. El contenido debe ser UNICO y ORIGINAL\n2. Incluir enlace a {{ $json.business.businessPage }} de forma natural en el contenido\n3. Mencionar la ubicacion {{ $json.business.location }} donde sea relevante\n4. Las FAQs deben responder preguntas reales que los usuarios buscan en Google\n5. El extracto debe generar curiosidad y clicks\n\nGenera el JSON completo ahora:",
+              "role": "user"
+            }
+          ]
+        },
+        "options": {
+          "temperature": 0.7,
+          "maxTokens": 8000,
+          "responseFormat": "json_object"
+        }
+      },
+      "id": "openai-generate",
+      "name": "OpenAI - Generar Articulo",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.5,
+      "position": [880, -100],
+      "credentials": {
+        "openAiApi": {
+          "id": "openai-credentials",
+          "name": "OpenAI API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener respuesta de OpenAI\nconst openaiResponse = $input.first().json;\nconst configData = $('Code - Procesar Configuracion').first().json;\n\n// Parsear el JSON del contenido generado\nlet content;\ntry {\n  // Intentar parsear directamente\n  if (typeof openaiResponse.message?.content === 'string') {\n    content = JSON.parse(openaiResponse.message.content);\n  } else if (typeof openaiResponse.text === 'string') {\n    content = JSON.parse(openaiResponse.text);\n  } else {\n    content = openaiResponse;\n  }\n} catch (e) {\n  // Intentar extraer JSON del texto\n  const jsonMatch = openaiResponse.message?.content?.match(/\\{[\\s\\S]*\\}/);\n  if (jsonMatch) {\n    content = JSON.parse(jsonMatch[0]);\n  } else {\n    throw new Error('No se pudo parsear la respuesta de OpenAI');\n  }\n}\n\n// Combinar datos\nreturn {\n  ...configData,\n  content: content,\n  articleSlug: content.slug || configData.slugUnique,\n  finalSlug: content.slug || configData.slugUnique\n};"
+      },
+      "id": "parse-content",
+      "name": "Code - Parsear Contenido",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1100, -100]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst content = data.content;\nconst category = data.category;\nconst business = data.business;\nconst heroImage = data.heroImage;\nconst galleryImages = data.galleryImages;\nconst dateISO = data.dateISO;\nconst slug = data.finalSlug;\n\n// Construir TOC Items HTML\nconst tocItemsHtml = content.tocItems.map(item => \n  `<li><a href=\"#${item.id}\">${item.title}</a></li>`\n).join('\\n                        ');\n\n// Construir Secciones HTML\nlet sectionsHtml = '';\ncontent.sections.forEach((section, index) => {\n  sectionsHtml += `\n                <h2 id=\"${section.id}\">${section.title}</h2>\n                ${section.content}\n`;\n  \n  // Insertar modulos entre secciones\n  if (index === 0 && content.statModule) {\n    sectionsHtml += `\n                <div class=\"interest-module stat-module\">\n                    <div class=\"stat-number\">${content.statModule.number}</div>\n                    <div class=\"stat-content\">\n                        <h4>${content.statModule.title}</h4>\n                        <p>${content.statModule.description}</p>\n                    </div>\n                </div>\n`;\n  }\n  \n  if (index === 1 && content.tipModule) {\n    sectionsHtml += `\n                <div class=\"interest-module tip-module\">\n                    <div class=\"tip-icon\">💡</div>\n                    <div class=\"tip-content\">\n                        <h4>Consejo de Experto</h4>\n                        <p>${content.tipModule.content}</p>\n                    </div>\n                </div>\n`;\n  }\n  \n  if (index === 2 && galleryImages.length >= 4) {\n    sectionsHtml += `\n                <div class=\"blog-image-gallery\">\n                    <h3>Galeria de Servicios</h3>\n                    <div class=\"gallery-grid\">\n                        <figure class=\"gallery-item\">\n                            <img src=\"../../img/img-${category.slug}/${galleryImages[0]}\" alt=\"${business.name} servicio 1\" loading=\"lazy\">\n                        </figure>\n                        <figure class=\"gallery-item\">\n                            <img src=\"../../img/img-${category.slug}/${galleryImages[1]}\" alt=\"${business.name} servicio 2\" loading=\"lazy\">\n                        </figure>\n                        <figure class=\"gallery-item\">\n                            <img src=\"../../img/img-${category.slug}/${galleryImages[2]}\" alt=\"${business.name} servicio 3\" loading=\"lazy\">\n                        </figure>\n                        <figure class=\"gallery-item\">\n                            <img src=\"../../img/img-${category.slug}/${galleryImages[3]}\" alt=\"${business.name} servicio 4\" loading=\"lazy\">\n                        </figure>\n                    </div>\n                </div>\n`;\n  }\n  \n  if (index === 3 && content.quoteModule) {\n    sectionsHtml += `\n                <div class=\"interest-module quote-module\">\n                    <blockquote>\"${content.quoteModule.text}\"</blockquote>\n                    <cite>— ${content.quoteModule.author}, ${content.quoteModule.title}</cite>\n                </div>\n`;\n  }\n  \n  if (index === 4 && content.alertModule) {\n    sectionsHtml += `\n                <div class=\"interest-module alert-module\">\n                    <div class=\"alert-icon\">⚠️</div>\n                    <div class=\"alert-content\">\n                        <h4>Importante</h4>\n                        <p>${content.alertModule.content}</p>\n                    </div>\n                </div>\n`;\n  }\n});\n\n// Construir FAQ Items HTML\nconst faqItemsHtml = content.faqs.map(faq => `\n                    <div class=\"faq-item\">\n                        <button class=\"faq-question\" aria-expanded=\"false\">\n                            <span>${faq.question}</span>\n                            <svg class=\"faq-chevron\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                                <polyline points=\"6 9 12 15 18 9\"></polyline>\n                            </svg>\n                        </button>\n                        <div class=\"faq-answer\">\n                            <p>${faq.answer}</p>\n                        </div>\n                    </div>`\n).join('\\n');\n\n// Construir FAQ Schema JSON-LD\nconst faqSchemaItems = content.faqs.map(faq => `\n            {\n                \"@type\": \"Question\",\n                \"name\": \"${faq.question.replace(/\"/g, '\\\\\"')}\",\n                \"acceptedAnswer\": {\n                    \"@type\": \"Answer\",\n                    \"text\": \"${faq.answer.replace(/\"/g, '\\\\\"')}\"\n                }\n            }`\n).join(',');\n\n// Construir Tags HTML\nconst tagsHtml = content.tags.map(tag => \n  `<a href=\"#\" class=\"tag\">${tag}</a>`\n).join('\\n                        ');\n\n// Construir Sidebar Businesses HTML\nconst sidebarBusinesses = data.config.businesses['seguridad-privada']\n  .filter(b => b.id !== business.id)\n  .slice(0, 3)\n  .map(b => `\n                        <article class=\"blog-popular-post\">\n                            <a href=\"${b.businessPage}\" class=\"blog-popular-thumb\">\n                                <img src=\"../../img/img-${category.slug}/${b.mainImage}\" alt=\"${b.name}\">\n                            </a>\n                            <div class=\"blog-popular-content\">\n                                <h4 class=\"blog-popular-title\">\n                                    <a href=\"${b.businessPage}\">${b.name}</a>\n                                </h4>\n                            </div>\n                        </article>`\n  ).join('\\n');\n\n// HTML Completo del Articulo\nconst articleHtml = `<!DOCTYPE html>\n<html lang=\"es\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n\n    <!-- SEO Meta Tags -->\n    <title>${content.title} | Paginas Amarillas</title>\n    <meta name=\"description\" content=\"${content.metaDescription}\">\n    <meta name=\"keywords\" content=\"${content.keywords}\">\n    <meta name=\"author\" content=\"Paginas Amarillas Mexico\">\n    <meta name=\"robots\" content=\"index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1\">\n    <link rel=\"canonical\" href=\"https://paginasamarillas.mx/blog/${category.slug}/${slug}.html\">\n\n    <!-- Open Graph -->\n    <meta property=\"og:type\" content=\"article\">\n    <meta property=\"og:title\" content=\"${content.title}\">\n    <meta property=\"og:description\" content=\"${content.metaDescription}\">\n    <meta property=\"og:image\" content=\"https://paginasamarillas.mx/img/img-${category.slug}/${heroImage}\">\n    <meta property=\"og:url\" content=\"https://paginasamarillas.mx/blog/${category.slug}/${slug}.html\">\n    <meta property=\"og:site_name\" content=\"Paginas Amarillas Mexico\">\n    <meta property=\"og:locale\" content=\"es_MX\">\n\n    <!-- Twitter Cards -->\n    <meta name=\"twitter:card\" content=\"summary_large_image\">\n    <meta name=\"twitter:title\" content=\"${content.title}\">\n    <meta name=\"twitter:description\" content=\"${content.metaDescription}\">\n    <meta name=\"twitter:image\" content=\"https://paginasamarillas.mx/img/img-${category.slug}/${heroImage}\">\n\n    <!-- Schema.org Article -->\n    <script type=\"application/ld+json\">\n    {\n        \"@context\": \"https://schema.org\",\n        \"@type\": \"Article\",\n        \"headline\": \"${content.title}\",\n        \"description\": \"${content.metaDescription}\",\n        \"image\": \"https://paginasamarillas.mx/img/img-${category.slug}/${heroImage}\",\n        \"author\": {\n            \"@type\": \"Organization\",\n            \"name\": \"Paginas Amarillas Mexico\",\n            \"url\": \"https://paginasamarillas.mx\"\n        },\n        \"publisher\": {\n            \"@type\": \"Organization\",\n            \"name\": \"Paginas Amarillas Mexico\",\n            \"logo\": {\n                \"@type\": \"ImageObject\",\n                \"url\": \"https://paginasamarillas.mx/img/logo.svg\"\n            }\n        },\n        \"mainEntityOfPage\": {\n            \"@type\": \"WebPage\",\n            \"@id\": \"https://paginasamarillas.mx/blog/${category.slug}/${slug}.html\"\n        },\n        \"keywords\": \"${content.keywords}\",\n        \"articleSection\": \"${category.name}\",\n        \"wordCount\": ${content.wordCount},\n        \"timeRequired\": \"PT${content.readingTime}M\",\n        \"inLanguage\": \"es-MX\",\n        \"datePublished\": \"${dateISO}\",\n        \"dateModified\": \"${dateISO}\"\n    }\n    </script>\n\n    <!-- Schema.org FAQPage -->\n    <script type=\"application/ld+json\">\n    {\n        \"@context\": \"https://schema.org\",\n        \"@type\": \"FAQPage\",\n        \"mainEntity\": [${faqSchemaItems}\n        ]\n    }\n    </script>\n\n    <link rel=\"stylesheet\" href=\"../../css/style.css\">\n\n    <style>\n    /* Hero de Dos Columnas */\n    .blog-hero-section {\n        background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);\n        padding: 3rem 0;\n        margin-bottom: 2rem;\n    }\n    .blog-hero-grid {\n        display: grid;\n        grid-template-columns: 1fr 1fr;\n        gap: 2rem;\n        align-items: center;\n    }\n    .blog-hero-image {\n        position: relative;\n        border-radius: 12px;\n        overflow: hidden;\n        box-shadow: 0 15px 40px rgba(0,0,0,0.3);\n    }\n    .blog-hero-image img {\n        width: 100%;\n        height: 350px;\n        object-fit: cover;\n    }\n    .blog-hero-content { color: #fff; }\n    .category-badge {\n        display: inline-block;\n        background: #f59e0b;\n        color: #000;\n        padding: 0.4rem 0.8rem;\n        border-radius: 50px;\n        font-size: 0.8rem;\n        font-weight: 600;\n        text-transform: uppercase;\n        margin-bottom: 1rem;\n    }\n    .hero-title {\n        font-size: 2.2rem;\n        font-weight: 800;\n        line-height: 1.2;\n        margin-bottom: 1rem;\n        color: #fff;\n    }\n    .hero-hook {\n        font-size: 1.1rem;\n        line-height: 1.6;\n        color: rgba(255,255,255,0.9);\n        margin-bottom: 1.5rem;\n    }\n    .hero-meta {\n        display: flex;\n        gap: 1rem;\n        color: rgba(255,255,255,0.6);\n        font-size: 0.9rem;\n    }\n    @media (max-width: 768px) {\n        .blog-hero-grid { grid-template-columns: 1fr; }\n        .hero-title { font-size: 1.8rem; }\n    }\n\n    /* Modulos de Interes */\n    .interest-module {\n        margin: 2rem 0;\n        padding: 1.5rem;\n        border-radius: 12px;\n        display: flex;\n        gap: 1rem;\n        align-items: flex-start;\n    }\n    .stat-module {\n        background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);\n        border-left: 4px solid #f59e0b;\n    }\n    .stat-number { font-size: 2.5rem; font-weight: 800; color: #b45309; line-height: 1; }\n    .stat-content h4 { margin: 0 0 0.5rem; color: #92400e; }\n    .stat-content p { margin: 0; color: #78350f; }\n    .tip-module {\n        background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);\n        border-left: 4px solid #3b82f6;\n    }\n    .tip-icon { font-size: 2rem; }\n    .tip-content h4 { margin: 0 0 0.5rem; color: #1e40af; }\n    .tip-content p { margin: 0; color: #1e3a8a; }\n    .alert-module {\n        background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);\n        border-left: 4px solid #ef4444;\n    }\n    .alert-icon { font-size: 2rem; }\n    .alert-content h4 { margin: 0 0 0.5rem; color: #b91c1c; }\n    .alert-content p { margin: 0; color: #991b1b; }\n    .quote-module {\n        background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);\n        border-left: 4px solid #6b7280;\n        flex-direction: column;\n    }\n    .quote-module blockquote { font-size: 1.2rem; font-style: italic; color: #374151; margin: 0; line-height: 1.6; }\n    .quote-module cite { color: #6b7280; font-size: 0.9rem; }\n\n    /* Galeria */\n    .blog-image-gallery { margin: 2rem 0; padding: 1.5rem; background: #f8fafc; border-radius: 12px; }\n    .blog-image-gallery h3 { margin: 0 0 1rem; color: #1f2937; }\n    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }\n    .gallery-item { margin: 0; border-radius: 8px; overflow: hidden; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }\n    .gallery-item img { width: 100%; height: 160px; object-fit: cover; }\n    @media (max-width: 640px) { .gallery-grid { grid-template-columns: 1fr; } }\n\n    /* FAQ Accordion */\n    .faq-section { margin: 2rem 0; }\n    .faq-item { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 0.8rem; overflow: hidden; }\n    .faq-question { width: 100%; background: #fff; border: none; padding: 1rem 1.2rem; text-align: left; font-size: 1rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }\n    .faq-question:hover { background: #f9fafb; }\n    .faq-question span { flex: 1; padding-right: 1rem; }\n    .faq-chevron { transition: transform 0.3s; color: #6b7280; }\n    .faq-question[aria-expanded=\"true\"] .faq-chevron { transform: rotate(180deg); color: #f59e0b; }\n    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #fafafa; }\n    .faq-answer p { padding: 1rem 1.2rem; margin: 0; color: #4b5563; line-height: 1.6; }\n    </style>\n</head>\n<body>\n\n    <!-- Header -->\n    <header class=\"header\" id=\"header\">\n        <div class=\"container\">\n            <nav class=\"navbar\">\n                <a href=\"/\" class=\"logo\">\n                    <span class=\"logo-text\">Paginas<span class=\"logo-highlight\">Amarillas</span>.mx</span>\n                </a>\n                <button class=\"menu-toggle\" id=\"menuToggle\" aria-label=\"Abrir menu\" aria-expanded=\"false\">\n                    <span class=\"hamburger\"></span>\n                </button>\n                <div class=\"nav-menu\" id=\"navMenu\">\n                    <ul class=\"nav-list\">\n                        <li><a href=\"/\">Inicio</a></li>\n                        <li><a href=\"/categorias.html\">Categorias</a></li>\n                        <li><a href=\"/blog/\" class=\"active\">Blog</a></li>\n                    </ul>\n                    <div class=\"nav-actions\">\n                        <a href=\"#login\" class=\"btn btn-ghost\">Iniciar Sesion</a>\n                        <a href=\"#registrar\" class=\"btn btn-primary\">Registrar Negocio</a>\n                    </div>\n                </div>\n            </nav>\n        </div>\n    </header>\n\n    <!-- Breadcrumbs -->\n    <section class=\"breadcrumbs\">\n        <div class=\"container\">\n            <nav aria-label=\"Breadcrumb\">\n                <ol class=\"breadcrumb-list\">\n                    <li><a href=\"/\">Inicio</a></li>\n                    <li><a href=\"/blog/\">Blog</a></li>\n                    <li><a href=\"${category.categoryPage}\">${category.name}</a></li>\n                    <li aria-current=\"page\">${content.titleShort}</li>\n                </ol>\n            </nav>\n        </div>\n    </section>\n\n    <!-- Hero Section -->\n    <section class=\"blog-hero-section\">\n        <div class=\"container\">\n            <div class=\"blog-hero-grid\">\n                <div class=\"blog-hero-image\">\n                    <img src=\"../../img/img-${category.slug}/${heroImage}\" alt=\"${content.title}\" loading=\"eager\">\n                </div>\n                <div class=\"blog-hero-content\">\n                    <span class=\"category-badge\">${category.name}</span>\n                    <h1 class=\"hero-title\">${content.title}</h1>\n                    <p class=\"hero-hook\">${content.heroHook}</p>\n                    <div class=\"hero-meta\">\n                        <span>\n                            <svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" style=\"vertical-align: middle; margin-right: 4px;\">\n                                <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                                <polyline points=\"12 6 12 12 16 14\"/>\n                            </svg>\n                            ${content.readingTime} min lectura\n                        </span>\n                        <span>|</span>\n                        <span>${category.name}</span>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </section>\n\n    <!-- Main Content -->\n    <main class=\"container\">\n        <div class=\"blog-article-layout\">\n            <article class=\"blog-article\">\n\n                <!-- Table of Contents -->\n                <nav class=\"blog-article-toc-inline\">\n                    <h4>En este articulo</h4>\n                    <ul>\n                        ${tocItemsHtml}\n                    </ul>\n                </nav>\n\n                <!-- Article Content -->\n                <div class=\"blog-article-content\">\n${sectionsHtml}\n                </div>\n\n                <!-- FAQ Section -->\n                <section class=\"faq-section\" id=\"preguntas-frecuentes\">\n                    <h2>Preguntas Frecuentes</h2>\n                    <div class=\"faq-accordion\">\n${faqItemsHtml}\n                    </div>\n                </section>\n\n                <!-- CTA Final -->\n                <div class=\"article-cta-final\" style=\"background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 2rem; border-radius: 12px; color: #fff; text-align: center; margin: 2rem 0;\">\n                    <h3 style=\"margin: 0 0 0.5rem; color: #fff;\">${content.ctaTitle}</h3>\n                    <p style=\"margin: 0 0 1.5rem; color: rgba(255,255,255,0.8);\">${content.ctaDescription}</p>\n                    <a href=\"${category.categoryPage}\" style=\"display: inline-block; background: #f59e0b; color: #000; padding: 0.8rem 1.5rem; border-radius: 8px; font-weight: 600; text-decoration: none;\">${content.ctaButton}</a>\n                </div>\n\n                <!-- Tags -->\n                <div class=\"blog-article-tags\">\n                    <h3>Temas relacionados:</h3>\n                    <div class=\"tags-container\">\n                        ${tagsHtml}\n                    </div>\n                </div>\n\n            </article>\n\n            <!-- Sidebar -->\n            <aside class=\"blog-article-sidebar\">\n                <!-- CTA Box -->\n                <div class=\"blog-cta-box\">\n                    <h3>¿Buscas ${category.name.toLowerCase()}?</h3>\n                    <p>Encuentra empresas certificadas en nuestro directorio</p>\n                    <a href=\"${category.categoryPage}\" class=\"btn\">Ver Empresas</a>\n                </div>\n\n                <!-- Featured Businesses -->\n                <div class=\"blog-widget\">\n                    <h3 class=\"blog-widget-title\">Empresas Destacadas</h3>\n                    <div class=\"blog-popular-posts\">\n${sidebarBusinesses}\n                    </div>\n                </div>\n            </aside>\n        </div>\n    </main>\n\n    <!-- Footer -->\n    <footer class=\"footer\">\n        <div class=\"footer-main\">\n            <div class=\"container\">\n                <div class=\"footer-grid\">\n                    <div class=\"footer-column footer-brand\">\n                        <div class=\"footer-logo\">\n                            <span class=\"logo-text\">Paginas<span class=\"logo-highlight\">Amarillas</span>.mx</span>\n                        </div>\n                        <p class=\"footer-text\">El directorio empresarial mas completo de Mexico.</p>\n                    </div>\n                    <div class=\"footer-column\">\n                        <h4 class=\"footer-heading\">Categorias</h4>\n                        <ul class=\"footer-links\">\n                            <li><a href=\"/categoria/seguridad-privada.html\">Seguridad Privada</a></li>\n                            <li><a href=\"/categoria/entretenimiento.html\">Entretenimiento</a></li>\n                        </ul>\n                    </div>\n                    <div class=\"footer-column\">\n                        <h4 class=\"footer-heading\">Ayuda</h4>\n                        <ul class=\"footer-links\">\n                            <li><a href=\"/blog/\">Blog</a></li>\n                            <li><a href=\"/sitemap.html\">Mapa del Sitio</a></li>\n                        </ul>\n                    </div>\n                </div>\n            </div>\n        </div>\n        <div class=\"footer-bottom\">\n            <div class=\"container\">\n                <p class=\"footer-copyright\">&copy; Paginas Amarillas Mexico. Todos los derechos reservados.</p>\n            </div>\n        </div>\n    </footer>\n\n    <script src=\"../../js/app.js\" defer></script>\n    <script>\n    document.addEventListener('DOMContentLoaded', function() {\n        const faqQuestions = document.querySelectorAll('.faq-question');\n        faqQuestions.forEach(function(question) {\n            question.addEventListener('click', function() {\n                const faqItem = this.parentElement;\n                const answer = faqItem.querySelector('.faq-answer');\n                const isExpanded = this.getAttribute('aria-expanded') === 'true';\n                faqQuestions.forEach(function(q) {\n                    if (q !== question) {\n                        q.setAttribute('aria-expanded', 'false');\n                        q.parentElement.querySelector('.faq-answer').style.maxHeight = null;\n                    }\n                });\n                if (isExpanded) {\n                    this.setAttribute('aria-expanded', 'false');\n                    answer.style.maxHeight = null;\n                } else {\n                    this.setAttribute('aria-expanded', 'true');\n                    answer.style.maxHeight = answer.scrollHeight + 'px';\n                }\n            });\n        });\n    });\n    </script>\n</body>\n</html>`;\n\nreturn {\n  ...data,\n  articleHtml: articleHtml\n};"
+      },
+      "id": "build-article-html",
+      "name": "Code - Construir HTML Articulo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1320, -100]
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $input.first().json;\nconst content = data.content;\nconst category = data.category;\nconst business = data.business;\nconst heroImage = data.heroImage;\nconst dateYYYYMM = data.dateYYYYMM;\nconst slug = data.finalSlug;\n\n// Construir Card HTML\nconst cardHtml = `\n              <!-- n8n:AUTO - ${business.name} - ${dateYYYYMM} -->\n              <article class=\"blog-card\">\n                <a href=\"/blog/${category.slug}/${slug}.html\" class=\"blog-card-image\">\n                  <img src=\"/img/img-${category.slug}/${heroImage}\" alt=\"${content.title}\">\n                  <span class=\"blog-category-badge\">${category.name}</span>\n                </a>\n                <div class=\"blog-card-content\">\n                  <h3 class=\"blog-card-title\">\n                    <a href=\"/blog/${category.slug}/${slug}.html\">${content.title}</a>\n                  </h3>\n                  <div class=\"blog-meta\">\n                    <span class=\"blog-reading-time\">\n                      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                        <polyline points=\"12 6 12 12 16 14\"/>\n                      </svg>\n                      ${content.readingTime} min\n                    </span>\n                  </div>\n                  <p class=\"blog-card-excerpt\">\n                    ${content.excerpt}\n                  </p>\n                  <a href=\"/blog/${category.slug}/${slug}.html\" class=\"btn btn-outline\">\n                    Leer articulo completo\n                  </a>\n                </div>\n              </article>\n`;\n\nreturn {\n  ...data,\n  cardHtml: cardHtml\n};"
+      },
+      "id": "build-card-html",
+      "name": "Code - Construir Card HTML",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [1540, -100]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "create",
+        "owner": "={{ $env.GITHUB_OWNER }}",
+        "repository": "={{ $env.GITHUB_REPO }}",
+        "filePath": "=blog/{{ $json.category.slug }}/{{ $json.finalSlug }}.html",
+        "fileContent": "={{ $json.articleHtml }}",
+        "commitMessage": "=Add article: {{ $json.content.title }}",
+        "additionalParameters": {
+          "branch": "main"
+        }
+      },
+      "id": "github-upload-article",
+      "name": "GitHub - Subir Articulo",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [1760, -100],
+      "credentials": {
+        "githubApi": {
+          "id": "github-credentials",
+          "name": "GitHub API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": "={{ $env.GITHUB_OWNER }}",
+        "repository": "={{ $env.GITHUB_REPO }}",
+        "filePath": "blog/index.html",
+        "additionalParameters": {}
+      },
+      "id": "github-get-index",
+      "name": "GitHub - Obtener blog/index.html",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [1980, -100],
+      "credentials": {
+        "githubApi": {
+          "id": "github-credentials",
+          "name": "GitHub API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const data = $('Code - Construir Card HTML').first().json;\nconst cardHtml = data.cardHtml;\nconst githubResponse = $input.first().json;\n\n// Decodificar contenido de base64\nconst indexContent = Buffer.from(githubResponse.content, 'base64').toString('utf8');\n\n// Marcador para insertar cards\nconst marker = '<!-- n8n:INSERT-NEW-CARDS-HERE -->';\n\n// Verificar que el marcador existe\nif (!indexContent.includes(marker)) {\n  throw new Error('Marcador n8n no encontrado en blog/index.html');\n}\n\n// Insertar card despues del marcador\nconst newContent = indexContent.replace(\n  marker,\n  marker + '\\n' + cardHtml\n);\n\nreturn {\n  ...data,\n  indexHtml: newContent,\n  sha: githubResponse.sha\n};"
+      },
+      "id": "insert-card",
+      "name": "Code - Insertar Card",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, -100]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": "={{ $env.GITHUB_OWNER }}",
+        "repository": "={{ $env.GITHUB_REPO }}",
+        "filePath": "blog/index.html",
+        "fileContent": "={{ $json.indexHtml }}",
+        "commitMessage": "=Add card for: {{ $json.content.title }}",
+        "additionalParameters": {
+          "sha": "={{ $json.sha }}",
+          "branch": "main"
+        }
+      },
+      "id": "github-update-index",
+      "name": "GitHub - Actualizar blog/index.html",
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [2420, -100],
+      "credentials": {
+        "githubApi": {
+          "id": "github-credentials",
+          "name": "GitHub API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "=✅ *Nuevo Articulo Publicado*\n\n📝 *{{ $json.content.title }}*\n\n🏢 Empresa: {{ $json.business.name }}\n📁 Tipo: {{ $json.articleType.name }}\n⏱️ Lectura: {{ $json.content.readingTime }} min\n\n🔗 [Ver Articulo](https://paginasamarillas.mx/blog/{{ $json.category.slug }}/{{ $json.finalSlug }}.html)\n\n📊 Keywords: {{ $json.content.keywords }}",
+        "additionalFields": {
+          "parse_mode": "Markdown",
+          "disable_web_page_preview": false
+        }
+      },
+      "id": "telegram-notify",
+      "name": "Telegram - Notificar",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [2640, -100],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-credentials",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "sendMessage",
+        "chatId": "={{ $env.TELEGRAM_CHAT_ID }}",
+        "text": "=❌ *Error en Workflow de Articulos*\n\n⚠️ {{ $execution.error.message }}\n\n📍 Nodo: {{ $execution.error.node?.name }}\n🕐 Fecha: {{ $now.format('YYYY-MM-DD HH:mm:ss') }}\n\n🔧 Revisar ejecucion en n8n",
+        "additionalFields": {
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "telegram-error",
+      "name": "Telegram - Error",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [880, 200],
+      "credentials": {
+        "telegramApi": {
+          "id": "telegram-credentials",
+          "name": "Telegram Bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "check-error",
+              "leftValue": "={{ $execution.error }}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "notEmpty"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "error-check",
+      "name": "IF - Hay Error",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [660, 200]
+    },
+    {
+      "parameters": {},
+      "id": "no-op-success",
+      "name": "Success - Fin",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [2860, -100]
+    },
+    {
+      "parameters": {},
+      "id": "no-op-error",
+      "name": "Error - Fin",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [1100, 200]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger - Cada 3 Dias": {
+      "main": [
+        [
+          {
+            "node": "GitHub - Obtener Configuracion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub - Obtener Configuracion": {
+      "main": [
+        [
+          {
+            "node": "Code - Procesar Configuracion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Procesar Configuracion": {
+      "main": [
+        [
+          {
+            "node": "IF - Validar Seleccion",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Validar Seleccion": {
+      "main": [
+        [
+          {
+            "node": "OpenAI - Generar Articulo",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "IF - Hay Error",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI - Generar Articulo": {
+      "main": [
+        [
+          {
+            "node": "Code - Parsear Contenido",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Parsear Contenido": {
+      "main": [
+        [
+          {
+            "node": "Code - Construir HTML Articulo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Construir HTML Articulo": {
+      "main": [
+        [
+          {
+            "node": "Code - Construir Card HTML",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Construir Card HTML": {
+      "main": [
+        [
+          {
+            "node": "GitHub - Subir Articulo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub - Subir Articulo": {
+      "main": [
+        [
+          {
+            "node": "GitHub - Obtener blog/index.html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub - Obtener blog/index.html": {
+      "main": [
+        [
+          {
+            "node": "Code - Insertar Card",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Insertar Card": {
+      "main": [
+        [
+          {
+            "node": "GitHub - Actualizar blog/index.html",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GitHub - Actualizar blog/index.html": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Notificar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram - Notificar": {
+      "main": [
+        [
+          {
+            "node": "Success - Fin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IF - Hay Error": {
+      "main": [
+        [
+          {
+            "node": "Telegram - Error",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error - Fin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram - Error": {
+      "main": [
+        [
+          {
+            "node": "Error - Fin",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "saveManualExecutions": true,
+    "callerPolicy": "workflowsFromSameOwner",
+    "errorWorkflow": ""
+  },
+  "versionId": "v2.0",
+  "meta": {
+    "templateCredsSetupCompleted": false,
+    "instanceId": "paginas-amarillas-mx"
+  },
+  "tags": [
+    {
+      "name": "Blog",
+      "id": "blog"
+    },
+    {
+      "name": "SEO",
+      "id": "seo"
+    },
+    {
+      "name": "Automatizacion",
+      "id": "auto"
+    }
+  ]
+}

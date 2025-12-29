@@ -1,0 +1,246 @@
+{
+  "description": "Documentacion de todos los placeholders usados en los templates",
+  "version": "1.0",
+  "articlePlaceholders": {
+    "basic": {
+      "{{TITLE}}": {
+        "description": "Titulo completo del articulo",
+        "example": "ORIGINS Private Security: Resena Completa 2024",
+        "required": true,
+        "maxLength": 70
+      },
+      "{{TITLE_SHORT}}": {
+        "description": "Titulo corto para breadcrumbs",
+        "example": "Resena ORIGINS Security",
+        "required": true,
+        "maxLength": 40
+      },
+      "{{ARTICLE_SLUG}}": {
+        "description": "Slug del articulo (URL-safe)",
+        "example": "origins-private-security-resena-completa",
+        "required": true,
+        "pattern": "^[a-z0-9-]+$"
+      },
+      "{{META_DESCRIPTION}}": {
+        "description": "Descripcion para SEO (meta description)",
+        "example": "Analisis completo de ORIGINS Private Security: servicios, precios, tecnologia y opiniones de clientes.",
+        "required": true,
+        "minLength": 120,
+        "maxLength": 160
+      },
+      "{{KEYWORDS}}": {
+        "description": "Palabras clave separadas por coma",
+        "example": "ORIGINS Private Security, seguridad privada CDMX, escoltas ejecutivos, vigilancia empresarial",
+        "required": true
+      }
+    },
+    "category": {
+      "{{CATEGORY_SLUG}}": {
+        "description": "Slug de la categoria",
+        "example": "seguridad-privada",
+        "required": true,
+        "values": ["seguridad-privada", "eventos"]
+      },
+      "{{CATEGORY_NAME}}": {
+        "description": "Nombre legible de la categoria",
+        "example": "Seguridad Privada",
+        "required": true
+      },
+      "{{CATEGORY_PAGE}}": {
+        "description": "URL de la pagina de categoria",
+        "example": "/categoria/seguridad-privada.html",
+        "required": true
+      }
+    },
+    "hero": {
+      "{{HERO_IMAGE}}": {
+        "description": "Nombre del archivo de imagen principal",
+        "example": "equipo-seguridad-corporativo.webp",
+        "required": true
+      },
+      "{{HERO_ALT}}": {
+        "description": "Texto alternativo de la imagen",
+        "example": "Equipo de seguridad corporativa de ORIGINS Private Security",
+        "required": true
+      },
+      "{{HERO_HOOK}}": {
+        "description": "Parrafo enganchador del hero (60-80 palabras)",
+        "example": "Cuando una empresa farmaceutica multinacional necesito proteger a sus ejecutivos durante una crisis de seguridad, ORIGINS fue su primera llamada...",
+        "required": true,
+        "minWords": 60,
+        "maxWords": 80
+      }
+    },
+    "content": {
+      "{{READING_TIME}}": {
+        "description": "Tiempo de lectura en minutos",
+        "example": "10",
+        "required": true,
+        "type": "number"
+      },
+      "{{WORD_COUNT}}": {
+        "description": "Conteo de palabras del articulo",
+        "example": "2500",
+        "required": true,
+        "type": "number"
+      },
+      "{{TOC_ITEMS}}": {
+        "description": "Items de tabla de contenidos en formato HTML",
+        "example": "<li><a href=\"#seccion-1\">Introduccion</a></li>",
+        "required": true,
+        "format": "html"
+      },
+      "{{ARTICLE_CONTENT}}": {
+        "description": "Contenido principal del articulo en HTML",
+        "required": true,
+        "format": "html",
+        "includes": ["h2", "h3", "p", "ul", "ol", "interest-modules", "gallery"]
+      }
+    },
+    "faq": {
+      "{{FAQ_ITEMS}}": {
+        "description": "Preguntas frecuentes en formato HTML (accordion)",
+        "required": true,
+        "format": "html",
+        "minItems": 5
+      },
+      "{{FAQ_SCHEMA}}": {
+        "description": "FAQ en formato JSON-LD para Schema.org",
+        "required": true,
+        "format": "json"
+      }
+    },
+    "cta": {
+      "{{CTA_TITLE}}": {
+        "description": "Titulo del CTA final",
+        "example": "¿Listo para proteger tu empresa?",
+        "required": true
+      },
+      "{{CTA_DESCRIPTION}}": {
+        "description": "Descripcion del CTA",
+        "example": "Encuentra las mejores empresas de seguridad privada en Mexico",
+        "required": true
+      },
+      "{{CTA_BUTTON}}": {
+        "description": "Texto del boton CTA",
+        "example": "Ver Empresas de Seguridad",
+        "required": true
+      },
+      "{{CTA_URL}}": {
+        "description": "URL del boton CTA",
+        "example": "/categoria/seguridad-privada.html",
+        "required": true
+      }
+    },
+    "sidebar": {
+      "{{SIDEBAR_CTA_TITLE}}": {
+        "description": "Titulo del CTA del sidebar",
+        "example": "¿Buscas seguridad privada?",
+        "required": true
+      },
+      "{{SIDEBAR_CTA_DESCRIPTION}}": {
+        "description": "Descripcion del CTA del sidebar",
+        "example": "Encuentra empresas certificadas en nuestro directorio",
+        "required": true
+      },
+      "{{SIDEBAR_BUSINESSES}}": {
+        "description": "Lista de empresas destacadas en HTML",
+        "required": true,
+        "format": "html"
+      }
+    },
+    "related": {
+      "{{TAGS}}": {
+        "description": "Tags relacionados en formato HTML",
+        "example": "<a href=\"#\" class=\"tag\">Seguridad Privada</a>",
+        "required": true,
+        "format": "html"
+      },
+      "{{RELATED_ARTICLES}}": {
+        "description": "Articulos relacionados en formato HTML",
+        "required": true,
+        "format": "html",
+        "minItems": 2
+      }
+    },
+    "dates": {
+      "{{DATE_PUBLISHED}}": {
+        "description": "Fecha de publicacion en formato ISO",
+        "example": "2024-12-28",
+        "required": true,
+        "format": "date"
+      },
+      "{{DATE_MODIFIED}}": {
+        "description": "Fecha de modificacion en formato ISO",
+        "example": "2024-12-28",
+        "required": true,
+        "format": "date"
+      }
+    }
+  },
+  "cardPlaceholders": {
+    "{{BUSINESS_NAME}}": {
+      "description": "Nombre del negocio para comentario",
+      "example": "ORIGINS Private Security",
+      "required": true
+    },
+    "{{DATE}}": {
+      "description": "Fecha en formato YYYY-MM",
+      "example": "2024-12",
+      "required": true
+    },
+    "{{CATEGORY_SLUG}}": {
+      "description": "Slug de la categoria",
+      "example": "seguridad-privada",
+      "required": true
+    },
+    "{{ARTICLE_SLUG}}": {
+      "description": "Slug del articulo",
+      "example": "origins-private-security-resena-completa",
+      "required": true
+    },
+    "{{IMAGE}}": {
+      "description": "Nombre del archivo de imagen",
+      "example": "equipo-seguridad-corporativo.webp",
+      "required": true
+    },
+    "{{IMAGE_ALT}}": {
+      "description": "Texto alternativo de la imagen",
+      "example": "ORIGINS Private Security resena completa",
+      "required": true
+    },
+    "{{CATEGORY_NAME}}": {
+      "description": "Nombre de la categoria",
+      "example": "Seguridad Privada",
+      "required": true
+    },
+    "{{TITLE}}": {
+      "description": "Titulo del articulo",
+      "example": "ORIGINS Private Security: Resena Completa 2024",
+      "required": true
+    },
+    "{{READING_TIME}}": {
+      "description": "Tiempo de lectura en minutos",
+      "example": "10",
+      "required": true
+    },
+    "{{EXCERPT}}": {
+      "description": "Extracto corto del articulo (80-120 caracteres)",
+      "example": "Analisis completo de servicios, precios y tecnologia de ORIGINS Private Security.",
+      "required": true,
+      "maxLength": 120
+    }
+  },
+  "moduleTemplates": {
+    "statModule": "<div class=\"interest-module stat-module\">\n    <div class=\"stat-number\">{{STAT_NUMBER}}</div>\n    <div class=\"stat-content\">\n        <h4>{{STAT_TITLE}}</h4>\n        <p>{{STAT_DESCRIPTION}}</p>\n    </div>\n</div>",
+    "tipModule": "<div class=\"interest-module tip-module\">\n    <div class=\"tip-icon\">💡</div>\n    <div class=\"tip-content\">\n        <h4>Consejo de Experto</h4>\n        <p>{{TIP_CONTENT}}</p>\n    </div>\n</div>",
+    "alertModule": "<div class=\"interest-module alert-module\">\n    <div class=\"alert-icon\">⚠️</div>\n    <div class=\"alert-content\">\n        <h4>Importante</h4>\n        <p>{{ALERT_CONTENT}}</p>\n    </div>\n</div>",
+    "quoteModule": "<div class=\"interest-module quote-module\">\n    <blockquote>\"{{QUOTE_TEXT}}\"</blockquote>\n    <cite>— {{QUOTE_AUTHOR}}, {{QUOTE_TITLE}}</cite>\n</div>",
+    "faqItem": "<div class=\"faq-item\">\n    <button class=\"faq-question\" aria-expanded=\"false\">\n        <span>{{FAQ_QUESTION}}</span>\n        <svg class=\"faq-chevron\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n            <polyline points=\"6 9 12 15 18 9\"></polyline>\n        </svg>\n    </button>\n    <div class=\"faq-answer\">\n        <p>{{FAQ_ANSWER}}</p>\n    </div>\n</div>",
+    "tocItem": "<li><a href=\"#{{TOC_ID}}\">{{TOC_TITLE}}</a></li>",
+    "tag": "<a href=\"{{TAG_URL}}\" class=\"tag\">{{TAG_NAME}}</a>",
+    "relatedArticle": "<article class=\"blog-card\">\n    <div class=\"blog-card-image\">\n        <img src=\"{{RELATED_IMAGE}}\" alt=\"{{RELATED_ALT}}\">\n    </div>\n    <div class=\"blog-card-content\">\n        <h3 class=\"blog-card-title\">\n            <a href=\"{{RELATED_URL}}\">{{RELATED_TITLE}}</a>\n        </h3>\n        <p class=\"blog-card-excerpt\">{{RELATED_EXCERPT}}</p>\n    </div>\n</article>",
+    "sidebarBusiness": "<article class=\"blog-popular-post\">\n    <a href=\"{{BUSINESS_URL}}\" class=\"blog-popular-thumb\">\n        <img src=\"{{BUSINESS_IMAGE}}\" alt=\"{{BUSINESS_NAME}}\">\n    </a>\n    <div class=\"blog-popular-content\">\n        <h4 class=\"blog-popular-title\">\n            <a href=\"{{BUSINESS_URL}}\">{{BUSINESS_NAME}}</a>\n        </h4>\n    </div>\n</article>",
+    "galleryItem": "<figure class=\"gallery-item\">\n    <img src=\"{{GALLERY_IMAGE}}\" alt=\"{{GALLERY_ALT}}\" loading=\"lazy\">\n    <figcaption class=\"gallery-caption\">\n        <strong>{{GALLERY_TITLE}}</strong>\n        <span>{{GALLERY_DESCRIPTION}}</span>\n    </figcaption>\n</figure>"
+  }
+}

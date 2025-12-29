@@ -4,3 +4,11 @@
 node_modules
 dist
 .cache
+
+# Credenciales y archivos sensibles
+.env
+.env.local
+.env.*.local
+*.local
+n8n-workflows/.env*
+!n8n-workflows/.env.example
