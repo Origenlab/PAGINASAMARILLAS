@@ -34,7 +34,7 @@
 En el nodo **"ChatGPT - Generar Articulo"**:
 - Seleccionar la credencial de OpenAI
 
-### 3. Configurar Credencial de GitHub
+### 3. Configurar Credencial de GitHub (Para subir articulos)
 
 1. Ir a **Settings** > **Credentials** > **Add Credential**
 2. Buscar **GitHub**
@@ -44,11 +44,28 @@ En el nodo **"ChatGPT - Generar Articulo"**:
 4. Pegar el token en n8n
 5. Guardar
 
-**IMPORTANTE:** Usar la MISMA credencial en estos nodos:
-- **"GitHub - Subir Articulo"**
+En el nodo **"GitHub - Subir Articulo"**:
+- Seleccionar la credencial de GitHub
+
+### 4. Configurar GitHub Token Header (REQUERIDO para actualizar blog/index.html)
+
+Esta credencial es necesaria para los nodos HTTP Request que actualizan el blog.
+
+1. Ir a **Settings** > **Credentials** > **Add Credential**
+2. Buscar **Header Auth** (HTTP Header Auth)
+3. Configurar:
+   - **Name**: `Authorization`
+   - **Value**: `token ghp_TU_TOKEN_AQUI`
+
+   (Reemplaza `ghp_TU_TOKEN_AQUI` con tu Personal Access Token de GitHub - el mismo que usaste antes)
+
+4. Guardar como **"GitHub Token Header"**
+
+En estos nodos, seleccionar la credencial "GitHub Token Header":
+- **"GitHub - Obtener Blog Index"**
 - **"GitHub - Actualizar Blog Index"**
 
-### 4. Configurar Telegram (Opcional)
+### 5. Configurar Telegram (Opcional)
 
 1. Crear bot con @BotFather en Telegram (`/newbot`)
 2. Copiar el token del bot
@@ -105,9 +122,11 @@ El workflow esta configurado para ejecutarse:
 
 ## Como Funciona la Insercion de Cards
 
-1. El workflow obtiene blog/index.html desde raw.githubusercontent.com
-2. Inserta la nueva card despues de `<div class="blog-grid">`
-3. Usa el nodo nativo de GitHub para actualizar (maneja SHA automaticamente)
+1. El workflow obtiene blog/index.html desde GitHub API (incluye SHA)
+2. Decodifica el contenido de base64
+3. Inserta la nueva card despues de `<div class="blog-grid">`
+4. Re-codifica a base64
+5. Hace PUT a GitHub API con el SHA original
 
 Las cards nuevas aparecen al **INICIO** del grid (newest first).
 
@@ -115,12 +134,16 @@ Las cards nuevas aparecen al **INICIO** del grid (newest first).
 
 ## Troubleshooting
 
+### Error: "sha wasn't supplied"
+- Verificar que la credencial "GitHub Token Header" este configurada correctamente
+- El valor debe ser: `token ghp_TU_TOKEN` (con la palabra "token" antes del token)
+
+### Error: "Authorization failed"
+- Verificar que el token de GitHub tenga permisos `repo`
+- Verificar que el header sea exactamente `Authorization`
+
 ### Error: "No se encontro blog-grid"
 - Verificar que blog/index.html tenga `<div class="blog-grid">`
-
-### El articulo no aparece en el blog
-- Verificar que la credencial de GitHub tenga permisos `repo`
-- Revisar los logs del nodo "GitHub - Actualizar Blog Index"
 
 ---
 
