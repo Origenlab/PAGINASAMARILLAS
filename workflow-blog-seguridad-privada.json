@@ -125,7 +125,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const datosArticulo = $('Construir HTML Profesional').first().json;\nconst githubResponse = $input.first().json;\n\nconst urlArticulo = '/blog/seguridad-privada/' + datosArticulo.slug + '.html';\nconst urlImagen = '/img/img-seguridad-privada/' + datosArticulo.imagenes.principal;\n\nconst codigoCardHTML = `<!-- n8n:AUTO ${datosArticulo.empresaNombre} -->\n<article class=\"blog-card\">\n  <a href=\"${urlArticulo}\" class=\"blog-card-image\">\n    <img src=\"${urlImagen}\" alt=\"${datosArticulo.titulo}\">\n    <span class=\"blog-category-badge\">${datosArticulo.categoriaNombre}</span>\n  </a>\n  <div class=\"blog-card-content\">\n    <h3 class=\"blog-card-title\">\n      <a href=\"${urlArticulo}\">${datosArticulo.titulo}</a>\n    </h3>\n    <div class=\"blog-meta\">\n      <span class=\"blog-reading-time\">${datosArticulo.tiempoLectura} min</span>\n    </div>\n    <p class=\"blog-card-excerpt\">${datosArticulo.extractoBlog}</p>\n    <a href=\"${urlArticulo}\" class=\"btn btn-outline\">Leer articulo completo</a>\n  </div>\n</article>`;\n\nreturn {\n  exito: true,\n  mensaje: 'Articulo publicado',\n  detalles: {\n    empresa: datosArticulo.empresaNombre,\n    titulo: datosArticulo.titulo,\n    urlArticulo: 'https://paginasamarillas.mx' + urlArticulo,\n    tiempoLectura: datosArticulo.tiempoLectura,\n    categoria: datosArticulo.categoriaNombre\n  },\n  codigoCardHTML: codigoCardHTML\n};"
+        "jsCode": "const datosArticulo = $('Construir HTML Profesional').first().json;\nconst githubResponse = $input.first().json;\n\nconst urlArticulo = '/blog/seguridad-privada/' + datosArticulo.slug + '.html';\nconst urlImagen = '/img/img-seguridad-privada/' + datosArticulo.imagenes.principal;\n\nconst codigoCardHTML = `\n              <!-- n8n:AUTO ${datosArticulo.empresaNombre} -->\n              <article class=\"blog-card\">\n                <a href=\"${urlArticulo}\" class=\"blog-card-image\">\n                  <img src=\"${urlImagen}\" alt=\"${datosArticulo.titulo}\">\n                  <span class=\"blog-category-badge\">${datosArticulo.categoriaNombre}</span>\n                </a>\n                <div class=\"blog-card-content\">\n                  <h3 class=\"blog-card-title\">\n                    <a href=\"${urlArticulo}\">${datosArticulo.titulo}</a>\n                  </h3>\n                  <div class=\"blog-meta\">\n                    <span class=\"blog-reading-time\">\n                      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                        <polyline points=\"12 6 12 12 16 14\"/>\n                      </svg>\n                      ${datosArticulo.tiempoLectura} min\n                    </span>\n                  </div>\n                  <p class=\"blog-card-excerpt\">${datosArticulo.extractoBlog}</p>\n                  <a href=\"${urlArticulo}\" class=\"btn btn-outline\">Leer articulo completo</a>\n                </div>\n              </article>`;\n\nreturn {\n  exito: true,\n  mensaje: 'Articulo publicado',\n  detalles: {\n    empresa: datosArticulo.empresaNombre,\n    titulo: datosArticulo.titulo,\n    urlArticulo: 'https://paginasamarillas.mx' + urlArticulo,\n    tiempoLectura: datosArticulo.tiempoLectura,\n    categoria: datosArticulo.categoriaNombre\n  },\n  codigoCardHTML: codigoCardHTML\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -135,8 +135,60 @@
     },
     {
       "parameters": {
+        "resource": "file",
+        "operation": "get",
+        "owner": "Origenlab",
+        "repository": "PAGINASAMARILLAS",
+        "filePath": "blog/index.html"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [80, 32],
+      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
+      "name": "GitHub - Obtener Blog Index",
+      "credentials": {
+        "githubApi": {
+          "id": "NFw8kpUQfQRbzSHR",
+          "name": "GitHub account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Obtener datos del nodo anterior y la card generada\nconst githubData = $input.first().json;\nconst cardData = $('Resumen y Codigo para blog.html').first().json;\n\n// El contenido viene en base64 o directo dependiendo de la version de n8n\nlet contenidoActual;\nif (githubData.content) {\n  contenidoActual = Buffer.from(githubData.content, 'base64').toString('utf8');\n} else if (typeof githubData === 'string') {\n  contenidoActual = githubData;\n} else {\n  throw new Error('No se pudo obtener el contenido del archivo');\n}\n\n// Buscar el marcador EXACTO donde insertar la card\nconst marcadorInsercion = '<!-- n8n:INSERT-NEW-CARDS-HERE -->';\nconst posicion = contenidoActual.indexOf(marcadorInsercion);\n\nif (posicion === -1) {\n  throw new Error('No se encontro el marcador <!-- n8n:INSERT-NEW-CARDS-HERE --> en blog/index.html');\n}\n\n// Insertar la nueva card DESPUES del marcador\nconst posicionInsercion = posicion + marcadorInsercion.length;\nconst nuevoContenido = \n  contenidoActual.substring(0, posicionInsercion) + \n  cardData.codigoCardHTML + \n  contenidoActual.substring(posicionInsercion);\n\nreturn {\n  nuevoContenido: nuevoContenido,\n  detalles: cardData.detalles,\n  codigoCardHTML: cardData.codigoCardHTML\n};"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [304, 32],
+      "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
+      "name": "Insertar Card en HTML"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "edit",
+        "owner": "Origenlab",
+        "repository": "PAGINASAMARILLAS",
+        "filePath": "blog/index.html",
+        "fileContent": "={{ $json.nuevoContenido }}",
+        "commitMessage": "=feat(blog): Nueva card - {{ $json.detalles.empresa }}"
+      },
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
+      "position": [528, 32],
+      "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
+      "name": "GitHub - Actualizar Blog Index",
+      "credentials": {
+        "githubApi": {
+          "id": "NFw8kpUQfQRbzSHR",
+          "name": "GitHub account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
         "chatId": "772938445",
-        "text": "=✅ *Articulo Publicado*\n\n🏢 *Empresa:* {{ $json.detalles.empresa }}\n📝 *Titulo:* {{ $json.detalles.titulo }}\n📂 *Categoria:* {{ $json.detalles.categoria }}\n⏱ *Lectura:* {{ $json.detalles.tiempoLectura }} min\n\n🔗 {{ $json.detalles.urlArticulo }}\n\n📋 *Proximos pasos:*\n1. Agregar card a blog/index.html\n2. Verificar visualizacion\n\n💻 *Codigo de la card:*\n```\n{{ $json.codigoCardHTML }}\n```\n\n🤖 _Paginas Amarillas Blog Generator_",
+        "text": "=✅ *Articulo Publicado Automaticamente*\n\n🏢 *Empresa:* {{ $('Resumen y Codigo para blog.html').first().json.detalles.empresa }}\n📝 *Titulo:* {{ $('Resumen y Codigo para blog.html').first().json.detalles.titulo }}\n📂 *Categoria:* {{ $('Resumen y Codigo para blog.html').first().json.detalles.categoria }}\n⏱ *Lectura:* {{ $('Resumen y Codigo para blog.html').first().json.detalles.tiempoLectura }} min\n\n🔗 {{ $('Resumen y Codigo para blog.html').first().json.detalles.urlArticulo }}\n\n✨ *Card agregada automaticamente a blog/index.html*\n\n🤖 _Paginas Amarillas Blog Generator_",
         "additionalFields": { "parse_mode": "Markdown" }
       },
       "type": "n8n-nodes-base.telegram",
@@ -172,7 +224,10 @@
     "Articulo Valido?": { "main": [[{ "node": "Construir HTML Profesional", "type": "main", "index": 0 }], [{ "node": "Manejar Error", "type": "main", "index": 0 }]] },
     "Construir HTML Profesional": { "main": [[{ "node": "GitHub - Subir Articulo", "type": "main", "index": 0 }]] },
     "GitHub - Subir Articulo": { "main": [[{ "node": "Resumen y Codigo para blog.html", "type": "main", "index": 0 }]] },
-    "Resumen y Codigo para blog.html": { "main": [[{ "node": "Telegram - Notificar Publicacion", "type": "main", "index": 0 }]] }
+    "Resumen y Codigo para blog.html": { "main": [[{ "node": "GitHub - Obtener Blog Index", "type": "main", "index": 0 }]] },
+    "GitHub - Obtener Blog Index": { "main": [[{ "node": "Insertar Card en HTML", "type": "main", "index": 0 }]] },
+    "Insertar Card en HTML": { "main": [[{ "node": "GitHub - Actualizar Blog Index", "type": "main", "index": 0 }]] },
+    "GitHub - Actualizar Blog Index": { "main": [[{ "node": "Telegram - Notificar Publicacion", "type": "main", "index": 0 }]] }
   },
   "pinData": {},
   "meta": { "templateCredsSetupCompleted": true, "instanceId": "paginas-amarillas-mx" }

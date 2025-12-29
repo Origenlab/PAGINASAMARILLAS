@@ -47,25 +47,7 @@ En el nodo **"ChatGPT - Generar Articulo"**:
 En el nodo **"GitHub - Subir Articulo"**:
 - Seleccionar la credencial de GitHub
 
-### 4. Configurar GitHub Token Header (REQUERIDO para actualizar blog/index.html)
-
-Esta credencial es necesaria para los nodos HTTP Request que actualizan el blog.
-
-1. Ir a **Settings** > **Credentials** > **Add Credential**
-2. Buscar **Header Auth** (HTTP Header Auth)
-3. Configurar:
-   - **Name**: `Authorization`
-   - **Value**: `token ghp_TU_TOKEN_AQUI`
-
-   (Reemplaza `ghp_TU_TOKEN_AQUI` con tu Personal Access Token de GitHub - el mismo que usaste antes)
-
-4. Guardar como **"GitHub Token Header"**
-
-En estos nodos, seleccionar la credencial "GitHub Token Header":
-- **"GitHub - Obtener Blog Index"**
-- **"GitHub - Actualizar Blog Index"**
-
-### 5. Configurar Telegram (Opcional)
+### 4. Configurar Telegram (Opcional)
 
 1. Crear bot con @BotFather en Telegram (`/newbot`)
 2. Copiar el token del bot
@@ -122,28 +104,45 @@ El workflow esta configurado para ejecutarse:
 
 ## Como Funciona la Insercion de Cards
 
-1. El workflow obtiene blog/index.html desde GitHub API (incluye SHA)
+1. El workflow obtiene blog/index.html usando el nodo nativo de GitHub
 2. Decodifica el contenido de base64
-3. Inserta la nueva card despues de `<div class="blog-grid">`
-4. Re-codifica a base64
-5. Hace PUT a GitHub API con el SHA original
+3. Busca el marcador `<!-- n8n:INSERT-NEW-CARDS-HERE -->`
+4. Inserta la nueva card justo despues del marcador
+5. Actualiza el archivo usando el nodo nativo (maneja SHA automaticamente)
 
 Las cards nuevas aparecen al **INICIO** del grid (newest first).
+
+### Marcadores en blog/index.html
+
+```html
+<!-- n8n:BLOG-GRID-START -->
+<div class="blog-grid">
+  <!-- n8n:INSERT-NEW-CARDS-HERE -->
+
+  <!-- Las nuevas cards se insertan aqui -->
+
+</div>
+<!-- n8n:BLOG-GRID-END -->
+```
 
 ---
 
 ## Troubleshooting
 
-### Error: "sha wasn't supplied"
-- Verificar que la credencial "GitHub Token Header" este configurada correctamente
-- El valor debe ser: `token ghp_TU_TOKEN` (con la palabra "token" antes del token)
-
 ### Error: "Authorization failed"
-- Verificar que el token de GitHub tenga permisos `repo`
-- Verificar que el header sea exactamente `Authorization`
+- Verificar que el token de GitHub tenga permisos `repo` (full control)
+- Regenerar el token si es necesario
 
-### Error: "No se encontro blog-grid"
-- Verificar que blog/index.html tenga `<div class="blog-grid">`
+### Error: "No se encontro el marcador"
+- Verificar que blog/index.html tenga el marcador exacto:
+  ```html
+  <!-- n8n:INSERT-NEW-CARDS-HERE -->
+  ```
+- Este marcador debe estar dentro de `<div class="blog-grid">`
+
+### Error al actualizar blog/index.html
+- Todos los nodos de GitHub deben usar la misma credencial "GitHub account 2"
+- El nodo nativo maneja el SHA automaticamente
 
 ---
 
