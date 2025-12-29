@@ -38,6 +38,40 @@
     </script>
 
     <link rel="stylesheet" href="../../css/style.css">
+    <style>
+    .blog-hero-section { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); padding: 3rem 0; margin-bottom: 2rem; }
+    .blog-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+    .blog-hero-image { border-radius: 12px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.3); }
+    .blog-hero-image img { width: 100%; height: 350px; object-fit: cover; }
+    .blog-hero-content { color: #fff; }
+    .category-badge { display: inline-block; background: #f59e0b; color: #000; padding: 0.4rem 0.8rem; border-radius: 50px; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; margin-bottom: 1rem; }
+    .hero-title { font-size: 2.2rem; font-weight: 800; line-height: 1.2; margin-bottom: 1rem; color: #fff; }
+    .hero-hook { font-size: 1.1rem; line-height: 1.6; color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; }
+    .hero-meta { display: flex; gap: 1rem; color: rgba(255,255,255,0.6); font-size: 0.9rem; }
+    @media (max-width: 768px) { .blog-hero-grid { grid-template-columns: 1fr; } .hero-title { font-size: 1.8rem; } }
+    .interest-module { margin: 2rem 0; padding: 1.5rem; border-radius: 12px; display: flex; gap: 1rem; align-items: flex-start; }
+    .stat-module { background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); border-left: 4px solid #f59e0b; }
+    .stat-number { font-size: 2.5rem; font-weight: 800; color: #b45309; line-height: 1; }
+    .stat-content h4 { margin: 0 0 0.5rem; color: #92400e; }
+    .stat-content p { margin: 0; color: #78350f; }
+    .tip-module { background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%); border-left: 4px solid #3b82f6; }
+    .tip-icon { font-size: 2rem; }
+    .tip-content h4 { margin: 0 0 0.5rem; color: #1e40af; }
+    .tip-content p { margin: 0; color: #1e3a8a; }
+    .alert-module { background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%); border-left: 4px solid #ef4444; }
+    .faq-section { margin: 2rem 0; }
+    .faq-item { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 0.8rem; overflow: hidden; }
+    .faq-question { width: 100%; background: #fff; border: none; padding: 1rem 1.2rem; text-align: left; font-size: 1rem; font-weight: 600; color: #1f2937; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    .faq-question:hover { background: #f9fafb; }
+    .faq-chevron { transition: transform 0.3s; color: #6b7280; }
+    .faq-question[aria-expanded="true"] .faq-chevron { transform: rotate(180deg); color: #f59e0b; }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; background: #fafafa; }
+    .faq-answer p { padding: 1rem 1.2rem; margin: 0; color: #4b5563; line-height: 1.6; }
+    .blog-image-gallery { margin: 2rem 0; padding: 1.5rem; background: #f8fafc; border-radius: 12px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .gallery-item { border-radius: 8px; overflow: hidden; background: #fff; }
+    .gallery-item img { width: 100%; height: 160px; object-fit: cover; }
+    </style>
 </head>
 <body>
     
@@ -79,43 +113,45 @@
             <nav aria-label="Breadcrumb">
                 <ol class="breadcrumb-list">
                     <li><a href="/">Inicio</a></li>
-                    <li><a href="../../blog.html">Blog</a></li>
-                    <li><a href="/categoria/seguridad-privada.html">Seguridad Privada</a></li>
+                    <li><a href="../index.html">Blog</a></li>
+                    <li><a href="../categorias/seguridad-privada.html">Seguridad Privada</a></li>
                     <li aria-current="page">Sistemas CCTV para Empresas</li>
                 </ol>
             </nav>
         </div>
     </section>
 
-    
+    <!-- HERO DE DOS COLUMNAS -->
+    <section class="blog-hero-section">
+        <div class="container">
+            <div class="blog-hero-grid">
+                <div class="blog-hero-image">
+                    <img src="../../img/img-seguridad-privada/centro-monitoreo-camaras.webp" alt="Sistema CCTV profesional instalado en empresa" loading="eager">
+                </div>
+                <div class="blog-hero-content">
+                    <span class="category-badge">Seguridad Privada</span>
+                    <h1 class="hero-title">Sistemas CCTV para Empresas: Guia de Instalacion</h1>
+                    <p class="hero-hook">Descubre como elegir e instalar el sistema de videovigilancia adecuado para tu empresa. Una guia completa sobre tipos de camaras, configuracion, almacenamiento y mejores practicas para proteger tu negocio.</p>
+                    <div class="hero-meta">
+                        <span>
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                            6 min lectura
+                        </span>
+                        <span>|</span>
+                        <span>Seguridad Privada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <main class="container">
         <div class="blog-article-layout">
             <article class="blog-article">
-            
-            <header class="blog-article-header">
-                <h1 class="blog-article-title">Sistemas CCTV para Empresas: Guía de Instalación</h1>
-                <div class="blog-meta">
-                    <span class="blog-reading-time">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <polyline points="12 6 12 12 16 14"/>
-                        </svg>
-                        6 min lectura
-                    </span>
-                </div>
-            </header>
 
-            
-            <div class="blog-article-hero">
-                <div class="blog-article-hero-image">
-                    <img src="../../img/img-seguridad-privada/centro-monitoreo-camaras.webp" alt="Sistema CCTV profesional instalado en empresa">
-                </div>
-                <div class="blog-article-hero-content">
-                    <p class="lead">Hace unos años, entré a una empresa de manufactura en el norte de México donde acababan de instalar un sistema de cámaras de seguridad. El dueño estaba orgulloso mostrándome las 30 cámaras que había comprado en línea e instalado él mismo durante un fin de semana. El problema es que cuando le pedí ver las grabaciones de un incidente que había ocurrido dos días antes, descubrimos que la mitad de las cámaras no estaban grabando nada, un tercio apuntaban a lugares inútiles, y las pocas que funcionaban tenían una calidad tan mala que no podías distinguir ni siquiera el color del auto involucrado. Gastó más de $100,000 pesos en un sistema prácticamente inútil.</p>
-                </div>
-            </div>
-
-            
             <nav class="blog-article-toc-inline">
                 <h4>En este artículo</h4>
                 <ul>
