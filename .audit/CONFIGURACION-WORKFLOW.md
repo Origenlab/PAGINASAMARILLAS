@@ -43,7 +43,7 @@ En el nodo **"ChatGPT - Generar Articulo"** (HTTP Request):
 - En **"Generic Auth Type"**, seleccionar **"Header Auth"**
 - En **"Credential for Header Auth"**, seleccionar **"OpenAI Header Auth"**
 
-### 3. Configurar Credencial de GitHub
+### 3. Configurar Credencial de GitHub (Nodo nativo)
 
 1. Ir a **Settings** > **Credentials** > **Add Credential**
 2. Buscar **GitHub**
@@ -53,11 +53,29 @@ En el nodo **"ChatGPT - Generar Articulo"** (HTTP Request):
 4. Pegar el token en n8n
 5. Guardar
 
-En el nodo **"7. Subir Articulo a GitHub"**:
+En el nodo **"GitHub - Subir Articulo"**:
 - Click en el nodo
 - En "Credential", seleccionar la credencial de GitHub
 - Verificar que Owner sea: `Origenlab`
 - Verificar que Repository sea: `PAGINASAMARILLAS`
+
+### 3b. Configurar Credencial GitHub Token Header (HTTP Request)
+
+Esta credencial es necesaria para los nodos que actualizan blog/index.html automaticamente.
+
+1. Ir a **Settings** > **Credentials** > **Add Credential**
+2. Buscar **Header Auth** (HTTP Header Auth)
+3. Configurar:
+   - **Name**: `Authorization`
+   - **Value**: `token ghp_TU_TOKEN_AQUI`
+
+   (Reemplaza `ghp_TU_TOKEN_AQUI` con tu Personal Access Token de GitHub)
+
+4. Guardar como **"GitHub Token Header"**
+
+En los nodos HTTP Request de GitHub:
+- **"GitHub - Obtener blog index"**: Seleccionar credencial "GitHub Token Header"
+- **"GitHub - Actualizar blog index"**: Seleccionar credencial "GitHub Token Header"
 
 ### 4. Configurar Telegram (Opcional)
 

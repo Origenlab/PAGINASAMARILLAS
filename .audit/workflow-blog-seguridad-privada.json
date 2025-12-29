@@ -142,7 +142,7 @@
     {
       "parameters": {
         "chatId": "772938445",
-        "text": "=✅ *Articulo PRO Publicado y Card Agregada*\n\n🏢 *Empresa:* {{ $('Insertar Card en Blog Index').item.json.detalles.empresa }}\n📝 *Titulo:* {{ $('Insertar Card en Blog Index').item.json.detalles.titulo }}\n\n📂 *Categoria:* {{ $('Insertar Card en Blog Index').item.json.detalles.categoria }}\n⏱ *Lectura:* {{ $('Insertar Card en Blog Index').item.json.detalles.tiempoLectura }}\n\n🔗 *URL Articulo:* {{ $('Insertar Card en Blog Index').item.json.detalles.urlArticulo }}\n\n✨ *Incluye:*\n• Hero de dos columnas\n• Modulos de interes (stat, tip, alert, quote)\n• FAQ Accordion con Schema.org\n• CTA optimizados\n• Galeria con figcaptions\n\n✅ *Card agregada automaticamente a blog/index.html*\n\n📋 *Verificar:*\n1. Revisar articulo en el sitio\n2. Confirmar card visible en /blog/\n3. Compartir en redes sociales\n\n🤖 _Paginas Amarillas Blog Generator PRO v2_",
+        "text": "=✅ *Articulo Publicado y Card Agregada*\n\n🏢 *Empresa:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.empresa }}\n📝 *Titulo:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.titulo }}\n\n📂 *Categoria:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.categoria }}\n⏱ *Lectura:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.tiempoLectura }}\n\n🔗 *URL Articulo:*\n{{ $('Resumen y Codigo para blog.html').item.json.detalles.urlArticulo }}\n\n✅ *Card agregada automaticamente a blog/index.html*\n\n✨ *El articulo incluye:*\n• Hero de dos columnas\n• Modulos de interes\n• FAQ Accordion con Schema.org\n• CTA optimizados\n\n🤖 _Paginas Amarillas Blog Generator_",
         "additionalFields": {
           "parse_mode": "Markdown"
         }
@@ -173,13 +173,11 @@
     {
       "parameters": {
         "method": "GET",
-        "url": "https://api.github.com/repos/Origenlab/PAGINASAMARILLAS/contents/blog/index.html",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
+        "url": "https://raw.githubusercontent.com/Origenlab/PAGINASAMARILLAS/main/blog/index.html",
         "options": {
           "response": {
             "response": {
-              "fullResponse": false
+              "responseFormat": "text"
             }
           }
         }
@@ -187,45 +185,38 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
       "position": [80, 32],
-      "id": "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-      "name": "GitHub - Obtener blog index",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "GITHUB_TOKEN_HEADER",
-          "name": "GitHub Token Header"
-        }
-      }
+      "id": "github-get-blog-index",
+      "name": "GitHub - Obtener Blog Index"
     },
     {
       "parameters": {
-        "jsCode": "const datosResumen = $('Resumen y Codigo para blog.html').first().json;\nconst githubResponse = $input.first().json;\n\n// Debug: ver que campos tiene la respuesta\nconst campos = Object.keys(githubResponse);\n\n// Decodificar el contenido de blog/index.html\nlet blogIndexHTML = '';\nlet sha = '';\n\n// Verificar que tenemos content y sha\nif (!githubResponse.content) {\n  throw new Error('No se recibio content de GitHub. Campos: ' + campos.join(', '));\n}\nif (!githubResponse.sha) {\n  throw new Error('No se recibio sha de GitHub. Campos: ' + campos.join(', '));\n}\n\nblogIndexHTML = Buffer.from(githubResponse.content, 'base64').toString('utf8');\nsha = String(githubResponse.sha); // Asegurar que es string\n\n// Crear la card HTML\nconst nuevaCard = `\n              <!-- ${datosResumen.detalles.empresa} - AUTO -->\n              <article class=\"blog-card\">\n                <a href=\"/blog/seguridad-privada/${datosResumen.detalles.slug}.html\" class=\"blog-card-image\">\n                  <img src=\"${datosResumen.detalles.imagenPrincipal}\" alt=\"${datosResumen.detalles.titulo}\">\n                  <span class=\"blog-category-badge\">Seguridad Privada</span>\n                </a>\n                <div class=\"blog-card-content\">\n                  <h3 class=\"blog-card-title\">\n                    <a href=\"/blog/seguridad-privada/${datosResumen.detalles.slug}.html\">${datosResumen.detalles.titulo}</a>\n                  </h3>\n                  <div class=\"blog-meta\">\n                    <span class=\"blog-reading-time\">\n                      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                        <polyline points=\"12 6 12 12 16 14\"/>\n                      </svg>\n                      ${datosResumen.detalles.tiempoLectura}\n                    </span>\n                  </div>\n                  <p class=\"blog-card-excerpt\">\n                    ${datosResumen.detalles.titulo.substring(0, 120)}...\n                  </p>\n                  <a href=\"/blog/seguridad-privada/${datosResumen.detalles.slug}.html\" class=\"btn btn-outline\">\n                    Leer articulo completo\n                  </a>\n                </div>\n              </article>\n`;\n\n// Insertar la card antes del marcador de Pagination\nconst marcadorPagination = '<!-- Pagination -->';\nconst indicePagination = blogIndexHTML.indexOf(marcadorPagination);\n\nlet blogIndexActualizado;\nif (indicePagination > 0) {\n  const seccionAntes = blogIndexHTML.substring(0, indicePagination);\n  const ultimoCierreDivIndex = seccionAntes.lastIndexOf('</div>');\n  \n  if (ultimoCierreDivIndex > 0) {\n    blogIndexActualizado = \n      blogIndexHTML.substring(0, ultimoCierreDivIndex) +\n      nuevaCard +\n      '\\n            ' +\n      blogIndexHTML.substring(ultimoCierreDivIndex);\n  } else {\n    throw new Error('No se encontro el cierre de blog-grid');\n  }\n} else {\n  throw new Error('No se encontro el marcador de Pagination en blog/index.html');\n}\n\n// Codificar en base64\nconst contentBase64 = Buffer.from(blogIndexActualizado).toString('base64');\nconst commitMessage = 'feat(blog): agregar card ' + datosResumen.detalles.empresa + ' - ' + datosResumen.detalles.titulo;\n\n// Verificar que sha no este vacio antes de retornar\nif (!sha || sha.length < 10) {\n  throw new Error('SHA invalido: ' + sha);\n}\n\nreturn {\n  contentBase64: contentBase64,\n  sha: sha,\n  commitMessage: commitMessage,\n  cardInsertada: true,\n  detalles: datosResumen.detalles,\n  mensaje: 'Card insertada exitosamente'\n};"
+        "jsCode": "const datosResumen = $('Resumen y Codigo para blog.html').first().json;\nconst githubResponse = $input.first().json;\n\nconst blogIndexHTML = githubResponse.data || githubResponse.body || '';\nif (typeof blogIndexHTML !== 'string' || blogIndexHTML.length < 100) {\n  throw new Error('No se obtuvo blog/index.html. Keys: ' + JSON.stringify(Object.keys(githubResponse)));\n}\n\nconst nuevaCard = '\\n              <!-- n8n:AUTO ' + datosResumen.detalles.empresa + ' -->\\n              <article class=\"blog-card\">\\n                <a href=\"seguridad-privada/' + datosResumen.detalles.slug + '.html\" class=\"blog-card-image\">\\n                  <img src=\"' + datosResumen.detalles.imagenPrincipal + '\" alt=\"' + datosResumen.detalles.titulo + '\">\\n                  <span class=\"blog-category-badge\">Seguridad Privada</span>\\n                </a>\\n                <div class=\"blog-card-content\">\\n                  <h3 class=\"blog-card-title\">\\n                    <a href=\"seguridad-privada/' + datosResumen.detalles.slug + '.html\">' + datosResumen.detalles.titulo + '</a>\\n                  </h3>\\n                  <div class=\"blog-meta\">\\n                    <span class=\"blog-reading-time\">' + datosResumen.detalles.tiempoLectura + '</span>\\n                  </div>\\n                  <p class=\"blog-card-excerpt\">' + datosResumen.detalles.titulo.substring(0, 100) + '...</p>\\n                  <a href=\"seguridad-privada/' + datosResumen.detalles.slug + '.html\" class=\"btn btn-outline\">Leer articulo</a>\\n                </div>\\n              </article>\\n';\n\nconst marcador = '<!-- n8n:BLOG-GRID-END -->';\nconst indiceMarcador = blogIndexHTML.indexOf(marcador);\n\nlet blogIndexActualizado;\nif (indiceMarcador > 0) {\n  blogIndexActualizado = blogIndexHTML.substring(0, indiceMarcador) + nuevaCard + '\\n            ' + blogIndexHTML.substring(indiceMarcador);\n} else {\n  throw new Error('No se encontro marcador n8n:BLOG-GRID-END en blog/index.html');\n}\n\nreturn {\n  blogIndexActualizado: blogIndexActualizado,\n  detalles: datosResumen.detalles,\n  mensaje: 'Card insertada'\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
       "position": [304, 32],
-      "id": "b2c3d4e5-f6a7-8901-bcde-f23456789012",
-      "name": "Insertar Card en Blog Index"
+      "id": "insertar-card-code",
+      "name": "Insertar Card en HTML"
     },
     {
       "parameters": {
-        "method": "PUT",
-        "url": "https://api.github.com/repos/Origenlab/PAGINASAMARILLAS/contents/blog/index.html",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ message: $json.commitMessage, content: $json.contentBase64, sha: $json.sha }) }}",
-        "options": {}
+        "resource": "file",
+        "operation": "edit",
+        "owner": "Origenlab",
+        "repository": "PAGINASAMARILLAS",
+        "filePath": "blog/index.html",
+        "fileContent": "={{ $json.blogIndexActualizado }}",
+        "commitMessage": "=feat(blog): agregar card {{ $json.detalles.empresa }} - {{ $json.detalles.titulo }}"
       },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
+      "type": "n8n-nodes-base.github",
+      "typeVersion": 1,
       "position": [528, 32],
-      "id": "c3d4e5f6-a7b8-9012-cdef-345678901234",
-      "name": "GitHub - Actualizar blog index",
+      "id": "github-update-blog-index",
+      "name": "GitHub - Actualizar Blog Index",
       "credentials": {
-        "httpHeaderAuth": {
-          "id": "GITHUB_TOKEN_HEADER",
-          "name": "GitHub Token Header"
+        "githubApi": {
+          "id": "NFw8kpUQfQRbzSHR",
+          "name": "GitHub account 2"
         }
       }
     }
@@ -341,36 +332,36 @@
       "main": [
         [
           {
-            "node": "GitHub - Obtener blog index",
+            "node": "GitHub - Obtener Blog Index",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "GitHub - Obtener blog index": {
+    "GitHub - Obtener Blog Index": {
       "main": [
         [
           {
-            "node": "Insertar Card en Blog Index",
+            "node": "Insertar Card en HTML",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Insertar Card en Blog Index": {
+    "Insertar Card en HTML": {
       "main": [
         [
           {
-            "node": "GitHub - Actualizar blog index",
+            "node": "GitHub - Actualizar Blog Index",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "GitHub - Actualizar blog index": {
+    "GitHub - Actualizar Blog Index": {
       "main": [
         [
           {
