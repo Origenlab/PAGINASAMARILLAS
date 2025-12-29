@@ -125,7 +125,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const datosArticulo = $('Construir HTML Profesional').first().json;\nconst githubResponse = $input.first().json;\n\nreturn {\n  exito: true,\n  mensaje: 'Articulo publicado',\n  detalles: {\n    empresa: datosArticulo.empresaNombre,\n    titulo: datosArticulo.titulo,\n    urlArticulo: `https://paginasamarillas.mx/${datosArticulo.rutaArchivo}`,\n    imagenNombre: datosArticulo.imagenes.principal,\n    tiempoLectura: datosArticulo.tiempoLectura,\n    categoria: datosArticulo.categoriaNombre,\n    extractoBlog: datosArticulo.extractoBlog,\n    slug: datosArticulo.slug\n  }\n};"
+        "jsCode": "const datosArticulo = $('Construir HTML Profesional').first().json;\nconst githubResponse = $input.first().json;\n\nconst urlArticulo = '/blog/seguridad-privada/' + datosArticulo.slug + '.html';\nconst urlImagen = '/img/img-seguridad-privada/' + datosArticulo.imagenes.principal;\n\nconst codigoCardHTML = `<!-- n8n:AUTO ${datosArticulo.empresaNombre} -->\n<article class=\"blog-card\">\n  <a href=\"${urlArticulo}\" class=\"blog-card-image\">\n    <img src=\"${urlImagen}\" alt=\"${datosArticulo.titulo}\">\n    <span class=\"blog-category-badge\">${datosArticulo.categoriaNombre}</span>\n  </a>\n  <div class=\"blog-card-content\">\n    <h3 class=\"blog-card-title\">\n      <a href=\"${urlArticulo}\">${datosArticulo.titulo}</a>\n    </h3>\n    <div class=\"blog-meta\">\n      <span class=\"blog-reading-time\">${datosArticulo.tiempoLectura} min</span>\n    </div>\n    <p class=\"blog-card-excerpt\">${datosArticulo.extractoBlog}</p>\n    <a href=\"${urlArticulo}\" class=\"btn btn-outline\">Leer articulo completo</a>\n  </div>\n</article>`;\n\nreturn {\n  exito: true,\n  mensaje: 'Articulo publicado',\n  detalles: {\n    empresa: datosArticulo.empresaNombre,\n    titulo: datosArticulo.titulo,\n    urlArticulo: 'https://paginasamarillas.mx' + urlArticulo,\n    tiempoLectura: datosArticulo.tiempoLectura,\n    categoria: datosArticulo.categoriaNombre\n  },\n  codigoCardHTML: codigoCardHTML\n};"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -135,61 +135,8 @@
     },
     {
       "parameters": {
-        "method": "GET",
-        "url": "https://api.github.com/repos/Origenlab/PAGINASAMARILLAS/contents/blog/index.html",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [80, 32],
-      "id": "github-get-blog-index",
-      "name": "GitHub - Obtener Blog Index",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "github-header-auth",
-          "name": "GitHub Token Header"
-        }
-      }
-    },
-    {
-      "parameters": {
-        "jsCode": "const datosResumen = $('Resumen y Codigo para blog.html').first().json;\nconst githubResponse = $input.first().json;\n\n// GitHub API devuelve content en base64 (con newlines) y sha\nlet contentBase64Raw = githubResponse.content || '';\nconst sha = githubResponse.sha || '';\n\n// Limpiar newlines del base64 (GitHub los incluye)\nconst contentBase64 = contentBase64Raw.replace(/\\n/g, '').replace(/\\r/g, '');\n\nif (!contentBase64 || !sha) {\n  throw new Error('No se obtuvo content o sha. Verificar credencial GitHub Token Header. Content: ' + (contentBase64 ? 'OK' : 'VACIO') + ', SHA: ' + (sha ? sha : 'VACIO'));\n}\n\n// Decodificar base64 a texto\nconst blogIndexHTML = Buffer.from(contentBase64, 'base64').toString('utf8');\n\nconst d = datosResumen.detalles;\nconst urlArticulo = '/blog/seguridad-privada/' + d.slug + '.html';\nconst urlImagen = '/img/img-seguridad-privada/' + d.imagenNombre;\n\nconst nuevaCard = `\n              <!-- n8n:AUTO ${d.empresa} -->\n              <article class=\"blog-card\">\n                <a href=\"${urlArticulo}\" class=\"blog-card-image\">\n                  <img src=\"${urlImagen}\" alt=\"${d.titulo}\">\n                  <span class=\"blog-category-badge\">${d.categoria}</span>\n                </a>\n                <div class=\"blog-card-content\">\n                  <h3 class=\"blog-card-title\">\n                    <a href=\"${urlArticulo}\">${d.titulo}</a>\n                  </h3>\n                  <div class=\"blog-meta\">\n                    <span class=\"blog-reading-time\">\n                      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n                        <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n                        <polyline points=\"12 6 12 12 16 14\"/>\n                      </svg>\n                      ${d.tiempoLectura} min\n                    </span>\n                  </div>\n                  <p class=\"blog-card-excerpt\">${d.extractoBlog}</p>\n                  <a href=\"${urlArticulo}\" class=\"btn btn-outline\">Leer articulo completo</a>\n                </div>\n              </article>\n`;\n\nconst marcadorStart = '<div class=\"blog-grid\">';\nconst indiceStart = blogIndexHTML.indexOf(marcadorStart);\n\nlet blogIndexActualizado;\nif (indiceStart > 0) {\n  const posicionInsercion = indiceStart + marcadorStart.length;\n  blogIndexActualizado = blogIndexHTML.substring(0, posicionInsercion) + nuevaCard + blogIndexHTML.substring(posicionInsercion);\n} else {\n  throw new Error('No se encontro <div class=\"blog-grid\"> en blog/index.html');\n}\n\n// Re-codificar a base64 para GitHub API\nconst contentBase64Nuevo = Buffer.from(blogIndexActualizado, 'utf8').toString('base64');\n\nreturn {\n  contentBase64: contentBase64Nuevo,\n  sha: sha,\n  detalles: datosResumen.detalles,\n  mensaje: 'Card insertada. SHA: ' + sha\n};"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [304, 32],
-      "id": "insertar-card-code",
-      "name": "Insertar Card en HTML"
-    },
-    {
-      "parameters": {
-        "method": "PUT",
-        "url": "https://api.github.com/repos/Origenlab/PAGINASAMARILLAS/contents/blog/index.html",
-        "authentication": "genericCredentialType",
-        "genericAuthType": "httpHeaderAuth",
-        "sendBody": true,
-        "specifyBody": "json",
-        "jsonBody": "={{ JSON.stringify({ message: 'feat(blog): agregar card ' + $json.detalles.empresa + ' - ' + $json.detalles.titulo, content: $json.contentBase64, sha: $json.sha }) }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.2,
-      "position": [528, 32],
-      "id": "github-update-blog-index",
-      "name": "GitHub - Actualizar Blog Index",
-      "credentials": {
-        "httpHeaderAuth": {
-          "id": "github-header-auth",
-          "name": "GitHub Token Header"
-        }
-      }
-    },
-    {
-      "parameters": {
         "chatId": "772938445",
-        "text": "=✅ *Articulo Publicado*\n\n🏢 *Empresa:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.empresa }}\n📝 *Titulo:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.titulo }}\n⏱ *Lectura:* {{ $('Resumen y Codigo para blog.html').item.json.detalles.tiempoLectura }} min\n\n🔗 {{ $('Resumen y Codigo para blog.html').item.json.detalles.urlArticulo }}\n\n✅ Card agregada al INICIO del blog\n\n🤖 _Paginas Amarillas Blog Generator PRO_",
+        "text": "=✅ *Articulo Publicado*\n\n🏢 *Empresa:* {{ $json.detalles.empresa }}\n📝 *Titulo:* {{ $json.detalles.titulo }}\n📂 *Categoria:* {{ $json.detalles.categoria }}\n⏱ *Lectura:* {{ $json.detalles.tiempoLectura }} min\n\n🔗 {{ $json.detalles.urlArticulo }}\n\n📋 *Proximos pasos:*\n1. Agregar card a blog/index.html\n2. Verificar visualizacion\n\n💻 *Codigo de la card:*\n```\n{{ $json.codigoCardHTML }}\n```\n\n🤖 _Paginas Amarillas Blog Generator_",
         "additionalFields": { "parse_mode": "Markdown" }
       },
       "type": "n8n-nodes-base.telegram",
@@ -225,10 +172,7 @@
     "Articulo Valido?": { "main": [[{ "node": "Construir HTML Profesional", "type": "main", "index": 0 }], [{ "node": "Manejar Error", "type": "main", "index": 0 }]] },
     "Construir HTML Profesional": { "main": [[{ "node": "GitHub - Subir Articulo", "type": "main", "index": 0 }]] },
     "GitHub - Subir Articulo": { "main": [[{ "node": "Resumen y Codigo para blog.html", "type": "main", "index": 0 }]] },
-    "Resumen y Codigo para blog.html": { "main": [[{ "node": "GitHub - Obtener Blog Index", "type": "main", "index": 0 }]] },
-    "GitHub - Obtener Blog Index": { "main": [[{ "node": "Insertar Card en HTML", "type": "main", "index": 0 }]] },
-    "Insertar Card en HTML": { "main": [[{ "node": "GitHub - Actualizar Blog Index", "type": "main", "index": 0 }]] },
-    "GitHub - Actualizar Blog Index": { "main": [[{ "node": "Telegram - Notificar Publicacion", "type": "main", "index": 0 }]] }
+    "Resumen y Codigo para blog.html": { "main": [[{ "node": "Telegram - Notificar Publicacion", "type": "main", "index": 0 }]] }
   },
   "pinData": {},
   "meta": { "templateCredsSetupCompleted": true, "instanceId": "paginas-amarillas-mx" }
