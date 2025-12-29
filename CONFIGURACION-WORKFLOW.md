@@ -2,7 +2,7 @@
 
 ## Archivo del Workflow
 
-**Archivo:** `.audit/workflow-blog-seguridad-privada.json`
+**Archivo:** `workflow-blog-seguridad-privada.json` (en la raiz del proyecto)
 
 ## Que hace el Workflow
 
@@ -21,7 +21,7 @@
 
 1. Abrir n8n
 2. Click en **Workflows** > **Import from File**
-3. Seleccionar: `.audit/workflow-blog-seguridad-privada.json`
+3. Seleccionar: `workflow-blog-seguridad-privada.json`
 4. Click en **Import**
 
 ### 2. Configurar Credencial de OpenAI
@@ -34,7 +34,7 @@
 En el nodo **"ChatGPT - Generar Articulo"**:
 - Seleccionar la credencial de OpenAI
 
-### 3. Configurar Credencial de GitHub (Para subir articulos)
+### 3. Configurar Credencial de GitHub
 
 1. Ir a **Settings** > **Credentials** > **Add Credential**
 2. Buscar **GitHub**
@@ -44,28 +44,11 @@ En el nodo **"ChatGPT - Generar Articulo"**:
 4. Pegar el token en n8n
 5. Guardar
 
-En el nodo **"GitHub - Subir Articulo"**:
-- Seleccionar la credencial de GitHub
+**IMPORTANTE:** Usar la MISMA credencial en estos nodos:
+- **"GitHub - Subir Articulo"**
+- **"GitHub - Actualizar Blog Index"**
 
-### 4. Configurar GitHub Token Header (IMPORTANTE - Para actualizar blog/index.html)
-
-Esta credencial es **obligatoria** para los nodos que actualizan blog/index.html.
-
-1. Ir a **Settings** > **Credentials** > **Add Credential**
-2. Buscar **Header Auth** (HTTP Header Auth)
-3. Configurar:
-   - **Name**: `Authorization`
-   - **Value**: `token ghp_TU_TOKEN_AQUI`
-
-   (Reemplaza `ghp_TU_TOKEN_AQUI` con tu Personal Access Token de GitHub)
-
-4. Guardar como **"GitHub Token Header"**
-
-En los nodos HTTP Request:
-- **"GitHub - Obtener Blog Index"**: Seleccionar credencial "GitHub Token Header"
-- **"GitHub - Actualizar Blog Index"**: Seleccionar credencial "GitHub Token Header"
-
-### 5. Configurar Telegram (Opcional)
+### 4. Configurar Telegram (Opcional)
 
 1. Crear bot con @BotFather en Telegram (`/newbot`)
 2. Copiar el token del bot
@@ -122,11 +105,9 @@ El workflow esta configurado para ejecutarse:
 
 ## Como Funciona la Insercion de Cards
 
-1. El workflow obtiene blog/index.html desde GitHub API (con SHA)
-2. Decodifica el contenido base64
-3. Inserta la nueva card despues de `<div class="blog-grid">`
-4. Re-codifica a base64
-5. Actualiza el archivo en GitHub usando el SHA
+1. El workflow obtiene blog/index.html desde raw.githubusercontent.com
+2. Inserta la nueva card despues de `<div class="blog-grid">`
+3. Usa el nodo nativo de GitHub para actualizar (maneja SHA automaticamente)
 
 Las cards nuevas aparecen al **INICIO** del grid (newest first).
 
@@ -134,16 +115,12 @@ Las cards nuevas aparecen al **INICIO** del grid (newest first).
 
 ## Troubleshooting
 
-### Error: "sha wasn't supplied"
-- Verificar que la credencial "GitHub Token Header" este configurada
-- El valor debe ser: `token ghp_TU_TOKEN` (con la palabra "token" antes)
-
-### Error: "Authorization failed"
-- Verificar que el token de GitHub tenga permisos `repo`
-- Verificar que el header sea exactamente `Authorization`
-
 ### Error: "No se encontro blog-grid"
 - Verificar que blog/index.html tenga `<div class="blog-grid">`
+
+### El articulo no aparece en el blog
+- Verificar que la credencial de GitHub tenga permisos `repo`
+- Revisar los logs del nodo "GitHub - Actualizar Blog Index"
 
 ---
 
