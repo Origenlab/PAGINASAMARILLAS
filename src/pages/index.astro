@@ -1,0 +1,252 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Páginas Amarillas México - Directorio de Empresas y Negocios en México"
+  description="Encuentra empresas y negocios en México. Directorio completo con direcciones, teléfonos, horarios y reseñas verificadas. Miles de empresas mexicanas en un solo lugar."
+  canonical="https://paginasamarillas.mx/"
+  extraHead={`
+  <link rel="prefetch" href="/categorias">
+  <link rel="prefetch" href="/categoria/seguridad-privada.html">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Páginas Amarillas México",
+    "alternateName": "PaginasAmarillas.mx",
+    "url": "https://paginasamarillas.mx/",
+    "description": "Directorio empresarial más completo de México con información verificada de negocios y empresas",
+    "inLanguage": "es-MX",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://paginasamarillas.mx/buscar?q={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Páginas Amarillas México",
+      "url": "https://paginasamarillas.mx/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://paginasamarillas.mx/images/logo.webp",
+        "width": 250,
+        "height": 60
+      },
+      "sameAs": [
+        "https://www.facebook.com/paginasamarillas.mx",
+        "https://twitter.com/paginasamx",
+        "https://www.instagram.com/paginasamarillas.mx"
+      ],
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+52-55-5555-5555",
+        "contactType": "Customer Service",
+        "areaServed": "MX",
+        "availableLanguage": ["Spanish"]
+      }
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "Categorías Principales de Negocios en México",
+    "description": "Directorio de categorías de empresas y negocios verificados en México",
+    "numberOfItems": 3,
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Seguridad Privada",
+        "url": "https://paginasamarillas.mx/categoria/seguridad-privada"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Entretenimiento y Eventos",
+        "url": "https://paginasamarillas.mx/categoria/entretenimiento"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Equipos Contra Incendios",
+        "url": "https://paginasamarillas.mx/categoria/equipos-contra-incendios"
+      }
+    ]
+  }
+  </script>
+  `}
+>
+
+  <!-- Hero: 2 columns -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
+        <!-- Col 1: H1 + CTAs -->
+        <div>
+          <h1 class="hero-title">
+            Encuentra el <span class="highlight">mejor negocio</span><br>
+            cerca de ti
+          </h1>
+          <p class="hero-subtitle">
+            Miles de empresas y negocios verificados en todo México
+          </p>
+
+          <form class="search-form" action="/buscar" method="GET" role="search">
+            <div class="search-inputs">
+              <div class="search-field">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" name="q" placeholder="¿Qué buscas? (restaurantes, hoteles, plomero...)" aria-label="¿Qué estás buscando?" required>
+              </div>
+              <div class="search-field">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M10 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10 1.5c-4.42 0-8 3.58-8 8 0 6 8 10 8 10s8-4 8-10c0-4.42-3.58-8-8-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                <input type="text" name="location" placeholder="¿Dónde? (ciudad, estado, colonia...)" aria-label="¿En qué ubicación?" list="cities">
+                <datalist id="cities">
+                  <option value="Ciudad de México">
+                  <option value="Guadalajara, Jalisco">
+                  <option value="Monterrey, Nuevo León">
+                  <option value="Cancún, Quintana Roo">
+                  <option value="Puebla, Puebla">
+                  <option value="Tijuana, Baja California">
+                </datalist>
+              </div>
+              <button type="submit" class="btn btn-search">Buscar</button>
+            </div>
+            <div class="popular-searches">
+              <span class="popular-label">Popular:</span>
+              <a href="/restaurantes">Restaurantes</a>
+              <a href="/hoteles">Hoteles</a>
+              <a href="/medicos">Médicos</a>
+              <a href="/mecanicos">Mecánicos</a>
+            </div>
+          </form>
+        </div>
+
+        <!-- Col 2: SOLO texto SEO -->
+        <div style="padding:2rem;background:var(--color-gray-50);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
+          <h2 style="font-size:var(--font-size-xl);color:var(--color-gray-900);margin-bottom:1rem;">El directorio empresarial #1 de México</h2>
+          <p style="color:var(--color-gray-600);line-height:1.7;margin-bottom:1rem;">
+            Páginas Amarillas México es el directorio de empresas y negocios más completo del país. Con miles de negocios verificados en categorías como seguridad privada, entretenimiento, equipos contra incendios y más, te ayudamos a encontrar exactamente lo que necesitas.
+          </p>
+          <p style="color:var(--color-gray-600);line-height:1.7;margin-bottom:1rem;">
+            Cada empresa en nuestro directorio cuenta con información verificada: direcciones, teléfonos, horarios de atención, reseñas de clientes y calificaciones reales. Conectamos a miles de mexicanos con los mejores negocios de su ciudad.
+          </p>
+          <p style="color:var(--color-gray-600);line-height:1.7;">
+            Ya sea que busques servicios de seguridad privada en CDMX, empresas de entretenimiento para eventos, o proveedores de equipos contra incendios certificados, en Páginas Amarillas México encontrarás opciones confiables y verificadas en todo el país.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories -->
+  <section class="categories" id="categorias">
+    <div class="container">
+      <h2 class="section-title">Categorías Principales</h2>
+      <p class="section-subtitle">Explora negocios por categoría</p>
+
+      <div class="category-grid-featured">
+
+        <a href="/categoria/seguridad-privada.html" class="category-card-featured">
+          <div class="category-card-image">
+            <img src="/img/img-seguridad-privada/equipo-seguridad-corporativo.webp" alt="Empresas de Seguridad Privada en México - Guardias, escoltas y vigilancia profesional" loading="lazy" width="400" height="300">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-content">
+            <div class="category-card-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+              </svg>
+            </div>
+            <h3 class="category-card-title">Seguridad Privada</h3>
+            <p class="category-card-description">Empresas certificadas de vigilancia, guardias de seguridad, escoltas ejecutivos y protección empresarial en todo México.</p>
+            <p class="category-card-services">Guardias armados y sin armar, monitoreo 24/7, seguridad para eventos, condominios, corporativos e industrial.</p>
+            <div class="category-card-meta">
+              <span class="category-card-count">4 empresas verificadas</span>
+              <span class="category-card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                4.8
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/categoria/entretenimiento.html" class="category-card-featured">
+          <div class="category-card-image">
+            <img src="/img/img-eventos/decoracion-fiesta-luces.webp" alt="Entretenimiento y Eventos en México - Fiestas, inflables y shows" loading="lazy" width="400" height="300">
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-content">
+            <div class="category-card-badge">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+              </svg>
+            </div>
+            <h3 class="category-card-title">Entretenimiento</h3>
+            <p class="category-card-description">Las mejores empresas de entretenimiento para fiestas infantiles, eventos corporativos, bodas y celebraciones en México.</p>
+            <p class="category-card-services">Inflables, brincolines, shows de luces, DJ, sonido, animadores, payasos, magos y decoración para eventos.</p>
+            <div class="category-card-meta">
+              <span class="category-card-count">7 empresas verificadas</span>
+              <span class="category-card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                4.8
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <a href="/categoria/equipos-contra-incendios.html" class="category-card-featured">
+          <div class="category-card-image category-card-placeholder" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
+            <div class="category-placeholder-icon">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+              </svg>
+            </div>
+            <div class="category-card-overlay"></div>
+          </div>
+          <div class="category-card-content">
+            <div class="category-card-badge" style="background: rgba(220, 38, 38, 0.9);">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+              </svg>
+            </div>
+            <h3 class="category-card-title">Equipos Contra Incendios</h3>
+            <p class="category-card-description">Proveedores certificados de extintores, sistemas contra incendios, detectores de humo y equipos de protección en México.</p>
+            <p class="category-card-services">Extintores CO2, PQS, agua, sistemas automáticos, gabinetes, mangueras, señalización y capacitación NOM-002-STPS.</p>
+            <div class="category-card-meta">
+              <span class="category-card-count">5 empresas verificadas</span>
+              <span class="category-card-rating">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                4.8
+              </span>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+      <div class="section-cta">
+        <a href="/categorias" class="btn btn-outline">Ver todas las categorías</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  @media (max-width: 768px) {
+    .hero-content {
+      grid-template-columns: 1fr !important;
+    }
+  }
+</style>

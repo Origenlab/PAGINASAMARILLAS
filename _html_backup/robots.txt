@@ -1,0 +1,47 @@
+# Robots.txt para PaginasAmarillas.mx
+# Generado el 2025-11-07
+
+User-agent: *
+Allow: /
+
+# Permitir acceso a recursos estáticos
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /images/
+
+# Bloquear directorios administrativos (si existen en el futuro)
+Disallow: /admin/
+Disallow: /private/
+Disallow: /temp/
+
+# Bloquear archivos de desarrollo
+Disallow: /*.md$
+Disallow: /docs/
+Disallow: /webpack*.js
+
+# Sitemap
+Sitemap: https://paginasamarillas.mx/sitemap.xml
+
+# Rastreo específico para motores de búsqueda principales
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+# Bloquear bots maliciosos conocidos
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /

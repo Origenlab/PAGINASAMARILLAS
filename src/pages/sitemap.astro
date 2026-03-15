@@ -1,0 +1,208 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Mapa del Sitio - Páginas Amarillas México | Navegación Completa del Directorio"
+  description="Mapa completo del sitio de Páginas Amarillas México. Navega fácilmente por todas las categorías, empresas y páginas de nuestro directorio empresarial."
+  canonical="https://paginasamarillas.mx/sitemap"
+  extraHead={`
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://paginasamarillas.mx/" },
+      { "@type": "ListItem", "position": 2, "name": "Mapa del Sitio", "item": "https://paginasamarillas.mx/sitemap" }
+    ]
+  }
+  </script>
+  `}
+>
+
+  <div class="sitemap-container">
+    <div class="sitemap-header">
+      <h1>Mapa del Sitio</h1>
+      <p>Navegación completa de Páginas Amarillas México. Encuentra fácilmente todas las secciones, categorías y empresas de nuestro directorio empresarial.</p>
+    </div>
+
+    <div class="sitemap-grid">
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          Páginas Principales
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/categorias">Categorías</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href="/sitemap">Mapa del Sitio</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Seguridad Privada
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="/categoria/seguridad-privada.html">Ver categoría</a></li>
+        </ul>
+        <div class="sitemap-subsection">
+          <h3>Empresas Listadas</h3>
+          <ul class="sitemap-links">
+            <li><a href="/negocios/seguridad-privada/origins-private-security.html">Origins Private Security</a></li>
+            <li><a href="/negocios/seguridad-privada/seguridad-condominios.html">Seguridad Privada Condominios</a></li>
+            <li><a href="/negocios/seguridad-privada/sepri.html">SEPRI Seguridad para Eventos</a></li>
+            <li><a href="/negocios/seguridad-privada/seguridad-privada-mx.html">Seguridad Privada MX</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          Entretenimiento
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="/categoria/entretenimiento.html">Ver categoría</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+          Equipos Contra Incendios
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="/categoria/equipos-contra-incendios.html">Ver categoría</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Ayuda y Soporte
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="#ayuda">Centro de Ayuda</a></li>
+          <li><a href="#faq">Preguntas Frecuentes</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+
+      <div class="sitemap-section">
+        <h2>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          Legal
+        </h2>
+        <ul class="sitemap-links">
+          <li><a href="#terminos">Términos de Uso</a></li>
+          <li><a href="#privacidad">Política de Privacidad</a></li>
+          <li><a href="#cookies">Política de Cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="sitemap-xml-link">
+      <h3>Sitemap XML para Motores de Búsqueda</h3>
+      <p>Si eres un desarrollador o administrador web, puedes acceder al sitemap XML estructurado para motores de búsqueda.</p>
+      <a href="/sitemap.xml" target="_blank">Ver Sitemap XML</a>
+    </div>
+  </div>
+
+</Layout>
+
+<style>
+  .sitemap-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-3xl) var(--spacing-lg);
+  }
+  .sitemap-header {
+    text-align: center;
+    margin-bottom: var(--spacing-3xl);
+  }
+  .sitemap-header h1 {
+    font-size: var(--font-size-3xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-md);
+  }
+  .sitemap-header p {
+    font-size: var(--font-size-lg);
+    color: var(--color-gray-600);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .sitemap-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+  }
+  .sitemap-section {
+    background-color: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl);
+  }
+  .sitemap-section h2 {
+    font-size: var(--font-size-xl);
+    color: var(--color-gray-900);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+  .sitemap-section h2 svg { color: var(--color-primary); flex-shrink: 0; }
+  .sitemap-links { list-style: none; padding: 0; margin: 0; }
+  .sitemap-links li { margin-bottom: var(--spacing-sm); }
+  .sitemap-links a {
+    color: var(--color-gray-700);
+    font-size: var(--font-size-base);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) 0;
+  }
+  .sitemap-links a::before { content: '›'; color: var(--color-primary); font-weight: bold; font-size: var(--font-size-lg); }
+  .sitemap-links a:hover { color: var(--color-primary); }
+  .sitemap-subsection {
+    margin-top: var(--spacing-lg);
+    padding-left: var(--spacing-md);
+    border-left: 2px solid var(--color-gray-200);
+  }
+  .sitemap-subsection h3 {
+    font-size: var(--font-size-base);
+    color: var(--color-gray-800);
+    margin-bottom: var(--spacing-sm);
+    font-weight: var(--font-weight-semibold);
+  }
+  .sitemap-xml-link {
+    background-color: var(--color-primary-light);
+    border: 2px solid var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: var(--spacing-lg);
+    text-align: center;
+    margin-top: var(--spacing-2xl);
+  }
+  .sitemap-xml-link h3 { font-size: var(--font-size-lg); color: var(--color-gray-900); margin-bottom: var(--spacing-sm); }
+  .sitemap-xml-link p { color: var(--color-gray-700); margin-bottom: var(--spacing-md); }
+  .sitemap-xml-link a {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--spacing-sm) var(--spacing-xl);
+    border-radius: var(--radius-md);
+    font-weight: var(--font-weight-semibold);
+  }
+  .sitemap-xml-link a:hover { background-color: var(--color-primary-dark); }
+  @media (max-width: 768px) {
+    .sitemap-grid { grid-template-columns: 1fr; }
+    .sitemap-header h1 { font-size: var(--font-size-2xl); }
+  }
+</style>

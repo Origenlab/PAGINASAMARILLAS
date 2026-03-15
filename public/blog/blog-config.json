@@ -1,0 +1,270 @@
+{
+  "version": "2.0",
+  "lastUpdated": "2024-12-28",
+  "baseUrl": "https://paginasamarillas.mx",
+  "github": {
+    "owner": "Origenlab",
+    "repository": "PAGINASAMARILLAS",
+    "branch": "main"
+  },
+  "paths": {
+    "blog": "/blog",
+    "articles": "/blog/{category}",
+    "images": "/img/img-{category}",
+    "negocios": "/negocios/{category}"
+  },
+  "markers": {
+    "insertCards": "<!-- n8n:INSERT-NEW-CARDS-HERE -->",
+    "gridStart": "<!-- n8n:BLOG-GRID-START -->",
+    "gridEnd": "<!-- n8n:BLOG-GRID-END -->"
+  },
+  "categories": [
+    {
+      "id": "seguridad-privada",
+      "name": "Seguridad Privada",
+      "slug": "seguridad-privada",
+      "color": "#dc2626",
+      "icon": "shield",
+      "description": "Articulos sobre seguridad privada, vigilancia y proteccion",
+      "imagesFolder": "img-seguridad-privada",
+      "categoryPage": "/categoria/seguridad-privada.html"
+    },
+    {
+      "id": "eventos",
+      "name": "Eventos",
+      "slug": "eventos",
+      "color": "#f59e0b",
+      "icon": "party",
+      "description": "Articulos sobre eventos, bodas, fiestas y entretenimiento",
+      "imagesFolder": "img-eventos",
+      "categoryPage": "/categoria/entretenimiento.html"
+    }
+  ],
+  "businesses": {
+    "seguridad-privada": [
+      {
+        "id": "origins-private-security",
+        "name": "ORIGINS Private Security",
+        "slug": "origins-private-security",
+        "businessPage": "/negocios/seguridad-privada/origins-private-security.html",
+        "mainImage": "equipo-seguridad-corporativo.webp",
+        "services": ["vigilancia", "escoltas", "CCTV", "control-acceso", "seguridad-ejecutiva"],
+        "location": "CDMX",
+        "keywords": ["seguridad corporativa", "escoltas ejecutivos", "vigilancia empresarial"]
+      },
+      {
+        "id": "seguridad-privada-mx",
+        "name": "Seguridad Privada MX",
+        "slug": "seguridad-privada-mx",
+        "businessPage": "/negocios/seguridad-privada/seguridad-privada-mx.html",
+        "mainImage": "centro-monitoreo-camaras.webp",
+        "services": ["vigilancia", "monitoreo", "guardias", "seguridad-industrial"],
+        "location": "CDMX, EdoMex, Queretaro, Puebla",
+        "keywords": ["cobertura nacional", "300 elementos", "seguridad industrial"]
+      },
+      {
+        "id": "sepri",
+        "name": "SEPRI",
+        "slug": "sepri",
+        "businessPage": "/negocios/seguridad-privada/sepri.html",
+        "mainImage": "grupo-guardias-edificio.webp",
+        "services": ["vigilancia", "seguridad-residencial", "seguridad-comercial"],
+        "location": "CDMX",
+        "keywords": ["seguridad residencial", "condominios", "plazas comerciales"]
+      },
+      {
+        "id": "seguridad-condominios",
+        "name": "Seguridad Condominios MX",
+        "slug": "seguridad-condominios",
+        "businessPage": "/negocios/seguridad-privada/seguridad-condominios.html",
+        "mainImage": "guardia-caseta-residencial.webp",
+        "services": ["seguridad-residencial", "control-acceso", "rondines"],
+        "location": "CDMX",
+        "keywords": ["condominios", "fraccionamientos", "seguridad residencial"]
+      }
+    ],
+    "eventos": [
+      {
+        "id": "redeil",
+        "name": "Redeil",
+        "slug": "redeil",
+        "businessPage": "/negocios/entretenimiento/redeil.html",
+        "mainImage": "guirnaldas-bodas-vintage.webp",
+        "services": ["iluminacion", "guirnaldas", "focos-vintage", "renta-luces"],
+        "location": "CDMX",
+        "keywords": ["iluminacion bodas", "guirnaldas", "focos vintage"]
+      },
+      {
+        "id": "eventech",
+        "name": "Eventech",
+        "slug": "eventech",
+        "businessPage": "/negocios/entretenimiento/eventech.html",
+        "mainImage": "mesas-picnic-eventos.webp",
+        "services": ["mobiliario", "mesas-picnic", "renta-mobiliario"],
+        "location": "CDMX",
+        "keywords": ["mesas picnic", "mobiliario eventos", "renta mesas"]
+      }
+    ]
+  },
+  "articleTypes": [
+    {
+      "id": "resena-completa",
+      "name": "Resena Completa",
+      "slug": "resena-completa",
+      "description": "Analisis detallado de la empresa con todos sus servicios",
+      "titleTemplate": "{businessName}: Resena Completa y Analisis de Servicios",
+      "readingTime": 10,
+      "sections": ["introduccion", "historia", "servicios", "tecnologia", "testimonios", "conclusion"]
+    },
+    {
+      "id": "caso-exito",
+      "name": "Caso de Exito",
+      "slug": "caso-exito",
+      "description": "Historia de implementacion exitosa con un cliente",
+      "titleTemplate": "{businessName}: Caso de Exito en {sector}",
+      "readingTime": 8,
+      "sections": ["desafio", "solucion", "implementacion", "resultados", "testimonios"]
+    },
+    {
+      "id": "guia-servicios",
+      "name": "Guia de Servicios",
+      "slug": "guia-servicios",
+      "description": "Desglose detallado de cada servicio ofrecido",
+      "titleTemplate": "Servicios de {businessName}: Guia Completa",
+      "readingTime": 12,
+      "sections": ["introduccion", "servicio1", "servicio2", "servicio3", "precios", "contacto"]
+    },
+    {
+      "id": "opiniones-clientes",
+      "name": "Opiniones de Clientes",
+      "slug": "opiniones-clientes",
+      "description": "Recopilacion de testimonios y opiniones",
+      "titleTemplate": "Opiniones sobre {businessName}: Lo que Dicen los Clientes",
+      "readingTime": 7,
+      "sections": ["introduccion", "testimonios", "puntuacion", "pros-contras", "conclusion"]
+    },
+    {
+      "id": "tecnologia-innovacion",
+      "name": "Tecnologia e Innovacion",
+      "slug": "tecnologia-innovacion",
+      "description": "Analisis de la tecnologia y herramientas utilizadas",
+      "titleTemplate": "Tecnologia e Innovacion en {businessName}",
+      "readingTime": 9,
+      "sections": ["introduccion", "tecnologias", "innovacion", "beneficios", "futuro"]
+    },
+    {
+      "id": "comparativa",
+      "name": "Comparativa",
+      "slug": "comparativa",
+      "description": "Comparacion con otras empresas del sector",
+      "titleTemplate": "{businessName} vs Competencia: Comparativa Completa",
+      "readingTime": 11,
+      "sections": ["introduccion", "criterios", "comparacion", "veredicto", "recomendaciones"]
+    }
+  ],
+  "images": {
+    "seguridad-privada": [
+      "acceso-biometrico-torniquete.webp",
+      "acceso-tarjeta-empleado.webp",
+      "centro-monitoreo-camaras.webp",
+      "control-acceso-credencial.webp",
+      "control-acceso-trailer.webp",
+      "control-huella-digital.webp",
+      "control-vehicular-empresa.webp",
+      "control-vehiculos-planta.webp",
+      "equipo-seguridad-corporativo.webp",
+      "equipo-seguridad-lobby.webp",
+      "escolta-ejecutivo-vehiculo.webp",
+      "escolta-vip-estacionamiento.webp",
+      "grupo-guardias-edificio.webp",
+      "guardia-atencion-visitante.webp",
+      "guardia-caseta-residencial.webp",
+      "guardia-control-acceso-residencial.webp",
+      "guardia-control-digital.webp",
+      "guardia-corporativa-lobby.webp",
+      "guardia-corporativo-oficina.webp",
+      "guardia-ejecutivo-tablet.webp",
+      "guardia-nave-industrial.webp",
+      "guardia-patrulla-industrial.webp",
+      "guardia-planta-manufactura.webp",
+      "guardia-registro-visitantes.webp",
+      "guardia-revision-camioneta.webp",
+      "guardia-tactico-fraccionamiento.webp",
+      "guardia-uniforme-edificio.webp",
+      "guardia-verificacion-digital.webp",
+      "inspeccion-auto-entrada.webp",
+      "inspeccion-vehicular-espejo.webp",
+      "monitoreo-cctv-central.webp",
+      "operador-videovigilancia.webp",
+      "patrulla-seguridad-fabrica.webp",
+      "proteccion-vip-auto.webp",
+      "recepcion-seguridad-oficina.webp",
+      "revision-vehiculo-acceso.webp",
+      "rondin-nocturno-condominio.webp",
+      "rondin-nocturno-residencial.webp",
+      "seguridad-acceso-biometrico.webp",
+      "seguridad-almacen-inventario.webp",
+      "seguridad-caseta-cctv.webp",
+      "seguridad-centro-comercial.webp",
+      "seguridad-ejecutiva-mujer.webp",
+      "seguridad-entrada-edificio.webp",
+      "seguridad-estacionamiento.webp",
+      "seguridad-lobby-hotel.webp",
+      "seguridad-recepcion-corporativa.webp",
+      "seguridad-zona-carga.webp",
+      "torniquete-acceso-oficina.webp",
+      "verificacion-acceso-restringido.webp",
+      "verificacion-identificacion.webp",
+      "vigilancia-acceso-industrial.webp",
+      "vigilancia-nocturna-edificio.webp",
+      "vigilancia-planta-industrial.webp",
+      "vigilante-acceso-residencial.webp",
+      "vigilante-area-comercial.webp",
+      "vigilante-bodega-almacen.webp",
+      "vigilante-caseta-fraccionamiento.webp",
+      "vigilante-entrada-corporativa.webp",
+      "vigilante-registro-digital.webp"
+    ],
+    "eventos": [
+      "decoracion-bodas-luces.webp",
+      "decoracion-fiesta-luces.webp",
+      "decoracion-luminosa-eventos.webp",
+      "decoracion-luminosa-exterior.webp",
+      "guirnaldas-bajo-consumo.webp",
+      "guirnaldas-bodas-vintage.webp",
+      "guirnaldas-colores-cambiantes.webp",
+      "guirnaldas-de-iluminacion-calida.webp",
+      "guirnaldas-efecto-estrella.webp",
+      "guirnaldas-interiores-elegantes.webp",
+      "guirnaldas-led-decorativas.webp",
+      "iluminacion-arboles-jardin.webp",
+      "iluminacion-balcon-terraza.webp",
+      "iluminacion-festiva-eventos.webp",
+      "iluminacion-jardines-noche.webp",
+      "iluminacion-pergola-exterior.webp",
+      "iluminacion-restaurantes-exterior.webp",
+      "iluminacion-terraza-exterior.webp",
+      "luces-ambiente-romantico.webp",
+      "luces-cadena-vintage.webp",
+      "luces-estilo-industrial.webp",
+      "mesas-picnic-eventos.webp"
+    ]
+  },
+  "cardTemplate": {
+    "comment": "<!-- n8n:AUTO - {businessName} - {date} -->",
+    "structure": "<article class=\"blog-card\">\n  <a href=\"{articleUrl}\" class=\"blog-card-image\">\n    <img src=\"{imageUrl}\" alt=\"{imageAlt}\">\n    <span class=\"blog-category-badge\">{categoryName}</span>\n  </a>\n  <div class=\"blog-card-content\">\n    <h3 class=\"blog-card-title\">\n      <a href=\"{articleUrl}\">{title}</a>\n    </h3>\n    <div class=\"blog-meta\">\n      <span class=\"blog-reading-time\">\n        <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\">\n          <circle cx=\"12\" cy=\"12\" r=\"10\"/>\n          <polyline points=\"12 6 12 12 16 14\"/>\n        </svg>\n        {readingTime} min\n      </span>\n    </div>\n    <p class=\"blog-card-excerpt\">{excerpt}</p>\n    <a href=\"{articleUrl}\" class=\"btn btn-outline\">Leer articulo completo</a>\n  </div>\n</article>"
+  },
+  "seo": {
+    "siteName": "Paginas Amarillas Mexico",
+    "defaultAuthor": "Paginas Amarillas Mexico",
+    "twitterHandle": "@paginasamarillasrivas",
+    "locale": "es_MX",
+    "robots": "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+  },
+  "workflow": {
+    "schedule": "0 8 */3 * *",
+    "scheduleDescription": "Cada 3 dias a las 8:00 AM",
+    "maxArticlesPerRun": 1,
+    "notifyTelegram": true
+  }
+}
