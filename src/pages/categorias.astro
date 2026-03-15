@@ -218,7 +218,7 @@ import Layout from '../layouts/Layout.astro';
 
 </Layout>
 
-<script>
+<script is:inline>
   document.getElementById('categorySearch')?.addEventListener('input', function(e) {
     const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
     const featuredCards = document.querySelectorAll('.category-card-featured');

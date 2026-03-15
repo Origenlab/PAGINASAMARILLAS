@@ -1,4 +1,4 @@
-// @ts-check
+import sitemap from '@astrojs/sitemap';// @ts-check
 import { defineConfig } from 'astro/config';
 
 export default defineConfig({
@@ -7,4 +7,5 @@ export default defineConfig({
   build: {
     format: 'file',
   },
+  integrations: [sitemap()],
 });
