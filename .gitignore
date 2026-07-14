@@ -13,3 +13,6 @@ dist
 *.local
 n8n-workflows/.env*
 !n8n-workflows/.env.example
+# Cuarentena de migracion (HTML original, se borra al terminar)
+_legacy
+graphify-out

@@ -21,7 +21,7 @@ Disallow: /docs/
 Disallow: /webpack*.js
 
 # Sitemap
-Sitemap: https://paginasamarillas.mx/sitemap.xml
+Sitemap: https://paginasamarillas.mx/sitemap-index.xml
 
 # Rastreo específico para motores de búsqueda principales
 User-agent: Googlebot

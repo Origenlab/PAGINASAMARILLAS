@@ -1,0 +1,111 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  negocio: CollectionEntry<'negocios'>['data'];
+  url: string;
+}
+
+const { negocio: n, url } = Astro.props;
+const SITE = 'https://paginasamarillas.mx';
+const abs = (u?: string) => (!u ? undefined : u.startsWith('http') ? u : SITE + u);
+
+const localBusiness: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': url,
+  name: n.nombre,
+  description: n.descripcionLarga ?? n.descripcion,
+  url,
+};
+
+if (n.imagen) {
+  localBusiness.image = [abs(n.imagen)];
+  localBusiness.logo = abs(n.imagen);
+}
+if (n.contacto.telefono) localBusiness.telephone = n.contacto.telefono;
+if (n.contacto.email) localBusiness.email = n.contacto.email;
+
+if (n.direccion) {
+  localBusiness.address = {
+    '@type': 'PostalAddress',
+    streetAddress: n.direccion.calle,
+    addressLocality: n.direccion.colonia,
+    addressRegion: n.direccion.estado,
+    postalCode: n.direccion.cp,
+    addressCountry: n.direccion.pais,
+  };
+}
+if (n.geo) {
+  localBusiness.geo = {
+    '@type': 'GeoCoordinates',
+    latitude: String(n.geo.lat),
+    longitude: String(n.geo.lng),
+  };
+}
+if (n.priceRange) localBusiness.priceRange = n.priceRange;
+if (n.rating) {
+  localBusiness.aggregateRating = {
+    '@type': 'AggregateRating',
+    ratingValue: String(n.rating.valor),
+    reviewCount: String(n.rating.resenas),
+    bestRating: '5',
+    worstRating: '1',
+  };
+}
+if (n.areaServed.length) {
+  localBusiness.areaServed = n.areaServed.map((a) => ({ '@type': a.tipo, name: a.nombre }));
+}
+if (n.slogan) localBusiness.slogan = n.slogan;
+if (n.fundacion) localBusiness.foundingDate = n.fundacion;
+if (n.empleados) {
+  localBusiness.numberOfEmployees = { '@type': 'QuantitativeValue', value: String(n.empleados) };
+}
+if (n.catalogo.length) {
+  localBusiness.hasOfferCatalog = {
+    '@type': 'OfferCatalog',
+    name: n.catalogoNombre,
+    itemListElement: n.catalogo.map((o) => ({
+      '@type': 'Offer',
+      itemOffered: { '@type': 'Service', name: o.nombre, description: o.descripcion },
+    })),
+  };
+}
+if (n.sameAs.length) localBusiness.sameAs = n.sameAs;
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Categorías', item: `${SITE}/categorias` },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: n.categoriaNombre ?? n.categoria,
+      item: `${SITE}/categoria/${n.categoria}`,
+    },
+    { '@type': 'ListItem', position: 4, name: n.nombre, item: url },
+  ],
+};
+
+const faqPage =
+  n.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: n.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+        })),
+      }
+    : null;
+
+const schemas = [localBusiness, breadcrumb, faqPage].filter(Boolean);
+---
+{
+  schemas.map((s) => (
+    <script type="application/ld+json" set:html={JSON.stringify(s)} />
+  ))
+}

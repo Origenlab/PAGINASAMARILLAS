@@ -1,0 +1,525 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import Icon from '../../../components/Icon.astro';
+import SchemaNegocio from '../../../components/SchemaNegocio.astro';
+
+export async function getStaticPaths() {
+  const negocios = await getCollection('negocios');
+  return negocios.map((entry) => {
+    const [categoria, slug] = entry.id.split('/');
+    return { params: { categoria, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const n = entry.data;
+const { Content } = await render(entry);
+
+const SITE = 'https://paginasamarillas.mx';
+const url = `${SITE}/negocios/${n.categoria}/${Astro.params.slug}`;
+const estrellas = n.rating ? '★'.repeat(Math.round(n.rating.valor)) : '';
+---
+
+<Layout
+  title={n.titulo}
+  description={n.descripcion}
+  canonical={url}
+  ogTitle={n.og?.titulo}
+  ogDescription={n.og?.descripcion}
+  ogImage={n.og?.imagen}
+  ogType={n.og?.tipo ?? 'business.business'}
+  extraCss={['/css/perfil.css']}
+>
+  <SchemaNegocio negocio={n} url={url} slot="head" />
+
+  <!-- breadcrumbs -->
+  <section class="breadcrumbs">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/categorias">Categorías</a></li>
+          <li><a href={`/categoria/${n.categoria}`}>{n.categoriaNombre ?? n.categoria}</a></li>
+          <li aria-current="page">{n.nombre}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <!-- hero -->
+  <section class="business-hero">
+    <div class="container">
+      <div class="business-hero-content">
+        <div class="business-hero-media">
+          {
+            n.imagen && (
+              <div class="business-main-image">
+                <img src={n.imagen} alt={n.imagenAlt ?? n.nombre} width="800" height="600" />
+                {n.badges.length > 0 && (
+                  <div class="business-hero-badges">
+                    {n.badges.map((b) => (
+                      <span class="badge">{b}</span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          }
+          {
+            n.galeria.length > 0 && (
+              <div class="business-gallery-thumbs">
+                {n.galeria.map((g, i) => (
+                  <button class:list={['gallery-thumb', { active: i === 0 }]} type="button">
+                    <img src={g.src} alt={g.alt ?? ''} loading="lazy" width="160" height="120" />
+                  </button>
+                ))}
+              </div>
+            )
+          }
+        </div>
+
+        <div class="business-hero-info">
+          <h1 class="business-title">{n.nombre}</h1>
+
+          {
+            n.rating && (
+              <div class="business-rating-large">
+                <div class="stars">{estrellas}</div>
+                <span class="rating-value">{n.rating.valor}</span>
+                <span class="rating-count">({n.rating.resenas} reseñas)</span>
+                {n.ratingLink?.href && (
+                  <a
+                    href={n.ratingLink.href}
+                    class="rating-link website-link-prominent"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <Icon name="sitio-web" size={14} />
+                    {n.ratingLink.texto}
+                  </a>
+                )}
+              </div>
+            )
+          }
+
+          {n.tagline && <p class="business-tagline">{n.tagline}</p>}
+
+          {
+            n.quickInfo.length > 0 && (
+              <div class="quick-info-grid">
+                {n.quickInfo.map((q) => (
+                  <div class="quick-info-card">
+                    <Icon name={q.icono} size={24} />
+                    <div>
+                      <strong>{q.titulo}</strong>
+                      <p>{q.texto}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )
+          }
+
+          {
+            n.ctas.length > 0 && (
+              <div class="business-cta-buttons">
+                {n.ctas.map((c) => (
+                  <a
+                    href={c.href}
+                    class:list={['btn', 'btn-large', `btn-${c.estilo}`]}
+                    target={c.href.startsWith('http') ? '_blank' : undefined}
+                    rel={c.href.startsWith('http') ? 'noopener' : undefined}
+                  >
+                    <Icon name={c.icono} size={20} />
+                    {c.texto}
+                  </a>
+                ))}
+              </div>
+            )
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- servicios -->
+  {
+    n.servicios.length > 0 && (
+      <section class="business-section">
+        <div class="container">
+          {n.serviciosTitulo && <h2 class="section-title">{n.serviciosTitulo}</h2>}
+          {n.serviciosSubtitulo && <p class="section-subtitle">{n.serviciosSubtitulo}</p>}
+          <div class="services-grid">
+            {n.servicios.map((s) => (
+              <div class="service-card">
+                <div class="service-icon">
+                  <Icon name={s.icono} size={32} />
+                </div>
+                <h3 class="service-title">{s.titulo}</h3>
+                {s.descripcion && <p class="service-description">{s.descripcion}</p>}
+                {s.features.length > 0 && (
+                  <ul class="service-features">
+                    {s.features.map((f) => (
+                      <li>{f}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- sobre + stats -->
+  <section class="business-section bg-gray">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          {n.aboutTitulo && <h2 class="section-title">{n.aboutTitulo}</h2>}
+          <div class="about-text">
+            <Content />
+          </div>
+
+          {n.beneficiosTitulo && <h3 class="subsection-title">{n.beneficiosTitulo}</h3>}
+          {
+            n.beneficios.length > 0 && (
+              <ul class="benefits-list">
+                {n.beneficios.map((b) => (
+                  <li>
+                    <Icon name="check" size={20} />
+                    <span set:html={b.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')} />
+                  </li>
+                ))}
+              </ul>
+            )
+          }
+        </div>
+
+        {
+          n.stats.length > 0 && (
+            <div class="about-stats">
+              {n.stats.map((s) => (
+                <div class="stat-card">
+                  <div class="stat-number">{s.numero}</div>
+                  <div class="stat-label">{s.label}</div>
+                </div>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- cobertura -->
+  {
+    n.cobertura.length > 0 && (
+      <section class="business-section">
+        <div class="container">
+          {n.coberturaTitulo && <h2 class="section-title">{n.coberturaTitulo}</h2>}
+          {n.coberturaSubtitulo && <p class="section-subtitle">{n.coberturaSubtitulo}</p>}
+          <div class="coverage-grid">
+            {n.cobertura.map((col) => (
+              <div class="coverage-column">
+                <h3 class="coverage-title">{col.titulo}</h3>
+                <ul class="coverage-list">
+                  {col.items.map((i) => (
+                    <li>
+                      <Icon name={i.icono} size={16} />
+                      <span set:html={i.texto.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- catalogo visual -->
+  {
+    n.directorio.length > 0 && (
+      <section class="business-section bg-gray">
+        <div class="container">
+          <div class="section-header-professional">
+            {n.directorioTitulo && <h2 class="section-title">{n.directorioTitulo}</h2>}
+            {n.directorioSubtitulo && <p class="section-subtitle">{n.directorioSubtitulo}</p>}
+          </div>
+
+          {n.directorioTabs.length > 0 && (
+            <div class="category-tabs-wrapper">
+              <div class="category-tabs">
+                {n.directorioTabs.map((t) => (
+                  <button
+                    type="button"
+                    class:list={['category-tab', { active: t.activo }]}
+                    data-category={t.filtro}
+                  >
+                    <Icon name={t.icono} size={18} />
+                    {t.texto}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div class="services-directory-grid" id="services-directory">
+            {n.directorio.map((c) => (
+              <article class="service-directory-card" data-category={c.filtro}>
+                {c.imagen && (
+                  <div class="service-card-image">
+                    <img src={c.imagen} alt={c.imagenAlt ?? c.titulo} loading="lazy" width="400" height="300" />
+                    {c.badge && (
+                      <span class:list={['service-badge', c.badgeTipo && `badge-${c.badgeTipo}`]}>
+                        {c.badge}
+                      </span>
+                    )}
+                  </div>
+                )}
+                <div class="service-card-content">
+                  <div class="service-card-header">
+                    <h3 class="service-card-title">{c.titulo}</h3>
+                    {c.tag && (
+                      <span class="service-category-tag">
+                        <Icon name={c.tagIcono} size={14} />
+                        {c.tag}
+                      </span>
+                    )}
+                  </div>
+                  {c.descripcion && <p class="service-card-description">{c.descripcion}</p>}
+                  {c.features.length > 0 && (
+                    <ul class="service-card-features">
+                      {c.features.map((f) => (
+                        <li>
+                          <Icon name="check" size={14} />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                  <div class="service-card-footer">
+                    {c.ubicacion && (
+                      <div class="service-location">
+                        <Icon name="ubicacion" size={14} />
+                        <span>{c.ubicacion}</span>
+                      </div>
+                    )}
+                    {c.ctaHref && (
+                      <a class="btn-service-contact" href={c.ctaHref}>
+                        {c.ctaTexto}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          {(n.directorioCtaTexto || n.directorioCtaBotones.length > 0) && (
+            <div class="services-directory-cta">
+              {n.directorioCtaTexto && <p class="directory-cta-text">{n.directorioCtaTexto}</p>}
+              {n.directorioCtaBotones.map((b) => (
+                <a
+                  href={b.href}
+                  class:list={['btn', 'btn-large', `btn-${b.estilo}`]}
+                  target={b.href.startsWith('http') ? '_blank' : undefined}
+                  rel={b.href.startsWith('http') ? 'noopener' : undefined}
+                >
+                  <Icon name={b.icono} size={18} />
+                  {b.texto}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- contacto + formulario -->
+  {
+    (n.contactoItems.length > 0 || n.formCampos.length > 0) && (
+      <section class="business-section">
+        <div class="container">
+          {n.contactoTitulo && <h2 class="section-title">{n.contactoTitulo}</h2>}
+          {n.contactoSubtitulo && <p class="section-subtitle">{n.contactoSubtitulo}</p>}
+          <div class="contact-grid">
+            <div class="contact-info">
+              {n.contactoItems.map((c) => (
+                <div class="contact-card">
+                  <div class="contact-icon">
+                    <Icon name={c.icono} size={24} />
+                  </div>
+                  <div class="contact-details">
+                    <h3>{c.titulo}</h3>
+                    <p>
+                      {c.lineas.map((l, i) => (
+                        <>
+                          {i > 0 && <br />}
+                          {l.href ? <a href={l.href}>{l.texto}</a> : l.texto}
+                        </>
+                      ))}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              {n.ubicaciones.length > 0 && (
+                <div class="locations-block">
+                  {n.ubicacionesTitulo && <h3 class="subsection-title">{n.ubicacionesTitulo}</h3>}
+                  <div class="locations-grid">
+                    {n.ubicaciones.map((u) => (
+                      <div class="location-card">
+                        <h4>{u.nombre}</h4>
+                        {u.lineas.map((l) => (
+                          <p>{l}</p>
+                        ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {n.formCampos.length > 0 && (
+              <div class="contact-form-wrapper">
+                {n.formTitulo && <h3 class="form-title">{n.formTitulo}</h3>}
+                {n.formSubtitulo && <p class="form-subtitle">{n.formSubtitulo}</p>}
+                <form class="contact-form" id="contact-form" action={n.formAction} method="post">
+                  {n.formCampos.map((c) => (
+                    <div class="form-group">
+                      {c.label && <label for={c.name}>{c.label}</label>}
+                      {c.tipo === 'select' ? (
+                        <select id={c.name} name={c.name} required={c.requerido}>
+                          {c.opciones.map((o) => (
+                            <option value={o.value}>{o.texto}</option>
+                          ))}
+                        </select>
+                      ) : c.tipo === 'textarea' ? (
+                        <textarea id={c.name} name={c.name} required={c.requerido} placeholder={c.placeholder} />
+                      ) : (
+                        <input
+                          type={c.tipo}
+                          id={c.name}
+                          name={c.name}
+                          required={c.requerido}
+                          placeholder={c.placeholder}
+                        />
+                      )}
+                    </div>
+                  ))}
+                  <button type="submit" class="btn btn-primary btn-large">
+                    {n.formBoton ?? 'Enviar'}
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- faq -->
+  {
+    n.faq.length > 0 && (
+      <section class="business-section bg-gray">
+        <div class="container">
+          <h2 class="section-title">{n.faqTitulo ?? 'Preguntas Frecuentes'}</h2>
+          <div class="faq-list">
+            {n.faq.map((f) => (
+              <details class="faq-item">
+                <summary class="faq-question">{f.pregunta}</summary>
+                <p
+                  class="faq-answer"
+                  set:html={f.respuesta.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')}
+                />
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- resenas -->
+  {
+    n.resenas.length > 0 && (
+      <section class="business-section">
+        <div class="container">
+          {n.resenasTitulo && <h2 class="section-title">{n.resenasTitulo}</h2>}
+          <div class="reviews-grid">
+            {n.resenas.map((r) => (
+              <div class="review-card">
+                <div class="review-header">
+                  <div class="review-author">
+                    {r.avatar && <div class="author-avatar">{r.avatar}</div>}
+                    <div>
+                      <strong>{r.autor}</strong>
+                      {r.fecha && <p class="review-date">{r.fecha}</p>}
+                    </div>
+                  </div>
+                  {r.rating && <div class="stars">{'★'.repeat(r.rating)}</div>}
+                </div>
+                <p class="review-text">{r.texto}</p>
+                {r.sitio?.href && (
+                  <a class="review-website" href={r.sitio.href} target="_blank" rel="noopener">
+                    {r.sitio.texto}
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- cta final -->
+  {
+    n.ctaFinalTitulo && (
+      <section class="final-cta">
+        <div class="container">
+          <h2>{n.ctaFinalTitulo}</h2>
+          {n.ctaFinalTexto && <p>{n.ctaFinalTexto}</p>}
+          {n.ctaFinalBotones.length > 0 && (
+            <div class="business-cta-buttons">
+              {n.ctaFinalBotones.map((b) => (
+                <a href={b.href} class:list={['btn', 'btn-large', `btn-${b.estilo}`]}>
+                  {b.texto}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    )
+  }
+</Layout>
+
+{/*
+  Las pestanas del catalogo existian en el HTML original pero ningun JS las
+  conectaba: eran botones muertos. Se cablean aqui usando el data-category
+  que ya traian los tabs y las tarjetas.
+*/}
+<script>
+  const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
+  const cards = document.querySelectorAll<HTMLElement>('.service-directory-card');
+
+  tabs.forEach((tab) => {
+    tab.addEventListener('click', () => {
+      const filtro = tab.dataset.category;
+      tabs.forEach((t) => t.classList.toggle('active', t === tab));
+      cards.forEach((card) => {
+        const cat = card.dataset.category;
+        const visible = filtro === 'todos' || cat === 'todos' || cat === filtro;
+        card.hidden = !visible;
+      });
+    });
+  });
+</script>
