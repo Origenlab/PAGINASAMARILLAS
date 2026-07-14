@@ -116,7 +116,7 @@ const extraHead = [
           </div>
 
           <div class="business-cta-buttons">
-            <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+            {n.phone && <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>}
             {n.whatsapp && (
               <a
                 href={`https://wa.me/52${n.whatsapp.replace(/\D/g, '')}`}
@@ -226,14 +226,18 @@ const extraHead = [
               <p>{n.address.street}, {n.address.locality}, {n.address.region}{n.address.postalCode ? `, C.P. ${n.address.postalCode}` : ''}</p>
             </div>
           </div>
-          <div class="contact-card">
-            <div class="contact-details">
-              <h3>Teléfonos</h3>
-              {(n.phones.length ? n.phones : [n.phoneDisplay ?? n.phone]).map((p) => (
-                <p><a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a></p>
-              ))}
+          {(n.phones.length > 0 || n.phone) && (
+            <div class="contact-card">
+              <div class="contact-details">
+                <h3>Teléfonos</h3>
+                {(n.phones.length ? n.phones : [n.phoneDisplay ?? n.phone])
+                  .filter(Boolean)
+                  .map((p) => (
+                    <p><a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a></p>
+                  ))}
+              </div>
             </div>
-          </div>
+          )}
           {n.email && (
             <div class="contact-card">
               <div class="contact-details">
@@ -285,7 +289,9 @@ const extraHead = [
         <h2>Contacta a {n.name}</h2>
         <p>Solicita información o una cotización sin compromiso.</p>
         <div class="business-cta-buttons">
-          <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+          {n.phone
+            ? <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+            : n.email && <a href={`mailto:${n.email}`} class="btn btn-primary">Enviar correo</a>}
           {n.whatsapp && (
             <a
               href={`https://wa.me/52${n.whatsapp.replace(/\D/g, '')}`}

@@ -1,0 +1,103 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import { site } from '@config/site';
+import { breadcrumb, jsonLdScript } from '@lib/seo';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0),
+);
+
+const url = `${site.url}/blog/`;
+const extraHead = `<script type="application/ld+json">${jsonLdScript(
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: 'Blog', url },
+  ]),
+)}</script>`;
+---
+
+<Layout
+  title={`Blog — ${site.name} | Guías y Consejos para Negocios`}
+  description="Guías, consejos y artículos sobre negocios en México: seguridad privada, eventos, equipos contra incendios y más."
+  canonical={url}
+  extraHead={extraHead}
+>
+  <section class="blog-index">
+    <div class="container">
+      <header class="blog-index-header">
+        <h1>Blog</h1>
+        <p>Guías, consejos y artículos sobre negocios y servicios en México.</p>
+      </header>
+
+      <div class="blog-grid">
+        {posts.map((entry) => {
+          const [categoria, slug] = entry.id.split('/');
+          const href = `/blog/${categoria}/${slug}.html`;
+          const d = entry.data;
+          return (
+            <article class="blog-card">
+              {d.image && (
+                <a href={href} class="blog-card-image" aria-label={d.title}>
+                  <img src={d.image} alt={d.title} width="400" height="225" loading="lazy" />
+                </a>
+              )}
+              <div class="blog-card-body">
+                <span class="blog-card-category">{d.categoryName}</span>
+                <h2><a href={href}>{d.title}</a></h2>
+                <p>{d.description}</p>
+                <a href={href} class="blog-card-link">Leer más →</a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .blog-index { padding: 2.5rem 0 4rem; }
+  .blog-index-header { text-align: center; max-width: 640px; margin: 0 auto 2.5rem; }
+  .blog-index-header h1 { font-size: clamp(2rem, 5vw, 2.75rem); color: var(--color-gray-900); margin-bottom: 0.5rem; }
+  .blog-index-header p { color: var(--color-gray-600); font-size: 1.1rem; }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.75rem;
+  }
+  .blog-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border: 1px solid var(--color-gray-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+  }
+  .blog-card:hover { box-shadow: 0 10px 25px -5px rgba(0,0,0,0.1); transform: translateY(-2px); }
+  .blog-card-image { display: block; aspect-ratio: 16 / 9; overflow: hidden; }
+  .blog-card-image img { width: 100%; height: 100%; object-fit: cover; }
+  .blog-card-body { padding: 1.25rem 1.35rem 1.5rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .blog-card-category {
+    align-self: flex-start;
+    background: var(--color-primary-light);
+    color: var(--color-secondary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+  }
+  .blog-card-body h2 { font-size: 1.2rem; line-height: 1.35; color: var(--color-gray-900); }
+  .blog-card-body h2 a { color: inherit; }
+  .blog-card-body p {
+    color: var(--color-gray-600);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .blog-card-link { margin-top: auto; color: var(--color-primary-dark); font-weight: 600; font-size: 0.9rem; }
+</style>

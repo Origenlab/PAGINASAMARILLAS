@@ -121,7 +121,7 @@ const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</s
                 </div>
                 <div class="business-actions">
                   <a href={href} class="btn btn-primary">Ver perfil</a>
-                  <a href={`tel:${b.phone}`} class="btn btn-outline">Llamar</a>
+                  {b.phone && <a href={`tel:${b.phone}`} class="btn btn-outline">Llamar</a>}
                 </div>
               </div>
             </article>

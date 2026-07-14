@@ -7,7 +7,9 @@ export default defineConfig({
   site: 'https://paginasamarillas.mx',
   trailingSlash: 'never',
   build: {
-    format: 'file',
+    // 'preserve': foo.astro -> foo.html, foo/index.astro -> foo/index.html.
+    // Mantiene las URLs .html de negocios/blog/categoría y sirve /blog/ como index.
+    format: 'preserve',
   },
   integrations: [mdx(), sitemap()],
 });
