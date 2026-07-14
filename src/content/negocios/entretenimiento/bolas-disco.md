@@ -24,7 +24,6 @@ contacto:
   telefono: "+52-55-9876-5432"
   sitioWeb: "https://bolasdisco.com"
   whatsapp: "5215598765432"
-  whatsappPlaceholder: true
 direccion:
   calle: "Prol. P.º de la Reforma 115, Santa Fe, Paseo de las Lomas"
   colonia: "Álvaro Obregón"

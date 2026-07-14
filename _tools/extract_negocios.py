@@ -95,7 +95,7 @@ def inner_md(el):
 
 JSON_ERRORS = []
 SIN_ACTION = []
-WA_PLACEHOLDER = []
+WA_USADOS = {}
 
 
 def wa_desde(soup, sel):
@@ -652,17 +652,13 @@ def process(path):
     # El WhatsApp del negocio es el del CTA del hero (el de .services-directory-cta
     # suele ser el del directorio, no el del negocio).
     wa = wa_desde(soup, ".business-cta-buttons") or wa_desde(soup, ".contact-card")
-    motivo = wa_sospechoso(wa)
-    if motivo:
-        WA_PLACEHOLDER.append(f"{cat}/{slug}: {wa} ({motivo})")
+    WA_USADOS.setdefault(wa, []).append(f"{cat}/{slug}")
 
     fm["contacto"] = {k: v for k, v in {
         "telefono": first(lb.get("telephone")),
         "email": first(lb.get("email")),
         "sitioWeb": same[0] if same else None,
         "whatsapp": wa,
-        # marcado para que no se envien leads a un numero inventado
-        "whatsappPlaceholder": True if motivo else None,
     }.items() if v}
 
     addr = first(lb.get("address")) or {}
@@ -817,7 +813,7 @@ def process(path):
                 if esperado[k] != obtenido[k] and not (k == "faq" and obtenido[k] >= esperado[k])}
 
     return {
-        "slug": slug, "cat": cat,
+        "slug": slug, "cat": cat, "whatsapp": wa,
         "servicios": len(servicios), "faq": len(faqs), "resenas": len(resenas),
         "stats": len(about.get("stats", [])), "beneficios": len(about.get("beneficios", [])),
         "galeria": len(hero.get("galeria", [])), "body_chars": len(body_md or ""),
@@ -876,11 +872,17 @@ def main():
         for e in JSON_ERRORS:
             print(f"   - {e}")
 
-    if WA_PLACEHOLDER:
-        print(f"\n!! {len(WA_PLACEHOLDER)} fichas con WhatsApp PLACEHOLDER (numero inventado):")
-        for w in WA_PLACEHOLDER:
-            print(f"   - {w}")
-        print("   Los formularios de estas fichas enviarian leads a un numero que no existe.")
+    compartidos = {n: f for n, f in WA_USADOS.items() if n and len(f) > 1}
+    if compartidos:
+        print(f"\n!! {len(compartidos)} numeros de WhatsApp compartidos por negocios distintos:")
+        for n, fichas in compartidos.items():
+            print(f"   - {n}: {', '.join(fichas)}")
+        print("   Los leads de esas fichas caen todos en el mismo telefono.")
+
+    sin_wa = [r["slug"] for r in rows if not r.get("whatsapp")]
+    if sin_wa:
+        print(f"\n!! {len(sin_wa)} fichas sin WhatsApp (su formulario no enviaria nada):")
+        print(f"   {', '.join(sin_wa)}")
 
     faltantes = [r for r in rows if r["servicios"] == 0 or r["body_chars"] < 200]
     if faltantes:

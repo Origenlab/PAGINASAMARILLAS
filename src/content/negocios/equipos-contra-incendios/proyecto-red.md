@@ -24,7 +24,6 @@ contacto:
   email: "info@proyectored.com.mx"
   sitioWeb: "https://proyectored.com.mx"
   whatsapp: "5215512345678"
-  whatsappPlaceholder: true
 direccion:
   calle: "Paseo de la Reforma 26"
   colonia: "Colonia Juárez, Cuauhtémoc"

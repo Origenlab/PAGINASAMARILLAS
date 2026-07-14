@@ -1,0 +1,215 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../../layouts/Layout.astro';
+import SchemaArticulo from '../../../components/blog/SchemaArticulo.astro';
+// Antes cada articulo repetia ~8 KB de este CSS inline (336 KB en total).
+// Ahora Astro lo bundlea y minifica una sola vez.
+import '../../../styles/blog.css';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((entry) => {
+    const [categoria, slug] = entry.id.split('/');
+    return { params: { categoria, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const a = entry.data;
+const { Content, headings } = await render(entry);
+
+const SITE = 'https://paginasamarillas.mx';
+const url = `${SITE}/blog/${a.categoria}/${Astro.params.slug}`;
+
+const NOMBRE_CAT: Record<string, string> = {
+  'seguridad-privada': 'Seguridad Privada',
+  eventos: 'Eventos',
+};
+const categoriaNombre = NOMBRE_CAT[a.categoria] ?? a.categoria;
+
+// Indice: se usa el del original (etiquetas cortas curadas, anclas a los id de
+// <Seccion>). Si un articulo no lo trae, se genera desde los h2 reales.
+const toc =
+  a.toc.length > 0
+    ? a.toc
+    : headings.filter((h) => h.depth === 2).map((h) => ({ texto: h.text, ancla: h.slug }));
+
+const minutos = a.minutosLectura;
+
+// Relacionados: misma categoria, priorizando tags en comun.
+const todos = await getCollection('blog');
+const relacionados = todos
+  .filter((p) => p.id !== entry.id && p.data.categoria === a.categoria)
+  .map((p) => ({
+    post: p,
+    afinidad: p.data.tags.filter((t) => a.tags.includes(t)).length,
+  }))
+  .sort((x, y) => y.afinidad - x.afinidad)
+  .slice(0, 4)
+  .map((x) => x.post);
+
+const fechaLegible = (d?: Date) =>
+  d?.toLocaleDateString('es-MX', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Layout
+  title={a.seoTitle ?? a.titulo}
+  description={a.descripcion}
+  canonical={url}
+  ogTitle={a.titulo}
+  ogDescription={a.descripcion}
+  ogImage={a.imagen ? (a.imagen.startsWith('http') ? a.imagen : SITE + a.imagen) : undefined}
+  ogType="article"
+  extraCss={['/css/blog-article.css']}
+>
+  <SchemaArticulo articulo={a} url={url} categoriaNombre={categoriaNombre} slot="head" />
+
+  <section class="breadcrumbs">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li><a href={`/blog/categorias/${a.categoria}`}>{categoriaNombre}</a></li>
+          <li aria-current="page">{a.titulo}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="blog-hero-section">
+    <div class="container">
+      <div class="blog-hero-grid">
+        {
+          a.heroImagen && (
+            <div class="blog-hero-image">
+              <img src={a.heroImagen} alt={a.heroImagenAlt ?? a.titulo} loading="eager" width="800" height="500" />
+            </div>
+          )
+        }
+        <div class="blog-hero-content">
+          <span class="category-badge">{a.badge ?? categoriaNombre}</span>
+          <h1 class="hero-title">{a.titulo}</h1>
+          {a.gancho && <p class="hero-hook">{a.gancho}</p>}
+          <div class="hero-meta">
+            {minutos && <span>{minutos} min lectura</span>}
+            {minutos && <span>|</span>}
+            <span>{categoriaNombre}</span>
+            {a.publicado && <span>|</span>}
+            {a.publicado && <time datetime={a.publicado.toISOString()}>{fechaLegible(a.publicado)}</time>}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* El Layout ya aporta el <main>; aqui solo el contenedor. */}
+  <div class="container">
+    <div class="blog-article-layout">
+      <article class="blog-article">
+        {/* markup identico al original: el CSS apunta a h4 + ul */}
+        {
+          toc.length > 0 && (
+            <nav class="blog-article-toc-inline" aria-label="Contenido">
+              <h4>En este artículo</h4>
+              <ul>
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.ancla}`}>{h.texto}</a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          )
+        }
+
+        <div class="blog-article-content">
+          <Content />
+        </div>
+
+        {
+          a.faq.length > 0 && (
+            <section class="blog-faq" id="faq">
+              <h2>Preguntas Frecuentes</h2>
+              {a.faq.map((f) => (
+                <details class="faq-item">
+                  <summary class="faq-question">{f.pregunta}</summary>
+                  <p class="faq-answer">{f.respuesta}</p>
+                </details>
+              ))}
+            </section>
+          )
+        }
+
+        {
+          a.tags.length > 0 && (
+            <div class="blog-article-tags">
+              <span>Temas relacionados:</span>
+              {a.tags.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+          )
+        }
+
+        {
+          relacionados.length > 0 && (
+            <div class="blog-related-articles">
+              <h2>Artículos Relacionados</h2>
+              <ul>
+                {relacionados.map((p) => (
+                  <li>
+                    <a href={`/blog/${p.data.categoria}/${p.id.split('/')[1]}`}>{p.data.titulo}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </article>
+
+      <aside class="blog-article-sidebar">
+        {
+          toc.length > 0 && (
+            <div class="blog-toc">
+              <h3 class="blog-toc-title">En este artículo</h3>
+              <ul class="blog-toc-list">
+                {toc.map((h) => (
+                  <li>
+                    <a href={`#${h.ancla}`}>{h.texto}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+
+        <div class="blog-cta-box">
+          <h3>¿Buscas Empresas Verificadas?</h3>
+          <p>Encuentra proveedores de {categoriaNombre.toLowerCase()} en nuestro directorio.</p>
+          <a href={`/categoria/${a.categoria}`} class="btn">Ver directorio</a>
+        </div>
+
+        {
+          relacionados.length > 0 && (
+            <div class="blog-widget">
+              <h3>Artículos Relacionados</h3>
+              <ul class="blog-popular-list">
+                {relacionados.map((p) => (
+                  <li class="blog-popular-post">
+                    <a href={`/blog/${p.data.categoria}/${p.id.split('/')[1]}`}>
+                      {p.data.imagen && (
+                        <img class="blog-popular-thumb" src={p.data.imagen} alt="" loading="lazy" width="80" height="60" />
+                      )}
+                      <span class="blog-popular-title">{p.data.titulo}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )
+        }
+      </aside>
+    </div>
+  </div>
+</Layout>

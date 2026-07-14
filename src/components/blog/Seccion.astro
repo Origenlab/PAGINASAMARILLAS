@@ -1,0 +1,13 @@
+---
+// Reemplaza <section class="content-section" id="..."> del HTML original.
+// El id es la ancla del indice lateral: se conserva tal cual (no es el slug
+// del titulo, asi que no puede autogenerarse).
+interface Props {
+  id: string;
+  intro?: boolean;
+}
+const { id, intro = false } = Astro.props;
+---
+<section class:list={[intro ? 'intro-section' : 'content-section']} id={id}>
+  <slot />
+</section>

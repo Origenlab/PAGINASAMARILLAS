@@ -1,0 +1,20 @@
+---
+interface Props {
+  titulo?: string;
+  imagenes: { src: string; alt?: string; caption?: string }[];
+}
+const { titulo, imagenes } = Astro.props;
+---
+<div class="blog-image-gallery">
+  {titulo && <h3>{titulo}</h3>}
+  <div class="gallery-grid">
+    {
+      imagenes.map((img) => (
+        <div class="gallery-item">
+          <img src={img.src} alt={img.alt ?? ''} loading="lazy" width="400" height="300" />
+          {img.caption && <p class="gallery-caption">{img.caption}</p>}
+        </div>
+      ))
+    }
+  </div>
+</div>

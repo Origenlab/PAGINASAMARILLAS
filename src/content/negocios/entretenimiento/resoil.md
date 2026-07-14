@@ -26,7 +26,6 @@ contacto:
   email: "contacto@rentadesonidoeiluminacion.com.mx"
   sitioWeb: "https://rentadesonidoeiluminacion.com.mx"
   whatsapp: "5215512345678"
-  whatsappPlaceholder: true
 direccion:
   calle: "Montecito 38"
   colonia: "Nápoles"

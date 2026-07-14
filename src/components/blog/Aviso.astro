@@ -1,0 +1,21 @@
+---
+// Icono fijo (alerta) — en el HTML original era el mismo SVG repetido 28 veces.
+interface Props {
+  titulo?: string;
+}
+const { titulo } = Astro.props;
+---
+<div class="interest-module alert-module">
+  <div class="alert-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" aria-hidden="true">
+      <circle cx="12" cy="12" r="10"/>
+      <line x1="12" x2="12" y1="8" y2="12"/>
+      <line x1="12" x2="12.01" y1="16" y2="16"/>
+    </svg>
+  </div>
+  <div class="alert-content">
+    {titulo && <h4>{titulo}</h4>}
+    <slot />
+  </div>
+</div>

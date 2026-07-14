@@ -1,0 +1,66 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  articulo: CollectionEntry<'blog'>['data'];
+  url: string;
+  categoriaNombre: string;
+}
+
+const { articulo: a, url, categoriaNombre } = Astro.props;
+const SITE = 'https://paginasamarillas.mx';
+const abs = (u?: string) => (!u ? undefined : u.startsWith('http') ? u : SITE + u);
+
+const article: Record<string, unknown> = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  // el original tenia headline distinto del h1 en 5 articulos: se respeta
+  headline: a.headline ?? a.titulo,
+  description: a.descripcion,
+  mainEntityOfPage: { '@type': 'WebPage', '@id': url },
+  author: { '@type': 'Organization', name: a.autor },
+  publisher: {
+    '@type': 'Organization',
+    name: a.publisher,
+    logo: { '@type': 'ImageObject', url: `${SITE}/icon.png` },
+  },
+};
+
+if (a.imagen) article.image = abs(a.imagen);
+if (a.keywords.length) article.keywords = a.keywords.join(', ');
+if (a.publicado) article.datePublished = a.publicado.toISOString();
+// Google prefiere dateModified presente; si no hay, se usa la de publicacion.
+article.dateModified = (a.modificado ?? a.publicado)?.toISOString();
+
+const breadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE}/` },
+    { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog/` },
+    {
+      '@type': 'ListItem',
+      position: 3,
+      name: categoriaNombre,
+      item: `${SITE}/blog/categorias/${a.categoria}`,
+    },
+    { '@type': 'ListItem', position: 4, name: a.titulo, item: url },
+  ],
+};
+
+const faqPage =
+  a.faq.length > 0
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: a.faq.map((f) => ({
+          '@type': 'Question',
+          name: f.pregunta,
+          acceptedAnswer: { '@type': 'Answer', text: f.respuesta },
+        })),
+      }
+    : null;
+
+const schemas = [article, breadcrumb, faqPage].filter(Boolean);
+---
+{schemas.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}

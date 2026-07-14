@@ -1,0 +1,14 @@
+---
+interface Props {
+  numero: string;
+  titulo?: string;
+}
+const { numero, titulo } = Astro.props;
+---
+<div class="interest-module stat-module">
+  <div class="stat-number">{numero}</div>
+  <div class="stat-content">
+    {titulo && <h4>{titulo}</h4>}
+    <slot />
+  </div>
+</div>

@@ -1,0 +1,22 @@
+---
+// Icono fijo (bombilla) — en el HTML original era el mismo SVG repetido 45 veces.
+interface Props {
+  titulo?: string;
+}
+const { titulo } = Astro.props;
+---
+<div class="interest-module tip-module">
+  <div class="tip-icon">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="2" aria-hidden="true">
+      <path d="M12 2a7 7 0 0 1 7 7c0 2.38-1.19 4.47-3 5.74V17a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1v-2.26C6.19 13.47 5 11.38 5 9a7 7 0 0 1 7-7z"/>
+      <path d="M9 21h6"/>
+      <path d="M9 17v4"/>
+      <path d="M15 17v4"/>
+    </svg>
+  </div>
+  <div class="tip-content">
+    {titulo && <h4>{titulo}</h4>}
+    <slot />
+  </div>
+</div>

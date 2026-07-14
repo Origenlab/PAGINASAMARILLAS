@@ -54,8 +54,6 @@ const negocios = defineCollection({
         sitioWeb: z.string().url().optional(),
         // numero destino del formulario de cotizacion (solo digitos, con lada 52)
         whatsapp: z.string().regex(/^\d{10,15}$/).optional(),
-        // true = el numero del HTML original era un placeholder inventado
-        whatsappPlaceholder: z.boolean().default(false),
       })
       .default({}),
     direccion: z
@@ -230,4 +228,38 @@ const negocios = defineCollection({
   }),
 });
 
-export const collections = { negocios };
+// --- coleccion: blog ---
+
+const blog = defineCollection({
+  loader: glob({ pattern: '**/*.mdx', base: './src/content/blog' }),
+  schema: z.object({
+    // titulo = el <h1> visible
+    titulo: z.string(),
+    // headline = lo que va al schema.org. Solo presente cuando el original
+    // tenia un headline distinto del h1; si falta, se usa titulo.
+    headline: z.string().optional(),
+    descripcion: z.string(),
+    categoria: z.enum(['seguridad-privada', 'eventos']),
+    // el <title> del HTML original, distinto del titulo del articulo
+    seoTitle: z.string().optional(),
+    keywords: z.array(z.string()).default([]),
+    imagen: z.string().optional(),
+    // cabecera: 42 de 51 articulos la traen; el resto solo titulo
+    heroImagen: z.string().optional(),
+    heroImagenAlt: z.string().optional(),
+    gancho: z.string().optional(),
+    badge: z.string().optional(),
+    minutosLectura: z.number().int().positive().optional(),
+    autor: z.string().default('Páginas Amarillas México'),
+    publisher: z.string().default('Páginas Amarillas México'),
+    publicado: z.coerce.date().optional(),
+    modificado: z.coerce.date().optional(),
+    tags: z.array(z.string()).default([]),
+    // indice del original: etiquetas cortas curadas + anclas a los id de <Seccion>
+    toc: z.array(z.object({ texto: z.string(), ancla: z.string() })).default([]),
+    faq: z.array(z.object({ pregunta: z.string(), respuesta: z.string() })).default([]),
+    legacyUrl: z.string(),
+  }),
+});
+
+export const collections = { negocios, blog };
