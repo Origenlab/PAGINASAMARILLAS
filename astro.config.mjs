@@ -1,5 +1,7 @@
-import sitemap from '@astrojs/sitemap';// @ts-check
+// @ts-check
 import { defineConfig } from 'astro/config';
+import mdx from '@astrojs/mdx';
+import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://paginasamarillas.mx',
@@ -7,5 +9,5 @@ export default defineConfig({
   build: {
     format: 'file',
   },
-  integrations: [sitemap()],
+  integrations: [mdx(), sitemap()],
 });

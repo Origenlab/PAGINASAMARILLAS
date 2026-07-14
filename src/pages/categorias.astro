@@ -220,20 +220,18 @@ import Layout from '../layouts/Layout.astro';
 
 <script is:inline>
   document.getElementById('categorySearch')?.addEventListener('input', function(e) {
-    const searchTerm = (e.target as HTMLInputElement).value.toLowerCase();
+    const searchTerm = e.target.value.toLowerCase();
     const featuredCards = document.querySelectorAll('.category-card-featured');
     const regularCards = document.querySelectorAll('.category-card');
 
-    featuredCards.forEach(card => {
-      const el = card as HTMLElement;
+    featuredCards.forEach(el => {
       const name = el.querySelector('.category-card-title')?.textContent?.toLowerCase() || '';
       const desc = el.querySelector('.category-card-description')?.textContent?.toLowerCase() || '';
       const services = el.querySelector('.category-card-services')?.textContent?.toLowerCase() || '';
       el.style.display = (name.includes(searchTerm) || desc.includes(searchTerm) || services.includes(searchTerm)) ? '' : 'none';
     });
 
-    regularCards.forEach(card => {
-      const el = card as HTMLElement;
+    regularCards.forEach(el => {
       const name = el.querySelector('.category-name')?.textContent?.toLowerCase() || '';
       const desc = el.querySelector('.category-description')?.textContent?.toLowerCase() || '';
       el.style.display = (name.includes(searchTerm) || desc.includes(searchTerm)) ? '' : 'none';

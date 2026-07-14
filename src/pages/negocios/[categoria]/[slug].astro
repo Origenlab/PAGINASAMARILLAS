@@ -1,0 +1,300 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import { site } from '@config/site';
+import {
+  localBusiness,
+  faqPage,
+  breadcrumb,
+  jsonLdScript,
+  type JsonLd,
+} from '@lib/seo';
+
+export async function getStaticPaths() {
+  const negocios = await getCollection('negocios');
+  return negocios.map((entry) => {
+    const [categoria, slug] = entry.id.split('/');
+    return { params: { categoria, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const n = entry.data;
+const { Content } = await render(entry);
+
+const [categoria, slug] = entry.id.split('/');
+const url = `${site.url}/negocios/${categoria}/${slug}.html`;
+const ogImage = n.image.startsWith('http') ? n.image : `${site.url}${n.image}`;
+
+const jsonld: JsonLd[] = [
+  localBusiness({
+    name: n.name,
+    description: n.description,
+    url,
+    image: ogImage,
+    telephone: n.phone,
+    email: n.email,
+    address: n.address,
+    geo: n.geo,
+    hours: n.hours,
+    areaServed: n.areaServed,
+    priceRange: n.priceRange,
+    slogan: n.slogan,
+    foundingDate: n.foundingDate,
+    employees: n.employees,
+    services: n.services,
+  }),
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: 'Categorías', url: `${site.url}/categorias` },
+    { name: n.categoryName, url: `${site.url}/categoria/${categoria}.html` },
+    { name: n.name, url },
+  ]),
+];
+if (n.faqs.length) jsonld.push(faqPage(n.faqs));
+
+const keywords = n.keywords.join(', ');
+const extraHead = [
+  keywords ? `<meta name="keywords" content="${keywords}">` : '',
+  `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`,
+].join('\n');
+---
+
+<Layout
+  title={n.title}
+  description={n.description}
+  canonical={url}
+  ogTitle={n.name}
+  ogDescription={n.slogan ?? n.description}
+  ogImage={ogImage}
+  ogType="business.business"
+  extraCss={['/css/perfil.css']}
+  extraHead={extraHead}
+>
+  <nav class="breadcrumbs" aria-label="Ruta de navegación">
+    <div class="container">
+      <a href="/">Inicio</a>
+      <span aria-hidden="true">›</span>
+      <a href="/categorias">Categorías</a>
+      <span aria-hidden="true">›</span>
+      <a href={`/categoria/${categoria}.html`}>{n.categoryName}</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">{n.name}</span>
+    </div>
+  </nav>
+
+  <section class="business-hero">
+    <div class="container">
+      <div class="business-hero-content">
+        <div class="business-hero-media">
+          <div class="business-main-image">
+            <img src={n.image} alt={n.name} width="600" height="400" fetchpriority="high" />
+          </div>
+        </div>
+        <div class="business-hero-info">
+          <span class="business-category-tag">{n.categoryName}</span>
+          <h1>{n.name}</h1>
+          {n.tagline && <p class="business-tagline">{n.tagline}</p>}
+
+          <div class="quick-info-grid">
+            <div class="quick-info-card">
+              <strong>Ubicación</strong>
+              <span>{n.address.locality}, {n.address.region}</span>
+            </div>
+            {n.yearsExperience && (
+              <div class="quick-info-card">
+                <strong>Experiencia</strong>
+                <span>{n.yearsExperience}+ años</span>
+              </div>
+            )}
+            {n.priceRange && (
+              <div class="quick-info-card">
+                <strong>Rango de precio</strong>
+                <span>{n.priceRange}</span>
+              </div>
+            )}
+          </div>
+
+          <div class="business-cta-buttons">
+            <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+            {n.whatsapp && (
+              <a
+                href={`https://wa.me/52${n.whatsapp.replace(/\D/g, '')}`}
+                class="btn btn-outline"
+                rel="nofollow noopener"
+                target="_blank">WhatsApp</a>
+            )}
+            {n.website && (
+              <a href={n.website} class="btn btn-ghost" rel="nofollow noopener" target="_blank">Sitio web</a>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {n.services.length > 0 && (
+    <section class="business-section">
+      <div class="container">
+        <h2>Servicios Profesionales</h2>
+        <div class="services-grid">
+          {n.services.map((s) => (
+            <div class="service-card">
+              <h3>{s.name}</h3>
+              <p>{s.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="business-section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2>Sobre {n.name}</h2>
+          <Content />
+          {n.whyUs.length > 0 && (
+            <>
+              <h3>¿Por qué elegirnos?</h3>
+              <ul class="benefits-list">
+                {n.whyUs.map((b) => <li>{b}</li>)}
+              </ul>
+            </>
+          )}
+        </div>
+        <div class="about-stats">
+          {n.yearsExperience && (
+            <div class="stat-card">
+              <div class="stat-number">{n.yearsExperience}+</div>
+              <div class="stat-label">Años de experiencia</div>
+            </div>
+          )}
+          {n.employees && (
+            <div class="stat-card">
+              <div class="stat-number">{n.employees}+</div>
+              <div class="stat-label">Elementos</div>
+            </div>
+          )}
+          {n.areaServed.length > 0 && (
+            <div class="stat-card">
+              <div class="stat-number">{n.areaServed.length}</div>
+              <div class="stat-label">Estados con cobertura</div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {(n.sectors.length > 0 || n.areaServed.length > 0) && (
+    <section class="business-section">
+      <div class="container">
+        <h2>Cobertura y Sectores</h2>
+        <div class="coverage-grid">
+          {n.sectors.length > 0 && (
+            <div class="coverage-column">
+              <h3>Sectores que Atendemos</h3>
+              <ul class="coverage-list">
+                {n.sectors.map((x) => <li>{x}</li>)}
+              </ul>
+            </div>
+          )}
+          {n.areaServed.length > 0 && (
+            <div class="coverage-column">
+              <h3>Área de Cobertura</h3>
+              <ul class="coverage-list">
+                {n.areaServed.map((x) => <li>{x}</li>)}
+              </ul>
+              {n.coverage && <p>{n.coverage}</p>}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="business-section">
+    <div class="container">
+      <h2>Información de Contacto</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-card">
+            <div class="contact-details">
+              <h3>Dirección</h3>
+              <p>{n.address.street}, {n.address.locality}, {n.address.region}{n.address.postalCode ? `, C.P. ${n.address.postalCode}` : ''}</p>
+            </div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-details">
+              <h3>Teléfonos</h3>
+              {(n.phones.length ? n.phones : [n.phoneDisplay ?? n.phone]).map((p) => (
+                <p><a href={`tel:${p.replace(/\s/g, '')}`}>{p}</a></p>
+              ))}
+            </div>
+          </div>
+          {n.email && (
+            <div class="contact-card">
+              <div class="contact-details">
+                <h3>Email</h3>
+                <p><a href={`mailto:${n.email}`}>{n.email}</a></p>
+              </div>
+            </div>
+          )}
+          {n.website && (
+            <div class="contact-card">
+              <div class="contact-details">
+                <h3>Sitio Web</h3>
+                <p><a href={n.website} rel="nofollow noopener" target="_blank">{n.website.replace(/^https?:\/\//, '')}</a></p>
+              </div>
+            </div>
+          )}
+          {n.hoursDisplay.length > 0 && (
+            <div class="contact-card">
+              <div class="contact-details">
+                <h3>Horario de Atención</h3>
+                {n.hoursDisplay.map((h) => <p>{h}</p>)}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {n.faqs.length > 0 && (
+    <section class="business-section">
+      <div class="container">
+        <h2>Preguntas Frecuentes</h2>
+        <div class="faqs-section">
+          {n.faqs.map((f) => (
+            <details class="faq-item">
+              <summary>{f.q}</summary>
+              <div class="faq-answer"><p>{f.a}</p></div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="business-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Contacta a {n.name}</h2>
+        <p>Solicita información o una cotización sin compromiso.</p>
+        <div class="business-cta-buttons">
+          <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+          {n.whatsapp && (
+            <a
+              href={`https://wa.me/52${n.whatsapp.replace(/\D/g, '')}`}
+              class="btn btn-outline"
+              rel="nofollow noopener"
+              target="_blank">Enviar WhatsApp</a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
