@@ -25,6 +25,7 @@ contacto:
   telefono: "+52-55-4732-9810"
   email: "contacto@sepri.mx"
   sitioWeb: "https://sepri.mx"
+  whatsapp: "5215547329810"
 direccion:
   calle: "Avenida Revolución 1267"
   colonia: "Santa Fe"

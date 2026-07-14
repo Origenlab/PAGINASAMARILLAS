@@ -25,6 +25,7 @@ contacto:
   telefono: "+52-442-209-8552"
   email: "ventas@lgacontraincendios.com"
   sitioWeb: "https://lgacontraincendios.com"
+  whatsapp: "5214422098552"
 direccion:
   calle: "Avenida Constituyentes 120"
   colonia: "Santiago de Querétaro"

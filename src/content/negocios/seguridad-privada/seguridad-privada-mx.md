@@ -24,6 +24,7 @@ contacto:
   telefono: "+52-55-2242-5077"
   email: "contacto@seguridadprivadamx.com"
   sitioWeb: "https://seguridadprivadamx.com"
+  whatsapp: "525522425077"
 direccion:
   calle: "Avenida Mario Colin S/N, San Andrés Atenco"
   colonia: "Tlalnepantla de Baz"

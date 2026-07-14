@@ -26,6 +26,7 @@ contacto:
   telefono: "+52-55-2078-0102"
   email: "ventas@bomberos.mx"
   sitioWeb: "https://bombero.mx"
+  whatsapp: "5215520780102"
 direccion:
   calle: "Av. Tamaulipas 150 A-Int. 13"
   colonia: "Colonia Condesa, Cuauhtémoc"

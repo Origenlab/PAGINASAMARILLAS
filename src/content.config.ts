@@ -52,6 +52,10 @@ const negocios = defineCollection({
         telefono: z.string().optional(),
         email: z.string().optional(),
         sitioWeb: z.string().url().optional(),
+        // numero destino del formulario de cotizacion (solo digitos, con lada 52)
+        whatsapp: z.string().regex(/^\d{10,15}$/).optional(),
+        // true = el numero del HTML original era un placeholder inventado
+        whatsappPlaceholder: z.boolean().default(false),
       })
       .default({}),
     direccion: z

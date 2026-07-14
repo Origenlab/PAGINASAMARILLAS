@@ -36,12 +36,13 @@ User-agent: Slurp
 Allow: /
 Crawl-delay: 1
 
-# Bloquear bots maliciosos conocidos
+# Herramientas SEO propias: permitidas (bloquearlas nos ciega en Ahrefs/Semrush)
 User-agent: AhrefsBot
-Disallow: /
+Allow: /
 
 User-agent: SemrushBot
-Disallow: /
+Allow: /
 
+# Bots sin valor para el sitio
 User-agent: DotBot
 Disallow: /

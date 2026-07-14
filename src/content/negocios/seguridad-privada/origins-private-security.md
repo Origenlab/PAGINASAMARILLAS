@@ -25,6 +25,7 @@ contacto:
   telefono: "+52-55-3025-5580"
   email: "josecruz@originsecurity.mx"
   sitioWeb: "https://seguridad-privada.com.mx"
+  whatsapp: "5215530255580"
 direccion:
   calle: "Basiliso Romo Anguiano No. 22 Int. 3"
   colonia: "Col. Industrial"

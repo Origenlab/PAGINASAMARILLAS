@@ -390,7 +390,12 @@ const estrellas = n.rating ? '★'.repeat(Math.round(n.rating.valor)) : '';
               <div class="contact-form-wrapper">
                 {n.formTitulo && <h3 class="form-title">{n.formTitulo}</h3>}
                 {n.formSubtitulo && <p class="form-subtitle">{n.formSubtitulo}</p>}
-                <form class="contact-form" id="contact-form" action={n.formAction} method="post">
+                <form
+                  class="contact-form"
+                  id="contact-form"
+                  data-whatsapp={n.contacto.whatsapp}
+                  data-negocio={n.nombre}
+                >
                   {n.formCampos.map((c) => (
                     <div class="form-group">
                       {c.label && <label for={c.name}>{c.label}</label>}
@@ -414,8 +419,9 @@ const estrellas = n.rating ? '★'.repeat(Math.round(n.rating.valor)) : '';
                     </div>
                   ))}
                   <button type="submit" class="btn btn-primary btn-large">
-                    {n.formBoton ?? 'Enviar'}
+                    {n.formBoton ?? 'Enviar por WhatsApp'}
                   </button>
+                  <p class="form-nota">Se abrirá WhatsApp con tu solicitud ya escrita.</p>
                 </form>
               </div>
             )}
@@ -500,26 +506,76 @@ const estrellas = n.rating ? '★'.repeat(Math.round(n.rating.valor)) : '';
       </section>
     )
   }
-</Layout>
 
-{/*
-  Las pestanas del catalogo existian en el HTML original pero ningun JS las
-  conectaba: eran botones muertos. Se cablean aqui usando el data-category
-  que ya traian los tabs y las tarjetas.
-*/}
-<script>
-  const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
-  const cards = document.querySelectorAll<HTMLElement>('.service-directory-card');
+  {/*
+    Los scripts van DENTRO de <Layout>: si se ponen despues de </Layout>,
+    Astro los emite fuera de </html> y el HTML queda invalido.
 
-  tabs.forEach((tab) => {
-    tab.addEventListener('click', () => {
-      const filtro = tab.dataset.category;
-      tabs.forEach((t) => t.classList.toggle('active', t === tab));
-      cards.forEach((card) => {
-        const cat = card.dataset.category;
-        const visible = filtro === 'todos' || cat === 'todos' || cat === filtro;
-        card.hidden = !visible;
+    Las pestanas del catalogo existian en el HTML original pero ningun JS las
+    conectaba: eran botones muertos. Se cablean aqui con el data-category
+    que ya traian los tabs y las tarjetas.
+  */}
+  <script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>('.category-tab');
+    const cards = document.querySelectorAll<HTMLElement>('.service-directory-card');
+
+    // Una tarjeta puede pertenecer a varias categorias: data-category="bodas sociales".
+    const categoriasDe = (el: HTMLElement) => (el.dataset.category ?? '').trim().split(/\s+/);
+
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const filtro = tab.dataset.category ?? 'todos';
+        tabs.forEach((t) => t.classList.toggle('active', t === tab));
+        cards.forEach((card) => {
+          const cats = categoriasDe(card);
+          card.hidden = !(filtro === 'todos' || cats.includes('todos') || cats.includes(filtro));
+        });
       });
     });
+  </script>
+
+  {/*
+    Los 16 formularios del sitio original no tenian action: el usuario llenaba
+    la cotizacion, pulsaba enviar y no pasaba nada. El lead se perdia.
+    Aqui el submit arma un mensaje y abre WhatsApp con todo ya escrito.
+  */}
+  <script>
+  const form = document.querySelector<HTMLFormElement>('#contact-form');
+
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const numero = form.dataset.whatsapp;
+    if (!numero) return;
+
+    const negocio = form.dataset.negocio ?? '';
+    const datos = new FormData(form);
+
+    // Usa el <label> como etiqueta legible; si no hay, el name del campo.
+    // En los <select> manda el texto visible, no el value ("Boda o Celebración
+    // Social" en vez de "boda").
+    const lineas: string[] = [];
+    for (const [name, valor] of datos.entries()) {
+      let v = String(valor).trim();
+      if (!v) continue;
+
+      const campo = form.querySelector<HTMLElement>(`[name="${name}"]`);
+      if (campo instanceof HTMLSelectElement) {
+        v = campo.selectedOptions[0]?.textContent?.trim() || v;
+      }
+
+      const label = form
+        .querySelector(`label[for="${campo?.id}"]`)
+        ?.textContent?.replace('*', '')
+        .trim();
+      lineas.push(`*${label || name}:* ${v}`);
+    }
+
+    if (!lineas.length) return;
+
+    const mensaje = [`Hola ${negocio}, solicito una cotización.`, '', ...lineas].join('\n');
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank', 'noopener');
   });
-</script>
+  </script>
+</Layout>

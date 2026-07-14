@@ -29,6 +29,7 @@ contacto:
   telefono: "+52-55-4937-5172"
   email: "contacto@redeil.com"
   sitioWeb: "https://redeil.com"
+  whatsapp: "5215549375172"
 direccion:
   calle: "Av. Insurgentes Sur 615 - Piso 6"
   colonia: "Nápoles, Benito Juárez"

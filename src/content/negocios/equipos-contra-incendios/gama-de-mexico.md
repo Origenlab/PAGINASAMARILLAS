@@ -29,6 +29,7 @@ contacto:
   telefono: "+52-55-1543-7164"
   email: "ventas@gamademexico.com"
   sitioWeb: "https://gamademexico.com"
+  whatsapp: "5215515437164"
 direccion:
   calle: "Prolongación Paseo de la Reforma 1015 - Piso 1"
   colonia: "Santa Fe, Contadero, Álvaro Obregón"

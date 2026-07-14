@@ -95,6 +95,33 @@ def inner_md(el):
 
 JSON_ERRORS = []
 SIN_ACTION = []
+WA_PLACEHOLDER = []
+
+
+def wa_desde(soup, sel):
+    """Extrae el numero de un enlace wa.me dentro de sel."""
+    for a in soup.select(sel + ' a[href*="wa.me"]'):
+        m = re.search(r"wa\.me/(\d+)", a.get("href", ""))
+        if m:
+            return m.group(1)
+    return None
+
+
+def wa_sospechoso(num):
+    """Detecta numeros placeholder: 12345678, 87654321, 11111111..."""
+    if not num:
+        return None
+    core = num[-8:]
+    if not core.isdigit():
+        return None
+    d0 = int(core[0])
+    if core == "".join(str((d0 + i) % 10) for i in range(8)):
+        return "secuencia ascendente"
+    if core == "".join(str((d0 - i) % 10) for i in range(8)):
+        return "secuencia descendente"
+    if len(set(core)) <= 2:
+        return "digitos repetidos"
+    return None
 
 
 def _loads_tolerante(raw, ctx=""):
@@ -622,10 +649,20 @@ def process(path):
     if isinstance(same, str):
         same = [same]
 
+    # El WhatsApp del negocio es el del CTA del hero (el de .services-directory-cta
+    # suele ser el del directorio, no el del negocio).
+    wa = wa_desde(soup, ".business-cta-buttons") or wa_desde(soup, ".contact-card")
+    motivo = wa_sospechoso(wa)
+    if motivo:
+        WA_PLACEHOLDER.append(f"{cat}/{slug}: {wa} ({motivo})")
+
     fm["contacto"] = {k: v for k, v in {
         "telefono": first(lb.get("telephone")),
         "email": first(lb.get("email")),
         "sitioWeb": same[0] if same else None,
+        "whatsapp": wa,
+        # marcado para que no se envien leads a un numero inventado
+        "whatsappPlaceholder": True if motivo else None,
     }.items() if v}
 
     addr = first(lb.get("address")) or {}
@@ -839,9 +876,11 @@ def main():
         for e in JSON_ERRORS:
             print(f"   - {e}")
 
-    if SIN_ACTION:
-        print(f"\n!! {len(SIN_ACTION)} formularios SIN action (no envian a ningun lado):")
-        print(f"   {', '.join(SIN_ACTION)}")
+    if WA_PLACEHOLDER:
+        print(f"\n!! {len(WA_PLACEHOLDER)} fichas con WhatsApp PLACEHOLDER (numero inventado):")
+        for w in WA_PLACEHOLDER:
+            print(f"   - {w}")
+        print("   Los formularios de estas fichas enviarian leads a un numero que no existe.")
 
     faltantes = [r for r in rows if r["servicios"] == 0 or r["body_chars"] < 200]
     if faltantes:

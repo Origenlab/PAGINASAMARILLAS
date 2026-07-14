@@ -26,6 +26,7 @@ contacto:
   telefono: "+52-55-3128-1706"
   email: "contacto@inflablesparafiestas.com.mx"
   sitioWeb: "https://inflablesparafiestas.com.mx"
+  whatsapp: "5215531281706"
 direccion:
   calle: "Avenida Paseo de la Reforma 26"
   colonia: "Juárez, Cuauhtémoc"

@@ -76,6 +76,21 @@ def main():
         lo, ln = lds(o), lds(n)
         ok_schema, ok_texto, ok_links = True, True, True
 
+        # --- 0. estructura: nada puede quedar despues de </html> ---
+        raw = open(new_p, encoding="utf-8").read()
+        cierre = raw.rfind("</html>")
+        if cierre == -1:
+            FAILS.append(f"{ficha}: sin </html>")
+            ok_schema = False
+        else:
+            cola = raw[cierre + len("</html>"):].strip()
+            if cola:
+                FAILS.append(
+                    f"{ficha}: {len(cola)} chars DESPUES de </html> (HTML invalido) "
+                    f"-> {cola[:60]}"
+                )
+                ok_schema = False
+
         # --- 1. schema.org LocalBusiness: campos duros ---
         blo, bln = lo.get("LocalBusiness", {}), ln.get("LocalBusiness", {})
         if not bln:

@@ -26,6 +26,7 @@ contacto:
   telefono: "+52-55-3493-4812"
   email: "ventas@meseci.com.mx"
   sitioWeb: "https://meseci.com.mx"
+  whatsapp: "5215534934812"
 direccion:
   calle: "C. Benito Juárez 5B, San Lucas Tepetlacalco"
   colonia: "Tlalnepantla de Baz"

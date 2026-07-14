@@ -29,6 +29,8 @@ contacto:
   telefono: "+52-55-2345-6789"
   email: "contacto@podiumex.com"
   sitioWeb: "https://podiumex.com"
+  whatsapp: "5215523456789"
+  whatsappPlaceholder: true
 direccion:
   calle: "Río Amazonas 22, Col. Renacimiento"
   colonia: "Cuauhtémoc"

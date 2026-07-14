@@ -33,6 +33,8 @@ contacto:
   telefono: "+52-55-8765-4321"
   email: "contacto@rentadeiluminacion.com"
   sitioWeb: "https://rentadeiluminacion.com"
+  whatsapp: "5215587654321"
+  whatsappPlaceholder: true
 direccion:
   calle: "Río Amazonas 74B"
   colonia: "Col. Renacimiento, Cuauhtémoc"

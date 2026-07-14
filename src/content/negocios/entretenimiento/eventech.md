@@ -30,6 +30,7 @@ contacto:
   telefono: "+52-55-4575-2776"
   email: "contacto@eventech.mx"
   sitioWeb: "https://eventech.mx"
+  whatsapp: "5215545752776"
 direccion:
   calle: "01210, Álvaro Obregón"
   colonia: "Álvaro Obregón"

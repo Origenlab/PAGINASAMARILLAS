@@ -25,6 +25,7 @@ contacto:
   telefono: "+52-56-3628-2480"
   email: "contacto@seguridadcondominios.mx"
   sitioWeb: "https://seguridadprivadacondominios.com/"
+  whatsapp: "5215636282480"
 direccion:
   calle: "Enrique Ibsen 40, Polanco III Secc"
   colonia: "Polanco"
