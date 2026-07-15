@@ -341,6 +341,10 @@ resenas:
     texto: "Buen servicio en general. La instalación del CCTV fue rápida y profesional. El único detalle es que a veces tardan en contestar el teléfono, pero siempre responden por WhatsApp."
     rating: 4
     fecha: "Hace 2 meses"
+etiquetas:
+  - "cdmx"
+  - "ssc"
+  - "verificado"
 legacyUrl: "/negocios/seguridad-privada/origins-private-security.html"
 ---
 

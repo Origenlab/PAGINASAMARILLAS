@@ -514,6 +514,9 @@ resenas:
     sitio:
       texto: "podiumex.com"
       href: "https://podiumex.com"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/redeil.html"
 ---
 

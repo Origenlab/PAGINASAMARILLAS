@@ -456,6 +456,9 @@ resenas:
     texto: "Las luces neón personalizadas con nuestro logo fueron el toque perfecto para el lanzamiento de producto. Muy creativos y atentos a los detalles. Definitivamente los volveré a contratar."
     rating: 5
     fecha: "Hace 3 semanas"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/resoil.html"
 ---
 

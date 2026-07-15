@@ -483,6 +483,9 @@ resenas:
     texto: "Trabajamos con ellos para eventos corporativos en nuestro hotel. Equipo confiable y siempre puntuales. Solo sugiero más variedad en acabados de iluminación."
     rating: 4
     fecha: "Gerente de Hotel"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/renta-de-iluminacion.html"
 ---
 

@@ -359,6 +359,10 @@ resenas:
     texto: "Hemos trabajado con ellos en varios eventos corporativos con más de 500 asistentes. Siempre están bien coordinados, el control de acceso es eficiente y nunca hemos tenido problemas. Son especialistas en eventos. Los recomiendo ampliamente."
     rating: 5
     fecha: "Hace 1 mes"
+etiquetas:
+  - "cnsp"
+  - "edomex"
+  - "verificado"
 legacyUrl: "/negocios/seguridad-privada/seguridad-privada-mx.html"
 ---
 

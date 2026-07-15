@@ -508,6 +508,9 @@ resenas:
     texto: "Excelente servicio de renta. Los pódiums de metal son sólidos y elegantes. Solo sugiero más variedad en acabados metálicos."
     rating: 4
     fecha: "Productora de Eventos"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/podiumex.html"
 ---
 

@@ -489,6 +489,9 @@ resenas:
     texto: "Rentamos el Circuito Extremo para el cumpleaños de mi hijo de 10 años. Los 25 niños que asistieron no pararon de jugar. La instalación fue rápida y profesional. Excelente relación calidad-precio. Los recomiendo ampliamente."
     rating: 5
     fecha: "Hace 1 mes"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/inflables-para-fiestas.html"
 ---
 

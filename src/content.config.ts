@@ -223,6 +223,10 @@ const negocios = defineCollection({
     ctaFinalTexto: z.string().optional(),
     ctaFinalBotones: z.array(cta).default([]),
 
+    // Etiquetas para los filtros de la pagina de categoria. Solo se generan
+    // desde datos duros (direccion, badges); nunca adivinando sobre la prosa.
+    etiquetas: z.array(z.string()).default([]),
+
     // migracion: URL vieja .html -> para generar los 301
     legacyUrl: z.string(),
   }),
@@ -262,4 +266,86 @@ const blog = defineCollection({
   }),
 });
 
-export const collections = { negocios, blog };
+// --- coleccion: categorias ---
+// El listado de negocios NO vive aqui: se consulta a la coleccion 'negocios'
+// en tiempo de build. Antes estaba escrito a mano en el HTML, con el conteo
+// ("4 empresas") tambien a mano.
+
+const categorias = defineCollection({
+  loader: glob({ pattern: '*.md', base: './src/content/categorias' }),
+  schema: z.object({
+    slug: z.enum(['seguridad-privada', 'equipos-contra-incendios', 'entretenimiento']),
+    titulo: z.string(),
+    descripcion: z.string(),
+    icono: z.string().optional(),
+    iconoTitulo: z.string().optional(),
+
+    seoTitle: z.string(),
+    metaDescripcion: z.string(),
+    keywords: z.array(z.string()).default([]),
+    og: z
+      .object({
+        titulo: z.string().optional(),
+        descripcion: z.string().optional(),
+        imagen: z.string().optional(),
+      })
+      .optional(),
+
+    busqueda: z
+      .object({
+        placeholder: z.string().optional(),
+        placeholderUbicacion: z.string().optional(),
+        boton: z.string().optional(),
+      })
+      .optional(),
+
+    subcategoriasTitulo: z.string().optional(),
+    subcategorias: z
+      .array(z.object({ texto: z.string(), ancla: z.string(), icono: z.string().optional() }))
+      .default([]),
+
+    resultadosSubtitulo: z.string().optional(),
+    ordenTitulo: z.string().optional(),
+    orden: z.array(z.object({ value: z.string(), texto: z.string() })).default([]),
+
+    filtrosTitulo: z.string().optional(),
+    filtrosLimpiar: z.string().optional(),
+    filtros: z
+      .array(
+        z.object({
+          titulo: z.string().optional(),
+          tipo: z.enum(['checkbox', 'radio', 'switch']).default('checkbox'),
+          abierto: z.boolean().default(false),
+          opciones: z
+            .array(
+              z.object({
+                name: z.string(),
+                value: z.string().optional(),
+                texto: z.string(),
+                estrellas: z.string().optional(),
+                marcado: z.boolean().default(false),
+                // conteo escrito a mano en el HTML original. Se conserva solo
+                // como referencia: el numero que se muestra se recalcula.
+                esperado: z.number().int().optional(),
+              })
+            )
+            .default([]),
+        })
+      )
+      .default([]),
+
+    seoTitulo: z.string().optional(),
+    cta: z
+      .object({
+        titulo: z.string().optional(),
+        texto: z.string().optional(),
+        botonTexto: z.string().optional(),
+        botonHref: z.string().optional(),
+      })
+      .optional(),
+
+    legacyUrl: z.string(),
+  }),
+});
+
+export const collections = { negocios, blog, categorias };

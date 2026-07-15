@@ -514,6 +514,9 @@ resenas:
     texto: "Renté bolas disco con sensor de sonido para un concierto. El efecto sincronizado con la música fue espectacular. ¡Definitivamente volveré a rentar!"
     rating: 5
     fecha: "Hace 3 meses"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/bolas-disco.html"
 ---
 

@@ -493,6 +493,10 @@ resenas:
     sitio:
       texto: "podiumex.com"
       href: "https://podiumex.com"
+etiquetas:
+  - "cdmx"
+  - "elkhart"
+  - "verificado"
 legacyUrl: "/negocios/equipos-contra-incendios/gama-de-mexico.html"
 ---
 

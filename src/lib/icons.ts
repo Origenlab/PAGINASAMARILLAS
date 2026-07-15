@@ -43,3 +43,19 @@ export const icons: Record<string, string> = {
 };
 
 export type IconName = keyof typeof icons;
+
+// Anadidos por extract_categorias.py
+Object.assign(icons, {
+  "escoltas-ejecutivos-2": `<path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path> <circle cx="8.5" cy="7" r="4"></circle> <polyline points="17 11 19 13 23 9"></polyline>`,
+  "seguridad-en-eventos-2": `<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect> <line x1="16" x2="16" y1="2" y2="6"></line> <line x1="8" x2="8" y1="2" y2="6"></line> <line x1="3" x2="21" y1="10" y2="10"></line>`,
+  "monitoreo-y-alarmas": `<rect height="14" rx="2" ry="2" width="20" x="2" y="3"></rect> <line x1="8" x2="16" y1="21" y2="21"></line> <line x1="12" x2="12" y1="17" y2="21"></line>`,
+  "binomios-caninos": `<path d="M10 5.172C10 3.782 8.423 2.679 6.5 3c-2.823.47-4.113 6.006-4 7 .08.703 1.725 1.722 3.656 1 1.261-.472 1.96-1.45 2.344-2.5"></path> <path d="M14.267 5.172c0-1.39 1.577-2.493 3.5-2.172 2.823.47 4.113 6.006 4 7-.08.703-1.725 1.722-3.656 1-1.261-.472-1.855-1.45-2.239-2.5"></path> <path d="M8 14v.5"></path> <path d="M16 14v.5"></path> <path d="M11.25 16.25h1.5L12 17l-.75-.75z"></path> <path d="M4.42 11.247A13.152 13.152 0 0 0 4 14.556C4 18.728 7.582 21 12 21s8-2.272 8-6.444a11.702 11.702 0 0 0-.493-3.309m-2.978-3.481a5.008 5.008 0 0 0-9.058 0"></path>`,
+  "produccion-de-conciertos": `<path d="M9 18V5l12-2v13"></path> <circle cx="6" cy="18" r="3"></circle> <circle cx="18" cy="16" r="3"></circle>`,
+  "produccion-audiovisual": `<polygon points="23 7 16 12 23 17 23 7"></polygon> <rect height="14" rx="2" ry="2" width="15" x="1" y="5"></rect>`,
+  "animacion-y-shows": `<circle cx="12" cy="12" r="10"></circle> <path d="M8 14s1.5 2 4 2 4-2 4-2"></path> <line x1="9" x2="9.01" y1="9" y2="9"></line> <line x1="15" x2="15.01" y1="9" y2="9"></line>`,
+  "equipos-contra-incendios": `<path d="M12 2L2 7l10 5 10-5-10-5z"></path> <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>`,
+  "extintores-portatiles": `<rect height="20" rx="2" ry="2" width="8" x="8" y="2"></rect> <circle cx="12" cy="8" r="2"></circle>`,
+  "sistemas-automaticos": `<path d="M12 2v6m0 0v6m0-6h6m-6 0H6"></path> <circle cx="12" cy="12" r="10"></circle>`,
+  "detectores-de-humo": `<circle cx="12" cy="12" r="10"></circle> <path d="M12 6v6l4 2"></path>`,
+  "senalizacion": `<path d="M10 2v20M4 8l6-6 6 6M4 16l6 6 6-6"></path>`,
+});

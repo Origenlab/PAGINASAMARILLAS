@@ -337,6 +337,10 @@ resenas:
     texto: "Hemos trabajado con SEPRI en más de 15 conciertos. Son expertos en manejo de multitudes, siempre están bien coordinados y responden rápido ante cualquier situación. Su experiencia en eventos masivos es notoria. Excelente equipo."
     rating: 5
     fecha: "Hace 2 semanas"
+etiquetas:
+  - "cdmx"
+  - "ssc"
+  - "verificado"
 legacyUrl: "/negocios/seguridad-privada/sepri.html"
 ---
 

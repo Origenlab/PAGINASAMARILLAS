@@ -492,6 +492,9 @@ resenas:
     texto: "Buen servicio general. Los equipos de audio son de primera calidad. Solo sugiero más variedad en efectos de iluminación."
     rating: 4
     fecha: "Gerente de Hotel"
+etiquetas:
+  - "cdmx"
+  - "verificado"
 legacyUrl: "/negocios/entretenimiento/eventech.html"
 ---
 

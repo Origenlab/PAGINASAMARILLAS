@@ -1,0 +1,407 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+
+export async function getStaticPaths() {
+  const cats = await getCollection('categorias');
+  return cats.map((entry) => ({ params: { slug: entry.data.slug }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const c = entry.data;
+const { Content } = await render(entry);
+
+const SITE = 'https://paginasamarillas.mx';
+const url = `${SITE}/categoria/${c.slug}`;
+
+// El listado sale de la coleccion. Antes estaba escrito a mano en el HTML:
+// dar de alta un negocio obligaba a editar esta pagina.
+const todos = await getCollection('negocios');
+const negocios = todos
+  .filter((n) => n.data.categoria === c.slug)
+  .sort((a, b) => (b.data.rating?.valor ?? 0) - (a.data.rating?.valor ?? 0));
+
+const slugDe = (n: (typeof negocios)[number]) => n.id.split('/')[1];
+
+// Conteo real. El original decia "4 empresas" a mano.
+const total = negocios.length;
+
+// Un filtro solo se muestra si algun negocio lo cumple: mostrar una casilla
+// que no filtra nada es lo que hacia el sitio viejo.
+const cuentaDe = (name: string, value?: string) => {
+  if (!value) return negocios.length;
+  if (name === 'rating') {
+    const min = parseFloat(value);
+    return negocios.filter((n) => (n.data.rating?.valor ?? 0) >= min).length;
+  }
+  return negocios.filter((n) => n.data.etiquetas.includes(value)).length;
+};
+
+const grupos = c.filtros
+  .map((g) => ({
+    ...g,
+    opciones: g.opciones
+      .map((o) => ({ ...o, cuenta: cuentaDe(o.name, o.value) }))
+      .filter((o) => o.cuenta > 0),
+  }))
+  .filter((g) => g.opciones.length > 0);
+---
+
+<Layout
+  title={c.seoTitle}
+  description={c.metaDescripcion}
+  canonical={url}
+  ogTitle={c.og?.titulo}
+  ogDescription={c.og?.descripcion}
+  ogImage={c.og?.imagen}
+  extraCss={['/css/categoria.css']}
+>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: c.titulo,
+      description: c.metaDescripcion,
+      url,
+      inLanguage: 'es-MX',
+      mainEntity: {
+        '@type': 'ItemList',
+        numberOfItems: total,
+        itemListElement: negocios.map((n, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          url: `${SITE}/negocios/${c.slug}/${slugDe(n)}`,
+          name: n.data.nombre,
+        })),
+      },
+    })}
+  />
+
+  <section class="breadcrumbs">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/categorias">Categorías</a></li>
+          <li aria-current="page">{c.titulo}</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="category-hero">
+    <div class="container">
+      <div class="category-header">
+        {
+          c.icono && (
+            <div class="category-icon-large">
+              <Icon name={c.icono} size={48} />
+            </div>
+          )
+        }
+        <div class="category-info">
+          <h1 class="category-title">{c.titulo}</h1>
+          <p class="category-description">{c.descripcion}</p>
+        </div>
+      </div>
+
+      {/*
+        El buscador enviaba a /buscar, que responde 404 desde siempre.
+        Ahora filtra el listado en el cliente, que es lo que el usuario espera.
+      */}
+      {
+        c.busqueda && (
+          <div class="quick-search">
+            <div class="search-group">
+              <input
+                type="search"
+                id="q"
+                placeholder={c.busqueda.placeholder}
+                aria-label={`Buscar en ${c.titulo}`}
+              />
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  {
+    c.subcategorias.length > 0 && (
+      <section class="subcategories">
+        <div class="container">
+          {c.subcategoriasTitulo && <h2 class="section-title-small">{c.subcategoriasTitulo}</h2>}
+          <div class="subcategory-grid">
+            {c.subcategorias.map((s) => (
+              <a class="subcategory-chip" href={`#${s.ancla}`}>
+                <Icon name={s.icono} size={20} />
+                {s.texto}
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="results-section">
+    <div class="container">
+      <div class="results-layout">
+        {
+          grupos.length > 0 && (
+            <aside class="filters-sidebar">
+              <div class="filters-header">
+                <h3>{c.filtrosTitulo ?? 'Filtrar resultados'}</h3>
+                <button class="btn-clear-filters" type="button">{c.filtrosLimpiar ?? 'Limpiar'}</button>
+              </div>
+
+              {grupos.map((g) =>
+                g.tipo === 'switch' ? (
+                  <div class="filter-group">
+                    {g.opciones.map((o) => (
+                      <label class="filter-switch">
+                        <input type="checkbox" name={o.name} value={o.value} />
+                        <span class="switch-slider" />
+                        <span>{o.texto}</span>
+                      </label>
+                    ))}
+                  </div>
+                ) : (
+                  <div class="filter-group">
+                    <button
+                      class:list={['filter-toggle', { active: g.abierto }]}
+                      type="button"
+                      aria-expanded={String(g.abierto)}
+                    >
+                      <span>{g.titulo}</span>
+                      <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                           stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <polyline points="6 9 12 15 18 9" />
+                      </svg>
+                    </button>
+                    <div class="filter-content" style={g.abierto ? '' : 'display: none;'}>
+                      {g.opciones.map((o) => (
+                        <label class:list={[g.tipo === 'radio' ? 'filter-radio' : 'filter-checkbox']}>
+                          <input type={g.tipo} name={o.name} value={o.value} />
+                          {o.estrellas && <span class="stars">{o.estrellas}</span>}
+                          <span>{o.texto}</span>
+                          {/* conteo real, no el numero escrito a mano del HTML viejo */}
+                          <span class="count">({o.cuenta})</span>
+                        </label>
+                      ))}
+                    </div>
+                  </div>
+                )
+              )}
+            </aside>
+          )
+        }
+
+        <div class="results-main">
+          <div class="results-header">
+            <div class="results-info">
+              <h2>
+                <span id="results-count">{total}</span>
+                {' '}{total === 1 ? 'empresa' : 'empresas'} de {c.titulo}
+              </h2>
+              {c.resultadosSubtitulo && <p>{c.resultadosSubtitulo}</p>}
+            </div>
+            {
+              c.orden.length > 0 && (
+                <div class="results-sort">
+                  <label for="sort">{c.ordenTitulo ?? 'Ordenar por:'}</label>
+                  <select class="sort-select" id="sort">
+                    {c.orden.map((o) => (
+                      <option value={o.value}>{o.texto}</option>
+                    ))}
+                  </select>
+                </div>
+              )
+            }
+          </div>
+
+          <div class="business-grid" id="business-grid">
+            {
+              negocios.map((n) => {
+                const d = n.data;
+                const slug = slugDe(n);
+                return (
+                  <article
+                    class="business-card"
+                    data-etiquetas={d.etiquetas.join(' ')}
+                    data-rating={d.rating?.valor ?? 0}
+                    data-nombre={d.nombre.toLowerCase()}
+                    data-resenas={d.rating?.resenas ?? 0}
+                  >
+                    <div class="business-image">
+                      {d.imagen && (
+                        <img src={d.imagen} alt={d.imagenAlt ?? d.nombre} loading="lazy" width="280" height="280" />
+                      )}
+                      {d.badges.length > 0 && (
+                        <div class="business-badges">
+                          {d.badges.map((b) => (
+                            <span class="badge">{b}</span>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div class="business-content">
+                      <div class="business-header">
+                        <h3 class="business-name">
+                          <a href={`/negocios/${c.slug}/${slug}`}>{d.nombre}</a>
+                        </h3>
+                        {d.rating && (
+                          <div class="business-rating">
+                            <div class="stars">{'★'.repeat(Math.round(d.rating.valor))}</div>
+                            <span class="rating-value">{d.rating.valor}</span>
+                            <span class="rating-count">({d.rating.resenas} reseñas)</span>
+                          </div>
+                        )}
+                      </div>
+                      {d.tagline && <p class="business-description">{d.tagline}</p>}
+                      <div class="business-meta">
+                        {d.direccion?.colonia && (
+                          <span class="business-location">
+                            <Icon name="ubicacion" size={16} />
+                            {[d.direccion.colonia, d.direccion.estado].filter(Boolean).join(', ')}
+                          </span>
+                        )}
+                      </div>
+                      <div class="business-actions">
+                        <a href={`/negocios/${c.slug}/${slug}`} class="btn btn-primary">Ver perfil</a>
+                        {d.contacto.telefono && (
+                          <a href={`tel:${d.contacto.telefono.replace(/[^+\d]/g, '')}`} class="btn btn-outline">
+                            Llamar
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </article>
+                );
+              })
+            }
+          </div>
+
+          <p class="results-empty" id="results-empty" hidden>
+            Ningún negocio coincide con esos filtros.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seo-content">
+    <div class="container">
+      <div class="seo-content-wrapper">
+        <article class="seo-article">
+          {c.seoTitulo && <h2>{c.seoTitulo}</h2>}
+          <Content />
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {
+    c.cta && (
+      <section class="business-cta">
+        <div class="container">
+          <div class="cta-content">
+            {c.cta.titulo && <h2 class="cta-title">{c.cta.titulo}</h2>}
+            {c.cta.texto && <p class="cta-description">{c.cta.texto}</p>}
+            {c.cta.botonTexto && (
+              <a class="btn btn-primary btn-large" href={c.cta.botonHref ?? '#registrar'}>
+                {c.cta.botonTexto}
+              </a>
+            )}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  {/*
+    En el sitio original los filtros no filtraban: las tarjetas no tenian
+    ningun atributo y categoria.js solo hacia console.log('Filters cleared').
+    Aqui filtran de verdad contra data-etiquetas / data-rating.
+  */}
+  <script>
+    const grid = document.querySelector<HTMLElement>('#business-grid');
+    if (grid) {
+      const tarjetas = [...grid.querySelectorAll<HTMLElement>('.business-card')];
+      const cuenta = document.querySelector<HTMLElement>('#results-count');
+      const vacio = document.querySelector<HTMLElement>('#results-empty');
+      const busca = document.querySelector<HTMLInputElement>('#q');
+      const orden = document.querySelector<HTMLSelectElement>('#sort');
+      const controles = () =>
+        [...document.querySelectorAll<HTMLInputElement>('.filters-sidebar input')];
+
+      function aplicar() {
+        const activos = controles().filter((i) => i.checked);
+        // agrupa por name: dentro de un grupo es OR, entre grupos es AND
+        const porGrupo = new Map<string, string[]>();
+        for (const i of activos) {
+          if (!porGrupo.has(i.name)) porGrupo.set(i.name, []);
+          porGrupo.get(i.name)!.push(i.value);
+        }
+        const texto = (busca?.value ?? '').trim().toLowerCase();
+
+        let visibles = 0;
+        for (const card of tarjetas) {
+          const etiquetas = (card.dataset.etiquetas ?? '').split(/\s+/);
+          const rating = parseFloat(card.dataset.rating ?? '0');
+
+          let ok = true;
+          for (const [name, valores] of porGrupo) {
+            if (name === 'rating') {
+              ok = valores.some((v) => rating >= parseFloat(v));
+            } else {
+              ok = valores.some((v) => etiquetas.includes(v));
+            }
+            if (!ok) break;
+          }
+          if (ok && texto) ok = (card.dataset.nombre ?? '').includes(texto);
+
+          card.hidden = !ok;
+          if (ok) visibles++;
+        }
+
+        if (cuenta) cuenta.textContent = String(visibles);
+        if (vacio) vacio.hidden = visibles > 0;
+      }
+
+      document.querySelector('.filters-sidebar')?.addEventListener('change', aplicar);
+      busca?.addEventListener('input', aplicar);
+
+      document.querySelector('.btn-clear-filters')?.addEventListener('click', () => {
+        controles().forEach((i) => (i.checked = false));
+        if (busca) busca.value = '';
+        aplicar();
+      });
+
+      orden?.addEventListener('change', () => {
+        const modo = orden.value;
+        const ordenadas = [...tarjetas].sort((a, b) => {
+          if (modo === 'reviews')
+            return +(b.dataset.resenas ?? 0) - +(a.dataset.resenas ?? 0);
+          if (modo === 'name')
+            return (a.dataset.nombre ?? '').localeCompare(b.dataset.nombre ?? '');
+          return +(b.dataset.rating ?? 0) - +(a.dataset.rating ?? 0);
+        });
+        ordenadas.forEach((c) => grid.appendChild(c));
+      });
+
+      // los grupos plegables
+      document.querySelectorAll<HTMLButtonElement>('.filter-toggle').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const abierto = btn.classList.toggle('active');
+          btn.setAttribute('aria-expanded', String(abierto));
+          const cont = btn.nextElementSibling as HTMLElement | null;
+          if (cont) cont.style.display = abierto ? 'block' : 'none';
+        });
+      });
+    }
+  </script>
+</Layout>

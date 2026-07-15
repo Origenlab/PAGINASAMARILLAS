@@ -337,6 +337,10 @@ resenas:
     texto: "El control de acceso con reconocimiento facial es increíble, muy cómodo para los residentes. Las cámaras tienen excelente calidad y el servicio al cliente es de primera. Totalmente satisfecha."
     rating: 5
     fecha: "Hace 3 semanas"
+etiquetas:
+  - "cdmx"
+  - "cnsp"
+  - "verificado"
 legacyUrl: "/negocios/seguridad-privada/seguridad-condominios.html"
 ---
 

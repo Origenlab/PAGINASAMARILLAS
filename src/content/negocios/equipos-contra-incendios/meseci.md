@@ -477,6 +477,9 @@ resenas:
     texto: "Actualización completa del equipo de nuestra estación municipal. BOMBERO MX nos asesoró en cada paso: trajes estructurales, SCBA, cascos, botas y guantes certificados. Todos los productos llegaron con documentación NFPA completa. Profesionales de primer nivel."
     rating: 5
     fecha: "Director de Operaciones, Estación Municipal"
+etiquetas:
+  - "edomex"
+  - "verificado"
 legacyUrl: "/negocios/equipos-contra-incendios/meseci.html"
 ---
 
