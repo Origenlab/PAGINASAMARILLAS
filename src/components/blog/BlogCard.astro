@@ -1,0 +1,42 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import Icon from '../Icon.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const d = post.data;
+const [categoria, slug] = post.id.split('/');
+
+const NOMBRE_CAT: Record<string, string> = {
+  'seguridad-privada': 'Seguridad Privada',
+  eventos: 'Eventos',
+};
+
+const href = `/blog/${categoria}/${slug}`;
+const imagen = d.heroImagen ?? d.imagen;
+---
+<article class="blog-card">
+  <a class="blog-card-image" href={href}>
+    {imagen && <img src={imagen} alt={d.heroImagenAlt ?? d.titulo} loading="lazy" width="400" height="240" />}
+    <span class="blog-category-badge">{d.badge ?? NOMBRE_CAT[categoria] ?? categoria}</span>
+  </a>
+  <div class="blog-card-content">
+    <h3 class="blog-card-title">
+      <a href={href}>{d.titulo}</a>
+    </h3>
+    {
+      d.minutosLectura && (
+        <div class="blog-meta">
+          <span class="blog-reading-time">
+            <Icon name="horario" size={14} />
+            {d.minutosLectura} min
+          </span>
+        </div>
+      )
+    }
+    <p class="blog-card-excerpt">{d.gancho ?? d.descripcion}</p>
+  </div>
+</article>

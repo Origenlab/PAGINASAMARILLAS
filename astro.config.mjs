@@ -26,7 +26,10 @@ export default defineConfig({
   site: 'https://paginasamarillas.mx',
   trailingSlash: 'never',
   build: {
-    format: 'file',
+    // 'preserve': index.astro -> /blog/index.html, y el resto -> /x/y.html.
+    // Con 'file' el indice del blog salia en /blog.html y los 208 enlaces
+    // internos a /blog/ se rompian.
+    format: 'preserve',
   },
   redirects,
   integrations: [sitemap(), mdx()],

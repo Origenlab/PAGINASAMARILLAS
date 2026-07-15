@@ -1,0 +1,111 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import BlogCard from '../../components/blog/BlogCard.astro';
+import BlogSidebar from '../../components/blog/BlogSidebar.astro';
+
+// El indice del HTML original enlazaba 33 de los 51 articulos: los otros 18
+// no eran alcanzables desde ninguna parte del blog. Aqui sale de la coleccion,
+// asi que publicar un articulo basta para que aparezca.
+const posts = (await getCollection('blog')).sort(
+  (a, b) => (b.data.publicado?.getTime() ?? 0) - (a.data.publicado?.getTime() ?? 0)
+);
+
+const SITE = 'https://paginasamarillas.mx';
+const url = `${SITE}/blog/`;
+---
+
+<Layout
+  title="Blog | Páginas Amarillas México"
+  description="Consejos, guías y artículos para hacer crecer tu negocio en México. Seguridad privada, equipos contra incendios y eventos."
+  canonical={url}
+  extraCss={['/css/blog-article.css']}
+>
+  <script
+    type="application/ld+json"
+    slot="head"
+    set:html={JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: 'Blog de Páginas Amarillas México',
+      url,
+      inLanguage: 'es-MX',
+      blogPost: posts.slice(0, 20).map((p) => ({
+        '@type': 'BlogPosting',
+        headline: p.data.headline ?? p.data.titulo,
+        url: `${SITE}/blog/${p.id.split('/')[0]}/${p.id.split('/')[1]}`,
+      })),
+    })}
+  />
+
+  <section class="breadcrumbs">
+    <div class="container">
+      <nav aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <li><a href="/">Inicio</a></li>
+          <li aria-current="page">Blog</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <section class="blog-header">
+    <div class="container">
+      <h1 class="blog-title">Blog</h1>
+      <p class="blog-subtitle">
+        Consejos, guías y artículos para hacer crecer tu negocio en México
+      </p>
+    </div>
+  </section>
+
+  <section class="blog-section">
+    <div class="container">
+      <div class="blog-layout">
+        <div class="blog-main">
+          <p class="blog-count">
+            <span id="blog-count">{posts.length}</span> artículos
+          </p>
+
+          <div class="blog-grid" id="blog-grid">
+            {posts.map((post) => <BlogCard post={post} />)}
+          </div>
+
+          <p class="results-empty" id="blog-empty" hidden>
+            Ningún artículo coincide con esa búsqueda.
+          </p>
+        </div>
+
+        <BlogSidebar />
+      </div>
+    </div>
+  </section>
+
+  {/*
+    La paginacion del original era decorativa: botones "1 2 3 Siguiente" sin
+    href, y /blog/2 respondia 404. Se sustituye por busqueda en el cliente
+    sobre los 51 articulos, que es lo que la gente usa de verdad.
+  */}
+  <script>
+    const grid = document.querySelector<HTMLElement>('#blog-grid');
+    const input = document.querySelector<HTMLInputElement>('#blog-q');
+    const cuenta = document.querySelector<HTMLElement>('#blog-count');
+    const vacio = document.querySelector<HTMLElement>('#blog-empty');
+
+    if (grid && input) {
+      const cards = [...grid.querySelectorAll<HTMLElement>('.blog-card')];
+      const textos = cards.map((c) => (c.textContent ?? '').toLowerCase());
+
+      input.addEventListener('input', () => {
+        const q = input.value.trim().toLowerCase();
+        let visibles = 0;
+        cards.forEach((c, i) => {
+          const ok = !q || textos[i].includes(q);
+          c.hidden = !ok;
+          if (ok) visibles++;
+        });
+        if (cuenta) cuenta.textContent = String(visibles);
+        if (vacio) vacio.hidden = visibles > 0;
+      });
+    }
+  </script>
+</Layout>

@@ -1,0 +1,98 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  categoriaActiva?: string;
+}
+const { categoriaActiva } = Astro.props;
+
+const posts = await getCollection('blog');
+
+// Conteos calculados. En el HTML original decia "Seguridad Privada 12"
+// escrito a mano, cuando en realidad hay 48.
+const NOMBRE_CAT: Record<string, string> = {
+  'seguridad-privada': 'Seguridad Privada',
+  eventos: 'Eventos',
+};
+
+const categorias = [...new Set(posts.map((p) => p.data.categoria))]
+  .map((slug) => ({
+    slug,
+    nombre: NOMBRE_CAT[slug] ?? slug,
+    total: posts.filter((p) => p.data.categoria === slug).length,
+  }))
+  .sort((a, b) => b.total - a.total);
+
+// Populares: los que mas FAQ y contenido tienen es un proxy pobre; se usa
+// el orden por fecha de publicacion y, a falta de ella, el titulo.
+const populares = [...posts]
+  .sort((a, b) => (b.data.publicado?.getTime() ?? 0) - (a.data.publicado?.getTime() ?? 0))
+  .slice(0, 5);
+---
+{/*
+  El widget de Newsletter del original no se reproduce: su <form> no tenia
+  action, asi que recogia el correo y lo tiraba. Un formulario que finge
+  suscribir a alguien es peor que no tenerlo. Se puede reponer en cuanto
+  haya un destino real (Mailchimp, Brevo, un webhook...).
+*/}
+<aside class="blog-sidebar">
+  <div class="blog-widget">
+    <h3 class="blog-widget-title">Buscar</h3>
+    <div class="blog-search">
+      <input
+        type="search"
+        id="blog-q"
+        class="blog-search-input"
+        placeholder="Buscar artículos..."
+        aria-label="Buscar artículos"
+      />
+    </div>
+  </div>
+
+  <div class="blog-widget">
+    <h3 class="blog-widget-title">Categorías</h3>
+    <ul class="blog-categories-list">
+      {
+        categorias.map((c) => (
+          <li>
+            <a
+              href={`/blog/categorias/${c.slug}`}
+              class:list={[{ active: c.slug === categoriaActiva }]}
+            >
+              {c.nombre}
+              <span class="count">{c.total}</span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+
+  <div class="blog-widget">
+    <h3 class="blog-widget-title">Artículos Recientes</h3>
+    <ul class="blog-popular-list">
+      {
+        populares.map((p) => {
+          const [cat, slug] = p.id.split('/');
+          return (
+            <li class="blog-popular-post">
+              <a href={`/blog/${cat}/${slug}`}>
+                {(p.data.heroImagen ?? p.data.imagen) && (
+                  <img
+                    class="blog-popular-thumb"
+                    src={p.data.heroImagen ?? p.data.imagen}
+                    alt=""
+                    loading="lazy"
+                    width="80"
+                    height="60"
+                  />
+                )}
+                <span class="blog-popular-title">{p.data.titulo}</span>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</aside>
