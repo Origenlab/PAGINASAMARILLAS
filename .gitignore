@@ -19,3 +19,5 @@ n8n-workflows/.env*
 
 # Sitio legacy pre-Astro (sigue en el historial de git)
 _html_backup/
+*.log
+.wrangler
