@@ -1,0 +1,96 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import PageHero from '@components/PageHero.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { site } from '@config/site';
+import { breadcrumb, jsonLdScript } from '@lib/seo';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0),
+);
+
+/* Categorías del blog presentes en el contenido */
+const blogCats = [...new Set(posts.map((p) => p.id.split('/')[0]))].map((slug) => ({
+  slug,
+  name: posts.find((p) => p.id.split('/')[0] === slug)!.data.categoryName,
+}));
+
+const url = `${site.url}/blog/`;
+const extraHead = `<script type="application/ld+json">${jsonLdScript(
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: 'Blog', url },
+  ]),
+)}</script>`;
+---
+
+<Layout
+  title={`Blog — ${site.name} | Guías y Consejos para Negocios`}
+  description="Guías, consejos y artículos sobre negocios en México: seguridad privada, eventos, equipos contra incendios y más."
+  canonical={url}
+  extraHead={extraHead}
+>
+<Breadcrumbs items={[{ label: 'Blog' }]} />
+
+  <PageHero
+    kicker="Blog"
+    titleHtml='Guías y artículos <span class="highlight">del directorio</span>'
+    subtitle="Consejos prácticos, comparativas y reseñas para elegir bien un servicio en México."
+  />
+
+
+  <section class="blog-index">
+    <div class="container">
+
+      <div class="blog-filters" role="group" aria-label="Filtrar artículos por categoría">
+        <button type="button" class="is-active" data-filter="all">Todos ({posts.length})</button>
+        {blogCats.map((c) => (
+          <button type="button" data-filter={c.slug}>
+            {c.name} ({posts.filter((p) => p.id.split('/')[0] === c.slug).length})
+          </button>
+        ))}
+      </div>
+
+      <div class="blog-grid" id="blogGrid">
+        {posts.map((entry) => {
+          const [categoria, slug] = entry.id.split('/');
+          const href = `/blog/${categoria}/${slug}`;
+          const d = entry.data;
+          return (
+            <article class="blog-card" data-cat={categoria}>
+              {d.image && (
+                <a href={href} class="blog-card-image" aria-label={d.title}>
+                  <img src={d.image} alt={d.title} width="400" height="225" loading="lazy" />
+                </a>
+              )}
+              <div class="blog-card-body">
+                <span class="blog-card-category">{d.categoryName}</span>
+                <h2><a href={href}>{d.title}</a></h2>
+                <p>{d.description}</p>
+                <a href={href} class="blog-card-link">Leer más →</a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (function () {
+      var buttons = document.querySelectorAll('.blog-filters button');
+      var cards = document.querySelectorAll('#blogGrid .blog-card');
+      buttons.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          buttons.forEach(function (b) { b.classList.remove('is-active'); });
+          btn.classList.add('is-active');
+          var f = btn.dataset.filter;
+          cards.forEach(function (card) {
+            card.style.display = (f === 'all' || card.dataset.cat === f) ? '' : 'none';
+          });
+        });
+      });
+    })();
+  </script>
+</Layout>

@@ -1,0 +1,99 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { site } from '@config/site';
+import { article, breadcrumb, jsonLdScript, type JsonLd } from '@lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  return posts.map((entry) => {
+    const [categoria, slug] = entry.id.split('/');
+    return { params: { categoria, slug }, props: { entry } };
+  });
+}
+
+const { entry } = Astro.props;
+const p = entry.data;
+const { Content } = await render(entry);
+
+const [categoria, slug] = entry.id.split('/');
+const url = `${site.url}/blog/${categoria}/${slug}`;
+const ogImage = p.image
+  ? p.image.startsWith('http')
+    ? p.image
+    : `${site.url}${p.image}`
+  : undefined;
+const iso = (d?: Date) => (d ? d.toISOString().slice(0, 10) : undefined);
+
+const jsonld: JsonLd[] = [
+  article({
+    title: p.title,
+    description: p.description,
+    url,
+    image: ogImage,
+    author: p.author,
+    datePublished: iso(p.publishDate),
+    dateModified: iso(p.updatedDate),
+  }),
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: 'Blog', url: `${site.url}/blog/` },
+    { name: p.title, url },
+  ]),
+];
+
+const keywords = p.keywords.join(', ');
+const extraHead = [
+  keywords ? `<meta name="keywords" content="${keywords}">` : '',
+  `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`,
+].join('\n');
+---
+
+<Layout
+  title={`${p.title} | ${site.shortName}`}
+  description={p.description}
+  canonical={url}
+  ogTitle={p.title}
+  ogType="article"
+  ogImage={ogImage}
+  extraHead={extraHead}
+>
+  <Breadcrumbs items={[
+    { label: 'Blog', href: '/blog/' },
+    { label: p.categoryName, href: `/blog/categorias/${categoria}` },
+    { label: p.title },
+  ]} />
+
+  <article class="blog-article">
+    <div class="container article-container">
+      <header class="article-header">
+        <span class="article-category">{p.categoryName}</span>
+        <h1>{p.title}</h1>
+        <p class="article-lead">{p.description}</p>
+        {p.publishDate && (
+          <time datetime={iso(p.publishDate)}>
+            {p.publishDate.toLocaleDateString('es-MX', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+            })}
+          </time>
+        )}
+      </header>
+
+      {p.image && (
+        <img class="article-hero" src={p.image} alt={p.title} width="1200" height="630" />
+      )}
+
+      <div class="article-content">
+        <Content />
+      </div>
+
+      <footer class="article-footer">
+        <a href="/blog/" class="btn btn-outline">← Volver al blog</a>
+      </footer>
+    </div>
+  </article>
+</Layout>
+

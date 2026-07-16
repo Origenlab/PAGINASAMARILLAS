@@ -1,0 +1,127 @@
+---
+/**
+ * Hero homologado del sitio (mismo diseño que el index):
+ * 2 columnas — izquierda: kicker + título + subtítulo (+ meta),
+ * derecha: panel de búsqueda funcional con populares.
+ * Fondo ink con halo amarillo y grid punteado (clases .hero).
+ */
+import { getCollection } from 'astro:content';
+import { categories } from '@config/site';
+
+interface Props {
+  kicker: string;
+  /** Título como HTML (permite <span class="highlight">) */
+  titleHtml: string;
+  subtitle?: string;
+}
+
+const { kicker, titleHtml, subtitle } = Astro.props;
+
+const negocios = await getCollection('negocios');
+const searchIndex = [
+  ...categories.map((c) => ({
+    n: c.name,
+    c: 'Categoría',
+    u: `/categoria/${c.slug}`,
+  })),
+  ...negocios.map((e) => {
+    const [cat, slug] = e.id.split('/');
+    return {
+      n: e.data.name,
+      c: e.data.categoryName,
+      u: `/negocios/${cat}/${slug}`,
+      k: e.data.services.map((s) => s.name).join(' ').toLowerCase(),
+    };
+  }),
+];
+---
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-col-text">
+        <span class="hero-kicker">{kicker}</span>
+        <h1 class="hero-title" set:html={titleHtml} />
+        {subtitle && <p class="hero-subtitle">{subtitle}</p>}
+        <slot name="meta" />
+      </div>
+
+      <div class="hero-col-search">
+        <form class="search-form" role="search" id="searchForm" autocomplete="off">
+          <div class="search-box">
+            <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <input type="text" id="searchInput" placeholder="Busca una empresa, servicio o categoría…" aria-label="Buscar en el directorio">
+            <button type="submit" class="btn btn-primary">Buscar</button>
+          </div>
+          <div class="search-results" id="searchResults" role="listbox" aria-label="Resultados de búsqueda"></div>
+          <div class="popular-searches">
+            <span class="popular-label">Popular:</span>
+            {categories.map((c) => (
+              <a href={`/categoria/${c.slug}`}>{c.name}</a>
+            ))}
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline define:vars={{ searchIndex }}>
+  (function () {
+    var input = document.getElementById('searchInput');
+    var box = document.getElementById('searchResults');
+    var form = document.getElementById('searchForm');
+    if (!input || !box || !form) return;
+
+    var norm = function (s) {
+      return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+    };
+
+    function search(q) {
+      q = norm(q.trim());
+      if (q.length < 2) return [];
+      return searchIndex.filter(function (item) {
+        return norm(item.n).includes(q) ||
+               norm(item.c).includes(q) ||
+               (item.k && item.k.includes(q));
+      }).slice(0, 8);
+    }
+
+    function render(results, q) {
+      if (!q || q.trim().length < 2) {
+        box.classList.remove('open');
+        box.innerHTML = '';
+        return;
+      }
+      if (!results.length) {
+        box.innerHTML = '<div class="sr-empty">Sin resultados para «' + q.replace(/</g, '&lt;') + '». Explora las <a href="/categorias" style="font-weight:600;">categorías</a>.</div>';
+        box.classList.add('open');
+        return;
+      }
+      box.innerHTML = results.map(function (r) {
+        return '<a href="' + r.u + '" role="option"><span class="sr-name">' + r.n + '</span><span class="sr-cat">' + r.c + '</span></a>';
+      }).join('');
+      box.classList.add('open');
+    }
+
+    input.addEventListener('input', function () {
+      render(search(input.value), input.value);
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var results = search(input.value);
+      if (results.length) {
+        window.location.href = results[0].u;
+      } else {
+        window.location.href = '/categorias';
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!form.contains(e.target)) box.classList.remove('open');
+    });
+  })();
+</script>

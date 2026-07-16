@@ -1,18 +1,22 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { site } from '@config/site';
 ---
 
 <Layout
-  title="Página no encontrada - Páginas Amarillas México"
-  description="La página que buscas no existe. Regresa al inicio de Páginas Amarillas México."
-  canonical="https://paginasamarillas.mx/404"
+  title="Página no encontrada — Pamari"
+  description="La página que buscas no existe. Regresa al inicio de Pamari."
+  canonical={`${site.url}/404`}
 >
-  <section style="text-align:center;padding:6rem 2rem;">
+  <section class="error-page">
     <div class="container">
-      <h1 style="font-size:4rem;color:var(--color-primary);margin-bottom:1rem;">404</h1>
-      <h2 style="font-size:1.5rem;color:var(--color-gray-900);margin-bottom:1rem;">Página no encontrada</h2>
-      <p style="color:var(--color-gray-600);margin-bottom:2rem;">Lo sentimos, la página que buscas no existe o ha sido movida.</p>
-      <a href="/" class="btn btn-primary">Ir al Inicio</a>
+      <div class="error-code">404</div>
+      <h2>Página no encontrada</h2>
+      <p>La página que buscas no existe o fue movida. Prueba desde el inicio o explora las categorías del directorio.</p>
+      <div class="error-actions">
+        <a href="/" class="btn btn-primary btn-lg">Ir al inicio</a>
+        <a href="/categorias" class="btn btn-outline btn-lg">Ver categorías</a>
+      </div>
     </div>
   </section>
 </Layout>

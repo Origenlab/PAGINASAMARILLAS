@@ -1,0 +1,46 @@
+---
+/**
+ * Card de categoría "Próximamente".
+ * Misma estructura y diseño que las cards de categorías activas
+ * (imagen/placeholder + badge + título + descripción + servicios + meta).
+ */
+import { site, type UpcomingCategory } from '@config/site';
+import { icons } from '@lib/icons';
+
+interface Props {
+  category: UpcomingCategory;
+}
+
+const { category: cat } = Astro.props;
+const registerMail = `mailto:${site.email}?subject=${encodeURIComponent(`Registrar mi empresa de ${cat.name} — Pamari`)}`;
+---
+
+<a href={registerMail} class="category-card-featured category-card-upcoming">
+  <div class="category-card-image category-card-placeholder">
+    <div class="category-placeholder-icon">
+      <svg
+        width="56"
+        height="56"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="#FFC700"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
+        set:html={icons[cat.icon] ?? icons.tech}
+      />
+    </div>
+    <div class="category-card-overlay"></div>
+    <span class="category-card-count-badge category-card-badge-soon">Próximamente</span>
+  </div>
+  <div class="category-card-content">
+    <h3 class="category-card-title">{cat.name}</h3>
+    <p class="category-card-description">{cat.description}</p>
+    <p class="category-card-services">{cat.services}</p>
+    <div class="category-card-meta">
+      <span class="category-card-count">Abre pronto</span>
+      <span class="category-card-arrow">Registrar mi negocio <span aria-hidden="true">→</span></span>
+    </div>
+  </div>
+</a>

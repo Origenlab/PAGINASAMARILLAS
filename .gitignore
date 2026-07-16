@@ -13,3 +13,6 @@ dist
 *.local
 n8n-workflows/.env*
 !n8n-workflows/.env.example
+# macOS
+.DS_Store
+**/.DS_Store
