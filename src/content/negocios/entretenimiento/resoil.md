@@ -1,8 +1,8 @@
 ---
 name: "RESOIL"
 categoryName: "Entretenimiento"
-title: "RESOIL - Renta de Sonido e Iluminación CDMX | 10+ Años Experiencia"
-description: "➤ Renta de sonido e iluminación profesional para eventos en CDMX. Guirnaldas LED, bocinas, luces neón. Instalación incluida. 10+ años de experiencia. ☎ 55 1234 5678"
+title: "RESOIL | Renta de Sonido e Iluminación en CDMX"
+description: "➤ Renta de sonido e iluminación para eventos en CDMX. Guirnaldas LED, bocinas y luces neón. Instalación incluida. ☎ 55 1234 5678"
 keywords:
   - "renta sonido cdmx"
   - "renta iluminación eventos"

@@ -1,8 +1,8 @@
 ---
 name: "GAMA DE MÉXICO"
 categoryName: "Equipos Contra Incendios"
-title: "GAMA DE MÉXICO - Equipos Contra Incendios CDMX | Distribuidores Autorizados Elkhart Brass"
-description: "Sistemas contra incendios profesionales, extintores certificados y equipo para bomberos. Distribuidores autorizados Elkhart Brass. Análisis de riesgo incluido. ☎ 55 1543 7164"
+title: "Gama de México | Equipos Contra Incendios CDMX"
+description: "Sistemas contra incendios, extintores certificados y equipo para bomberos en CDMX. Distribuidor Elkhart Brass. ☎ 55 1543 7164"
 keywords:
   - "equipos contra incendios cdmx"
   - "extintores certificados"

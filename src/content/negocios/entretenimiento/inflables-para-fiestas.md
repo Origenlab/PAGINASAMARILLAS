@@ -1,8 +1,8 @@
 ---
 name: "INFLAPY"
 categoryName: "Entretenimiento"
-title: "INFLABLES PARA FIESTAS - Renta de Inflables CDMX INFLAPY | Servicio Todo Incluido"
-description: "➤ INFLAPY: Renta de inflables en las 16 alcaldías CDMX. Castillo Blanco para bodas, circuitos extremos, temáticos. Instalación, traslado y desmontaje incluidos. ☎ 55 3128 1706"
+title: "INFLAPY | Renta de Inflables para Fiestas en CDMX"
+description: "➤ INFLAPY: renta de inflables en las 16 alcaldías de CDMX. Castillos, circuitos extremos y temáticos. Instalación incluida. ☎ 55 3128 1706"
 keywords:
   - "renta inflables cdmx"
   - "inflapy"

@@ -1,13 +1,22 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+/**
+ * Guards SEO — rompen el build si un title/description se pasa de largo.
+ * Google trunca el title ~60 chars y la description ~160. Antes de este guard
+ * las 16 fichas estaban entre 61 y 92 chars, o sea truncadas en el SERP.
+ * El title es el final: los templates ya NO concatenan la marca.
+ */
+const seoTitle = z.string().max(60, 'title SEO: máximo 60 caracteres (Google lo trunca)');
+const seoDescription = z.string().max(160, 'meta description: máximo 160 caracteres');
+
 const negocios = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/negocios' }),
   schema: z.object({
     name: z.string(),
     categoryName: z.string(),
-    title: z.string(),
-    description: z.string(),
+    title: seoTitle,
+    description: seoDescription,
     keywords: z.array(z.string()).default([]),
     slogan: z.string().optional(),
     tagline: z.string().optional(),
@@ -64,8 +73,8 @@ const negocios = defineCollection({
 const blog = defineCollection({
   loader: glob({ pattern: '**/*.{md,mdx}', base: './src/content/blog' }),
   schema: z.object({
-    title: z.string(),
-    description: z.string(),
+    title: seoTitle,
+    description: seoDescription,
     categoryName: z.string(),
     keywords: z.array(z.string()).default([]),
     image: z.string().optional(),

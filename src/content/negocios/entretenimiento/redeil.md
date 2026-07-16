@@ -1,7 +1,7 @@
 ---
 name: "REDEIL"
 categoryName: "Entretenimiento"
-title: "REDEIL - Renta de Iluminación y Sonido para Eventos CDMX | Audio Profesional"
+title: "REDEIL | Renta de Iluminación y Sonido en CDMX"
 description: "Renta de iluminación LED, audio profesional y equipos para eventos en CDMX. Especialistas en bodas, XV años y eventos corporativos. +10 años de experiencia."
 keywords:
   - "renta iluminación eventos cdmx"

@@ -1,8 +1,8 @@
 ---
 name: "BOMBERO MX"
 categoryName: "Equipos Contra Incendios"
-title: "BOMBERO MX - Equipo para Bomberos CDMX | EPP Certificado NFPA"
-description: "Venta de equipo profesional para bomberos en México. Trajes, cascos, botas, SCBA, herramientas y EPP certificado NFPA. Asesoría personalizada. Condesa, CDMX ☎️ 55 2078 0102"
+title: "Bombero MX | Equipo y EPP para Bomberos en CDMX"
+description: "Venta de equipo para bomberos en CDMX: trajes, cascos, botas, SCBA y EPP certificado NFPA. Asesoría personalizada. ☎️ 55 2078 0102"
 keywords:
   - "equipo para bomberos"
   - "venta equipos bomberos méxico"

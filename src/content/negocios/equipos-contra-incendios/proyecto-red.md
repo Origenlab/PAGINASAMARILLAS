@@ -1,8 +1,8 @@
 ---
 name: "PROYECTO RED"
 categoryName: "Equipos Contra Incendios"
-title: "PROYECTO RED - Directorio de Equipos Contra Incendios México | Proveedores Verificados"
-description: "Plataforma integral de equipos contra incendios en México. Conectamos empresas con proveedores certificados. Extintores, sistemas, señalización y más. Reforma, CDMX ☎️ info@proyectored.com.mx"
+title: "Proyecto Red | Equipos Contra Incendios en México"
+description: "Equipos contra incendios en México: extintores, sistemas y señalización de proveedores certificados. Reforma, CDMX."
 keywords:
   - "directorio equipos contra incendios méxico"
   - "plataforma proveedores certificados"

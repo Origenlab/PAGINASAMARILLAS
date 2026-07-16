@@ -1,5 +1,5 @@
 ---
-title: "Renta de Audio Profesional para Eventos en CDMX: Guía Completa 2025"
+title: "Renta de Audio Profesional para Eventos en CDMX"
 description: "Guía completa sobre renta de audio profesional para eventos en CDMX. Sistemas JBL y QSC para bodas, XV años, fiestas y eventos corporativos. Cotiza con REDEIL."
 categoryName: "Eventos"
 keywords: ["renta audio profesional cdmx", "sonido para eventos", "bocinas para bodas", "audio para fiestas", "renta sonido xv años", "sistemas jbl qsc eventos", "redeil audio"]

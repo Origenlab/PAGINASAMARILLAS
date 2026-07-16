@@ -1,8 +1,8 @@
 ---
 name: "Seguridad Privada Condominios"
 categoryName: "Seguridad Privada"
-title: "Seguridad Privada Condominios - Expertos en Seguridad Residencial CDMX | Control Biométrico"
-description: "➤ Especialistas en seguridad para condominios y fraccionamientos. Control biométrico de accesos, vigilancia 24/7, monitoreo CCTV. 10+ años de experiencia. ☎ 56 3628 2480"
+title: "Seguridad Condominios MX | Seguridad Residencial CDMX"
+description: "➤ Seguridad para condominios y fraccionamientos: control biométrico, vigilancia 24/7 y monitoreo CCTV. ☎ 56 3628 2480"
 keywords:
   - "seguridad privada condominios cdmx"
   - "control de acceso biométrico"

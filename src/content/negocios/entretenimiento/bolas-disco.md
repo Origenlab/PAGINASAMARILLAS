@@ -1,7 +1,7 @@
 ---
 name: "BOLAS DISCO"
 categoryName: "Entretenimiento"
-title: "BOLAS DISCO - Fabricación y Venta de Bolas Disco en CDMX | BOLDIS"
+title: "BOLDIS | Fabricación y Venta de Bolas Disco en CDMX"
 description: "Bolas disco de alta calidad en CDMX. Desde pequeñas hasta gigantes, con LED y motor. Renta y venta con instalación profesional."
 keywords:
   - "bolas disco cdmx"

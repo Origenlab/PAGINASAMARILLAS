@@ -1,8 +1,8 @@
 ---
 name: "GRUPO MESECI"
 categoryName: "Equipos Contra Incendios"
-title: "GRUPO MESECI - Protección Contra Incendios CDMX | Servicio Integral 360°"
-description: "Servicio integral 360° en protección contra incendios. Extintores, equipamiento para bomberos, sistemas rociadores y componentes certificados. 2 sucursales en CDMX y Edomex ☎️ 55 3493 4812"
+title: "Grupo MESECI | Protección Contra Incendios CDMX"
+description: "Protección contra incendios en CDMX y Edomex: extintores, equipo para bomberos y sistemas rociadores certificados. ☎️ 55 3493 4812"
 keywords:
   - "protección contra incendios"
   - "extintores méxico"

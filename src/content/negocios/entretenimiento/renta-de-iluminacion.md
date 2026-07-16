@@ -1,7 +1,7 @@
 ---
 name: "RENTA DE ILUMINACIÓN"
 categoryName: "Entretenimiento"
-title: "RENTA DE ILUMINACIÓN - Iluminación y Audio para Eventos CDMX | REDEIL"
+title: "Renta de Iluminación y Audio para Eventos en CDMX"
 description: "Renta de iluminación LED, audio profesional y efectos especiales para eventos en CDMX. Guirnaldas, neón, Sky Tracker, cabezas móviles y más."
 keywords:
   - "renta iluminación cdmx"
