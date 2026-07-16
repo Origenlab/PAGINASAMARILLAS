@@ -16,6 +16,13 @@ Directorio de empresas en México. Astro 6 + Markdown (content collections), est
 - Si una categoría se ve distinta, el bug está en los datos, no en el template: falta `seoIntro` en `site.ts`, o faltan `featured: true` / `summary` / `gallery` (3 imágenes) en las fichas `.md`.
 - Toda ficha de negocio lleva `featured: true` + `summary` + `gallery` de 3 imágenes reales distintas. Sin eso la categoría se queda en puro grid y rompe el template.
 
+## REGLA DE TEMPLATE: `/negocios/seguridad-privada/origins-private-security` es el canónico
+
+- **Toda ficha de negocio se ve igual a esa.** Contrato completo en `docs/TEMPLATE-NEGOCIO.md`.
+- El `h1` (`heroTitle`) **nunca repite el nombre de la empresa** — ya se imprime arriba en `.bh-brand`. Lleva keyword comercial (`renta de pódiums`, no `Entretenimiento`), `<span class="highlight">` sobre el diferenciador y ciudad real (`CDMX`, no la colonia).
+- `heroIntro` = exactamente 2 párrafos equilibrados (~55-75 palabras c/u). El fallback (`summary` + `coverage`) sirve para no romper, no como estado final.
+- `sectors` ≥ 6 en toda ficha: sin él, "Cobertura y Sectores" pierde una columna.
+
 ## Otras reglas de diseño
 
 - Design system: un solo archivo `public/css/style.css` (tokens al inicio). No crear CSS nuevos.

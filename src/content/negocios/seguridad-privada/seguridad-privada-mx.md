@@ -94,6 +94,10 @@ faqs:
     a: "Contamos con equipos de respuesta rápida en las principales zonas metropolitanas con tiempos de respuesta menores a 15-20 minutos. En zonas foráneas, coordinamos con autoridades locales y nuestro personal en sitio para atención inmediata mientras llega apoyo adicional."
   - q: "¿Ofrecen servicios para eventos de un solo día?"
     a: "Sí, ofrecemos servicios de seguridad para eventos únicos desde 1 día. Incluye control de acceso, vigilancia perimetral, revisión de bolsos, coordinación de estacionamiento y personal capacitado en manejo de multitudes. Recomendamos cotizar con al menos 1 semana de anticipación."
+heroTitle: 'Seguridad privada con <span class="highlight">cobertura en toda la República</span> para condominios, industria y eventos'
+heroIntro:
+  - "Operar en varias plazas del país normalmente significa contratar un proveedor distinto en cada una, con estándares que no coinciden. Desde su base en Tlalnepantla, Estado de México, Seguridad Privada MX resuelve eso con cobertura en toda la República Mexicana: más de 8 años de operación, 300 elementos certificados y coordinación central de operaciones bajo un mismo protocolo."
+  - "El esquema se adapta al riesgo, no al revés: vigilancia permanente para condominios, corporativos, comercios e industria, o servicio por evento cuando la necesidad es puntual. Todo se apoya en monitoreo 24/7, CCTV y control de acceso, con personal certificado ante el CNSP. El primer paso es una evaluación de tus instalaciones y una cotización por plaza."
 summary: "Seguridad Privada MX ofrece protección integral con cobertura en toda la República Mexicana desde su base en Tlalnepantla, Estado de México. Con más de 8 años de operación, combina guardias certificados con tecnología de punta: monitoreo 24/7, CCTV, control de acceso y coordinación central de operaciones. Atiende condominios, eventos, corporativos, comercios e industria con esquemas flexibles — desde vigilancia permanente hasta servicios por evento — siempre bajo su lema: proteger lo que más valoras con confianza y excelencia."
 gallery:
   - "/img/img-seguridad-privada/grupo-guardias-edificio.webp"

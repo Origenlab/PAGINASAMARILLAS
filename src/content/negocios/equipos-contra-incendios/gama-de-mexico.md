@@ -50,6 +50,14 @@ areaServed:
   - "Ciudad de México"
   - "Estado de México"
 coverage: "Servicio profesional en toda CDMX y Estado de México"
+sectors:
+  - "Edificios Corporativos y Oficinas"
+  - "Plantas Industriales y Manufactura"
+  - "Desarrollos Inmobiliarios y Vivienda Vertical"
+  - "Bodegas y Centros de Distribución"
+  - "Hoteles y Centros Comerciales"
+  - "Escuelas e Instituciones Educativas"
+  - "Cocinas Comerciales y Restaurantes"
 whyUs:
   - "Distribuidores Autorizados Elkhart Brass marca líder mundial con más de 100 años fabricando equipos contra incendios certificados"
   - "Soluciones Integrales no vendemos productos aislados, diseñamos sistemas completos adaptados a tu riesgo específico"
@@ -79,6 +87,10 @@ faqs:
     a: "Sí, somos distribuidores autorizados de Elkhart Brass, marca estadounidense líder mundial en equipos contra incendios con más de 100 años de experiencia. Elkhart Brass fabrica componentes certificados UL/FM utilizados por departamentos de bomberos profesionales en todo el mundo: monitores de agua, boquillas especializadas, válvulas, hidrantes y herrajes de la más alta calidad. Esta certificación nos permite ofrecer productos originales, garantía de fábrica, refacciones genuinas y soporte técnico directo. Además manejamos otras marcas certificadas para detectores, rociadores y extintores que cumplen normatividad mexicana e internacional."
   - q: "¿Cómo se implementa un sistema contra incendios sin interrumpir las operaciones de mi negocio?"
     a: "Implementamos sistemas contra incendios mediante metodología no invasiva diseñada para minimizar impacto operativo. Trabajamos en horarios nocturnos, fines de semana o por etapas según sus necesidades. La instalación de detectores y rociadores se coordina con áreas inactivas primero. Las redes hidráulicas se planifican para utilizar ductos existentes cuando es posible. Los extintores y gabinetes se colocan estratégicamente sin obstruir circulación. Todo el proyecto se planifica con cronograma detallado acordado con su equipo. El análisis previo identifica la mejor estrategia de implementación. Empresas operando 24/7 reciben atención especial con instalación modular por zonas."
+heroTitle: 'Sistemas contra incendios y <span class="highlight">extintores certificados UL/FM</span> en Santa Fe, CDMX'
+heroIntro:
+  - "Comprar extintores sueltos no protege un edificio: protege el metro cuadrado donde están colgados. GAMA DE MÉXICO trabaja al revés — diseña el sistema completo y luego lo surte. Opera desde 2008 en Santa Fe con 17 años de experiencia y 25 personas, como distribuidor autorizado de Elkhart Brass, fabricante estadounidense con más de un siglo produciendo equipo certificado UL/FM."
+  - "El proceso arranca con un análisis de riesgo sin costo que evalúa construcción, actividad, materiales almacenados, afluencia y rutas de evacuación. De ahí sale la solución: extintores de agua, CO2, PQS, espuma y Clase K; detección de humo y gas, rociadores, tableros y alarmas; redes hidráulicas con hidrantes, tomas siamesas, monitores y gabinetes. La instalación se hace por etapas o en horarios no productivos, y todo queda documentado para Protección Civil."
 summary: "GAMA DE MÉXICO opera desde 2008 en Santa Fe, CDMX, con 17 años de experiencia y 25 personas, como distribuidor autorizado de Elkhart Brass —fabricante estadounidense con más de 100 años en equipos contra incendios certificados UL/FM. Su enfoque no es vender productos aislados sino diseñar el sistema completo: extintores de agua, CO2, polvo seco ABC, espuma y Clase K para cocinas; sistemas automáticos con detectores de humo y gas, rociadores, tableros de control y alarmas; redes hidráulicas con hidrantes, tomas siamesas, monitores, boquillas y gabinetes; y equipo para brigadas. Ofrecen análisis de riesgo profesional sin costo que evalúa construcción, actividad, materiales almacenados y rutas de evacuación para dimensionar la protección y documentar cumplimiento ante Protección Civil CDMX. La instalación se planifica por etapas o en horarios no productivos para no frenar la operación."
 featured: true
 order: 2

@@ -46,6 +46,13 @@ areaServed:
   - "Ciudad de México"
   - "Estado de México"
   - "México"
+sectors:
+  - "Empresas y Corporativos en CDMX y Estado de México"
+  - "Plantas Industriales y Naves de Manufactura"
+  - "Bodegas y Centros de Distribución"
+  - "Brigadas Internas contra Incendios"
+  - "Cocinas Comerciales y Restaurantes"
+  - "Inmuebles bajo Inspección de Protección Civil"
 services:
   - name: "Equipamiento para Bomberos"
     description: "Trajes certificados NFPA, cascos estructurales, botas de combate y guantes contraincendios. Equipo de protección personal completo para bomberos profesionales y brigadas industriales con certificaciones internacionales."
@@ -68,6 +75,10 @@ faqs:
     a: "Nuestro servicio 360° abarca todo el ciclo de protección: (1) Análisis de riesgo según NOM-002-STPS, (2) Diseño de ingeniería con planos y memorias de cálculo, (3) Suministro de equipos certificados con garantía, (4) Instalación profesional con pruebas de presión, (5) Capacitación de brigadas internas certificada STPS, (6) Mantenimiento preventivo programado con bitácora digital, (7) Servicio correctivo 24/7 con tiempo de respuesta garantizado, y (8) Asesoría normativa para inspecciones de protección civil. Además, gestionamos permisos y documentación ante autoridades."
   - q: "¿Ofrecen servicio de mantenimiento preventivo programado?"
     a: "Sí, GRUPO MESECI ofrece contratos de mantenimiento preventivo anual que incluyen: inspección trimestral de extintores con reemplazo de sellos, prueba hidrostática de mangueras y conexiones, verificación de presión en sistemas rociadores, limpieza de boquillas y válvulas, revisión de gabinetes y señalización, actualización de bitácora digital con evidencia fotográfica, y reporte mensual de cumplimiento normativo. Nuestros técnicos están certificados por fabricantes. El mantenimiento preventivo reduce 85% las fallas de emergencia y garantiza aprobación en inspecciones de protección civil. Cotizaciones disponibles para 1 o 2 sucursales."
+heroTitle: 'Protección contra incendios <span class="highlight">360° para empresas</span> en CDMX y Estado de México'
+heroIntro:
+  - "Repartir la protección contra incendios entre varios proveedores es donde nacen las brechas: el que instaló no es el que mantiene, y cuando algo falla nadie se hace responsable. GRUPO MESECI se plantea como proveedor único de todo el ciclo, con dos sucursales —Tlalnepantla de Baz y Benito Juárez— para atender empresas en CDMX y Estado de México."
+  - "Su servicio 360° cubre las ocho etapas: análisis de riesgo bajo NOM-002-STPS, ingeniería con planos y memorias de cálculo, suministro certificado, instalación con pruebas de presión, capacitación de brigadas certificada STPS, mantenimiento preventivo con bitácora digital, correctivo 24/7 y asesoría normativa para inspecciones de Protección Civil. El catálogo va de extintores PQS, ABC, agua, espuma AFFF y CO2 a rociadores, tubería Schedule 40, gabinetes, herrajes Storz e hidrantes."
 summary: "GRUPO MESECI ofrece protección contra incendios como servicio integral 360° para empresas en CDMX y Estado de México, operando desde dos sucursales: Tlalnepantla de Baz y Benito Juárez. Su propuesta es ser proveedor único en todo el ciclo —análisis de riesgo bajo NOM-002-STPS, diseño de ingeniería con planos y memorias de cálculo, suministro de equipo certificado, instalación con pruebas de presión, capacitación de brigadas certificada STPS, mantenimiento preventivo con bitácora digital, servicio correctivo 24/7 y asesoría normativa para inspecciones de Protección Civil— eliminando las brechas que aparecen al repartir el trabajo entre varios proveedores. Su catálogo cubre extintores PQS, ABC, agua, espuma AFFF y CO2 con recarga y certificación anual; equipamiento NFPA para bomberos; gabinetes, rociadores automáticos, tubería Schedule 40, mangueras y válvulas siamesas; y componentes como boquillas nebulizadoras, herrajes Storz y NST, hidrantes y monitores de espuma."
 featured: true
 order: 4

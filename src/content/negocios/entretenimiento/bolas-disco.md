@@ -80,6 +80,10 @@ faqs:
     a: "Sí, fabricamos bolas disco con acabados y diseños personalizados según tus especificaciones. Podemos adaptar tamaños, colores de espejos, sistemas de iluminación integrados y montajes especiales para proyectos únicos."
   - q: "¿Incluyen instalación y mantenimiento?"
     a: "Sí, ofrecemos instalación profesional con técnicos especializados que garantizan un montaje seguro y efectivo. También brindamos servicio de mantenimiento para asegurar que tus bolas disco mantengan su brillo y funcionamiento óptimo."
+heroTitle: 'Fabricación y venta de <span class="highlight">bolas disco</span> de 10 cm a más de 1 metro en CDMX'
+heroIntro:
+  - "BOLDIS no revende: fabrica. Produce bolas disco en CDMX con control de calidad pieza por pieza, en tres formatos según el espacio que vayas a ambientar — de 10 a 30 cm para mesas, bares e interiores; de 31 a 60 cm para bodas, XV años y salones; y de más de 61 cm para escenarios, discotecas y conciertos, donde la bola es el centro de atención."
+  - "Sobre esa base se elige el efecto: modelos con LED RGB integrado, con motor giratorio de velocidad variable, o ambos, más soportes, montajes y accesorios profesionales. Trabajan renta y venta con instalación por técnicos, aceptan diseños a medida para proyectos únicos y envían a toda la República con empaque garantizado. La asesoría parte del tamaño de tu espacio."
 summary: "BOLDIS es fabricante y comercializador de bolas disco en CDMX, con producción propia y control de calidad en cada pieza. Su catálogo cubre tres formatos según el espacio: pequeñas de 10 a 30 cm para decoración de mesas, bares y ambientación de interiores; medianas de 31 a 60 cm para bodas, XV años y salones de eventos; y grandes de más de 61 cm para escenarios, discotecas y conciertos. Ofrecen modelos con LED RGB integrado y con motor giratorio de velocidad variable, además de soportes, montajes y accesorios profesionales. Trabajan tanto renta como venta con instalación a cargo de técnicos especializados, aceptan diseños personalizados a medida y envían a toda la República con empaque garantizado."
 gallery:
   - "/img/img-eventos/luces-intermitentes.webp"

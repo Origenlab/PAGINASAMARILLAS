@@ -34,6 +34,13 @@ hoursDisplay:
 priceRange: "$$"
 areaServed:
   - "México"
+sectors:
+  - "Empresas que Buscan Proveedor Certificado"
+  - "Responsables de Protección Civil y Seguridad Industrial"
+  - "Plantas Industriales y Manufactura"
+  - "Edificios Corporativos y Oficinas"
+  - "Cocinas Comerciales y Restaurantes"
+  - "Organizaciones con Programa Interno de Protección Civil"
 whyUs:
   - "Verificación Rigurosa - Todos los proveedores listados han pasado por verificación exhaustiva de certificaciones, experiencia y capacidad operativa"
   - "Ahorro de Tiempo - Encuentra proveedores certificados en minutos en lugar de días de investigación exhaustiva y llamadas telefónicas"
@@ -71,6 +78,10 @@ faqs:
     a: "El acceso a PROYECTO RED como empresa que busca proveedores es completamente gratuito. Puedes navegar nuestro directorio curado, consultar perfiles de proveedores verificados, comparar opciones, acceder a información técnica y contactar directamente a las empresas listadas sin ningún costo. Nuestro modelo de negocio se basa en suscripciones de proveedores que desean ser parte de nuestro directorio exclusivo. Para empresas que buscan equipos contra incendios, la plataforma es un recurso gratuito que elimina la incertidumbre y facilita la toma de decisiones informadas. No cobramos comisiones por transacciones ni aplicamos cargos ocultos. Nuestro objetivo es ser el puente confiable entre demanda y oferta certificada."
   - q: "¿Qué ventajas tiene usar PROYECTO RED?"
     a: "PROYECTO RED ofrece múltiples ventajas: 1) Ahorro de tiempo - encuentra proveedores verificados en minutos en lugar de días de investigación, 2) Reducción de riesgo - todos los proveedores han pasado nuestro proceso de verificación riguroso, 3) Calidad garantizada - solo listamos empresas con certificaciones vigentes y cumplimiento normativo, 4) Comparación fácil - accede a múltiples opciones en una sola plataforma para tomar decisiones informadas, 5) Acceso directo - contacta proveedores sin intermediarios ni comisiones adicionales, 6) Información completa - perfiles detallados con servicios, certificaciones, áreas de cobertura y casos de éxito, 7) Soporte continuo - nuestro equipo está disponible para orientarte en tu búsqueda. Visita proyectored.com.mx o contáctanos en info@proyectored.com.mx"
+heroTitle: 'Directorio de <span class="highlight">proveedores verificados</span> de equipos contra incendios en México'
+heroIntro:
+  - "PROYECTO RED no vende equipo, y ahí está el punto: sin producto propio que colocar, su recomendación no tiene conflicto de interés. Es un directorio curado con cobertura nacional, operado desde Paseo de la Reforma, Colonia Juárez, CDMX, que conecta empresas con proveedores ya verificados en lugar de dejarte investigar a ciegas."
+  - "Cada proveedor pasa cinco filtros antes de entrar: certificaciones y documentación legal, experiencia comprobable con casos y referencias, capacidad operativa en inventario y tiempos de respuesta, cumplimiento de NOM-002-STPS y NOM-026-STPS, y servicio post-venta con garantías. El directorio cubre ocho categorías, desde extintores y señalización hasta sistemas automáticos y seguridad industrial. Para quien busca proveedor es gratuito, sin comisiones ni intermediación."
 summary: "PROYECTO RED es un directorio curado de equipos contra incendios con cobertura nacional y oficinas en Paseo de la Reforma, Colonia Juárez, CDMX. No vende equipo: conecta empresas con proveedores verificados, lo que hace que su asesoría sea objetiva porque no tiene producto propio que colocar. Cada proveedor listado pasa una verificación de cinco niveles —certificaciones técnicas y documentación legal, experiencia comprobable con casos de éxito y referencias, capacidad operativa en inventario, tiempos de respuesta y cobertura, cumplimiento de NOM-002-STPS y NOM-026-STPS, y servicio post-venta con garantías y soporte. El directorio abarca ocho categorías: extintores, señalización de seguridad, equipo para bomberos, gabinetes, mangueras y herrajes, sistemas de protección automática, primeros auxilios y equipo de seguridad industrial. El acceso para empresas que buscan proveedor es gratuito, sin comisiones por transacción ni intermediación; su modelo se sostiene con suscripciones de los proveedores listados."
 featured: true
 order: 5
