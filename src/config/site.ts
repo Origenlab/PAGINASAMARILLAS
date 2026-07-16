@@ -7,8 +7,8 @@ export const site = {
   description:
     'Encuentra empresas y negocios en México. Directorio completo con direcciones, teléfonos, horarios y reseñas verificadas. Miles de empresas mexicanas en un solo lugar.',
   email: 'contacto@paginasamarillas.mx',
-  phone: '55 5555 5555',
-  phoneHref: '+525555555555',
+  phone: '55 1005 3423',
+  phoneHref: '+525510053423',
   geo: { lat: 19.432608, lng: -99.133209 },
   ogImage: 'https://paginasamarillas.mx/images/og-image.webp',
   social: {
