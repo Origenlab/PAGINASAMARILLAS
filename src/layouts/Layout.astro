@@ -96,6 +96,7 @@ const registerMail = `mailto:${site.email}?subject=${encodeURIComponent('Quiero 
         </p>
         <div class="topbar-links">
           <a href="/blog/">Guías</a>
+          <a href={`tel:${site.phoneHref}`} class="topbar-tel" aria-label={`Llamar al ${site.phone}`}>{site.phone}</a>
           <a href={`mailto:${site.email}`}>{site.email}</a>
         </div>
       </div>

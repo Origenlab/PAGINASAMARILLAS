@@ -266,8 +266,9 @@ h1, h2, h3, h4 {
 .topbar-links a:hover { border-color: var(--ink); }
 
 @media (max-width: 640px) {
-  .topbar-links { display: none; }
-  .topbar-inner { justify-content: center; }
+  /* En móvil se conserva SOLO el teléfono: es el CTA con más valor (tap-to-call). */
+  .topbar-links a:not(.topbar-tel) { display: none; }
+  .topbar-inner { justify-content: space-between; }
 }
 
 /* ---------- 5. Header ---------- */

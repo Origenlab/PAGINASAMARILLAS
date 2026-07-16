@@ -39,6 +39,15 @@ export function organizationJsonLd(): JsonLd {
     name: site.name,
     url: `${site.url}/`,
     email: site.email,
+    telephone: site.phoneHref,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      telephone: site.phoneHref,
+      email: site.email,
+      contactType: 'customer service',
+      areaServed: 'MX',
+      availableLanguage: 'Spanish',
+    },
     sameAs: [site.social.facebook, site.social.twitter, site.social.instagram],
   };
 }
