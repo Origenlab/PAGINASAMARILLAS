@@ -107,8 +107,18 @@ const registerMail = `mailto:${site.email}?subject=${encodeURIComponent('Quiero 
       <nav class="navbar" aria-label="Navegación principal">
         <div class="logo">
           <a href="/" aria-label="Pamari - Inicio">
-            <span class="logo-mark" aria-hidden="true">PA</span>
-            <span class="logo-text">Pa<span class="logo-highlight">mari</span></span>
+            <picture>
+              <source srcset="/images/logo-pamari.avif" type="image/avif" />
+              <img
+                src="/images/logo-pamari.webp"
+                alt="Pamari"
+                class="logo-img"
+                width="296"
+                height="80"
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
           </a>
         </div>
 
