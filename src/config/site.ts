@@ -11,9 +11,11 @@ export const site = {
   phoneHref: '+525510053423',
   geo: { lat: 19.432608, lng: -99.133209 },
   ogImage: 'https://paginasamarillas.mx/images/og-image.webp',
+  // Solo perfiles que existen: un sameAs a un 404 le dice a Google que la
+  // entidad no existe y debilita el knowledge graph. X/Twitter (@paginasamx)
+  // se retiró el 2026-07-16 porque devolvía 404.
   social: {
     facebook: 'https://www.facebook.com/paginasamarillas.mx',
-    twitter: 'https://twitter.com/paginasamx',
     instagram: 'https://www.instagram.com/paginasamarillas.mx',
   },
 } as const;

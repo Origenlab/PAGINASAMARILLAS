@@ -16,3 +16,6 @@ n8n-workflows/.env*
 # macOS
 .DS_Store
 **/.DS_Store
+
+# Sitio legacy pre-Astro (sigue en el historial de git)
+_html_backup/

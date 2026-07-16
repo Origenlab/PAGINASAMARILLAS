@@ -13,19 +13,30 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      css_hash: ${{ steps.css.outputs.hash }}
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: "22"
           cache: npm
       - run: npm ci
       - run: npm run build
+
       # Huella del commit DENTRO del artefacto publicado. El gate final se la
       # pide al dominio: si no la devuelve, el deploy no llego a produccion.
       - name: Sellar build-id
         run: echo "${{ github.sha }}" > dist/build-id.txt
-      - uses: actions/upload-pages-artifact@v3
+
+      # Hash del CSS que acabamos de publicar. src/lib/assets.ts cuelga este
+      # mismo hash del <link> como ?v=, asi que el gate puede comparar lo que
+      # el dominio referencia contra lo que este build produjo.
+      - name: Hash del CSS
+        id: css
+        run: echo "hash=$(sha256sum public/css/style.css | cut -c1-8)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
   deploy:
@@ -37,9 +48,11 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
 
-      # ─── GATE REAL: verifica el DOMINIO, no el build ───
+      # ─── GATE 1: verifica el DOMINIO, no el build ───
+      # Un deploy verde solo prueba que el artefacto se subio. NO prueba que el
+      # visitante lo vea: el DNS puede apuntar a otro origen.
       - name: Verificar que el dominio sirve este commit
         run: |
           DOMINIO="paginasamarillas.mx"
@@ -52,4 +65,34 @@ jobs:
             echo "intento $i/12 — el dominio devuelve '${LIVE:0:12}', esperado '${GITHUB_SHA:0:12}'"
           done
           echo "::error::$DOMINIO NO sirve este build tras 2 min. Deploy verde pero el dominio apunta a otro origen."
+          exit 1
+
+      # ─── GATE 2: verifica los ASSETS, no solo el HTML ───
+      # El gate 1 mira build-id.txt, que es HTML. Un CSS desincronizado lo pasa
+      # en verde: el 2026-07-16 el dominio sirvio HTML nuevo con CSS viejo
+      # cacheado 4 dias y el telefono no se veia, con el deploy en verde.
+      - name: Verificar que el dominio sirve el CSS de este build
+        run: |
+          DOMINIO="paginasamarillas.mx"
+          ESPERADO="${{ needs.build.outputs.css_hash }}"
+          if [ -z "$ESPERADO" ]; then
+            echo "::error::No se pudo calcular el hash del CSS en el job build."
+            exit 1
+          fi
+          VIVO=""
+          for i in $(seq 1 6); do
+            HTML=$(curl -fsSL --max-time 15 "https://$DOMINIO/?cb=${RANDOM}${i}" 2>/dev/null || echo "")
+            VIVO=$(printf '%s' "$HTML" | grep -o 'style\.css?v=[0-9a-f]*' | head -1 | cut -d= -f2)
+            if [ "$VIVO" = "$ESPERADO" ]; then
+              # El HTML pide el CSS correcto; ahora que esa URL responda de verdad.
+              if curl -fsS -o /dev/null --max-time 15 "https://$DOMINIO/css/style.css?v=$VIVO"; then
+                echo "OK — $DOMINIO sirve style.css?v=$ESPERADO"; exit 0
+              fi
+              echo "intento $i/6 — el HTML pide ?v=$VIVO pero esa URL no responde"
+            else
+              echo "intento $i/6 — el HTML pide '?v=$VIVO', esperado '?v=$ESPERADO'"
+            fi
+            sleep 10
+          done
+          echo "::error::El HTML en vivo no referencia el CSS de este build (sirve '?v=$VIVO', esperado '?v=$ESPERADO'). Riesgo de HTML nuevo con estilos viejos."
           exit 1
