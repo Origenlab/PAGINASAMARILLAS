@@ -5,8 +5,8 @@ categoryName: "Eventos"
 keywords: ["renta audio profesional cdmx", "sonido para eventos", "bocinas para bodas", "audio para fiestas", "renta sonido xv años", "sistemas jbl qsc eventos", "redeil audio"]
 image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
 author: "Pamari"
-publishDate: 2025-12-17
-relatedBusiness: "REDEIL"
+order: 3
+relatedBusiness: "entretenimiento/redeil"
 draft: false
 ---
 

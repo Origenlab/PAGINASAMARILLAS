@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["seguridad condominios", "vigilancia residencial", "fraccionamientos", "casetas de vigilancia", "control acceso residencial", "seguridad vecinal"]
 image: "/img/img-seguridad-privada/guardia-caseta-residencial.webp"
 author: "Pamari"
+order: 10
 draft: false
 ---
 

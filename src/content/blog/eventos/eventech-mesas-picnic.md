@@ -5,8 +5,8 @@ categoryName: "Eventos"
 keywords: ["renta de mesas picnic", "mobiliario para eventos", "mesas para fiestas", "mesas estilo picnic", "renta de mobiliario para bodas", "eventos al aire libre", "EVENTECH"]
 image: "/img/img-eventos/iluminacion-festiva-eventos.webp"
 author: "Pamari"
-publishDate: 2025-01-16
-relatedBusiness: "EVENTECH"
+order: 12
+relatedBusiness: "entretenimiento/eventech"
 draft: false
 ---
 

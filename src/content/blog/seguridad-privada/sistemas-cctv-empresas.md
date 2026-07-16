@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["CCTV empresarial", "cámaras de seguridad", "videovigilancia", "sistema de monitoreo", "cámaras IP", "DVR", "NVR", "seguridad empresarial"]
 image: "/img/img-seguridad-privada/centro-monitoreo-camaras.webp"
 author: "Pamari"
+order: 8
 draft: false
 ---
 

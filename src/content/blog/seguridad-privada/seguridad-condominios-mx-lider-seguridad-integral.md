@@ -5,7 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["Seguridad Condominios MX", "seguridad integral", "fraccionamientos CDMX", "vigilancia 24/7", "control acceso vehicular", "seguridad privada CDMX", "empresas de seguridad Mexico"]
 image: "/img/img-seguridad-privada/guardia-caseta-residencial.webp"
 author: "Pamari"
-relatedBusiness: "Seguridad Condominios MX"
+order: 16
+relatedBusiness: "seguridad-privada/seguridad-condominios"
 draft: false
 ---
 

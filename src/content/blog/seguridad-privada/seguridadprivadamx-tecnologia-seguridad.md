@@ -5,7 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["SeguridadPrivadaMX", "seguridad inteligente condominios", "app seguridad", "guardias certificados SSC", "seguridad Benito Juárez", "tecnología seguridad privada"]
 image: "/img/img-seguridad-privada/centro-monitoreo-camaras.webp"
 author: "Pamari"
-relatedBusiness: "Seguridad Privada MX"
+order: 14
+relatedBusiness: "seguridad-privada/seguridad-privada-mx"
 draft: false
 ---
 

@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["costos seguridad privada", "precios vigilancia", "tarifas guardias seguridad CDMX", "cuánto cuesta seguridad privada", "presupuesto seguridad"]
 image: "/img/img-seguridad-privada/guardia-atencion-visitante.webp"
 author: "Pamari"
+order: 1
 draft: false
 ---
 

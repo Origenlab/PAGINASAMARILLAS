@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["CNSP", "certificación seguridad privada", "registro CNSP", "licencia vigilante", "autorización seguridad", "regulación SSPC", "guardia de seguridad México"]
 image: "/img/img-seguridad-privada/seguridad-recepcion-corporativa.webp"
 author: "Pamari"
+order: 5
 draft: false
 ---
 

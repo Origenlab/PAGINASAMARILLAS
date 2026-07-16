@@ -5,7 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["ORIGINS Private Security", "seguridad condominios CDMX", "guardias certificados SSC", "monitoreo GPS", "seguridad residencial México", "escoltas ejecutivos"]
 image: "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"
 author: "Pamari"
-relatedBusiness: "ORIGINS Private Security"
+order: 17
+relatedBusiness: "seguridad-privada/origins-private-security"
 draft: false
 ---
 

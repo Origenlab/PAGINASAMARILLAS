@@ -5,8 +5,8 @@ categoryName: "Eventos"
 keywords: ["renta de guirnaldas", "focos vintage", "iluminación para bodas", "series de luces", "focos edison", "iluminación decorativa eventos", "renta de focos", "guirnaldas para bodas"]
 image: "/img/img-eventos/luces-cadena-vintage.webp"
 author: "Pamari"
-publishDate: 2025-11-16
-relatedBusiness: "REDEIL"
+order: 7
+relatedBusiness: "entretenimiento/redeil"
 draft: false
 ---
 

@@ -27,11 +27,11 @@ const sameCat = negocios
 const posts = (await getCollection('blog', ({ data }) => !data.draft))
   .filter((p) => p.id.split('/')[0] === blogSlug)
   .sort((a, b) => {
-    /* Primero las guías relacionadas con esta empresa */
-    const relA = a.data.relatedBusiness === slug ? 1 : 0;
-    const relB = b.data.relatedBusiness === slug ? 1 : 0;
+    /* Primero las guías relacionadas con esta empresa (id completo, no slug) */
+    const relA = a.data.relatedBusiness?.id === entry.id ? 1 : 0;
+    const relB = b.data.relatedBusiness?.id === entry.id ? 1 : 0;
     if (relA !== relB) return relB - relA;
-    return (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0);
+    return a.data.order - b.data.order || a.data.title.localeCompare(b.data.title);
   })
   .slice(0, 5);
 

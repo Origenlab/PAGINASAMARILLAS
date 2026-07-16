@@ -5,8 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["seguridad residencial", "vigilancia", "condominios"]
 image: "/img/img-seguridad-privada/acceso-biometrico-torniquete.webp"
 author: "Pamari"
-publishDate: 2025-12-29
-relatedBusiness: "SEPRI"
+order: 18
+relatedBusiness: "seguridad-privada/sepri"
 draft: false
 ---
 

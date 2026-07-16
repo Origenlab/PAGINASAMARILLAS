@@ -5,8 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["Seguridad Privada MX", "seguridad cobertura nacional", "guardias certificados CDMX", "vigilancia corporativa", "seguridad residencial México"]
 image: "/img/img-seguridad-privada/equipo-seguridad-lobby.webp"
 author: "Pamari"
-publishDate: 2024-12-28
-relatedBusiness: "Seguridad Privada MX"
+order: 15
+relatedBusiness: "seguridad-privada/seguridad-privada-mx"
 draft: false
 ---
 

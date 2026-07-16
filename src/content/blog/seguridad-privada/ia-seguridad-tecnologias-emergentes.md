@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["IA seguridad", "inteligencia artificial", "machine learning", "IoT seguridad", "analítica predictiva", "tecnología seguridad", "innovación"]
 image: "/img/img-seguridad-privada/operador-videovigilancia.webp"
 author: "Pamari"
+order: 13
 draft: false
 ---
 

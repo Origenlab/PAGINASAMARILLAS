@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["seguridad privada México", "guardias de seguridad", "CNSP", "empresas de seguridad", "vigilancia privada", "protección empresarial", "seguridad residencial"]
 image: "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"
 author: "Pamari"
+order: 4
 draft: false
 ---
 

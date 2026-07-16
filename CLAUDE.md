@@ -23,6 +23,14 @@ Directorio de empresas en México. Astro 6 + Markdown (content collections), est
 - `heroIntro` = exactamente 2 párrafos equilibrados (~55-75 palabras c/u). El fallback (`summary` + `coverage`) sirve para no romper, no como estado final.
 - `sectors` ≥ 6 en toda ficha: sin él, "Cobertura y Sectores" pierde una columna.
 
+## REGLA DE TEMPLATE: el blog
+
+- Contrato completo en `docs/TEMPLATE-BLOG.md`. Referencia: `/blog/equipos-contra-incendios/nom-002-stps-requisitos-centros-de-trabajo`.
+- **El blog no declara fechas** y es a propósito: las 11 guías migradas nunca tuvieron `publishDate` (no está en el legacy, ni en sitemaps; git solo tiene la fecha de la migración). No hay `<time>` ni `datePublished` en el JSON-LD. **No inventes una fecha para homologar.** El listado ordena por `order` (asc), igual que `negocios`.
+- `relatedBusiness` va con **id completo** (`"seguridad-privada/sepri"`), nunca el nombre visible: así estuvo roto y fallaba el `===` en silencio, 0 de 9. `reference()` NO valida en build — el guard vive en el `getStaticPaths` de `blog/[categoria]/[slug].astro`; si lo quitas, el campo se vuelve a romper en silencio.
+- Solo las guías sobre una empresa concreta llevan `relatedBusiness`. Las genéricas van sin él y está bien.
+- Sin anécdotas inventadas: varias guías heredadas usan primera persona con historias falsas. No replicar ese patrón.
+
 ## Otras reglas de diseño
 
 - Design system: un solo archivo `public/css/style.css` (tokens al inicio). No crear CSS nuevos.

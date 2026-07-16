@@ -5,7 +5,8 @@ categoryName: "Seguridad Privada"
 keywords: ["SEPRI", "seguridad para eventos", "seguridad privada", "control de acceso eventos", "seguridad VIP", "gestión de multitudes"]
 image: "/img/img-seguridad-privada/grupo-guardias-edificio.webp"
 author: "Pamari"
-relatedBusiness: "SEPRI"
+order: 19
+relatedBusiness: "seguridad-privada/sepri"
 draft: false
 ---
 

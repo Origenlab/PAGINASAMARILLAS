@@ -5,6 +5,7 @@ categoryName: "Seguridad Privada"
 keywords: ["control de acceso biométrico", "huella digital", "reconocimiento facial", "iris", "seguridad empresarial", "control accesos", "tecnología biométrica"]
 image: "/img/img-seguridad-privada/acceso-biometrico-torniquete.webp"
 author: "Pamari"
+order: 9
 draft: false
 ---
 

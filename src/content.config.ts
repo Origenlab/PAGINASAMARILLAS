@@ -1,4 +1,4 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, reference, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 /**
@@ -79,9 +79,30 @@ const blog = defineCollection({
     keywords: z.array(z.string()).default([]),
     image: z.string().optional(),
     author: z.string().default('Pamari'),
-    publishDate: z.coerce.date().optional(),
-    updatedDate: z.coerce.date().optional(),
-    relatedBusiness: z.string().optional(),
+    /**
+     * Orden de listado (asc), igual que en `negocios`. Sustituye a `publishDate`:
+     * las 11 guías migradas del sitio viejo nunca tuvieron fecha de publicación
+     * — no está en el HTML legacy, ni en los sitemaps, y en git solo aparece la
+     * fecha de la migración a Astro (2026-07-13). Inventarla habría roto la
+     * regla de "sin datos falsos", así que el blog no declara fechas y ordena
+     * por este campo, que es determinista y curable a mano.
+     */
+    order: z.number().default(0),
+    /**
+     * Ficha de negocio de la que habla la guía, por id completo:
+     * "seguridad-privada/sepri" (NO el nombre visible, NO el slug suelto).
+     *
+     * Antes era `z.string()` y guardaba el nombre ("SEPRI") mientras el código
+     * comparaba contra el slug ("sepri"): las 9 guías que lo declaraban fallaban
+     * el === en silencio y la feature nunca funcionó desde que existe.
+     *
+     * OJO: `reference()` NO valida en build — Astro solo comprueba que el id
+     * exista cuando se llama `getEntry()`, así que un id inventado pasaría igual.
+     * El guard real está en el getStaticPaths de blog/[categoria]/[slug].astro,
+     * que sí rompe el build. Si mueves esa validación, este campo vuelve a poder
+     * romperse en silencio.
+     */
+    relatedBusiness: reference('negocios').optional(),
     draft: z.boolean().default(false),
   }),
 });
