@@ -1,8 +1,8 @@
 ---
 name: "SEPRI Seguridad para Eventos"
 categoryName: "Seguridad Privada"
-title: "SEPRI - Seguridad Privada para Eventos en CDMX | 12+ Años de Experiencia"
-description: "➤ Especialistas en seguridad para eventos corporativos, bodas, conciertos y festivales. Control de acceso, protección VIP, vigilancia certificada. ☎ 55 4732 9810"
+title: "SEPRI | Seguridad Privada para Eventos en CDMX"
+description: "➤ Seguridad para eventos, bodas y conciertos en CDMX: control de acceso, protección VIP y vigilancia certificada. ☎ 55 4732 9810"
 keywords:
   - "seguridad eventos cdmx"
   - "guardias para eventos"

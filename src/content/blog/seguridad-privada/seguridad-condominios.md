@@ -1,6 +1,6 @@
 ---
 title: "Seguridad en Condominios: Mejores Prácticas"
-description: "Mejores prácticas para implementar seguridad efectiva en condominios y fraccionamientos: sistemas, personal, tecnología y protocolos para comunidades residenciales."
+description: "Mejores prácticas de seguridad en condominios y fraccionamientos: sistemas, personal, tecnología y protocolos residenciales."
 categoryName: "Seguridad Privada"
 keywords: ["seguridad condominios", "vigilancia residencial", "fraccionamientos", "casetas de vigilancia", "control acceso residencial", "seguridad vecinal"]
 image: "/img/img-seguridad-privada/guardia-caseta-residencial.webp"

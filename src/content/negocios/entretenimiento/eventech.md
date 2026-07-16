@@ -1,8 +1,8 @@
 ---
 name: "EVENTECH"
 categoryName: "Entretenimiento"
-title: "EVENTECH - Renta de Equipos para Eventos en CDMX | Sonido e Iluminación"
-description: "Renta de equipos para eventos sociales en CDMX. Sonido profesional, iluminación espectacular, mobiliario y decoración. Tecnología de vanguardia para bodas y fiestas."
+title: "EVENTECH | Renta de Equipos para Eventos en CDMX"
+description: "Renta de equipos para eventos en CDMX: sonido profesional, iluminación, mobiliario y decoración para bodas y fiestas."
 keywords:
   - "renta iluminación eventos cdmx"
   - "audio profesional bodas"

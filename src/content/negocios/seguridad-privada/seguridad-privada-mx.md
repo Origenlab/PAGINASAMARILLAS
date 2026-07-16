@@ -1,8 +1,8 @@
 ---
 name: "Seguridad Privada MX"
 categoryName: "Seguridad Privada"
-title: "Seguridad Privada MX - Protección Integral en México | 8+ Años de Experiencia"
-description: "➤ Empresa líder en seguridad privada con cobertura nacional. Guardias certificados, monitoreo 24/7, CCTV, control de acceso. Residencial, corporativo, eventos. ☎ 55 2242 5077"
+title: "Seguridad Privada MX | Protección Integral México"
+description: "➤ Seguridad privada con cobertura nacional: guardias certificados, monitoreo 24/7, CCTV y control de acceso. ☎ 55 2242 5077"
 keywords:
   - "seguridad privada méxico"
   - "guardias cdmx"

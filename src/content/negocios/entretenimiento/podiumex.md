@@ -1,8 +1,8 @@
 ---
 name: "PODIUMEX"
 categoryName: "Entretenimiento"
-title: "PODIUMEX - Renta y Venta de Pódiums Profesionales CDMX | 20+ Años"
-description: "Renta y venta de pódiums profesionales en CDMX. Acrílico, madera, metal e iluminados LED. 20+ años definiendo escenarios de élite. Personalización y montaje incluidos."
+title: "PODIUMEX | Renta y Venta de Pódiums en CDMX"
+description: "Renta y venta de pódiums profesionales en CDMX: acrílico, madera, metal e iluminados LED. Personalización y montaje incluidos."
 keywords:
   - "renta podiums cdmx"
   - "venta atriles profesionales"

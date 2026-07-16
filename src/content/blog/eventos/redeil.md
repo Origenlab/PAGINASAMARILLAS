@@ -1,6 +1,6 @@
 ---
-title: "Iluminación para Bodas: La Magia de las Guirnaldas y Focos Vintage"
-description: "Guía profesional sobre renta de guirnaldas, focos vintage y series de luces para bodas. Descubre cómo crear ambientes únicos con iluminación decorativa profesional."
+title: "Iluminación para Bodas: Guirnaldas y Focos Vintage"
+description: "Guía de renta de guirnaldas, focos vintage y series de luces para bodas: cómo crear ambientes únicos con iluminación decorativa."
 categoryName: "Eventos"
 keywords: ["renta de guirnaldas", "focos vintage", "iluminación para bodas", "series de luces", "focos edison", "iluminación decorativa eventos", "renta de focos", "guirnaldas para bodas"]
 image: "/img/img-eventos/luces-cadena-vintage.webp"

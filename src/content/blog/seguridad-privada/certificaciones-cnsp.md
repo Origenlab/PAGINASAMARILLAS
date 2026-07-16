@@ -1,6 +1,6 @@
 ---
 title: "Certificaciones CNSP: Todo lo que Debes Saber"
-description: "Guía completa sobre certificaciones del CNSP en México: requisitos, procesos, tipos de certificaciones y todo lo que necesitas saber para operar legalmente en seguridad privada."
+description: "Certificaciones del CNSP en México: requisitos, procesos y tipos, y qué necesitas para operar legalmente en seguridad privada."
 categoryName: "Seguridad Privada"
 keywords: ["CNSP", "certificación seguridad privada", "registro CNSP", "licencia vigilante", "autorización seguridad", "regulación SSPC", "guardia de seguridad México"]
 image: "/img/img-seguridad-privada/seguridad-recepcion-corporativa.webp"

@@ -1,8 +1,8 @@
 ---
 name: "LGA CONTRA INCENDIOS"
 categoryName: "Equipos Contra Incendios"
-title: "LGA CONTRA INCENDIOS - Equipos Contra Incendios Querétaro | Distribuidor Elkhart Brass"
-description: "Distribuidores autorizados Elkhart Brass en Querétaro. Extintores certificados, monitores, equipo para bomberos, mangueras y señalización. Diagnóstico de riesgo, instalación y mantenimiento. ☎️ 442 209 8552"
+title: "LGA | Equipos Contra Incendios en Querétaro"
+description: "Equipos contra incendios en Querétaro: extintores, monitores, mangueras y señalización. Distribuidor Elkhart Brass. ☎️ 442 209 8552"
 keywords:
   - "equipos contra incendios querétaro"
   - "extintores certificados"

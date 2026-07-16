@@ -1,6 +1,6 @@
 ---
 title: "Guía Completa de Seguridad Privada en México"
-description: "Guía completa sobre seguridad privada en México: regulaciones, servicios, certificaciones y cómo elegir la mejor empresa de seguridad para tu negocio o residencia."
+description: "Seguridad privada en México: regulaciones, servicios, certificaciones y cómo elegir la mejor empresa para tu negocio o residencia."
 categoryName: "Seguridad Privada"
 keywords: ["seguridad privada México", "guardias de seguridad", "CNSP", "empresas de seguridad", "vigilancia privada", "protección empresarial", "seguridad residencial"]
 image: "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"

@@ -1,6 +1,6 @@
 ---
-title: "SeguridadPrivadaMX: La Revolución Tecnológica en Seguridad para Condominios"
-description: "Conoce SeguridadPrivadaMX, la primera empresa de seguridad con app móvil propia y tecnología inteligente para condominios. Guardias 100% certificados SSC, cotización en 4 horas. Reseña completa."
+title: "Tecnología de Seguridad para Condominios en México"
+description: "SeguridadPrivadaMX: app móvil propia y tecnología inteligente para condominios. Guardias certificados SSC y cotización en 4 h."
 categoryName: "Seguridad Privada"
 keywords: ["SeguridadPrivadaMX", "seguridad inteligente condominios", "app seguridad", "guardias certificados SSC", "seguridad Benito Juárez", "tecnología seguridad privada"]
 image: "/img/img-seguridad-privada/centro-monitoreo-camaras.webp"

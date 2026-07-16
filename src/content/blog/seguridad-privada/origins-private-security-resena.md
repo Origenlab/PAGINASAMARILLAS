@@ -1,6 +1,6 @@
 ---
-title: "ORIGINS Private Security: Líder en Seguridad para Condominios en CDMX"
-description: "Descubre por qué ORIGINS Private Security es líder en seguridad para condominios en CDMX. Guardias certificados SSC, monitoreo GPS 24/7 y respuesta en menos de 3 minutos. Lee nuestra reseña completa."
+title: "Origins Private Security: Reseña y Servicios CDMX"
+description: "Reseña de Origins Private Security, seguridad para condominios en CDMX: guardias certificados SSC y monitoreo GPS 24/7."
 categoryName: "Seguridad Privada"
 keywords: ["ORIGINS Private Security", "seguridad condominios CDMX", "guardias certificados SSC", "monitoreo GPS", "seguridad residencial México", "escoltas ejecutivos"]
 image: "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"

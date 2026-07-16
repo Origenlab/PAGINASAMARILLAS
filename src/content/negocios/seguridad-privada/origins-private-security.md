@@ -1,8 +1,8 @@
 ---
 name: "Origins Private Security"
 categoryName: "Seguridad Privada"
-title: "Origins Private Security - Seguridad Privada Certificada CDMX | 15+ Años de Experiencia"
-description: "➤ Empresa líder en seguridad privada en CDMX con 15+ años. Guardias certificados CNSP, escoltas ejecutivos, CCTV, alarmas. Evaluación de riesgos gratis. ☎ 55 3025 5580"
+title: "Origins Private Security | Seguridad Privada CDMX"
+description: "➤ Seguridad privada en CDMX con 15+ años. Guardias certificados CNSP, escoltas, CCTV y alarmas. Evaluación gratis. ☎ 55 3025 5580"
 keywords:
   - "seguridad privada cdmx"
   - "guardias certificados"

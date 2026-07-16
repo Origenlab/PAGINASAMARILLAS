@@ -1,6 +1,6 @@
 ---
-title: "Seguridad Privada MX: Protección Integral con Cobertura Nacional"
-description: "Seguridad Privada MX ofrece protección integral con cobertura en CDMX, Estado de México, Querétaro y Puebla. 8+ años, 300 elementos certificados y tecnología avanzada."
+title: "Seguridad Privada con Cobertura Nacional en México"
+description: "Seguridad Privada MX: cobertura en CDMX, Edomex, Querétaro y Puebla con 300 elementos certificados y tecnología avanzada."
 categoryName: "Seguridad Privada"
 keywords: ["Seguridad Privada MX", "seguridad cobertura nacional", "guardias certificados CDMX", "vigilancia corporativa", "seguridad residencial México"]
 image: "/img/img-seguridad-privada/equipo-seguridad-lobby.webp"

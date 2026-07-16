@@ -19,7 +19,7 @@ const posts = (await getCollection('blog', ({ data }) => !data.draft))
 
 const catName = posts[0]?.data.categoryName ?? categoria!;
 const url = `${site.url}/blog/categorias/${categoria}`;
-const title = `${catName} — Blog | ${site.shortName}`;
+const title = `Guías de ${catName} en México | Blog`;
 const description = `Artículos y guías sobre ${catName.toLowerCase()} en México: consejos, comparativas, normativas y mejores prácticas del sector.`;
 
 const jsonld: JsonLd[] = [
