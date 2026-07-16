@@ -17,7 +17,7 @@ keywords:
   - "pódiums ceremonias"
 slogan: "20+ años definiendo los escenarios más importantes de México"
 tagline: "La Plataforma para su Liderazgo. Renta y venta de pódiums profesionales en CDMX. 20+ años definiendo los escenarios más importantes de México. Proyecte autoridad, elegancia y profesionalismo."
-image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
+image: "/img/img-eventos/luces-estilo-industrial.webp"
 phone: "+52-55-2345-6789"
 phoneDisplay: "55 2345 6789"
 phones:
@@ -86,7 +86,12 @@ faqs:
     a: "Ofrecemos renta por día como mínimo, ideal para eventos puntuales. También manejamos periodos extendidos (semanal, mensual, trimestral) con tarifas preferenciales para congresos largos, temporadas de conferencias o eventos corporativos recurrentes. Consulte nuestras opciones flexibles."
   - q: "¿Atienden eventos fuera de CDMX?"
     a: "Sí, ofrecemos servicio en toda la República Mexicana. Contamos con logística especializada para eventos en Guadalajara, Monterrey, Cancún, Puebla, Querétaro y cualquier ciudad del país. Garantizamos entrega puntual y montaje profesional sin importar la ubicación."
-featured: false
+summary: "PODIUMEX renta y vende pódiums profesionales desde 2005, con 20 años de experiencia y 25 personas, operando desde la Cuauhtémoc en CDMX con cobertura en toda la República. Su catálogo se elige según el tono del evento: acrílico transparente para congresos tecnológicos y lanzamientos de producto, madera de acabados nobles para actos académicos y ceremonias protocolarias, metal de estructura robusta para eventos corporativos, y modelos con LED programable para galas nocturnas. Ofrecen personalización con branding institucional mediante grabado láser en acrílico, placas metálicas grabadas en madera y aplicación de vinil en metal. El servicio es integral: entrega puntual, montaje en sitio, pruebas de estabilidad y desmontaje. Manejan renta por día o periodos extendidos con tarifa preferencial, y venta para instituciones que requieren equipamiento permanente."
+gallery:
+  - "/img/img-eventos/iluminacion-restaurantes-exterior.webp"
+  - "/img/img-eventos/iluminacion-terraza-exterior.webp"
+  - "/img/img-eventos/iluminacion-balcon-terraza.webp"
+featured: true
 order: 4
 ---
 

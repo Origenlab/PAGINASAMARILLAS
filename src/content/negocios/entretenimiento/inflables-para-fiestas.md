@@ -77,7 +77,12 @@ faqs:
     a: "Absolutamente. Castillito Baby para 1-4 años, Extremo para 6+. Anclajes certificados, normas internacionales, sanitización después de cada uso."
   - q: "¿Qué tamaño de inflable necesito para mi evento?"
     a: "Chicos 3x3-4x4m, Medianos 5x6-6x6m, Grandes 8x10m. Asesoría gratuita por WhatsApp."
-featured: false
+summary: "INFLAPY renta inflables para fiestas en las 16 alcaldías de CDMX desde 2018, con 15 personas en operación y atención de lunes a domingo. Su servicio es TODO INCLUIDO: instalación, traslado y desmontaje sin costo adicional, llegando 30 minutos antes del evento y retirando el equipo en 15 a 20 minutos al terminar. El catálogo se dimensiona por edad y espacio: inflables chicos de 3x3 a 4x4 m para niños de 1 a 5 años, medianos de 5x6 a 6x6 m para grupos de 20 a 50 niños, y el Circuito Extremo de 8x10 m con obstáculos para niños de 6 a 14 años. Su Castillo Blanco de 5x5 m, en blanco con detalles dorados, está diseñado para bodas y eventos formales. Todos los equipos cuentan con anclajes certificados y sanitización después de cada uso, y ofrecen asesoría gratuita por WhatsApp."
+gallery:
+  - "/img/img-eventos/decoracion-luminosa-exterior.webp"
+  - "/img/img-eventos/luces-cadena-vintage.webp"
+  - "/img/img-eventos/iluminacion-jardines-noche.webp"
+featured: true
 order: 3
 ---
 

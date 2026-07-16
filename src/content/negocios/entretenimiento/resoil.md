@@ -13,7 +13,7 @@ keywords:
   - "resoil"
 slogan: "Equipos audiovisuales profesionales para eventos exitosos"
 tagline: "Especialistas en renta de equipos de sonido e iluminación profesional para todo tipo de eventos en Ciudad de México. Con más de 10 años de experiencia, ofrecemos tecnología de última generación, instalación completa y soporte técnico especializado. Desde bodas y XV años hasta eventos corporativos y conferencias, contamos con el equipo perfecto para hacer brillar tu celebración. Guirnaldas LED, luces neón, sistemas de audio profesional y efectos especiales para crear experiencias inolvidables."
-image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
+image: "/img/img-eventos/guirnaldas-led-decorativas.webp"
 phone: "+52-55-1234-5678"
 phoneDisplay: "55 1234 5678"
 phones:
@@ -80,7 +80,12 @@ faqs:
     a: "Recomendamos reservar con 2-3 semanas de anticipación para garantizar disponibilidad. En temporada alta (mayo-junio, noviembre-diciembre) sugerimos 1-2 meses. Aceptamos reservaciones de último momento según disponibilidad."
   - q: "¿Qué formas de pago aceptan?"
     a: "Aceptamos efectivo, transferencia bancaria, depósito, tarjetas de crédito y débito. Anticipo del 50% para apartar fecha, saldo el día del evento. Emitimos factura electrónica para empresas."
-featured: false
+summary: "RESOIL renta sonido e iluminación para eventos en CDMX desde 2015, con 10 años de experiencia, 25 personas y base en Nápoles, Benito Juárez. Es proveedor habitual de venues, wedding planners y organizadores corporativos, con un inventario de más de 200 equipos de marcas como JBL Professional, QSC, Yamaha, Chauvet y Martin Professional. Su catálogo cubre guirnaldas LED de filamento cálido 2700K resistentes a intemperie, luz neón flexible con diseños personalizados para branding, sistemas de audio para ceremonia y recepción con micrófonos inalámbricos y mesa de mezclas, audio corporativo para conferencias, y equipos especiales como bolas disco, humo, confeti, pódiums y pantallas inflables. Incluyen instalación, operador durante el evento, mantenimiento preventivo previo a cada salida y facturación electrónica para empresas."
+gallery:
+  - "/img/img-eventos/guirnaldas-interiores-elegantes.webp"
+  - "/img/img-eventos/guirnaldas-de-iluminacion-calida.webp"
+  - "/img/img-eventos/guirnaldas-bajo-consumo.webp"
+featured: true
 order: 7
 ---
 

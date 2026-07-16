@@ -17,7 +17,7 @@ keywords:
   - "efectos especiales eventos"
 slogan: "10+ años transformando eventos en experiencias inolvidables"
 tagline: "Renta de Equipos para Eventos en CDMX: Iluminación, Sonido y Mobiliario Profesional. Especialistas en Bodas, XV Años y Eventos Corporativos con Instalación Profesional Incluida."
-image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
+image: "/img/img-eventos/iluminacion-festiva-eventos.webp"
 phone: "+52-55-4937-5172"
 phoneDisplay: "55 4937 5172"
 phones:
@@ -92,7 +92,12 @@ faqs:
     a: "Los costos varían según el tipo y cantidad de equipos, tamaño del evento y ubicación. Paquetes básicos de iluminación para bodas pequeñas (guirnaldas + uplighting básico) desde $8,000 MXN. Paquetes completos con cabezas móviles, Sky Tracker, proyectores de gobos y efectos especiales desde $15,000-$35,000 MXN. Ofrecemos cotizaciones personalizadas gratuitas. Contáctanos al 55 4937 5172 o por WhatsApp para presupuesto detallado sin compromiso."
   - q: "¿Qué tipo de iluminación es mejor para una boda en jardín?"
     a: "Para bodas en jardín recomendamos: guirnaldas LED vintage colgantes entre árboles para crear ambiente cálido y romántico, uplighting para iluminar árboles y plantas creando profundidad, cascadas LED para decorar estructuras, proyectores de gobos para personalizar con tus iniciales, y luz cálida general para áreas de mesas y comida. Si hay pista de baile, agregar cabezas móviles y humo bajo para el primer baile. Todos nuestros equipos para exterior son resistentes a intemperie."
-featured: false
+summary: "REDEIL renta iluminación, audio y equipo especial para eventos en CDMX y Estado de México desde 2015, con 10 años de operación, 50 personas y atención de lunes a domingo de 8:00 a 23:00 desde sus oficinas en Nápoles. Trabajan con marcas profesionales —JBL y QSC en audio; Martin Professional, Chauvet y ADJ en iluminación— y su inventario cubre guirnaldas vintage, uplighting arquitectónico, cascadas LED, proyectores de gobos personalizados, cabezas móviles, luz negra UV, City Color LED y Sky Tracker, además de efectos como humo bajo para el primer baile y pantallas inflables. Todo servicio incluye transporte, montaje, programación de luces, pruebas de sonido, operador durante el evento, desmontaje y soporte técnico en sitio, sin cargos adicionales por instalación."
+gallery:
+  - "/img/img-eventos/guirnaldas-led-decorativas.webp"
+  - "/img/img-eventos/guirnaldas-colores-cambiantes.webp"
+  - "/img/img-eventos/guirnaldas-efecto-estrella.webp"
+featured: true
 order: 5
 ---
 

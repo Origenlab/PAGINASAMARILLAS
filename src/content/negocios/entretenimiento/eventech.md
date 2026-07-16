@@ -18,7 +18,7 @@ keywords:
   - "decoración eventos"
 slogan: "Transformamos celebraciones en experiencias inolvidables"
 tagline: "Transformamos celebraciones en experiencias inolvidables. Renta de equipos para eventos sociales en México: sonido profesional, iluminación espectacular, mobiliario, decoración y entretenimiento. Tecnología de vanguardia para bodas, fiestas y eventos corporativos."
-image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
+image: "/img/img-eventos/decoracion-luminosa-exterior.webp"
 phone: "+52-55-4575-2776"
 phoneDisplay: "55 4575 2776"
 phones:
@@ -78,7 +78,12 @@ faqs:
     a: "Sí, puedes hacer modificaciones a tu pedido siempre y cuando nos notifiques con al menos 72 horas de anticipación (3 días) antes de la fecha del evento. Esto nos permite ajustar la logística y garantizar la disponibilidad de los nuevos equipos que necesites. Para cambios de último momento, consúltanos y haremos lo posible por ayudarte según disponibilidad."
   - q: "¿Ofrecen asesoría para elegir el equipo más adecuado para mi evento?"
     a: "Sí, por supuesto. Contamos con asesores especializados que te ayudarán a elegir el equipo perfecto según el tipo de evento, número de invitados, ubicación y presupuesto. Nuestra asesoría es completamente gratuita y está incluida en todos nuestros servicios. Te guiaremos paso a paso para que tu evento tenga el impacto visual y auditivo que deseas. Llámanos o escríbenos por WhatsApp."
-featured: false
+summary: "EVENTECH renta equipo para eventos sociales y corporativos en CDMX y Estado de México desde 2010, con una plantilla de 45 personas y horario de atención de lunes a domingo de 8:00 a 23:00. Su oferta se agrupa en cuatro frentes: iluminación profesional para ambientar desde una ceremonia sobria hasta un espectáculo vibrante, sonido de alta calidad dimensionado al tamaño del evento, efectos especiales y mobiliario para el impacto visual, y decoración y entretenimiento complementario. Todos los servicios incluyen transporte, montaje, pruebas de funcionamiento, operación y desmontaje, sin cargos ocultos. Cuentan con equipo de respaldo y seguro ante cualquier falla técnica, y con asesoría gratuita para dimensionar el equipo según invitados, venue y presupuesto."
+gallery:
+  - "/img/img-eventos/decoracion-fiesta-luces.webp"
+  - "/img/img-eventos/iluminacion-festiva-eventos.webp"
+  - "/img/img-eventos/decoracion-bodas-luces.webp"
+featured: true
 order: 2
 ---
 

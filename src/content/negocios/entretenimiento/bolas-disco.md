@@ -80,7 +80,12 @@ faqs:
     a: "Sí, fabricamos bolas disco con acabados y diseños personalizados según tus especificaciones. Podemos adaptar tamaños, colores de espejos, sistemas de iluminación integrados y montajes especiales para proyectos únicos."
   - q: "¿Incluyen instalación y mantenimiento?"
     a: "Sí, ofrecemos instalación profesional con técnicos especializados que garantizan un montaje seguro y efectivo. También brindamos servicio de mantenimiento para asegurar que tus bolas disco mantengan su brillo y funcionamiento óptimo."
-featured: false
+summary: "BOLDIS es fabricante y comercializador de bolas disco en CDMX, con producción propia y control de calidad en cada pieza. Su catálogo cubre tres formatos según el espacio: pequeñas de 10 a 30 cm para decoración de mesas, bares y ambientación de interiores; medianas de 31 a 60 cm para bodas, XV años y salones de eventos; y grandes de más de 61 cm para escenarios, discotecas y conciertos. Ofrecen modelos con LED RGB integrado y con motor giratorio de velocidad variable, además de soportes, montajes y accesorios profesionales. Trabajan tanto renta como venta con instalación a cargo de técnicos especializados, aceptan diseños personalizados a medida y envían a toda la República con empaque garantizado."
+gallery:
+  - "/img/img-eventos/luces-intermitentes.webp"
+  - "/img/img-eventos/luces-tipo-globo.webp"
+  - "/img/img-eventos/luces-estilo-industrial.webp"
+featured: true
 order: 1
 ---
 

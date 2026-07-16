@@ -21,7 +21,7 @@ keywords:
   - "máquina confeti"
 slogan: "10+ años transformando eventos en experiencias inolvidables"
 tagline: "Iluminamos Tu Evento, Envolvemos Tus Emociones. Renta de iluminación profesional, audio y efectos especiales para eventos en CDMX. Servicio integral con instalación incluida."
-image: "/img/img-eventos/decoracion-luminosa-eventos.webp"
+image: "/img/img-eventos/luces-cadena-vintage.webp"
 phone: "+52-55-8765-4321"
 phoneDisplay: "55 8765 4321"
 phones:
@@ -83,7 +83,12 @@ faqs:
     a: "Para una boda de 200 personas recomendamos un sistema profesional con bocinas JBL o QSC de alta potencia, subwoofer para graves profundos, micrófono inalámbrico para la ceremonia y speeches, y mezcladora profesional. El sistema incluye instalación, pruebas de sonido y operador durante todo el evento."
   - q: "¿Con cuánto tiempo debo reservar?"
     a: "Recomendamos reservar con mínimo 2 semanas de anticipación para garantizar disponibilidad de todos los equipos. Para fechas populares como sábados de temporada alta (mayo, junio, noviembre, diciembre) es mejor reservar con 1 mes de anticipación o más."
-featured: false
+summary: "RENTA DE ILUMINACIÓN opera desde 2015 en la colonia Renacimiento, Cuauhtémoc, con 10 años de experiencia, 50 personas y cobertura en toda la CDMX y Estado de México sin costo extra de traslado dentro de la zona metropolitana. Su servicio se arma a la medida: puedes rentar equipos individuales o paquetes que combinan iluminación, audio y efectos. En iluminación manejan guirnaldas LED para ambiente vintage, luz neón para eventos modernos, uplighting arquitectónico, gobos y cascadas LED; en audio, sistemas JBL y QSC con subwoofer, micrófono inalámbrico y mezcladora, dimensionados al número de invitados; y en efectos, máquinas de humo, confeti y proyección de logos. Transporte, instalación, programación, pruebas, operación y desmontaje van incluidos sin cargo adicional."
+gallery:
+  - "/img/img-eventos/iluminacion-pergola-exterior.webp"
+  - "/img/img-eventos/iluminacion-arboles-jardin.webp"
+  - "/img/img-eventos/luces-ambiente-romantico.webp"
+featured: true
 order: 6
 ---
 

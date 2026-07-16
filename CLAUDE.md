@@ -9,6 +9,13 @@ Directorio de empresas en México. Astro 6 + Markdown (content collections), est
 - Imágenes, cards, links, menús y cualquier otro elemento: los cambios de hover son **instantáneos** (cambio de color/borde sin transición).
 - Al crear componentes nuevos, respetar esta regla. Al tocar `public/css/style.css`, verificar con: `grep -n "transition\|animation\|@keyframes" public/css/style.css` — solo deben aparecer las 3 de botones.
 
+## REGLA DE TEMPLATE: `/categoria/seguridad-privada` es el canónico
+
+- **Toda página de categoría se ve igual a `/categoria/seguridad-privada`.** Contrato completo en `docs/TEMPLATE-CATEGORIA.md` — leerlo antes de tocar o lanzar cualquier categoría.
+- Render único: `src/pages/categoria/[slug].astro`. **Nunca** crear páginas de categoría sueltas ni variantes de layout por categoría.
+- Si una categoría se ve distinta, el bug está en los datos, no en el template: falta `seoIntro` en `site.ts`, o faltan `featured: true` / `summary` / `gallery` (3 imágenes) en las fichas `.md`.
+- Toda ficha de negocio lleva `featured: true` + `summary` + `gallery` de 3 imágenes reales distintas. Sin eso la categoría se queda en puro grid y rompe el template.
+
 ## Otras reglas de diseño
 
 - Design system: un solo archivo `public/css/style.css` (tokens al inicio). No crear CSS nuevos.
@@ -23,4 +30,4 @@ Directorio de empresas en México. Astro 6 + Markdown (content collections), est
 - Contenido: `src/content/negocios/<categoria>/<slug>.md` y `src/content/blog/<categoria>/<slug>.md`.
 - Config de categorías: `src/config/site.ts` (`categories` activas, `upcomingCategories` priorizadas según `docs/ESTUDIO-CATEGORIAS.md`).
 - URLs **limpias sin `.html`** en todos los links internos, canonicals y sitemap. El build sigue en format `preserve` (genera `.html` en disco y GitHub Pages resuelve `/foo` → `foo.html`), así las URLs viejas con `.html` no se rompen. NUNCA escribir links internos con `.html`. `public/blog/**/*.html` son stubs de redirect SEO — no borrar.
-- Lanzar categoría nueva = mover de `upcomingCategories` a `categories` + fichas .md + guías de blog.
+- Lanzar categoría nueva = mover de `upcomingCategories` a `categories` + fichas .md + guías de blog. Seguir el checklist de `docs/TEMPLATE-CATEGORIA.md` §5.
