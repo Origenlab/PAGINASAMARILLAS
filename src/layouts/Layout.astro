@@ -1,5 +1,6 @@
 ---
 import { site, categories } from '@config/site';
+import { versioned } from '@lib/assets';
 
 interface Props {
   title: string;
@@ -75,8 +76,8 @@ const registerMail = `mailto:${site.email}?subject=${encodeURIComponent('Quiero 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Sora:wght@600;700;800&display=swap" rel="stylesheet"></noscript>
 
-  <link rel="stylesheet" href="/css/style.css">
-  {extraCss.map((css) => <link rel="stylesheet" href={css} />)}
+  <link rel="stylesheet" href={versioned('/css/style.css')}>
+  {extraCss.map((css) => <link rel="stylesheet" href={versioned(css)} />)}
 
   <meta name="theme-color" content="#101014">
 
