@@ -1,6 +1,11 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
+import PageHero from '@components/PageHero.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import BusinessCard from '@components/BusinessCard.astro';
+import FeaturedBusiness from '@components/FeaturedBusiness.astro';
+import CategorySidebar from '@components/CategorySidebar.astro';
 import { site, getCategory, categories } from '@config/site';
 import { breadcrumb, jsonLdScript, type JsonLd } from '@lib/seo';
 
@@ -19,7 +24,7 @@ const list = negocios
   .filter((e) => e.id.split('/')[0] === slug)
   .sort((a, b) => a.data.order - b.data.order);
 
-const url = `${site.url}/categoria/${slug}.html`;
+const url = `${site.url}/categoria/${slug}`;
 const title = `${cat.name} en México — Empresas Verificadas | ${site.shortName}`;
 const description = cat.description;
 
@@ -38,12 +43,15 @@ const jsonld: JsonLd[] = [
       '@type': 'ListItem',
       position: i + 1,
       name: e.data.name,
-      url: `${site.url}/negocios/${slug}/${e.id.split('/')[1]}.html`,
+      url: `${site.url}/negocios/${slug}/${e.id.split('/')[1]}`,
     })),
   },
 ];
 
+const featuredList = list.filter((e) => e.data.featured);
+
 const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`;
+const registerMail = `mailto:${site.email}?subject=${encodeURIComponent(`Registrar mi empresa de ${cat.name} — Pamari`)}`;
 ---
 
 <Layout
@@ -52,103 +60,68 @@ const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</s
   canonical={url}
   ogTitle={`${cat.name} en México`}
   ogImage={cat.image ? `${site.url}${cat.image}` : undefined}
-  extraCss={['/css/categoria.css']}
   extraHead={extraHead}
 >
-  <nav class="breadcrumbs" aria-label="Ruta de navegación">
-    <div class="container">
-      <a href="/">Inicio</a>
-      <span aria-hidden="true">›</span>
-      <a href="/categorias">Categorías</a>
-      <span aria-hidden="true">›</span>
-      <span aria-current="page">{cat.name}</span>
-    </div>
-  </nav>
 
-  <section class="category-hero">
-    <div class="container">
-      <div class="category-header">
-        <div class="category-info">
-          <h1>{cat.name}</h1>
-          <p>{cat.description}</p>
-          <div class="category-stats">
-            <span>{list.length} {list.length === 1 ? 'empresa verificada' : 'empresas verificadas'}</span>
-          </div>
-        </div>
-      </div>
+<Breadcrumbs items={[
+    { label: 'Categorías', href: '/categorias' },
+    { label: cat.name },
+  ]} />
+
+  <PageHero
+    kicker="Categoría"
+    titleHtml={cat.name.replace(/^(\S+)/, '<span class="highlight">$1</span>')}
+    subtitle={cat.description}
+  >
+    <div class="page-hero-meta" slot="meta">
+      <span class="chip chip-dark">{list.length} {list.length === 1 ? 'empresa verificada' : 'empresas verificadas'}</span>
+      <span class="chip chip-dark">Cobertura nacional</span>
     </div>
-  </section>
+  </PageHero>
+
 
   <section class="results-section">
     <div class="container">
-      <div class="results-header">
-        <h2>{list.length} empresas de {cat.name}</h2>
-      </div>
+      <div class="with-sidebar">
 
-      <div class="business-listings">
-        {list.map((e) => {
-          const b = e.data;
-          const bslug = e.id.split('/')[1];
-          const href = `/negocios/${slug}/${bslug}.html`;
-          return (
-            <article class="business-card">
-              <div class="business-image">
-                <a href={href}>
-                  <img src={b.image} alt={b.name} width="400" height="300" loading="lazy" />
-                </a>
+        <div class="main-col">
+          <div class="section-head--split">
+            <div>
+              <span class="eyebrow">Empresas verificadas</span>
+              <h2 class="section-title">Empresas de {cat.name}</h2>
+              <div class="section-head-actions">
+                <span class="results-count">{list.length} {list.length === 1 ? 'resultado' : 'resultados'} · datos confirmados</span>
               </div>
-              <div class="business-content">
-                <div class="business-header">
-                  <h3><a href={href}>{b.name}</a></h3>
-                  {b.tagline && <p class="business-tagline">{b.tagline}</p>}
-                </div>
-                {b.services.length > 0 && (
-                  <div class="business-services">
-                    {b.services.slice(0, 4).map((s) => (
-                      <span class="service-tag">{s.name}</span>
-                    ))}
-                  </div>
-                )}
-                <div class="business-details">
-                  <div class="detail-item">
-                    <strong>Ubicación:</strong> {b.address.locality}, {b.address.region}
-                  </div>
-                  {b.yearsExperience && (
-                    <div class="detail-item">
-                      <strong>Experiencia:</strong> {b.yearsExperience}+ años
-                    </div>
-                  )}
-                </div>
-                <div class="business-actions">
-                  <a href={href} class="btn btn-primary">Ver perfil</a>
-                  {b.phone && <a href={`tel:${b.phone}`} class="btn btn-outline">Llamar</a>}
-                </div>
+            </div>
+            {cat.seoIntro && (
+              <div class="section-seo-copy">
+                <p>{cat.seoIntro[0]}</p>
+                <p>{cat.seoIntro[1]}</p>
               </div>
-            </article>
-          );
-        })}
+            )}
+          </div>
+
+          <div class="category-grid-featured">
+            {list.map((e) => <BusinessCard entry={e} />)}
+          </div>
+
+          {featuredList.map((e) => <FeaturedBusiness entry={e} />)}
+        </div>
+
+        <CategorySidebar current={slug!} />
+
       </div>
     </div>
   </section>
 
-  <section class="seo-content">
+  <section class="section" style="padding-top: 0;">
     <div class="container">
-      <div class="seo-content-wrapper">
-        <article class="seo-article">
-          <h2>Empresas de {cat.name} en México</h2>
-          <p>{cat.description}</p>
-          <p>{cat.services}</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="business-cta">
-    <div class="container">
-      <div class="cta-content">
-        <h2>¿Tienes una empresa de {cat.name.toLowerCase()}?</h2>
-        <p>Registra tu negocio en Páginas Amarillas México y llega a más clientes.</p>
-        <a href="/#registrar" class="btn btn-primary">Registrar mi negocio</a>
+      <div class="cta-band">
+        <div>
+          <h2>¿Tienes una empresa de {cat.name.toLowerCase()}?</h2>
+          <p>Publica tu ficha verificada en Pamari y llega a más clientes.</p>
+        </div>
+        <a href={registerMail} class="btn btn-dark btn-lg">Registrar mi negocio</a>
       </div>
     </div>
   </section>

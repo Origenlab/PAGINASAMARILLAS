@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Script para generar imágenes faltantes de Páginas Amarillas México
+Script para generar imágenes faltantes de Pamari
 Especificaciones según ANALISIS-PRODUCCION.md
 """
 
@@ -17,7 +17,7 @@ COLOR_WHITE = '#FFFFFF'
 # Crear directorio images si no existe
 os.makedirs('images', exist_ok=True)
 
-print("🎨 Generando imágenes para Páginas Amarillas México...")
+print("🎨 Generando imágenes para Pamari...")
 print("=" * 60)
 
 # ============================================
@@ -55,7 +55,7 @@ except:
     font_logo = ImageFont.load_default()
 
 # Dibujar logo en la parte superior
-logo_text = "Páginas Amarillas.mx"
+logo_text = "Pamari.mx"
 # Calcular posición centrada
 bbox = draw.textbbox((0, 0), logo_text, font=font_logo)
 logo_width = bbox[2] - bbox[0]

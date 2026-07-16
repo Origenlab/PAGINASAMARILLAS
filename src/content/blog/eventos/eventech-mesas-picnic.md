@@ -3,8 +3,8 @@ title: "Renta de Mesas Picnic para Eventos: Guía Completa para Crear Ambientes 
 description: "Guía completa sobre renta de mesas picnic para eventos sociales: tipos, precios, capacidades y cómo elegir el mobiliario perfecto. Todo lo que necesitas para tu evento al aire libre."
 categoryName: "Eventos"
 keywords: ["renta de mesas picnic", "mobiliario para eventos", "mesas para fiestas", "mesas estilo picnic", "renta de mobiliario para bodas", "eventos al aire libre", "EVENTECH"]
-image: "/img/img-eventos/mesas-picnic-eventos.webp"
-author: "Páginas Amarillas México"
+image: "/img/img-eventos/iluminacion-festiva-eventos.webp"
+author: "Pamari"
 publishDate: 2025-01-16
 relatedBusiness: "EVENTECH"
 draft: false

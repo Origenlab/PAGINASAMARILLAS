@@ -4,7 +4,7 @@ description: "Descubre por qué ORIGINS Private Security es líder en seguridad 
 categoryName: "Seguridad Privada"
 keywords: ["ORIGINS Private Security", "seguridad condominios CDMX", "guardias certificados SSC", "monitoreo GPS", "seguridad residencial México", "escoltas ejecutivos"]
 image: "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 relatedBusiness: "ORIGINS Private Security"
 draft: false
 ---
@@ -98,4 +98,4 @@ Si estás interesado en conocer más sobre los servicios de ORIGINS Private Secu
 
 El proceso de cotización es sencillo y sin compromiso. Un asesor especializado realizará una evaluación de tus necesidades de seguridad y te presentará una propuesta adaptada a tu presupuesto y requerimientos específicos. Las evaluaciones de seguridad iniciales son gratuitas.
 
-Para conocer más detalles sobre ORIGINS Private Security, visita su [perfil completo en Páginas Amarillas](/negocios/seguridad-privada/origins-private-security.html), donde encontrarás información adicional, galería de fotos y la opción de contactarlos directamente.
+Para conocer más detalles sobre ORIGINS Private Security, visita su [perfil completo en Pamari](/negocios/seguridad-privada/origins-private-security), donde encontrarás información adicional, galería de fotos y la opción de contactarlos directamente.

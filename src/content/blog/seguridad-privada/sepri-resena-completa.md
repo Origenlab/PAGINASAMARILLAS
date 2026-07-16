@@ -4,7 +4,7 @@ description: "Descubre cómo SEPRI Seguridad para Eventos garantiza la protecci�
 categoryName: "Seguridad Privada"
 keywords: ["SEPRI", "seguridad para eventos", "seguridad privada", "control de acceso eventos", "seguridad VIP", "gestión de multitudes"]
 image: "/img/img-seguridad-privada/grupo-guardias-edificio.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 relatedBusiness: "SEPRI"
 draft: false
 ---

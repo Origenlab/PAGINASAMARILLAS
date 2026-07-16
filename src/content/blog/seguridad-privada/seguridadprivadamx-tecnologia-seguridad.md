@@ -4,7 +4,7 @@ description: "Conoce SeguridadPrivadaMX, la primera empresa de seguridad con app
 categoryName: "Seguridad Privada"
 keywords: ["SeguridadPrivadaMX", "seguridad inteligente condominios", "app seguridad", "guardias certificados SSC", "seguridad Benito Juárez", "tecnología seguridad privada"]
 image: "/img/img-seguridad-privada/centro-monitoreo-camaras.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 relatedBusiness: "Seguridad Privada MX"
 draft: false
 ---
@@ -102,4 +102,4 @@ Solicitar una cotización de SeguridadPrivadaMX es un proceso rápido y sin comp
 
 El proceso típico incluye una visita de evaluación gratuita donde un asesor especializado analiza las necesidades de seguridad de tu condominio, y en un máximo de 4 horas recibirás una propuesta completa y personalizada.
 
-Para más información sobre SeguridadPrivadaMX, visita su [perfil completo en Páginas Amarillas](/negocios/seguridad-privada/seguridad-privada-mx.html), donde encontrarás información adicional, servicios y forma de contacto directo.
+Para más información sobre SeguridadPrivadaMX, visita su [perfil completo en Pamari](/negocios/seguridad-privada/seguridad-privada-mx), donde encontrarás información adicional, servicios y forma de contacto directo.

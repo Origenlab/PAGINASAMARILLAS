@@ -1,0 +1,106 @@
+---
+/**
+ * Sidebar de interlinking para páginas de categoría.
+ * Widgets: guías del blog de la categoría, otras categorías,
+ * empresas de otras categorías y CTA de registro.
+ */
+import { getCollection } from 'astro:content';
+import { site, categories, upcomingCategories, getCategory } from '@config/site';
+
+interface Props {
+  /** Slug de la categoría actual (se excluye de "otras categorías") */
+  current: string;
+}
+
+const { current } = Astro.props;
+const cat = getCategory(current);
+const blogSlug = cat?.blogSlug ?? current;
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .filter((p) => p.id.split('/')[0] === blogSlug)
+  .sort((a, b) => (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0))
+  .slice(0, 5);
+
+const negocios = await getCollection('negocios');
+const countByCat = (slug: string) =>
+  negocios.filter((e) => e.id.split('/')[0] === slug).length;
+
+const otherCats = categories.filter((c) => c.slug !== current);
+
+/* Empresas de otras categorías (2 por categoría) para crosslinking */
+const otherBusinesses = otherCats.flatMap((c) =>
+  negocios
+    .filter((e) => e.id.split('/')[0] === c.slug)
+    .sort((a, b) => a.data.order - b.data.order)
+    .slice(0, 2),
+);
+
+const registerMail = `mailto:${site.email}?subject=${encodeURIComponent(`Registrar mi empresa de ${cat?.name ?? 'mi giro'} — Pamari`)}`;
+---
+
+<aside class="sidebar" aria-label="Contenido relacionado">
+
+  {posts.length > 0 && (
+    <div class="widget">
+      <h3 class="widget-title">Guías de {cat?.name}</h3>
+      <ul class="widget-links">
+        {posts.map((p) => (
+          <li>
+            <a href={`/blog/${blogSlug}/${p.id.split('/')[1]}`}>{p.data.title}</a>
+          </li>
+        ))}
+      </ul>
+      <a href={`/blog/categorias/${blogSlug}`} class="widget-more">Ver todas las guías →</a>
+    </div>
+  )}
+
+  <div class="widget">
+    <h3 class="widget-title">Otras categorías</h3>
+    <ul class="widget-links widget-links-cats">
+      {otherCats.map((c) => (
+        <li>
+          <a href={`/categoria/${c.slug}`}>
+            <span>{c.name}</span>
+            <span class="widget-count">{countByCat(c.slug)}</span>
+          </a>
+        </li>
+      ))}
+      {upcomingCategories.slice(0, 3).map((c) => (
+        <li class="widget-soon">
+          <span>{c.name}</span>
+          <span class="widget-count widget-count-soon">Pronto</span>
+        </li>
+      ))}
+    </ul>
+    <a href="/categorias" class="widget-more">Todas las categorías →</a>
+  </div>
+
+  {otherBusinesses.length > 0 && (
+    <div class="widget">
+      <h3 class="widget-title">También en el directorio</h3>
+      <ul class="widget-business">
+        {otherBusinesses.map((e) => {
+          const [cslug, bslug] = e.id.split('/');
+          return (
+            <li>
+              <a href={`/negocios/${cslug}/${bslug}`}>
+                <img src={e.data.image} alt={e.data.name} width="56" height="42" loading="lazy" />
+                <span class="wb-info">
+                  <span class="wb-name">{e.data.name}</span>
+                  <span class="wb-cat">{e.data.categoryName}</span>
+                </span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </div>
+  )}
+
+  <div class="widget widget-cta">
+    <h3>¿Tienes un negocio?</h3>
+    <p>Publica tu ficha verificada y aparece donde te buscan tus clientes.</p>
+    <a href={registerMail} class="btn btn-primary">Registrar mi negocio</a>
+  </div>
+
+</aside>

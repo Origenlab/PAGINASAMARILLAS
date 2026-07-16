@@ -48,6 +48,14 @@ const negocios = defineCollection({
       .array(z.object({ name: z.string(), description: z.string() }))
       .default([]),
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+    /** Párrafo largo para el módulo "Empresa destacada" (fallback: description) */
+    summary: z.string().optional(),
+    /** H1 SEO del hero de la ficha (HTML permitido, ej. <span class="highlight">) */
+    heroTitle: z.string().optional(),
+    /** 2 párrafos SEO/marketing para la columna derecha del hero de la ficha */
+    heroIntro: z.array(z.string()).default([]),
+    /** Mini galería (1 grande + 2 chicas). Fallback: image + imágenes de la categoría */
+    gallery: z.array(z.string()).default([]),
     featured: z.boolean().default(false),
     order: z.number().default(0),
   }),
@@ -61,7 +69,7 @@ const blog = defineCollection({
     categoryName: z.string(),
     keywords: z.array(z.string()).default([]),
     image: z.string().optional(),
-    author: z.string().default('Páginas Amarillas México'),
+    author: z.string().default('Pamari'),
     publishDate: z.coerce.date().optional(),
     updatedDate: z.coerce.date().optional(),
     relatedBusiness: z.string().optional(),

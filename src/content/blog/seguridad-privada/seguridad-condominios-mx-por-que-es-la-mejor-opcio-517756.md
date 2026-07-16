@@ -4,7 +4,7 @@ description: "Descubre por qué Seguridad Condominios MX es la opción líder en
 categoryName: "Seguridad Privada"
 keywords: ["Seguridad Condominios MX", "seguridad integral", "fraccionamientos CDMX", "vigilancia 24/7", "control acceso vehicular", "seguridad privada CDMX", "empresas de seguridad Mexico"]
 image: "/img/img-seguridad-privada/guardia-caseta-residencial.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 relatedBusiness: "Seguridad Condominios MX"
 draft: false
 ---
@@ -65,4 +65,4 @@ Para más información o para solicitar una cotización personalizada, puedes co
 
 El proceso de cotización es sencillo y rápido, asegurando que recibas una respuesta oportuna a tus necesidades de seguridad.
 
-No olvides visitar el perfil completo de Seguridad Condominios MX en Paginas Amarillas para conocer más sobre sus servicios y leer opiniones de otros clientes: [Ver perfil en Paginas Amarillas](https://paginasamarillas.mx/negocios/seguridad-privada/seguridad-condominios.html).
+No olvides visitar el perfil completo de Seguridad Condominios MX en Pamari para conocer más sobre sus servicios y leer opiniones de otros clientes: [Ver perfil en Pamari](https://paginasamarillas.mx/negocios/seguridad-privada/seguridad-condominios).

@@ -1,252 +1,247 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from '../layouts/Layout.astro';
+import PageHero from '@components/PageHero.astro';
+import UpcomingCategoryCard from '@components/UpcomingCategoryCard.astro';
+import { site, categories, upcomingCategories } from '@config/site';
+import { jsonLdScript, type JsonLd } from '@lib/seo';
+
+const negocios = await getCollection('negocios');
+const posts = await getCollection('blog', ({ data }) => !data.draft);
+
+const countByCat = (slug: string) =>
+  negocios.filter((e) => e.id.split('/')[0] === slug).length;
+
+const latestPosts = posts
+  .sort((a, b) => (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0))
+  .slice(0, 3);
+
+const jsonld: JsonLd[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: site.name,
+    alternateName: 'Pamari México',
+    url: `${site.url}/`,
+    description: site.description,
+    inLanguage: 'es-MX',
+    publisher: {
+      '@type': 'Organization',
+      name: site.name,
+      url: `${site.url}/`,
+      sameAs: [site.social.facebook, site.social.twitter, site.social.instagram],
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Categorías principales de negocios en México',
+    numberOfItems: categories.length,
+    itemListElement: categories.map((c, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: c.name,
+      url: `${site.url}/categoria/${c.slug}`,
+    })),
+  },
+];
+
+const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`;
+const registerMail = `mailto:${site.email}?subject=${encodeURIComponent('Quiero registrar mi negocio en Pamari')}`;
 ---
 
 <Layout
-  title="Páginas Amarillas México - Directorio de Empresas y Negocios en México"
-  description="Encuentra empresas y negocios en México. Directorio completo con direcciones, teléfonos, horarios y reseñas verificadas. Miles de empresas mexicanas en un solo lugar."
-  canonical="https://paginasamarillas.mx/"
-  extraHead={`
-  <link rel="prefetch" href="/categorias">
-  <link rel="prefetch" href="/categoria/seguridad-privada.html">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Páginas Amarillas México",
-    "alternateName": "PaginasAmarillas.mx",
-    "url": "https://paginasamarillas.mx/",
-    "description": "Directorio empresarial más completo de México con información verificada de negocios y empresas",
-    "inLanguage": "es-MX",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": {
-        "@type": "EntryPoint",
-        "urlTemplate": "https://paginasamarillas.mx/buscar?q={search_term_string}"
-      },
-      "query-input": "required name=search_term_string"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Páginas Amarillas México",
-      "url": "https://paginasamarillas.mx/",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://paginasamarillas.mx/images/logo.webp",
-        "width": 250,
-        "height": 60
-      },
-      "sameAs": [
-        "https://www.facebook.com/paginasamarillas.mx",
-        "https://twitter.com/paginasamx",
-        "https://www.instagram.com/paginasamarillas.mx"
-      ],
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+52-55-5555-5555",
-        "contactType": "Customer Service",
-        "areaServed": "MX",
-        "availableLanguage": ["Spanish"]
-      }
-    }
-  }
-  </script>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    "name": "Categorías Principales de Negocios en México",
-    "description": "Directorio de categorías de empresas y negocios verificados en México",
-    "numberOfItems": 3,
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Seguridad Privada",
-        "url": "https://paginasamarillas.mx/categoria/seguridad-privada"
-      },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Entretenimiento y Eventos",
-        "url": "https://paginasamarillas.mx/categoria/entretenimiento"
-      },
-      {
-        "@type": "ListItem",
-        "position": 3,
-        "name": "Equipos Contra Incendios",
-        "url": "https://paginasamarillas.mx/categoria/equipos-contra-incendios"
-      }
-    ]
-  }
-  </script>
-  `}
+  title="Pamari — Directorio de Empresas Verificadas"
+  description={site.description}
+  canonical={`${site.url}/`}
+  extraHead={extraHead}
 >
 
-  <!-- Hero: 2 columns -->
-  <section class="hero">
+  <PageHero
+    kicker="Directorio empresarial de México"
+    titleHtml='Encuentra negocios <span class="highlight">verificados</span> cerca de ti'
+    subtitle="Empresas mexicanas con información real: servicios, teléfonos, cobertura y datos de contacto confirmados."
+  />
+
+  <!-- QUICK LINKS -->
+  <nav class="quicklinks" aria-label="Accesos rápidos">
     <div class="container">
-      <div class="hero-content" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;">
-        <!-- Col 1: H1 + CTAs -->
+      <div class="quicklinks-grid">
+        {categories.map((c) => (
+          <a href={`/categoria/${c.slug}`} class="quicklink">
+            <span class="quicklink-icon" aria-hidden="true">
+              {c.icon === 'shield' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              )}
+              {c.icon === 'star' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              )}
+              {c.icon === 'flame' && (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              )}
+            </span>
+            <span class="quicklink-label">{c.name}</span>
+            <span class="quicklink-arrow" aria-hidden="true">→</span>
+          </a>
+        ))}
+        <a href="/categorias" class="quicklink">
+          <span class="quicklink-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+          </span>
+          <span class="quicklink-label">Todas las categorías</span>
+          <span class="quicklink-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="/blog/" class="quicklink">
+          <span class="quicklink-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          </span>
+          <span class="quicklink-label">Blog y guías</span>
+          <span class="quicklink-arrow" aria-hidden="true">→</span>
+        </a>
+        <a href={registerMail} class="quicklink quicklink-cta">
+          <span class="quicklink-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </span>
+          <span class="quicklink-label">Registrar mi negocio</span>
+          <span class="quicklink-arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- CATEGORÍAS -->
+  <section class="section" id="categorias">
+    <div class="container">
+      <div class="section-head--split">
         <div>
-          <h1 class="hero-title">
-            Encuentra el <span class="highlight">mejor negocio</span><br>
-            cerca de ti
-          </h1>
-          <p class="hero-subtitle">
-            Miles de empresas y negocios verificados en todo México
-          </p>
-
-          <form class="search-form" action="/buscar" method="GET" role="search">
-            <div class="search-inputs">
-              <div class="search-field">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M9 17A8 8 0 1 0 9 1a8 8 0 0 0 0 16zM19 19l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <input type="text" name="q" placeholder="¿Qué buscas? (restaurantes, hoteles, plomero...)" aria-label="¿Qué estás buscando?" required>
-              </div>
-              <div class="search-field">
-                <svg class="search-icon" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                  <path d="M10 10.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                  <path d="M10 1.5c-4.42 0-8 3.58-8 8 0 6 8 10 8 10s8-4 8-10c0-4.42-3.58-8-8-8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-                <input type="text" name="location" placeholder="¿Dónde? (ciudad, estado, colonia...)" aria-label="¿En qué ubicación?" list="cities">
-                <datalist id="cities">
-                  <option value="Ciudad de México">
-                  <option value="Guadalajara, Jalisco">
-                  <option value="Monterrey, Nuevo León">
-                  <option value="Cancún, Quintana Roo">
-                  <option value="Puebla, Puebla">
-                  <option value="Tijuana, Baja California">
-                </datalist>
-              </div>
-              <button type="submit" class="btn btn-search">Buscar</button>
-            </div>
-            <div class="popular-searches">
-              <span class="popular-label">Popular:</span>
-              <a href="/restaurantes">Restaurantes</a>
-              <a href="/hoteles">Hoteles</a>
-              <a href="/medicos">Médicos</a>
-              <a href="/mecanicos">Mecánicos</a>
-            </div>
-          </form>
+          <span class="eyebrow">Explora el directorio</span>
+          <h2 class="section-title">Categorías principales</h2>
+          <div class="section-head-actions">
+            <a href="/categorias" class="btn btn-outline">Ver todas las categorías</a>
+          </div>
         </div>
+        <div class="section-seo-copy">
+          <p>
+            <strong>Empresas en México</strong> verificadas y organizadas por categoría: seguridad privada, entretenimiento para eventos y equipos contra incendios. Cada ficha del directorio incluye servicios, cobertura, horarios y datos de contacto confirmados directamente con el negocio, para que encuentres un proveedor confiable sin perder tiempo.
+          </p>
+          <p>
+            A diferencia de otros directorios de negocios, en Pamari no hay listados basura ni empresas fantasma: revisamos teléfono, domicilio y servicios antes de publicar. Explora la categoría que necesitas y contacta directo, sin registros ni intermediarios.
+          </p>
+        </div>
+      </div>
 
-        <!-- Col 2: SOLO texto SEO -->
-        <div style="padding:2rem;background:var(--color-gray-50);border-radius:var(--radius-lg);border:1px solid var(--color-gray-200);">
-          <h2 style="font-size:var(--font-size-xl);color:var(--color-gray-900);margin-bottom:1rem;">El directorio empresarial #1 de México</h2>
-          <p style="color:var(--color-gray-600);line-height:1.7;margin-bottom:1rem;">
-            Páginas Amarillas México es el directorio de empresas y negocios más completo del país. Con miles de negocios verificados en categorías como seguridad privada, entretenimiento, equipos contra incendios y más, te ayudamos a encontrar exactamente lo que necesitas.
-          </p>
-          <p style="color:var(--color-gray-600);line-height:1.7;margin-bottom:1rem;">
-            Cada empresa en nuestro directorio cuenta con información verificada: direcciones, teléfonos, horarios de atención, reseñas de clientes y calificaciones reales. Conectamos a miles de mexicanos con los mejores negocios de su ciudad.
-          </p>
-          <p style="color:var(--color-gray-600);line-height:1.7;">
-            Ya sea que busques servicios de seguridad privada en CDMX, empresas de entretenimiento para eventos, o proveedores de equipos contra incendios certificados, en Páginas Amarillas México encontrarás opciones confiables y verificadas en todo el país.
-          </p>
+      <div class="category-grid-featured">
+        {categories.map((cat) => {
+          const count = countByCat(cat.slug);
+          return (
+            <a href={`/categoria/${cat.slug}`} class="category-card-featured">
+              <div class="category-card-image" class:list={[!cat.image && 'category-card-placeholder']} style={!cat.image ? 'background: linear-gradient(135deg, #26262E 0%, #101014 100%);' : undefined}>
+                {cat.image ? (
+                  <img src={cat.image} alt={`Empresas de ${cat.name} en México`} loading="lazy" width="400" height="225" />
+                ) : (
+                  <div class="category-placeholder-icon">
+                    <svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#FFC700" stroke-width="1.5" aria-hidden="true">
+                      <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
+                    </svg>
+                  </div>
+                )}
+                <div class="category-card-overlay"></div>
+                <span class="category-card-count-badge">{count} {count === 1 ? 'empresa' : 'empresas'}</span>
+              </div>
+              <div class="category-card-content">
+                <h3 class="category-card-title">{cat.name}</h3>
+                <p class="category-card-description">{cat.description}</p>
+                <p class="category-card-services">{cat.services}</p>
+                <div class="category-card-meta">
+                  <span class="category-card-count">Datos verificados</span>
+                  <span class="category-card-arrow">Explorar <span aria-hidden="true">→</span></span>
+                </div>
+              </div>
+            </a>
+          );
+        })}
+
+        <a href={registerMail} class="category-card-featured category-card-register">
+          <div class="category-card-register-inner">
+            <span class="category-card-register-plus" aria-hidden="true">+</span>
+            <h3 class="category-card-title">Tu categoría aquí</h3>
+            <p class="category-card-description">
+              ¿Tu giro aún no está en el directorio? Regístralo y sé de las primeras empresas listadas cuando abramos tu categoría.
+            </p>
+            <span class="category-card-arrow">Registrar mi negocio <span aria-hidden="true">→</span></span>
+          </div>
+        </a>
+      </div>
+
+      <div class="upcoming-block">
+        <span class="eyebrow">Próximas categorías · según demanda en México</span>
+        <div class="category-grid-featured" style="margin-top: 1.5rem;">
+          {upcomingCategories.map((cat) => (
+            <UpcomingCategoryCard category={cat} />
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Categories -->
-  <section class="categories" id="categorias">
-    <div class="container">
-      <h2 class="section-title">Categorías Principales</h2>
-      <p class="section-subtitle">Explora negocios por categoría</p>
-
-      <div class="category-grid-featured">
-
-        <a href="/categoria/seguridad-privada.html" class="category-card-featured">
-          <div class="category-card-image">
-            <img src="/img/img-seguridad-privada/equipo-seguridad-corporativo.webp" alt="Empresas de Seguridad Privada en México - Guardias, escoltas y vigilancia profesional" loading="lazy" width="400" height="300">
-            <div class="category-card-overlay"></div>
-          </div>
-          <div class="category-card-content">
-            <div class="category-card-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-              </svg>
-            </div>
-            <h3 class="category-card-title">Seguridad Privada</h3>
-            <p class="category-card-description">Empresas certificadas de vigilancia, guardias de seguridad, escoltas ejecutivos y protección empresarial en todo México.</p>
-            <p class="category-card-services">Guardias armados y sin armar, monitoreo 24/7, seguridad para eventos, condominios, corporativos e industrial.</p>
-            <div class="category-card-meta">
-              <span class="category-card-count">4 empresas verificadas</span>
-              <span class="category-card-rating">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                4.8
-              </span>
+  <!-- BLOG RECIENTE -->
+  {latestPosts.length > 0 && (
+    <section class="section">
+      <div class="container">
+        <div class="section-head--split">
+          <div>
+            <span class="eyebrow">Del blog</span>
+            <h2 class="section-title">Guías recientes</h2>
+            <div class="section-head-actions">
+              <a href="/blog/" class="btn btn-outline">Ver el blog</a>
             </div>
           </div>
-        </a>
-
-        <a href="/categoria/entretenimiento.html" class="category-card-featured">
-          <div class="category-card-image">
-            <img src="/img/img-eventos/decoracion-fiesta-luces.webp" alt="Entretenimiento y Eventos en México - Fiestas, inflables y shows" loading="lazy" width="400" height="300">
-            <div class="category-card-overlay"></div>
+          <div class="section-seo-copy">
+            <p>
+              Contenido editorial que responde lo que la gente realmente pregunta antes de contratar: cuánto cuesta la seguridad privada en CDMX, qué certificaciones exigir, cómo elegir proveedor de eventos o qué extintor necesita tu negocio según la NOM-002-STPS.
+            </p>
+            <p>
+              Cada guía enlaza con <strong>empresas verificadas del directorio</strong>, para que pases de investigar a cotizar en un solo paso.
+            </p>
           </div>
-          <div class="category-card-content">
-            <div class="category-card-badge">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
-            </div>
-            <h3 class="category-card-title">Entretenimiento</h3>
-            <p class="category-card-description">Las mejores empresas de entretenimiento para fiestas infantiles, eventos corporativos, bodas y celebraciones en México.</p>
-            <p class="category-card-services">Inflables, brincolines, shows de luces, DJ, sonido, animadores, payasos, magos y decoración para eventos.</p>
-            <div class="category-card-meta">
-              <span class="category-card-count">7 empresas verificadas</span>
-              <span class="category-card-rating">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                4.8
-              </span>
-            </div>
-          </div>
-        </a>
-
-        <a href="/categoria/equipos-contra-incendios.html" class="category-card-featured">
-          <div class="category-card-image category-card-placeholder" style="background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);">
-            <div class="category-placeholder-icon">
-              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
-                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-              </svg>
-            </div>
-            <div class="category-card-overlay"></div>
-          </div>
-          <div class="category-card-content">
-            <div class="category-card-badge" style="background: rgba(220, 38, 38, 0.9);">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/>
-              </svg>
-            </div>
-            <h3 class="category-card-title">Equipos Contra Incendios</h3>
-            <p class="category-card-description">Proveedores certificados de extintores, sistemas contra incendios, detectores de humo y equipos de protección en México.</p>
-            <p class="category-card-services">Extintores CO2, PQS, agua, sistemas automáticos, gabinetes, mangueras, señalización y capacitación NOM-002-STPS.</p>
-            <div class="category-card-meta">
-              <span class="category-card-count">5 empresas verificadas</span>
-              <span class="category-card-rating">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                4.8
-              </span>
-            </div>
-          </div>
-        </a>
-
+        </div>
+        <div class="blog-grid">
+          {latestPosts.map((entry) => {
+            const [categoria, slug] = entry.id.split('/');
+            const href = `/blog/${categoria}/${slug}`;
+            const d = entry.data;
+            return (
+              <article class="blog-card">
+                {d.image && (
+                  <a href={href} class="blog-card-image" aria-label={d.title}>
+                    <img src={d.image} alt={d.title} width="400" height="225" loading="lazy" />
+                  </a>
+                )}
+                <div class="blog-card-body">
+                  <span class="blog-card-category">{d.categoryName}</span>
+                  <h3><a href={href}>{d.title}</a></h3>
+                  <p>{d.description}</p>
+                  <a href={href} class="blog-card-link">Leer más →</a>
+                </div>
+              </article>
+            );
+          })}
+        </div>
       </div>
+    </section>
+  )}
 
-      <div class="section-cta">
-        <a href="/categorias" class="btn btn-outline">Ver todas las categorías</a>
+  <!-- CTA REGISTRO -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="cta-band">
+        <div>
+          <h2>¿Tienes un negocio en México?</h2>
+          <p>Publica tu empresa con ficha completa, posicionamiento en Google y contacto directo con clientes.</p>
+        </div>
+        <a href={registerMail} class="btn btn-dark btn-lg">Registrar mi negocio</a>
       </div>
     </div>
   </section>
 
 </Layout>
-
-<style>
-  @media (max-width: 768px) {
-    .hero-content {
-      grid-template-columns: 1fr !important;
-    }
-  }
-</style>

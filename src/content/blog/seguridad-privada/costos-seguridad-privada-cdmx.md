@@ -4,7 +4,7 @@ description: "Análisis detallado de costos de servicios de seguridad privada en
 categoryName: "Seguridad Privada"
 keywords: ["costos seguridad privada", "precios vigilancia", "tarifas guardias seguridad CDMX", "cuánto cuesta seguridad privada", "presupuesto seguridad"]
 image: "/img/img-seguridad-privada/guardia-atencion-visitante.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 draft: false
 ---
 
@@ -20,7 +20,7 @@ Déjame compartir rangos realistas de lo que cuesta seguridad profesional en CDM
 
 Si necesitas un guardia en punto fijo, el costo por turno de 12 horas ronda entre 5,500 y 8,500 pesos. ¿Por qué tal variación? Experiencia del personal, certificaciones, si incluyen supervisión, equipamiento proporcionado, zona de la ciudad. Una pequeña tienda en Iztapalapa paga diferente que un corporativo en Santa Fe, no solo por percepción sino por costos logísticos reales.
 
-Para cobertura 24/7 que requiere rotar 2-3 elementos (porque sí, los guardias necesitan descansar y tienen días libres), estás viendo entre 35,000 y 55,000 pesos mensuales. Empresas establecidas como [SEPRI](/negocios/seguridad-privada/sepri.html) y [Seguridad Privada MX](/negocios/seguridad-privada/seguridad-privada-mx.html) operan en estos rangos porque incluyen todo: personal certificado, supervisión, respaldo cuando alguien falta, seguro de responsabilidad.
+Para cobertura 24/7 que requiere rotar 2-3 elementos (porque sí, los guardias necesitan descansar y tienen días libres), estás viendo entre 35,000 y 55,000 pesos mensuales. Empresas establecidas como [SEPRI](/negocios/seguridad-privada/sepri) y [Seguridad Privada MX](/negocios/seguridad-privada/seguridad-privada-mx) operan en estos rangos porque incluyen todo: personal certificado, supervisión, respaldo cuando alguien falta, seguro de responsabilidad.
 
 ### Condominios: Economías de Escala
 
@@ -28,7 +28,7 @@ Aquí es donde la ma themática se pone interesante. Un condominio pequeño de 2
 
 Un fraccionamiento de 100 casas con el mismo servicio podría pagar 95,000 pesos mensuales, pero por unidad son solo 950 pesos. Menos por casa aunque el servicio total cuesta más. Esta es la magia de las economías de escala, y por qué comunidades grandes pueden permitirse mejor seguridad que edificios pequeños.
 
-[Seguridad Privada Condominios](/negocios/seguridad-privada/seguridad-condominios.html) se especializa en exactamente esto: entender las dinámicas únicas de comunidades residenciales y estructurar paquetes que funcionen para diferentes tamaños.
+[Seguridad Privada Condominios](/negocios/seguridad-privada/seguridad-condominios) se especializa en exactamente esto: entender las dinámicas únicas de comunidades residenciales y estructurar paquetes que funcionen para diferentes tamaños.
 
 ### Empresas: Depende Mucho de Qué Proteges
 
@@ -98,7 +98,7 @@ Uniformes básicos generalmente los proporciona la empresa de seguridad, está i
 
 Esto fue lo que mató a la primera empresa que mi cuñado contrató. Precio super competitivo, pero cambiaban de guardia cada dos semanas. Cada guardia nuevo tenía que aprender desde cero: dónde están las cámaras, quiénes son los empleados regulares, qué proveedores vienen usualmente, procedimientos específicos del negocio.
 
-La pérdida de eficiencia y familiaridad tiene un costo real aunque no aparezca en ninguna factura. Empresas serias como [Origins Private Security](/negocios/seguridad-privada/origins-private-security.html) mantienen rotación mínima específicamente porque entienden que guardias familiarizados con el sitio son exponencialmente más efectivos.
+La pérdida de eficiencia y familiaridad tiene un costo real aunque no aparezca en ninguna factura. Empresas serias como [Origins Private Security](/negocios/seguridad-privada/origins-private-security) mantienen rotación mínima específicamente porque entienden que guardias familiarizados con el sitio son exponencialmente más efectivos.
 
 ### Seguros: No Asumas Que Están Incluidos
 
@@ -110,7 +110,7 @@ Después de que mi cuñado quemó varios miles de pesos con proveedores equivoca
 
 ### Cotiza con Al Menos Cinco Empresas Serias
 
-No tres, cinco. ¿Por qué? Porque tres cotizaciones te dan un rango, pero cinco te dan el panorama completo del mercado. Y no cotices con cualquiera, busca empresas establecidas con certificaciones verificables. [Origins Private Security](/negocios/seguridad-privada/origins-private-security.html), por ejemplo, proporciona cotizaciones detalladas donde cada línea está explicada. No hay sorpresas.
+No tres, cinco. ¿Por qué? Porque tres cotizaciones te dan un rango, pero cinco te dan el panorama completo del mercado. Y no cotices con cualquiera, busca empresas establecidas con certificaciones verificables. [Origins Private Security](/negocios/seguridad-privada/origins-private-security), por ejemplo, proporciona cotizaciones detalladas donde cada línea está explicada. No hay sorpresas.
 
 Cuando pidas cotizaciones, compara manzanas con manzanas. Asegúrate que todas están cotizando exactamente el mismo servicio: mismos horarios, mismo número de elementos, mismas responsabilidades. Diferencias de 5,000-8,000 pesos mensuales entre propuestas similares son normales y se explican por nivel de servicio. Diferencias de 20,000 pesos usualmente significan que no están cotizando lo mismo.
 
@@ -192,7 +192,7 @@ Pero eso es solo el inicio. Necesitas reclutarlo (tiempo y dinero), capacitarlo,
 
 Versus contratar empresa externa certificada a 26,000-30,000 pesos mensuales que incluye TODO: personal capacitado, supervisión, respaldo cuando alguien falta, certificaciones, seguros, equipo. Y puedes escalar o reducir servicios según necesidades sin complicaciones laborales.
 
-Para la gran mayoría de negocios, servicios externos con proveedores serios como [SEPRI](/negocios/seguridad-privada/sepri.html), [Seguridad Privada MX](/negocios/seguridad-privada/seguridad-privada-mx.html), [Origins Private Security](/negocios/seguridad-privada/origins-private-security.html) o [Seguridad Privada Condominios](/negocios/seguridad-privada/seguridad-condominios.html) resultan más económicos y mucho menos complicados que mantener departamento interno.
+Para la gran mayoría de negocios, servicios externos con proveedores serios como [SEPRI](/negocios/seguridad-privada/sepri), [Seguridad Privada MX](/negocios/seguridad-privada/seguridad-privada-mx), [Origins Private Security](/negocios/seguridad-privada/origins-private-security) o [Seguridad Privada Condominios](/negocios/seguridad-privada/seguridad-condominios) resultan más económicos y mucho menos complicados que mantener departamento interno.
 
 ## Lo Que Realmente Importa Al Final
 

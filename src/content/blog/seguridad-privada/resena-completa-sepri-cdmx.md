@@ -4,7 +4,7 @@ description: "Descubre los servicios de vigilancia y seguridad residencial de SE
 categoryName: "Seguridad Privada"
 keywords: ["seguridad residencial", "vigilancia", "condominios"]
 image: "/img/img-seguridad-privada/acceso-biometrico-torniquete.webp"
-author: "Páginas Amarillas México"
+author: "Pamari"
 publishDate: 2025-12-29
 relatedBusiness: "SEPRI"
 draft: false
