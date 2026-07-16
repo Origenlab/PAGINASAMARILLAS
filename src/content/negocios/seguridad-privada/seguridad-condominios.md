@@ -90,7 +90,12 @@ faqs:
     a: "El costo depende del número de accesos, cantidad de departamentos, áreas a cubrir y servicios tecnológicos requeridos. Ofrecemos evaluación gratuita del condominio y cotización personalizada. Los planes inician desde $12,000 MXN mensuales por turno de 12 horas."
   - q: "¿Qué tipo de capacitación recibe el personal?"
     a: "Todo nuestro personal recibe capacitación inicial de 40 horas que incluye protocolos de seguridad residencial, primeros auxilios, manejo de conflictos, atención al cliente, uso de tecnología de monitoreo y procedimientos de emergencia. Además, tienen capacitación mensual continua."
-featured: false
+summary: "Seguridad Privada Condominios es una empresa especializada exclusivamente en la protección de condominios, fraccionamientos y comunidades residenciales en CDMX y zona metropolitana. Con más de 10 años de experiencia, integra control de acceso biométrico, vigilancia 24/7, monitoreo electrónico e intercomunicación avanzada en una sola plataforma para administradores y residentes. Su personal — más de 200 elementos certificados — recibe entrenamiento específico para el trato con familias y visitantes, y la operación se respalda con reportes mensuales de incidentes, protocolos probados y un centro de monitoreo propio operando las 24 horas."
+gallery:
+  - "/img/img-seguridad-privada/guardia-caseta-residencial.webp"
+  - "/img/img-seguridad-privada/rondin-nocturno-condominio.webp"
+  - "/img/img-seguridad-privada/guardia-control-acceso-residencial.webp"
+featured: true
 order: 2
 ---
 

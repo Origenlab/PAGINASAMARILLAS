@@ -1,0 +1,92 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import PageHero from '@components/PageHero.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import { site } from '@config/site';
+import { breadcrumb, jsonLdScript, type JsonLd } from '@lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog', ({ data }) => !data.draft);
+  const cats = [...new Set(posts.map((p) => p.id.split('/')[0]))];
+  return cats.map((categoria) => ({ params: { categoria } }));
+}
+
+const { categoria } = Astro.params;
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .filter((p) => p.id.split('/')[0] === categoria)
+  .sort((a, b) => (b.data.publishDate?.getTime() ?? 0) - (a.data.publishDate?.getTime() ?? 0));
+
+const catName = posts[0]?.data.categoryName ?? categoria!;
+const url = `${site.url}/blog/categorias/${categoria}`;
+const title = `${catName} — Blog | ${site.shortName}`;
+const description = `Artículos y guías sobre ${catName.toLowerCase()} en México: consejos, comparativas, normativas y mejores prácticas del sector.`;
+
+const jsonld: JsonLd[] = [
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: 'Blog', url: `${site.url}/blog/` },
+    { name: catName, url },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `Artículos de ${catName}`,
+    numberOfItems: posts.length,
+    itemListElement: posts.map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: p.data.title,
+      url: `${site.url}/blog/${categoria}/${p.id.split('/')[1]}`,
+    })),
+  },
+];
+
+const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={url}
+  extraHead={extraHead}
+>
+<Breadcrumbs items={[
+    { label: 'Blog', href: '/blog/' },
+    { label: catName },
+  ]} />
+
+  <PageHero
+    kicker={`Blog · ${catName}`}
+    titleHtml={`Artículos de <span class="highlight">${catName}</span>`}
+    subtitle={description}
+  />
+
+
+  <section class="blog-index" style="padding-top: 1rem;">
+    <div class="container">
+      <div class="blog-grid">
+        {posts.map((entry) => {
+          const [cat, slug] = entry.id.split('/');
+          const href = `/blog/${cat}/${slug}`;
+          const d = entry.data;
+          return (
+            <article class="blog-card">
+              {d.image && (
+                <a href={href} class="blog-card-image" aria-label={d.title}>
+                  <img src={d.image} alt={d.title} width="400" height="225" loading="lazy" />
+                </a>
+              )}
+              <div class="blog-card-body">
+                <span class="blog-card-category">{d.categoryName}</span>
+                <h2><a href={href}>{d.title}</a></h2>
+                <p>{d.description}</p>
+                <a href={href} class="blog-card-link">Leer más →</a>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+</Layout>

@@ -90,6 +90,15 @@ faqs:
     a: "Contamos con servicio de respuesta rápida 24/7. En emergencias dentro de CDMX, nuestro tiempo de respuesta promedio es de 15-20 minutos. Disponemos de unidades móviles estratégicamente ubicadas para atención inmediata."
   - q: "¿Ofrecen contratos flexibles?"
     a: "Sí, ofrecemos contratos desde 1 mes renovables. También contamos con servicios por evento (1 día o más), servicios temporales para proyectos específicos y contratos anuales con tarifas preferenciales. Sin penalización por cancelación anticipada con 30 días de aviso."
+heroTitle: 'Seguridad privada <span class="highlight">certificada CNSP</span> para empresas, industria y corporativos en CDMX'
+heroIntro:
+  - "Con más de 15 años de trayectoria y 500+ elementos operativos, Origins Private Security es el socio de seguridad de empresas mexicanas que no pueden permitirse improvisar. Su modelo integra guardias intramuros, escoltas ejecutivos y monitoreo CCTV 24/7 en un solo esquema coordinado desde su propio centro de mando, con tiempos de respuesta menores a 30 minutos en CDMX y zona metropolitana."
+  - "A diferencia de proveedores improvisados, cada elemento está certificado ante el CNSP y se forma en academia propia con entrenamiento continuo. La relación inicia con una evaluación de riesgos sin costo y una cotización transparente, sin cargos ocultos — profesionalismo medible desde el primer contacto."
+summary: "Origins Private Security es una empresa 100% mexicana con más de 15 años protegiendo empresas, industrias, corporativos y patrimonios en CDMX y zona metropolitana. Su modelo integra seguridad física y electrónica: guardias intramuros certificados ante el CNSP, escoltas ejecutivos, monitoreo CCTV 24/7, alarmas y control de acceso, todo coordinado desde su propio centro de mando. Cuenta con más de 500 elementos capacitados en academia propia, tiempos de respuesta menores a 30 minutos y evaluación de riesgos sin costo antes de contratar, con cotizaciones transparentes y sin cargos ocultos."
+gallery:
+  - "/img/img-seguridad-privada/equipo-seguridad-corporativo.webp"
+  - "/img/img-seguridad-privada/centro-monitoreo-camaras.webp"
+  - "/img/img-seguridad-privada/escolta-ejecutivo-vehiculo.webp"
 featured: true
 order: 1
 ---

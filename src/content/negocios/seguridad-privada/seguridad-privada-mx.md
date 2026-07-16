@@ -94,7 +94,12 @@ faqs:
     a: "Contamos con equipos de respuesta rápida en las principales zonas metropolitanas con tiempos de respuesta menores a 15-20 minutos. En zonas foráneas, coordinamos con autoridades locales y nuestro personal en sitio para atención inmediata mientras llega apoyo adicional."
   - q: "¿Ofrecen servicios para eventos de un solo día?"
     a: "Sí, ofrecemos servicios de seguridad para eventos únicos desde 1 día. Incluye control de acceso, vigilancia perimetral, revisión de bolsos, coordinación de estacionamiento y personal capacitado en manejo de multitudes. Recomendamos cotizar con al menos 1 semana de anticipación."
-featured: false
+summary: "Seguridad Privada MX ofrece protección integral con cobertura en toda la República Mexicana desde su base en Tlalnepantla, Estado de México. Con más de 8 años de operación, combina guardias certificados con tecnología de punta: monitoreo 24/7, CCTV, control de acceso y coordinación central de operaciones. Atiende condominios, eventos, corporativos, comercios e industria con esquemas flexibles — desde vigilancia permanente hasta servicios por evento — siempre bajo su lema: proteger lo que más valoras con confianza y excelencia."
+gallery:
+  - "/img/img-seguridad-privada/grupo-guardias-edificio.webp"
+  - "/img/img-seguridad-privada/monitoreo-cctv-central.webp"
+  - "/img/img-seguridad-privada/guardia-patrulla-industrial.webp"
+featured: true
 order: 3
 ---
 

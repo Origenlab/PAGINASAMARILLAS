@@ -91,7 +91,12 @@ faqs:
     a: "El costo varía según el tipo y tamaño del evento. Eventos sociales pequeños (50-100 personas) inician desde $8,500 MXN. Eventos corporativos medianos (200-300 personas) desde $18,000 MXN. Conciertos y eventos masivos requieren cotización personalizada. Todos los precios incluyen coordinador en sitio."
   - q: "¿Están asegurados en caso de algún incidente durante el evento?"
     a: "Sí, contamos con pólizas de responsabilidad civil vigentes que cubren tanto a nuestro personal como incidentes relacionados con la operación de seguridad. Además, todo nuestro personal cuenta con seguro de vida y seguro médico."
-featured: false
+summary: "SEPRI es una empresa especializada en seguridad para eventos con más de 12 años protegiendo conciertos, festivales, eventos corporativos y celebraciones sociales en CDMX. Su equipo domina las cuatro disciplinas críticas de un evento exitoso: control de acceso y registro de asistentes, vigilancia y monitoreo permanente, protección VIP para invitados especiales y gestión de multitudes con protocolos de control de crisis. Cada operativo se planea con visita previa al venue, análisis de riesgos y coordinación con protección civil, para que organizadores e invitados solo se ocupen de disfrutar el evento."
+gallery:
+  - "/img/img-seguridad-privada/seguridad-centro-comercial.webp"
+  - "/img/img-seguridad-privada/proteccion-vip-auto.webp"
+  - "/img/img-seguridad-privada/verificacion-identificacion.webp"
+featured: true
 order: 4
 ---
 

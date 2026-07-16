@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import BusinessSidebar from '@components/BusinessSidebar.astro';
 import { site } from '@config/site';
 import {
   localBusiness,
@@ -23,7 +25,7 @@ const n = entry.data;
 const { Content } = await render(entry);
 
 const [categoria, slug] = entry.id.split('/');
-const url = `${site.url}/negocios/${categoria}/${slug}.html`;
+const url = `${site.url}/negocios/${categoria}/${slug}`;
 const ogImage = n.image.startsWith('http') ? n.image : `${site.url}${n.image}`;
 
 const jsonld: JsonLd[] = [
@@ -47,11 +49,19 @@ const jsonld: JsonLd[] = [
   breadcrumb([
     { name: 'Inicio', url: `${site.url}/` },
     { name: 'Categorías', url: `${site.url}/categorias` },
-    { name: n.categoryName, url: `${site.url}/categoria/${categoria}.html` },
+    { name: n.categoryName, url: `${site.url}/categoria/${categoria}` },
     { name: n.name, url },
   ]),
 ];
 if (n.faqs.length) jsonld.push(faqPage(n.faqs));
+
+/* Hero: título SEO (HTML) y 2 párrafos marketing, con fallbacks */
+const heroTitleHtml =
+  n.heroTitle ??
+  `${n.name} — <span class="highlight">${n.categoryName}</span> en ${n.address.locality}`;
+const heroParagraphs = n.heroIntro.length
+  ? n.heroIntro.slice(0, 2)
+  : [n.summary ?? n.tagline ?? n.description, n.coverage ?? n.description].filter(Boolean).slice(0, 2);
 
 const keywords = n.keywords.join(', ');
 const extraHead = [
@@ -68,52 +78,24 @@ const extraHead = [
   ogDescription={n.slogan ?? n.description}
   ogImage={ogImage}
   ogType="business.business"
-  extraCss={['/css/perfil.css']}
   extraHead={extraHead}
 >
-  <nav class="breadcrumbs" aria-label="Ruta de navegación">
-    <div class="container">
-      <a href="/">Inicio</a>
-      <span aria-hidden="true">›</span>
-      <a href="/categorias">Categorías</a>
-      <span aria-hidden="true">›</span>
-      <a href={`/categoria/${categoria}.html`}>{n.categoryName}</a>
-      <span aria-hidden="true">›</span>
-      <span aria-current="page">{n.name}</span>
-    </div>
-  </nav>
+<Breadcrumbs items={[
+    { label: 'Categorías', href: '/categorias' },
+    { label: n.categoryName, href: `/categoria/${categoria}` },
+    { label: n.name },
+  ]} />
 
   <section class="business-hero">
     <div class="container">
-      <div class="business-hero-content">
-        <div class="business-hero-media">
-          <div class="business-main-image">
-            <img src={n.image} alt={n.name} width="600" height="400" fetchpriority="high" />
-          </div>
-        </div>
-        <div class="business-hero-info">
-          <span class="business-category-tag">{n.categoryName}</span>
-          <h1>{n.name}</h1>
-          {n.tagline && <p class="business-tagline">{n.tagline}</p>}
+      <div class="hero-grid">
 
-          <div class="quick-info-grid">
-            <div class="quick-info-card">
-              <strong>Ubicación</strong>
-              <span>{n.address.locality}, {n.address.region}</span>
-            </div>
-            {n.yearsExperience && (
-              <div class="quick-info-card">
-                <strong>Experiencia</strong>
-                <span>{n.yearsExperience}+ años</span>
-              </div>
-            )}
-            {n.priceRange && (
-              <div class="quick-info-card">
-                <strong>Rango de precio</strong>
-                <span>{n.priceRange}</span>
-              </div>
-            )}
-          </div>
+        <!-- Col 1: título SEO + marca + CTAs -->
+        <div class="bh-title-col">
+          <span class="business-category-tag">{n.categoryName} · {n.address.locality}</span>
+          <p class="bh-brand">{n.name}</p>
+          <h1 class="bh-title" set:html={heroTitleHtml} />
+          {n.slogan && <p class="bh-slogan">“{n.slogan}”</p>}
 
           <div class="business-cta-buttons">
             {n.phone && <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>}
@@ -129,9 +111,20 @@ const extraHead = [
             )}
           </div>
         </div>
+
+        <!-- Col 2: 2 párrafos SEO / marketing -->
+        <div class="bh-copy-col">
+          {heroParagraphs.map((p) => <p>{p}</p>)}
+        </div>
+
       </div>
     </div>
   </section>
+
+  <div class="business-layout">
+    <div class="container">
+      <div class="with-sidebar">
+        <div class="main-col">
 
   {n.services.length > 0 && (
     <section class="business-section">
@@ -165,6 +158,9 @@ const extraHead = [
           )}
         </div>
         <div class="about-stats">
+          <div class="about-image">
+            <img src={n.image} alt={n.name} width="600" height="400" loading="lazy" />
+          </div>
           {n.yearsExperience && (
             <div class="stat-card">
               <div class="stat-number">{n.yearsExperience}+</div>
@@ -282,6 +278,13 @@ const extraHead = [
       </div>
     </section>
   )}
+
+        </div>
+
+        <BusinessSidebar entry={entry} />
+      </div>
+    </div>
+  </div>
 
   <section class="business-cta">
     <div class="container">

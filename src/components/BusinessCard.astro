@@ -1,0 +1,56 @@
+---
+/**
+ * Card de negocio homologada al diseño de cards del index.
+ * Estructura estricta para que todas las cards alineen en el grid:
+ * imagen 16:9 + badge → título (2 líneas) → descripción (2 líneas)
+ * → tags (1 fila, 3 + contador) → ubicación → acciones.
+ */
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'negocios'>;
+}
+
+const { entry } = Astro.props;
+const b = entry.data;
+const [categoria, slug] = entry.id.split('/');
+const href = `/negocios/${categoria}/${slug}`;
+
+const visibleTags = b.services.slice(0, 3);
+const extraTags = b.services.length - visibleTags.length;
+---
+
+<article class="category-card-featured business-card-v">
+  <a href={href} class="category-card-image" aria-label={b.name}>
+    <img src={b.image} alt={b.name} width="400" height="225" loading="lazy" />
+    <div class="category-card-overlay"></div>
+    <span class="category-card-count-badge">
+      {b.yearsExperience ? `${b.yearsExperience}+ años` : 'Verificada'}
+    </span>
+  </a>
+
+  <div class="category-card-content">
+    <h3 class="category-card-title bcv-title"><a href={href}>{b.name}</a></h3>
+
+    <p class="bcv-description">{b.tagline ?? b.description}</p>
+
+    <div class="bcv-tags">
+      {visibleTags.map((s) => (
+        <span class="service-tag">{s.name}</span>
+      ))}
+      {extraTags > 0 && <span class="service-tag service-tag-more">+{extraTags}</span>}
+    </div>
+
+    <div class="bcv-location">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+      </svg>
+      <span>{b.address.locality}, {b.address.region}</span>
+    </div>
+
+    <div class="bcv-actions">
+      <a href={href} class="btn btn-primary">Ver perfil</a>
+      {b.phone && <a href={`tel:${b.phone}`} class="btn btn-outline">Llamar</a>}
+    </div>
+  </div>
+</article>
