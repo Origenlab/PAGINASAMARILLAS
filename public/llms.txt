@@ -1,0 +1,42 @@
+# PAGINASAMARILLAS.MX — Directorio de empresas y negocios en México
+
+> Pamari (paginasamarillas.mx) es un directorio mexicano de empresas con fichas
+> verificadas —dirección, teléfonos, horarios y servicios de cada negocio—
+> organizado por categorías, más un blog con guías de contratación por sector.
+
+Idioma: español (es-MX). País: México.
+
+## Acerca de
+Directorio de negocios mexicanos organizado en 16 categorías (seguridad
+privada, entretenimiento, equipos contra incendios, salud, automotriz,
+construcción, plomería y electricidad, restaurantes, abogados y notarías,
+tecnología, limpieza, mudanzas, veterinarias, belleza y educación, entre
+otras). Las categorías con fichas de empresa publicadas son Seguridad Privada,
+Entretenimiento y Equipos Contra Incendios; cada ficha enlaza directo al
+negocio, sin intermediarios ni comisiones.
+
+## Servicios / Productos
+- Fichas de empresa con datos de contacto, servicios y cobertura verificados
+- Navegación del directorio por categorías temáticas
+- Blog con guías de contratación, costos y normatividad por sector
+
+## Páginas clave
+- [Inicio](https://paginasamarillas.mx/): buscador y categorías del directorio
+- [Categorías](https://paginasamarillas.mx/categorias): las 16 categorías del directorio
+- [Seguridad Privada](https://paginasamarillas.mx/categoria/seguridad-privada): guardias, escoltas, monitoreo y CCTV
+- [Entretenimiento](https://paginasamarillas.mx/categoria/entretenimiento): audio, iluminación, inflables y producción de eventos
+- [Equipos Contra Incendios](https://paginasamarillas.mx/categoria/equipos-contra-incendios): extintores, sistemas fijos y señalización
+- [Blog](https://paginasamarillas.mx/blog): guías y comparativas por sector
+- [Guía de seguridad privada en México](https://paginasamarillas.mx/blog/seguridad-privada/guia-completa-seguridad-privada-mexico): cómo contratar y qué verificar
+- [Clases de fuego y tipos de extintor](https://paginasamarillas.mx/blog/equipos-contra-incendios/clases-de-fuego-y-tipos-de-extintor): guía técnica básica
+- [Ficha: SEPRI](https://paginasamarillas.mx/negocios/seguridad-privada/sepri): ejemplo de ficha de seguridad privada
+- [Ficha: Eventech](https://paginasamarillas.mx/negocios/entretenimiento/eventech): ejemplo de ficha de entretenimiento
+- [Ficha: MESECI](https://paginasamarillas.mx/negocios/equipos-contra-incendios/meseci): ejemplo de ficha contra incendios
+- [Mapa del sitio](https://paginasamarillas.mx/sitemap): índice de todas las páginas
+
+## Contacto
+- Email: contacto@paginasamarillas.mx
+- Teléfono: 55 1005 3423
+- Facebook: https://www.facebook.com/paginasamarillas.mx
+- Instagram: https://www.instagram.com/paginasamarillas.mx
+- Sitio: https://paginasamarillas.mx/
