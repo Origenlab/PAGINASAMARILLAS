@@ -64,28 +64,677 @@ whyUs:
   - "Soporte Post-Venta - Orientación sobre mantenimiento, inspección y vida útil del equipo para máxima seguridad"
 services:
   - name: "Trajes de Bombero Certificados NFPA"
-    description: "Trajes profesionales para combate de incendios estructurales, forestales, de aproximación y rescate. Balance perfecto entre movilidad, durabilidad y protección certificada NFPA. Chaquetón y pantalón resistentes al calor extremo."
+    slug: "trajes-de-bombero-certificados-nfpa"
+    keyword: "Trajes de bombero NFPA 1971 CDMX"
+    description: "Trajes estructurales de tres capas certificados NFPA 1971. Chaquetón y pantalón con barrera térmica y de humedad para combate interior de incendios."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Traje estructural de bombero certificado NFPA 1971"
+    badge: "NFPA 1971"
+    heroIntro:
+      - "Un traje estructural no protege por ser grueso: protege porque tres capas distintas hacen tres trabajos distintos. La exterior resiste la flama, la intermedia bloquea el vapor y el agua, y la interior frena el calor radiante. Si una falla, las otras dos no compensan."
+      - "BOMBERO MX suministra conjuntos certificados por laboratorio independiente y entrega el dato que define la inversión: la fecha de fabricación cosida en la prenda, que es desde donde corren los diez años de vida útil."
+    highlights:
+      - "Tres capas: flama, humedad y térmica"
+      - "Certificación de laboratorio independiente"
+      - "Etiqueta con fecha de fabricación"
+      - "Asesoría de talla y ajuste"
+    detail:
+      - "El conjunto estructural se compone de chaquetón y pantalón con tres capas laminadas: tela exterior resistente a la flama y a la abrasión, barrera de humedad que impide el paso de agua y vapor —y con ello las quemaduras por vapor, que son de las más graves— y barrera térmica que retarda la transferencia de calor."
+      - "La certificación es lo que convierte esas capas en una protección verificable. Ampara el modelo específico, no la marca, y viene acompañada de la fecha de fabricación: ese dato es el que marca el retiro a los diez años, sin importar cuán bien se vea la prenda."
+    proceso:
+      - title: "Definición del nivel de uso"
+        text: "Se establece si el usuario hace primera respuesta o combate interior sostenido. El uso define el peso de la tela y el nivel de barrera térmica."
+      - title: "Toma de medidas"
+        text: "Levantamiento por elemento: manga, entrepierna, tórax y alcance. Un traje que no ajusta expone muñeca y tobillo, que es donde se concentran las quemaduras."
+      - title: "Entrega con expediente"
+        text: "Cada conjunto con su certificación y su fecha de fabricación, cargadas al inventario del cliente."
+      - title: "Programa de cuidado y retiro"
+        text: "Se entrega el criterio de lavado e inspección y se calendariza el retiro por fecha, para no descubrirlo en una auditoría."
+    comparativa:
+      title: "Las tres capas y qué pasa si una falla"
+      intro: "Cada capa resuelve un riesgo específico. Conocerlas explica por qué un traje no se lava en casa:"
+      headers: ["Capa", "Función", "Si se degrada", "Qué la degrada"]
+      rows:
+        - ["Exterior", "Resistir flama, calor y abrasión", "Se rompe con el roce y expone las capas internas", "Sol directo prolongado y abrasión"]
+        - ["Barrera de humedad", "Impedir paso de agua y vapor", "Entra vapor: quemadura por escaldadura", "Cloro, secado caliente, dobleces permanentes"]
+        - ["Barrera térmica", "Retardar la transferencia de calor", "Baja el tiempo disponible antes de la quemadura", "Compresión prolongada y lavado agresivo"]
+        - ["Costuras y refuerzos", "Mantener la integridad del conjunto", "Puntos de entrada de calor", "Talla incorrecta y sobreesfuerzo"]
+      note: "La quemadura por vapor es de las lesiones más frecuentes y ocurre cuando la barrera de humedad ya está comprometida, aunque el traje se vea intacto por fuera."
+    casos:
+      - title: "Cuerpos de bomberos municipales"
+        text: "Reposición programada por lotes conforme el equipo alcanza los diez años."
+      - title: "Brigadas industriales"
+        text: "Plantas con brigada de combate interior que debe acreditarse ante protección civil."
+      - title: "Refinerías y petroquímica"
+        text: "Entornos con hidrocarburos, donde la contaminación del traje obliga a lavado inmediato."
+      - title: "Aeropuertos"
+        text: "Cuerpos de rescate con exigencia de respuesta y equipo bajo revisión constante."
+    specs:
+      - label: "Composición"
+        value: "Tres capas: exterior, barrera de humedad y barrera térmica"
+      - label: "Certificación"
+        value: "NFPA 1971, por laboratorio independiente"
+      - label: "Piezas"
+        value: "Chaquetón y pantalón"
+      - label: "Vida útil"
+        value: "10 años desde la fecha de fabricación"
+      - label: "Lavado"
+        value: "Industrial certificado, detergente neutro, sin blanqueador"
+      - label: "Secado"
+        value: "Baja temperatura o al aire, sin sol directo"
+      - label: "Documentación"
+        value: "Certificación y fecha de fabricación por prenda"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NFPA 1971"
+        titulo: "Equipo de protección para combate estructural de incendios"
+        exige: "Define el desempeño del conjunto y de cada pieza —chaquetón, pantalón, casco, guantes, botas y capucha— y exige certificación por laboratorio independiente."
+        implica: "La certificación ampara la pieza específica, no la marca: un modelo certificado no acredita a otro del mismo fabricante."
+      - norma: "NFPA 1851"
+        titulo: "Selección, cuidado y mantenimiento del equipo estructural"
+        exige: "Lavado industrial certificado con detergente neutro y sin blanqueador, inspección periódica, y retiro del conjunto a los 10 años de la fabricación del componente más antiguo."
+        implica: "La antigüedad corre desde fabricación, no desde la compra. Conviene inventariar por fecha, no por año de adquisición."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar en su uso y supervisar que se utilice."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP elaboradas con la versión anterior deben actualizarse."
+    faqs:
+      - q: "¿Por qué el traje es de tres capas?"
+        a: "Porque son tres riesgos distintos: flama, vapor y calor radiante. Una sola capa gruesa no resuelve los tres y además impediría moverse."
+      - q: "¿La vida útil corre desde que lo compro?"
+        a: "No, desde la fecha de fabricación cosida en la prenda. Un traje que pasó dos años en bodega llega con dos años menos."
+      - q: "¿Puedo lavarlo en una lavandería común?"
+        a: "No. Requiere lavadora industrial, detergente neutro y nada de blanqueador. El cloro destruye la barrera térmica de forma irreversible."
+      - q: "¿Qué pasa si el traje se moja por dentro?"
+        a: "Puede indicar que la barrera de humedad está comprometida. Un traje en esa condición expone a quemaduras por vapor y debe evaluarse antes de volver a usarse."
+      - q: "¿La certificación es de la marca o del modelo?"
+        a: "Del modelo específico. Que un fabricante tenga productos certificados no significa que todos sus modelos lo estén."
+      - q: "¿Sirve un traje estructural para incendio forestal?"
+        a: "No es lo adecuado. El estructural es pesado y poco ventilado; en forestal genera golpe de calor. Son equipos distintos con normas distintas."
+      - q: "¿Qué hago con un traje vencido?"
+        a: "Se retira del servicio operativo. Puede destinarse a prácticas sin exposición real, pero nunca a intervención."
+      - q: "¿Venden por lote a cuerpos de bomberos?"
+        a: "Sí, y conviene: comprar por lote permite homologar fechas de fabricación y planear la reposición sin sobresaltos presupuestales."
   - name: "Cascos de Bombero"
-    description: "Cascos estructurales, ligeros, con montaje para linternas/cámaras y protección. Fabricados con compuestos avanzados de termoplástico y fibra de vidrio, resistentes a altas temperaturas e impactos severos."
+    slug: "cascos-de-bombero"
+    keyword: "Cascos de bombero certificados CDMX"
+    description: "Cascos estructurales con visor, protector de nuca y suspensión ajustable. Protección contra impacto, calor radiante y caída de objetos."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Casco estructural de bombero con visor y protector de nuca"
+    badge: "Impacto y calor"
+    heroIntro:
+      - "El casco es la pieza que más se subestima y la que más se conserva de más. A diferencia del traje, su daño crítico no se ve: la carcasa y la suspensión absorben el impacto deformándose por dentro, y después de un golpe fuerte ya no responden igual aunque luzcan intactas."
+      - "BOMBERO MX suministra cascos estructurales con visor, protector de nuca y suspensión ajustable, y explica el criterio de retiro que casi nunca se aplica: un casco golpeado se reemplaza, no se sigue usando."
+    highlights:
+      - "Carcasa resistente a impacto y calor"
+      - "Visor y protector de nuca"
+      - "Suspensión ajustable"
+      - "Compatible con capucha y máscara"
+    detail:
+      - "El casco estructural protege de tres cosas a la vez: impacto por caída de objetos o golpe contra estructura, calor radiante sobre cabeza y nuca, y proyección de partículas hacia los ojos. La suspensión interna es la que absorbe el impacto y la que define el ajuste."
+      - "Su compatibilidad importa tanto como su resistencia. El casco debe convivir con la capucha y con la máscara del equipo de respiración sin dejar piel expuesta ni comprometer el sello facial, que es donde se pierde la protección respiratoria."
+    proceso:
+      - title: "Verificación de compatibilidad"
+        text: "Se confirma que el casco funcione con la capucha y la máscara del equipo de respiración que ya usa el cuerpo o la brigada."
+      - title: "Ajuste de suspensión"
+        text: "Se ajusta por usuario. Un casco flojo se mueve en la maniobra y uno apretado se retira a media intervención."
+      - title: "Entrega y registro"
+        text: "Cada casco con su identificación y fecha, para llevar control de antigüedad y de eventos de impacto."
+      - title: "Criterio de retiro"
+        text: "Se deja establecido que todo casco que reciba un golpe fuerte se retira, aunque no presente daño visible."
+    comparativa:
+      title: "Cuándo se retira un casco"
+      intro: "El casco no se cambia por antigüedad únicamente: hay eventos que lo retiran de inmediato."
+      headers: ["Situación", "¿Se retira?", "Por qué", "Detectable a simple vista"]
+      rows:
+        - ["Golpe fuerte", "Sí, de inmediato", "La suspensión ya absorbió su impacto", "No"]
+        - ["Exposición a calor extremo", "Sí", "La carcasa pierde propiedades", "A veces, por deformación"]
+        - ["Visor rayado o opaco", "Cambio de visor", "Reduce visibilidad en humo", "Sí"]
+        - ["Suspensión floja o rota", "Cambio de suspensión", "Sin ajuste no protege", "Sí"]
+        - ["Contacto con solventes", "Evaluar", "Degradan la carcasa", "No"]
+        - ["Antigüedad", "Según fabricante", "Envejecimiento del material", "No"]
+      note: "La regla práctica es que un casco protege un impacto grave. Después de ese impacto cumplió su función y debe reemplazarse aunque se vea perfecto."
+    casos:
+      - title: "Cuerpos de bomberos"
+        text: "Reposición por evento de impacto, no solo por antigüedad."
+      - title: "Brigadas industriales"
+        text: "Cascos que deben convivir con máscara de respiración y capucha."
+      - title: "Rescate urbano"
+        text: "Trabajo en espacios confinados y estructuras colapsadas, con alta exposición a golpe."
+      - title: "Renovación de imagen"
+        text: "Cuerpos que cambian código de color por jerarquía o por unidad."
+    specs:
+      - label: "Protección"
+        value: "Impacto, calor radiante y proyección de partículas"
+      - label: "Visor"
+        value: "Retráctil, resistente a impacto"
+      - label: "Protector de nuca"
+        value: "Cubre la zona posterior del cuello"
+      - label: "Suspensión"
+        value: "Ajustable por usuario"
+      - label: "Compatibilidad"
+        value: "Con capucha y máscara de equipo autónomo"
+      - label: "Retiro"
+        value: "Inmediato tras impacto fuerte, aunque no haya daño visible"
+      - label: "Identificación"
+        value: "Registro por usuario y fecha"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NFPA 1971"
+        titulo: "Equipo de protección para combate estructural de incendios"
+        exige: "Define el desempeño del conjunto y de cada pieza —chaquetón, pantalón, casco, guantes, botas y capucha— y exige certificación por laboratorio independiente."
+        implica: "La certificación ampara la pieza específica, no la marca: un modelo certificado no acredita a otro del mismo fabricante."
+      - norma: "NFPA 1851"
+        titulo: "Cuidado y mantenimiento del equipo estructural"
+        exige: "Establece inspección periódica del conjunto, incluido el casco, y criterios de retiro por daño o degradación."
+        implica: "El casco entra en el mismo programa de inspección que el traje; no es un accesorio fuera de control."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar en su uso y supervisar que se utilice."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP elaboradas con la versión anterior deben actualizarse."
+    faqs:
+      - q: "¿Cada cuánto se cambia un casco?"
+        a: "No hay una cifra única: se retira por evento —un golpe fuerte o exposición a calor extremo— y por el límite que indique el fabricante. La antigüedad sola no es el criterio principal."
+      - q: "¿Se puede cambiar solo el visor?"
+        a: "Sí, el visor y la suspensión son componentes reemplazables. Lo que no se repara es la carcasa."
+      - q: "¿Cómo sé si el casco quedó dañado?"
+        a: "Muchas veces no se ve. Por eso la regla es retirar todo casco que haya recibido un impacto fuerte, sin esperar a que muestre daño."
+      - q: "¿El casco de obra sirve para incendio?"
+        a: "No. Un casco industrial protege de impacto pero no está diseñado para calor radiante ni para proteger nuca y rostro en un incendio."
+      - q: "¿Debe combinar con la máscara?"
+        a: "Sí, y hay que probarlo. Si el casco desplaza la máscara y rompe el sello facial, se pierde la protección respiratoria justo en atmósfera peligrosa."
+      - q: "¿Los colores significan algo?"
+        a: "En muchos cuerpos identifican jerarquía o función. No es un requisito normativo, pero sí una convención útil en la escena."
+      - q: "¿Incluye lámpara o soporte?"
+        a: "Depende del modelo. Se puede especificar con soporte para lámpara, que es lo habitual en trabajo nocturno y espacios confinados."
+      - q: "¿Manejan compra por lote?"
+        a: "Sí, y permite homologar modelo y accesorios en todo el cuerpo, lo que simplifica refacciones después."
   - name: "Botas de Bombero"
-    description: "Botas de cuero para comodidad en largas jornadas, botas de rescate, botas contraincendios y botas para materiales peligrosos (HAZMAT). Diseñadas para protección extrema y fácil descontaminación."
+    slug: "botas-de-bombero"
+    keyword: "Botas de bombero certificadas CDMX"
+    description: "Botas estructurales con puntera de protección, plantilla antipunción y suela resistente a altas temperaturas. Modelos de hule y de piel."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Botas estructurales de bombero con puntera y plantilla de protección"
+    badge: "Antipunción"
+    heroIntro:
+      - "En un incendio estructural el piso es el peor terreno posible: vidrio, clavos, varilla, escombro caliente y agua. La bota es lo único entre todo eso y el pie del bombero, y es también la pieza que primero se descuida porque el desgaste ocurre en la suela, donde nadie mira."
+      - "BOMBERO MX surte botas estructurales con puntera de protección, plantilla antipunción y suela resistente a temperatura, en versiones de hule y de piel según el tipo de intervención."
+    highlights:
+      - "Puntera de protección"
+      - "Plantilla antipunción"
+      - "Suela resistente a temperatura"
+      - "Modelos de hule y de piel"
+    detail:
+      - "La bota estructural integra tres protecciones en una sola pieza: puntera contra aplastamiento por caída de objeto, plantilla antipunción contra clavos y varilla, y suela que resiste el contacto con superficies calientes sin deformarse ni transferir calor al pie."
+      - "La elección entre hule y piel no es de gusto. El hule aísla mejor del agua y se descontamina más fácil, útil en inundación y en materiales peligrosos; la piel respira más y ofrece mejor ajuste en jornadas largas, y suele preferirse para intervención estructural prolongada."
+    proceso:
+      - title: "Definición del tipo de intervención"
+        text: "Estructural, forestal, rescate o materiales peligrosos. Cada uno favorece un material y una altura de caña distinta."
+      - title: "Prueba de calce"
+        text: "Se prueba con el calcetín de trabajo real. Una bota que ajusta en calcetín delgado aprieta en operación."
+      - title: "Entrega con especificación"
+        text: "Cada par con sus protecciones declaradas: puntera, plantilla y resistencia de suela."
+      - title: "Criterio de reemplazo"
+        text: "Se establece la revisión de suela y de costuras, que es donde aparece el desgaste antes que en la parte visible."
+    comparativa:
+      title: "Hule o piel: cuál conviene"
+      intro: "Ambas cumplen, pero rinden distinto según el tipo de intervención:"
+      headers: ["Criterio", "Bota de hule", "Bota de piel", "Mejor para"]
+      rows:
+        - ["Aislamiento del agua", "Total", "Bueno con tratamiento", "Hule en inundación"]
+        - ["Descontaminación", "Sencilla, se lava", "Más laboriosa", "Hule en materiales peligrosos"]
+        - ["Transpiración", "Baja", "Alta", "Piel en jornada larga"]
+        - ["Ajuste y confort", "Menor", "Mayor", "Piel en estructural prolongado"]
+        - ["Peso", "Mayor", "Menor", "Piel para desplazamiento"]
+        - ["Precio", "Menor", "Mayor", "Hule por presupuesto"]
+      note: "Muchos cuerpos mantienen ambos tipos: hule para inundación y materiales peligrosos, piel para intervención estructural. No es duplicar gasto, es cubrir dos escenarios distintos."
+    casos:
+      - title: "Combate estructural"
+        text: "Escombro caliente, vidrio y varilla, donde la plantilla antipunción es lo que evita la lesión más común."
+      - title: "Inundaciones"
+        text: "Intervención prolongada en agua, donde la bota de hule es la única opción razonable."
+      - title: "Materiales peligrosos"
+        text: "Necesidad de descontaminar el calzado después de cada intervención."
+      - title: "Brigadas industriales"
+        text: "Uso ocasional pero con exigencia de protección equivalente a la de un cuerpo profesional."
+    specs:
+      - label: "Puntera"
+        value: "De protección contra impacto y compresión"
+      - label: "Plantilla"
+        value: "Antipunción"
+      - label: "Suela"
+        value: "Resistente a temperatura y antiderrapante"
+      - label: "Materiales"
+        value: "Hule y piel, según intervención"
+      - label: "Certificación"
+        value: "Conforme a NFPA 1971 como parte del conjunto estructural"
+      - label: "Altura de caña"
+        value: "Según tipo de intervención"
+      - label: "Revisión"
+        value: "Suela y costuras, antes que la parte visible"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NFPA 1971"
+        titulo: "Equipo de protección para combate estructural de incendios"
+        exige: "Define el desempeño del conjunto y de cada pieza —chaquetón, pantalón, casco, guantes, botas y capucha— y exige certificación por laboratorio independiente."
+        implica: "La certificación ampara la pieza específica, no la marca: un modelo certificado no acredita a otro del mismo fabricante."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar en su uso y supervisar que se utilice."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP elaboradas con la versión anterior deben actualizarse."
+      - norma: "NOM-113-STPS-2009"
+        titulo: "Calzado de protección · Seguridad, especificaciones y métodos de prueba"
+        exige: "Establece las especificaciones del calzado de protección en centros de trabajo y sus métodos de prueba."
+        implica: "Aplica al calzado de seguridad en general; el calzado de bombero suma además los requisitos del conjunto estructural."
+    faqs:
+      - q: "¿Hule o piel?"
+        a: "Hule para agua y materiales peligrosos, por aislamiento y facilidad de descontaminación; piel para intervención estructural prolongada, por ajuste y transpiración."
+      - q: "¿Qué es la plantilla antipunción?"
+        a: "Una lámina interna que impide que un clavo o una varilla atraviese la suela. En escombro es la protección que más veces se activa."
+      - q: "¿Cada cuánto se reemplazan?"
+        a: "Cuando la suela pierde dibujo, aparece filtración o se abren costuras. El desgaste empieza abajo, así que la revisión visual desde arriba engaña."
+      - q: "¿Sirve una bota industrial normal?"
+        a: "No para incendio. Puede tener puntera, pero no está hecha para contacto con superficies calientes ni para el nivel de punción del escombro."
+      - q: "¿Cómo elijo la talla?"
+        a: "Probando con el calcetín de trabajo real y con el pie ligeramente hinchado, como está al final de una jornada. Una bota justa en frío aprieta en operación."
+      - q: "¿Se pueden descontaminar?"
+        a: "Las de hule sí, con lavado directo. Las de piel requieren un proceso más cuidadoso y hay contaminantes que obligan a retirarlas."
+      - q: "¿Incluyen protección eléctrica?"
+        a: "Depende del modelo. Si la brigada trabaja cerca de instalaciones energizadas, hay que especificarlo desde la compra."
+      - q: "¿Venden por lote?"
+        a: "Sí, con levantamiento de tallas por elemento para evitar el clásico ajuste por aproximación."
   - name: "Equipos de Respiración Autónoma (SCBA)"
-    description: "Sistemas de respiración autónoma certificados, equipos de escape, respiradores de medio rostro y máscaras faciales. Tu sistema de soporte vital para ambientes con cero visibilidad y aire contaminado."
+    slug: "equipos-de-respiracion-autonoma-scba"
+    keyword: "Equipos de respiración autónoma SCBA CDMX"
+    description: "Equipos SCBA de circuito abierto certificados NFPA 1981. Cilindro, regulador, máscara con sello facial y alarma de baja presión para atmósferas IDLH."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Equipo de respiración autónoma SCBA con cilindro y máscara facial"
+    badge: "NFPA 1981"
+    heroIntro:
+      - "En un incendio estructural lo que mata primero no suele ser el fuego: es el humo. El monóxido de carbono y los gases de combustión incapacitan en minutos, y en una atmósfera así ningún respirador de filtro sirve, porque no hay oxígeno que filtrar."
+      - "BOMBERO MX suministra equipos de respiración autónoma de circuito abierto certificados, que aportan aire respirable desde un cilindro propio y permiten operar en atmósferas inmediatamente peligrosas para la vida."
+    highlights:
+      - "Circuito abierto certificado NFPA 1981"
+      - "Cilindro de aire comprimido"
+      - "Máscara con sello facial"
+      - "Alarma de baja presión"
+    detail:
+      - "El equipo autónomo se compone de cilindro de aire comprimido, arnés de soporte, regulador de presión, máscara facial de pieza completa y alarma que avisa cuando la reserva llega al límite. Aporta aire independiente del ambiente, por eso funciona donde falta oxígeno."
+      - "Es la pieza de EPP con más requisitos de uso. Exige entrenamiento específico, prueba de ajuste del sello facial por usuario —el vello facial lo compromete— y un programa de mantenimiento del cilindro y del regulador que no admite improvisación."
+    proceso:
+      - title: "Análisis de la atmósfera de trabajo"
+        text: "Se determina si el escenario es de deficiencia de oxígeno, gases tóxicos o ambos. Eso define autonomía y configuración del equipo."
+      - title: "Selección de autonomía"
+        text: "Se define la capacidad del cilindro según el tiempo de intervención previsto, considerando que el consumo real bajo esfuerzo es mucho mayor que el nominal."
+      - title: "Prueba de ajuste por usuario"
+        text: "Se verifica el sello facial de cada elemento. Un sello imperfecto anula la protección por completo."
+      - title: "Programa de mantenimiento"
+        text: "Se establece la revisión del regulador, la prueba hidrostática del cilindro y la limpieza y desinfección de la máscara."
+    comparativa:
+      title: "Por qué un respirador de filtro no sustituye al SCBA"
+      intro: "La diferencia no es de calidad sino de principio: uno filtra el aire del ambiente, el otro lo aporta."
+      headers: ["Criterio", "Respirador de filtro", "SCBA de circuito abierto", "Consecuencia"]
+      rows:
+        - ["Fuente de aire", "El ambiente, filtrado", "Cilindro propio", "El filtro no crea oxígeno"]
+        - ["Deficiencia de oxígeno", "No protege", "Protege", "El filtro es inútil en incendio"]
+        - ["Gases desconocidos", "Solo los que cubra el cartucho", "Todos", "En incendio la mezcla es impredecible"]
+        - ["Autonomía", "La del filtro", "La del cilindro", "El SCBA obliga a controlar el tiempo"]
+        - ["Peso y movilidad", "Bajo", "Alto", "El SCBA exige condición física"]
+        - ["Uso adecuado", "Ambientes con oxígeno suficiente", "Atmósferas IDLH", "No son intercambiables"]
+      note: "En un incendio estructural la atmósfera se considera inmediatamente peligrosa para la vida. Entrar con respirador de filtro no es una medida insuficiente: es una medida que no protege."
+    casos:
+      - title: "Combate interior de incendios"
+        text: "Escenario clásico de atmósfera IDLH, con humo denso y oxígeno desplazado."
+      - title: "Espacios confinados"
+        text: "Cisternas, fosas y silos donde puede haber deficiencia de oxígeno sin humo visible."
+      - title: "Fugas de gas o químicos"
+        text: "Atmósferas tóxicas donde no se conoce con certeza el contaminante."
+      - title: "Brigadas de rescate"
+        text: "Intervenciones donde el tiempo dentro define la planeación de la operación."
+    specs:
+      - label: "Tipo"
+        value: "Circuito abierto, aire comprimido"
+      - label: "Certificación"
+        value: "NFPA 1981"
+      - label: "Componentes"
+        value: "Cilindro, arnés, regulador, máscara y alarma de baja presión"
+      - label: "Uso"
+        value: "Atmósferas IDLH y deficiencia de oxígeno"
+      - label: "Prueba de ajuste"
+        value: "Por usuario, obligatoria para garantizar el sello"
+      - label: "Mantenimiento"
+        value: "Revisión de regulador y prueba hidrostática del cilindro"
+      - label: "Higiene"
+        value: "Limpieza y desinfección de máscara entre usuarios"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NFPA 1981"
+        titulo: "Equipos de respiración autónoma de circuito abierto para servicios de emergencia"
+        exige: "Certifica el desempeño del SCBA en resistencia térmica, duración del aire, visibilidad y protección química para uso en emergencia."
+        implica: "Un equipo sin esta certificación no está calificado para combate de incendio, aunque funcione como respirador."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar en su uso y supervisar que se utilice."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP elaboradas con la versión anterior deben actualizarse."
+      - norma: "NOM-002-STPS-2010"
+        titulo: "Prevención y protección contra incendios en los centros de trabajo"
+        exige: "Obliga a que las brigadas cuenten con el equipo de protección personal necesario y con capacitación para su uso."
+        implica: "Comprar SCBA sin entrenar a la brigada en su uso no acredita cumplimiento y añade un riesgo nuevo."
+    faqs:
+      - q: "¿Un respirador con filtro no sirve para incendio?"
+        a: "No. El filtro purifica aire del ambiente, y en un incendio el oxígeno está desplazado. Sin oxígeno no hay nada que filtrar."
+      - q: "¿Cuánto dura un cilindro?"
+        a: "La autonomía nominal se calcula en reposo. Bajo esfuerzo real el consumo se dispara, así que el tiempo efectivo suele ser bastante menor y hay que planear con ese margen."
+      - q: "¿Por qué importa el vello facial?"
+        a: "Porque impide el sello hermético de la máscara. Con barba, el aire contaminado entra por el borde y el equipo deja de proteger."
+      - q: "¿Cada cuánto se prueba el cilindro?"
+        a: "Requiere prueba hidrostática periódica según el material del cilindro y lo que indique el fabricante, además de la revisión regular del regulador."
+      - q: "¿Se puede compartir la máscara?"
+        a: "Solo con limpieza y desinfección entre usuarios. Lo recomendable es máscara personal, tanto por higiene como por el ajuste individual."
+      - q: "¿Sirve para espacios confinados?"
+        a: "Sí, y es uno de sus usos principales. Una cisterna puede tener deficiencia de oxígeno sin que haya humo ni olor que lo advierta."
+      - q: "¿Qué es la alarma de baja presión?"
+        a: "Un aviso sonoro que indica que la reserva está por agotarse. Es la señal para iniciar la salida, no para seguir trabajando."
+      - q: "¿Incluyen capacitación?"
+        a: "El uso exige entrenamiento específico y prueba de ajuste. Se orienta sobre el requisito y se puede coordinar la capacitación por separado."
   - name: "Guantes de Bombero"
-    description: "Guantes contraincendios, estructurales, de rescate y entrenamiento. Protección total contra fuego y cortes, con destreza y sensibilidad para operaciones de precisión."
+    slug: "guantes-de-bombero"
+    keyword: "Guantes de bombero certificados CDMX"
+    description: "Guantes estructurales con barrera térmica, resistencia al corte y destreza suficiente para operar herramienta. Modelos para combate y para rescate."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Guantes estructurales de bombero con barrera térmica"
+    badge: "Destreza y calor"
+    heroIntro:
+      - "Ningún componente del equipo enfrenta un dilema tan agudo como el guante: demasiado grueso y el bombero no puede operar una válvula ni sujetar herramienta; demasiado delgado y el calor pasa en segundos por la parte del cuerpo que más toca todo."
+      - "BOMBERO MX suministra guantes estructurales certificados que resuelven ese equilibrio, con modelos distintos para combate y para rescate, porque las dos tareas exigen cosas opuestas de la misma pieza."
+    highlights:
+      - "Barrera térmica y de humedad"
+      - "Resistencia al corte y a la punción"
+      - "Destreza para operar herramienta"
+      - "Modelos de combate y de rescate"
+    detail:
+      - "El guante estructural replica la lógica del traje: capa exterior resistente a flama y abrasión, barrera de humedad para evitar la quemadura por vapor y forro térmico. Debe cubrir la muñeca y traslaparse con la manga del chaquetón, porque esa unión es un punto clásico de exposición."
+      - "El modelo de rescate privilegia destreza y tacto para maniobras finas, mientras el de combate privilegia aislamiento térmico. Usar el de rescate en combate interior deja la mano corta de protección, y usar el de combate en un rescate vehicular impide trabajar."
+    proceso:
+      - title: "Definición de la tarea dominante"
+        text: "Se establece si el uso principal es combate interior o rescate y extricación. Esa decisión define el modelo antes que la talla."
+      - title: "Prueba de destreza"
+        text: "Se prueba con el guante puesto lo que el usuario hará de verdad: abrir una válvula, sujetar una herramienta, operar un radio."
+      - title: "Verificación del traslape"
+        text: "Se comprueba que el puño cubra la muñeca y se traslape con la manga, sin dejar piel expuesta al levantar el brazo."
+      - title: "Criterio de reemplazo"
+        text: "Se establece la revisión de costuras y forro, que es donde el guante falla antes de que se note por fuera."
+    comparativa:
+      title: "Guante de combate o de rescate"
+      intro: "Son piezas distintas para tareas distintas, aunque se parezcan:"
+      headers: ["Criterio", "Guante de combate", "Guante de rescate", "Consecuencia de equivocarse"]
+      rows:
+        - ["Aislamiento térmico", "Alto", "Medio", "En combate, quemadura por contacto"]
+        - ["Destreza", "Media", "Alta", "En rescate, imposible operar herramienta"]
+        - ["Resistencia al corte", "Media", "Alta", "En extricación, corte con vidrio o metal"]
+        - ["Grosor", "Mayor", "Menor", "Afecta la fatiga en jornada larga"]
+        - ["Barrera de humedad", "Sí", "Según modelo", "Sin ella, quemadura por vapor"]
+        - ["Uso principal", "Interior con calor radiante", "Vehicular y estructural colapsado", "—"]
+      note: "Lo habitual en un cuerpo bien equipado es tener ambos modelos por elemento. Cuesta más que un solo par, pero evita el atajo de usar el equivocado en la escena."
+    casos:
+      - title: "Combate interior"
+        text: "Contacto con superficies calientes y calor radiante sostenido."
+      - title: "Rescate vehicular"
+        text: "Vidrio, metal cortado y herramienta hidráulica que exige tacto."
+      - title: "Brigadas industriales"
+        text: "Uso mixto, donde suele convenir un modelo intermedio bien especificado."
+      - title: "Rescate en estructuras colapsadas"
+        text: "Punción y corte constante, con necesidad de sujeción firme."
+    specs:
+      - label: "Capas"
+        value: "Exterior resistente a flama, barrera de humedad y forro térmico"
+      - label: "Certificación"
+        value: "NFPA 1971, como parte del conjunto estructural"
+      - label: "Protección"
+        value: "Térmica, al corte y a la punción"
+      - label: "Puño"
+        value: "Con traslape sobre la manga del chaquetón"
+      - label: "Modelos"
+        value: "De combate y de rescate"
+      - label: "Tallas"
+        value: "Levantamiento por elemento"
+      - label: "Revisión"
+        value: "Costuras y forro interno"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NFPA 1971"
+        titulo: "Equipo de protección para combate estructural de incendios"
+        exige: "Define el desempeño del conjunto y de cada pieza, incluidos guantes y capucha, y exige certificación por laboratorio independiente."
+        implica: "La certificación ampara el modelo específico, no la marca del fabricante."
+      - norma: "NFPA 1851"
+        titulo: "Cuidado y mantenimiento del equipo estructural"
+        exige: "Incluye los guantes en el programa de inspección y limpieza del conjunto y fija criterios de retiro por daño o degradación."
+        implica: "Un guante con el forro comprometido protege mucho menos, y eso no se detecta sin inspección interna."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar y supervisar su uso."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP anteriores deben actualizarse."
+    faqs:
+      - q: "¿Por qué no sirve un guante grueso para todo?"
+        a: "Porque impide operar herramienta, radio y válvulas. Un bombero que se quita el guante para trabajar está peor protegido que con uno adecuado."
+      - q: "¿Cómo elijo la talla?"
+        a: "Ajustado sin apretar, con el puño cubriendo la muñeca. Una talla grande se gira dentro de la mano y provoca que se enganche o se salga."
+      - q: "¿Se pueden lavar?"
+        a: "Sí, dentro del programa de limpieza del conjunto. Lo que no se debe hacer es secarlos con calor directo, porque endurecen y pierden destreza."
+      - q: "¿Cuándo se reemplazan?"
+        a: "Cuando aparecen costuras abiertas, rigidez, quemaduras en la palma o el forro se desprende. La revisión debe incluir el interior, no solo la vista exterior."
+      - q: "¿Sirve un guante de carnaza?"
+        a: "No para incendio. La carnaza resiste chispa, pero no tiene barrera de humedad ni el nivel térmico que exige el combate estructural."
+      - q: "¿Cubren la muñeca?"
+        a: "Deben hacerlo y traslapar con la manga. La muñeca descubierta al levantar el brazo es una de las quemaduras más frecuentes."
+      - q: "¿Hay guantes distintos para forestal?"
+        a: "Sí, más ligeros y transpirables. El guante estructural en incendio forestal genera fatiga y sudoración excesiva."
+      - q: "¿Venden por lote con tallas mixtas?"
+        a: "Sí, con levantamiento por elemento. Es la única forma de evitar el reparto por aproximación."
   - name: "Herramientas de Bombero"
-    description: "Mangueras contraincendios, válvulas, monitores y herramientas de rescate profesionales. Arsenal completo para operaciones de emergencia y rescate."
+    slug: "herramientas-de-bombero"
+    keyword: "Herramientas para bomberos CDMX"
+    description: "Hachas, halligan, pica, barra de forzamiento, cizallas y herramienta de extricación. Equipo de forzamiento y rescate para cuerpos de bomberos y brigadas."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Herramientas de forzamiento y rescate para bomberos"
+    badge: "Forzamiento"
+    heroIntro:
+      - "Antes de combatir hay que entrar, y esa parte del trabajo no la resuelve el agua sino el acero. Una puerta metálica bien montada puede detener a un equipo completo si no trae la herramienta correcta, y ese retraso se paga en propagación."
+      - "BOMBERO MX surte herramienta de forzamiento y rescate —hacha, halligan, pica, barra, cizalla— seleccionada por el tipo de construcción que predomina en la zona de operación de cada cuerpo."
+    highlights:
+      - "Set de forzamiento hacha y halligan"
+      - "Barras y picas de ataque"
+      - "Cizallas y corte de metal"
+      - "Selección por tipo de construcción"
+    detail:
+      - "El núcleo del forzamiento es la combinación de hacha y halligan, que trabajan juntas y por eso se transportan emparejadas. A eso se suman barras de mayor palanca, picas para exploración y ventilación, y herramienta de corte para reja, candado y lámina."
+      - "La selección depende de lo que hay del otro lado de la puerta. Una zona de vivienda con herrería pesada exige más palanca y corte; un corredor industrial con portones metálicos pide otra configuración. Comprar un set genérico deja al equipo corto justo donde más opera."
+    proceso:
+      - title: "Análisis de la zona de operación"
+        text: "Se revisa qué tipo de construcción y de cerrajería predomina: herrería, cortina metálica, puerta comercial o vivienda."
+      - title: "Definición del set"
+        text: "Se arma la configuración por unidad, no por elemento, considerando qué va montado y qué se transporta a mano."
+      - title: "Entrega y montaje en unidad"
+        text: "Se define dónde vive cada herramienta en el vehículo. Una herramienta enterrada bajo otro equipo llega tarde a la escena."
+      - title: "Mantenimiento y filo"
+        text: "Se establece el programa de revisión de filo, mangos y uniones, que es lo que separa una herramienta útil de una que resbala."
+    comparativa:
+      title: "Qué herramienta resuelve qué obstáculo"
+      intro: "Cada obstáculo tiene una herramienta que lo abre en menos tiempo:"
+      headers: ["Obstáculo", "Herramienta principal", "Apoyo", "Error frecuente"]
+      rows:
+        - ["Puerta de madera", "Hacha", "Halligan", "Forzar por la cerradura y no por la bisagra"]
+        - ["Puerta metálica", "Halligan", "Hacha o marro", "Insistir con hacha sola"]
+        - ["Cortina metálica", "Cizalla o corte", "Barra", "Cortar sin verificar carga eléctrica"]
+        - ["Reja y candado", "Cizalla", "Corte con disco", "Cizalla de tamaño insuficiente"]
+        - ["Ventilación en techo", "Hacha o motosierra", "Pica", "Ventilar sin coordinar con el ataque"]
+        - ["Extricación vehicular", "Herramienta hidráulica", "Barra y cizalla", "Cortar sin estabilizar el vehículo"]
+      note: "El hacha y la halligan se transportan emparejadas por una razón operativa: la halligan hace la palanca y el hacha da el golpe. Separarlas duplica el tiempo de forzamiento."
+    casos:
+      - title: "Cuerpos municipales"
+        text: "Zona mixta de vivienda y comercio, con herrería pesada muy presente."
+      - title: "Brigadas industriales"
+        text: "Portones metálicos, cortinas y accesos con candado en nave y patio."
+      - title: "Rescate vehicular"
+        text: "Extricación en vialidades, donde la estabilización precede a cualquier corte."
+      - title: "Renovación de equipo"
+        text: "Cuerpos con herramienta desgastada, sin filo o con mangos comprometidos."
+    specs:
+      - label: "Forzamiento"
+        value: "Hacha y halligan, transportadas emparejadas"
+      - label: "Palanca"
+        value: "Barras de distintos largos"
+      - label: "Corte"
+        value: "Cizallas y herramienta para metal"
+      - label: "Exploración"
+        value: "Picas para sondeo y ventilación"
+      - label: "Selección"
+        value: "Por tipo de construcción de la zona de operación"
+      - label: "Montaje"
+        value: "Definido por unidad y por acceso rápido"
+      - label: "Mantenimiento"
+        value: "Programa de filo, mangos y uniones"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NOM-002-STPS-2010"
+        titulo: "Prevención y protección contra incendios en los centros de trabajo"
+        exige: "Obliga a integrar y capacitar brigadas contra incendio, dotarlas del equipo necesario y realizar simulacros al menos una vez al año en riesgo ordinario."
+        implica: "El equipo de la brigada forma parte del expediente que revisa la autoridad."
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar y supervisar su uso."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP anteriores deben actualizarse."
+      - norma: "NOM-004-STPS-1999"
+        titulo: "Sistemas de protección y dispositivos de seguridad en maquinaria y equipo"
+        exige: "Establece condiciones de seguridad para el uso de maquinaria y equipo en los centros de trabajo, incluida la herramienta de corte accionada."
+        implica: "La herramienta motorizada de corte y las hidráulicas de extricación entran en el programa de revisión del centro de trabajo."
+    faqs:
+      - q: "¿Por qué el hacha y la halligan van juntas?"
+        a: "Porque se usan en conjunto: la halligan entra en la ranura y el hacha la golpea. Separarlas obliga a improvisar y duplica el tiempo de entrada."
+      - q: "¿Qué herramienta abre una cortina metálica?"
+        a: "Corte, con verificación previa de que no haya línea eléctrica ni carga. La palanca sola suele deformar sin abrir."
+      - q: "¿Se puede forzar por la bisagra?"
+        a: "En puerta de madera es lo más rápido. En metálica bien montada suele rendir más atacar el marco o la cerradura con palanca."
+      - q: "¿Cada cuánto se afila la herramienta?"
+        a: "Depende del uso, pero debe entrar en un programa. Una hoja sin filo resbala y ese resbalón es lesión, no retraso."
+      - q: "¿Herramienta hidráulica o manual?"
+        a: "La hidráulica es indispensable en extricación vehicular; la manual sigue siendo la primera opción en forzamiento porque no depende de energía."
+      - q: "¿Cómo se transporta en la unidad?"
+        a: "Con ubicación fija y acceso directo. Una herramienta bajo otro equipo llega tarde y en la práctica es como no llevarla."
+      - q: "¿Venden sets armados?"
+        a: "Sí, y se configuran según el tipo de construcción de la zona. Un set genérico casi siempre trae de más y le falta lo específico."
+      - q: "¿Incluye mangos de repuesto?"
+        a: "Sí. El mango es el componente que más falla y el más fácil de reponer sin cambiar la herramienta completa."
   - name: "Protección y Comunicación"
-    description: "Gafas de seguridad, ropa ignífuga, tapones para oídos, protección para alturas, radios bidireccionales, sistemas de intercomunicación y repetidores de señal. Equipamiento complementario para máxima seguridad."
+    slug: "proteccion-y-comunicacion"
+    keyword: "Radios y equipo de comunicación bomberos CDMX"
+    description: "Radios portátiles, lámparas de casco, alarmas personales PASS, arneses y accesorios de señalización para operación segura en escena."
+    image: "/img/img-equipos-contra-incendios/equipo-bombero.webp"
+    imageAlt: "Equipo de comunicación y señalización personal para bomberos"
+    badge: "Alarma PASS"
+    heroIntro:
+      - "En una escena con humo, ruido y presión, la coordinación deja de ser una virtud y se vuelve una condición de seguridad. Un elemento que no puede reportar su posición, o que cae sin que nadie lo note, se convierte en el siguiente rescate."
+      - "BOMBERO MX suministra el equipo que sostiene esa coordinación: radios portátiles, lámparas, alarmas personales de inmovilidad y arneses, que son las piezas que permiten saber dónde está cada quién y en qué estado."
+    highlights:
+      - "Radios portátiles para escena"
+      - "Lámparas de casco y de mano"
+      - "Alarma personal de inmovilidad"
+      - "Arneses y líneas de vida"
+    detail:
+      - "El bloque cubre cuatro funciones: comunicación por radio entre elementos y con el puesto de mando, iluminación personal en ambientes con visibilidad nula, alarma personal que se activa cuando el elemento permanece inmóvil, y arnés para trabajo en altura o descenso."
+      - "La alarma personal es la pieza menos conocida y la más crítica. Emite una señal sonora si detecta falta de movimiento durante un lapso definido, lo que permite localizar a un elemento incapacitado dentro de un inmueble lleno de humo donde la vista no sirve."
+    proceso:
+      - title: "Mapeo de la comunicación"
+        text: "Se define quién habla con quién: elementos entre sí, jefes de sector y puesto de mando, más el enlace con otras corporaciones."
+      - title: "Selección de equipo"
+        text: "Radios con la robustez y autonomía que exige la escena, lámparas con montaje en casco y alarmas personales por elemento."
+      - title: "Asignación individual"
+        text: "Cada pieza queda asignada por nombre. El equipo compartido termina sin responsable y sin batería."
+      - title: "Protocolo de uso"
+        text: "Se establece el chequeo previo a cada intervención: batería, canal, alarma activa y lámpara operable."
+    comparativa:
+      title: "Qué aporta cada pieza a la seguridad en escena"
+      intro: "No son accesorios: cada una cubre un modo específico de perder el control de la operación."
+      headers: ["Equipo", "Qué resuelve", "Si falta", "Chequeo previo"]
+      rows:
+        - ["Radio portátil", "Coordinación y petición de auxilio", "El elemento queda aislado", "Batería y canal correcto"]
+        - ["Lámpara de casco", "Visibilidad con manos libres", "Se opera a ciegas o con una mano", "Carga y montaje firme"]
+        - ["Alarma personal", "Localizar a un elemento inmóvil", "Nadie sabe que cayó", "Activación probada"]
+        - ["Arnés", "Trabajo en altura y descenso", "Sin punto de anclaje seguro", "Costuras y hebillas"]
+        - ["Señalización personal", "Identificación en escena", "Confusión de roles", "Visible sobre el equipo"]
+      note: "La alarma personal solo sirve si está activada al entrar. El chequeo previo a la intervención es lo que convierte estas piezas en protección real y no en inventario."
+    casos:
+      - title: "Combate interior"
+        text: "Visibilidad nula y necesidad de mantener contacto permanente con el exterior."
+      - title: "Operaciones con varias unidades"
+        text: "Coordinación entre corporaciones que llegan a la misma escena."
+      - title: "Rescate en altura"
+        text: "Arnés y línea de vida para descenso y aseguramiento."
+      - title: "Brigadas industriales"
+        text: "Comunicación con el centro de control de la planta durante un conato."
+    specs:
+      - label: "Radios"
+        value: "Portátiles, con autonomía para la jornada de intervención"
+      - label: "Lámparas"
+        value: "De casco y de mano, con montaje firme"
+      - label: "Alarma personal"
+        value: "De inmovilidad, con señal sonora"
+      - label: "Arneses"
+        value: "Con líneas de vida y accesorios de anclaje"
+      - label: "Asignación"
+        value: "Individual, por nombre"
+      - label: "Chequeo"
+        value: "Previo a cada intervención, documentado"
+      - label: "Compatibilidad"
+        value: "Con casco y máscara del equipo autónomo"
+      - label: "Cobertura"
+        value: "CDMX, zona metropolitana y resto de la República"
+    normativa:
+      - norma: "NOM-017-STPS-2024"
+        titulo: "Equipo de protección personal · Selección, uso y manejo en los centros de trabajo"
+        exige: "Obliga al patrón a analizar los riesgos por puesto, determinar el EPP que los neutraliza, entregarlo sin costo, capacitar y supervisar su uso."
+        implica: "Vigente desde el 28 de septiembre de 2025; deja sin efecto a la NOM-017-STPS-2008. Las matrices de EPP anteriores deben actualizarse."
+      - norma: "NOM-002-STPS-2010"
+        titulo: "Prevención y protección contra incendios en los centros de trabajo"
+        exige: "Obliga a integrar y capacitar brigadas contra incendio, dotarlas del equipo necesario y realizar simulacros al menos una vez al año en riesgo ordinario."
+        implica: "El equipo de la brigada forma parte del expediente que revisa la autoridad."
+      - norma: "NOM-009-STPS-2011"
+        titulo: "Condiciones de seguridad para realizar trabajos en altura"
+        exige: "Establece los requisitos de los sistemas personales de detención de caídas, incluidos arnés, líneas y puntos de anclaje, y su revisión antes de cada uso."
+        implica: "El arnés debe revisarse antes de cada jornada y retirarse tras detener una caída, aunque no muestre daño."
+    faqs:
+      - q: "¿Qué es una alarma PASS?"
+        a: "Un dispositivo personal que emite señal sonora cuando el elemento permanece inmóvil cierto tiempo. Permite localizarlo dentro de un inmueble con humo donde no hay visibilidad."
+      - q: "¿Sirve un radio comercial?"
+        a: "Para coordinación básica quizá, pero no tiene la robustez, el sellado ni la autonomía que exige una escena de incendio. La falla suele aparecer con calor y humedad."
+      - q: "¿La lámpara va en el casco o en la mano?"
+        a: "Idealmente ambas. La de casco deja las manos libres, que es lo que se necesita al operar herramienta o manguera."
+      - q: "¿Cada cuánto se revisa el arnés?"
+        a: "Antes de cada uso, y se retira si detuvo una caída, aunque no presente daño visible. Las fibras absorben la energía y ya no responden igual."
+      - q: "¿Los radios se comparten entre turnos?"
+        a: "Pueden, con protocolo de carga y entrega. Lo que no funciona es el equipo sin responsable: siempre aparece descargado en la intervención."
+      - q: "¿La alarma personal es obligatoria?"
+        a: "No hay una norma mexicana que la exija por nombre, pero es práctica estándar internacional en combate interior y muchos cuerpos ya la consideran básica."
+      - q: "¿Funciona el radio dentro de un sótano?"
+        a: "Depende de la estructura. En sótanos y espacios confinados suele requerirse repetidor o un enlace alterno; conviene probarlo antes, no durante."
+      - q: "¿Manejan accesorios de repuesto?"
+        a: "Sí: baterías, cargadores, clips y micrófonos de solapa, que es lo que más se pierde y lo que deja un radio inservible."
+
 faqs:
   - q: "¿Qué certificaciones debe tener el equipo de protección personal (EPP) para bomberos?"
-    a: "Todo el equipo de protección personal para bomberos debe cumplir con las certificaciones NFPA (National Fire Protection Association), que son el estándar internacional de seguridad. Los trajes estructurales deben cumplir NFPA 1970 (cap. 5–9), los cascos NFPA 1972, las botas NFPA 1950, los guantes NFPA 1970 (cap. 5–9), y los equipos SCBA NFPA 1970 (cap. 15–19). En BOMBERO MX todos nuestros productos están certificados y cumplen o exceden estos estándares. Cada pieza incluye documentación de certificación para verificación y cumplimiento normativo."
+    a: "Todo el equipo de protección personal para bomberos debe cumplir con las certificaciones NFPA (National Fire Protection Association), que son el estándar internacional de seguridad. Los trajes estructurales se certifican bajo NFPA 1971 —consolidada desde 2024 en la NFPA 1970—, los cascos, guantes y botas bajo la misma NFPA 1971, y los equipos SCBA bajo NFPA 1981. En BOMBERO MX todos nuestros productos están certificados y cumplen o exceden estos estándares. Cada pieza incluye documentación de certificación para verificación y cumplimiento normativo."
   - q: "¿Qué diferencia hay entre un traje estructural y un traje forestal para bombero?"
     a: "Los trajes estructurales están diseñados para combate de incendios en edificios y estructuras cerradas, con múltiples capas de protección térmica, resistencia extrema al calor radiante y llamas directas. Los trajes forestales son más ligeros y flexibles, diseñados para incendios al aire libre en vegetación, con énfasis en transpirabilidad y movilidad para largas caminatas en terreno irregular. En BOMBERO MX ofrecemos ambos tipos certificados NFPA, además de trajes de aproximación (proximidad) para fuegos de alta intensidad y trajes de rescate técnico."
   - q: "¿Cuánto dura un equipo SCBA y cada cuánto requiere mantenimiento?"
     a: "Un equipo SCBA (Sistema de Respiración Autónoma) de calidad tiene una vida útil de 10-15 años con el mantenimiento adecuado. Requiere inspección visual antes y después de cada uso, mantenimiento preventivo trimestral por técnico certificado, prueba hidrostática del cilindro cada 3-5 años según normativa, y recarga de aire después de cada uso. El arnés, máscara facial y válvulas deben inspeccionarse mensualmente. En BOMBERO MX ofrecemos asesoría sobre mantenimiento y te conectamos con centros de servicio certificados para garantizar que tu equipo siempre esté operativo."
   - q: "¿Qué tipo de botas de bombero son mejores, de cuero o de hule?"
-    a: "Depende del uso específico. Las botas de cuero son ideales para bomberos estructurales en estaciones con jornadas largas, ya que se amoldan al pie ofreciendo comodidad superior, excelente protección térmica y durabilidad. Las botas de hule (caucho) son indispensables para operaciones HAZMAT (materiales peligrosos) y rescate acuático, ya que son impermeables, resistentes a químicos y fáciles de descontaminar. En BOMBERO MX recomendamos tener ambos tipos: cuero para uso diario estructural y hule para situaciones especiales. Todas nuestras botas cumplen NFPA 1950 con punteras de acero y placas anti-perforación."
+    a: "Depende del uso específico. Las botas de cuero son ideales para bomberos estructurales en estaciones con jornadas largas, ya que se amoldan al pie ofreciendo comodidad superior, excelente protección térmica y durabilidad. Las botas de hule (caucho) son indispensables para operaciones HAZMAT (materiales peligrosos) y rescate acuático, ya que son impermeables, resistentes a químicos y fáciles de descontaminar. En BOMBERO MX recomendamos tener ambos tipos: cuero para uso diario estructural y hule para situaciones especiales. Todas nuestras botas se certifican como parte del conjunto estructural NFPA 1971, con puntera de protección y plantilla anti-punción."
   - q: "¿Ofrecen asesoría para equipar completamente una estación de bomberos nueva?"
     a: "Sí, en BOMBERO MX tenemos un equipo de especialistas que brinda asesoría personalizada para equipar estaciones completas. Evaluamos tus necesidades específicas (urbano, forestal, industrial, HAZMAT), número de elementos, presupuesto y normativas locales. Diseñamos paquetes completos que incluyen trajes, cascos, botas, SCBA, guantes, herramientas de rescate, mangueras, válvulas, equipos de comunicación y protección complementaria. Ofrecemos cotizaciones detalladas, plazos de entrega garantizados y capacitación sobre uso y mantenimiento de equipos. Contáctanos al 55 2078 0102 o ventas@bomberos.mx para agendar una consulta sin compromiso."
   - q: "¿Los guantes de bombero permiten buena movilidad para maniobras delicadas?"
@@ -93,8 +742,8 @@ faqs:
 heroTitle: 'Venta de <span class="highlight">equipo y EPP certificado NFPA</span> para bomberos en CDMX y toda la República'
 heroIntro:
   - "Cuando tu vida depende del equipo, la certificación no es papeleo: es la diferencia entre volver a casa o no. BOMBERO MX vende EPP y herramienta para bomberos desde la Condesa, CDMX, con presencia en Estado de México y Querétaro y envíos a toda la República. Todo su catálogo cumple o excede NFPA y se entrega con la documentación de certificación de cada producto, para que puedas verificarla."
-  - "Cubren el equipamiento completo: trajes estructurales y forestales NFPA 1970 (cap. 5–9) en Nomex y PBI, cascos NFPA 1972, botas NFPA 1950 de cuero y de hule para HAZMAT, guantes y SCBA NFPA 1970 (cap. 15–19) con cilindros de composite, más mangueras, válvulas, monitores, herramienta de rescate, radios y linternas a prueba de explosión. Asesoran para equipar estaciones completas y orientan sobre mantenimiento y vida útil."
-summary: "BOMBERO MX vende equipo de protección personal y herramienta para bomberos desde la Condesa, CDMX, con envíos a toda la República y presencia en CDMX, Estado de México y Querétaro. Todo su catálogo cumple o excede certificación NFPA y se entrega con documentación de certificación por producto: trajes estructurales y forestales NFPA 1970 en Nomex y PBI, cascos NFPA 1972 de termoplástico y fibra de vidrio, botas NFPA 1950 de cuero y de hule para HAZMAT, guantes, y equipos de respiración autónoma SCBA NFPA 1970 con cilindros de composite y reguladores de presión positiva. Completan la oferta mangueras, válvulas, monitores, herramienta de rescate hidráulica y manual, radios y linternas a prueba de explosión. Su equipo técnico asesora para equipar estaciones completas —urbanas, forestales, industriales o HAZMAT— y orienta sobre mantenimiento, inspección y vida útil del equipo."
+  - "Cubren el equipamiento completo: trajes estructurales en Nomex y PBI, cascos, botas de cuero y de hule para HAZMAT y guantes certificados NFPA 1971 (consolidada en NFPA 1970), y SCBA NFPA 1981 con cilindros de composite, más mangueras, válvulas, monitores, herramienta de rescate, radios y linternas a prueba de explosión. Asesoran para equipar estaciones completas y orientan sobre mantenimiento y vida útil."
+summary: "BOMBERO MX vende equipo de protección personal y herramienta para bomberos desde la Condesa, CDMX, con envíos a toda la República y presencia en CDMX, Estado de México y Querétaro. Todo su catálogo cumple o excede certificación NFPA y se entrega con documentación de certificación por producto: trajes estructurales en Nomex y PBI, cascos de termoplástico y fibra de vidrio, botas de cuero y de hule para HAZMAT y guantes certificados NFPA 1971 (consolidada en NFPA 1970), y equipos de respiración autónoma SCBA NFPA 1981 con cilindros de composite y reguladores de presión positiva. Completan la oferta mangueras, válvulas, monitores, herramienta de rescate hidráulica y manual, radios y linternas a prueba de explosión. Su equipo técnico asesora para equipar estaciones completas —urbanas, forestales, industriales o HAZMAT— y orienta sobre mantenimiento, inspección y vida útil del equipo."
 featured: true
 order: 1
 ---
@@ -103,12 +752,12 @@ Cuando tu vida depende de tu equipo, la calidad no es negociable. En **BOMBERO M
 
 Nuestro compromiso va más allá de vender equipo. Entendemos que cada emergencia es diferente, cada cuerpo de bomberos tiene necesidades únicas, y cada elemento en el campo merece protección total. Por eso ofrecemos asesoría técnica especializada para ayudarte a seleccionar exactamente el EPP que necesitas, ya sea para combate estructural urbano, incendios forestales, rescate técnico, operaciones HAZMAT o situaciones de aproximación a fuegos de alta intensidad.
 
-Todos nuestros trajes de bombero cumplen con certificación NFPA 1970, fabricados con materiales de última generación como Nomex y PBI que ofrecen protección térmica extrema sin sacrificar movilidad. Los cascos, construidos en termoplástico de alto impacto y fibra de vidrio, resisten temperaturas superiores a 500°C y están diseñados para soportar caídas de objetos pesados. Cada pieza de nuestro catálogo viene con documentación completa de certificación para que puedas verificar que estás adquiriendo equipo que realmente salva vidas.
+Todos nuestros trajes de bombero cumplen con certificación NFPA 1971 (consolidada en NFPA 1970), fabricados con materiales de última generación como Nomex y PBI que ofrecen protección térmica extrema sin sacrificar movilidad. Los cascos, construidos en termoplástico de alto impacto y fibra de vidrio, resisten temperaturas superiores a 500°C y están diseñados para soportar caídas de objetos pesados. Cada pieza de nuestro catálogo viene con documentación completa de certificación para que puedas verificar que estás adquiriendo equipo que realmente salva vidas.
 
-Los equipos SCBA que distribuimos son sistemas de soporte vital de primera línea, certificados NFPA 1970, con cilindros de composite de alta presión que ofrecen autonomía extendida sin peso excesivo. Incluyen reguladores de demanda de presión positiva, máscaras faciales con visores amplios anti-empañamiento, y arneses ergonómicos que distribuyen el peso para reducir fatiga durante operaciones prolongadas. Además, te orientamos sobre programas de mantenimiento preventivo y recarga de cilindros con centros certificados.
+Los equipos SCBA que distribuimos son sistemas de soporte vital de primera línea, certificados NFPA 1981, con cilindros de composite de alta presión que ofrecen autonomía extendida sin peso excesivo. Incluyen reguladores de demanda de presión positiva, máscaras faciales con visores amplios anti-empañamiento, y arneses ergonómicos que distribuyen el peso para reducir fatiga durante operaciones prolongadas. Además, te orientamos sobre programas de mantenimiento preventivo y recarga de cilindros con centros certificados.
 
 Nuestro catálogo incluye también el complemento completo: botas estructurales de cuero con puntera de acero y aislamiento térmico, botas de hule para operaciones HAZMAT descontaminables, guantes certificados con balance entre protección y destreza manual, mangueras contraincendios certificadas, válvulas y acoples industriales, monitores de alta presión, herramientas de rescate hidráulicas y manuales, radios portátiles, sistemas de intercomunicación para SCBA, y linternas a prueba de explosión.
 
 Ya sea que estés equipando una estación nueva, reemplazando EPP que ha llegado al final de su vida útil, o ampliando tus capacidades operativas con equipo especializado, en BOMBERO MX te brindamos atención personalizada. Evaluamos tus necesidades, te explicamos las diferencias entre modelos, te ayudamos a optimizar tu presupuesto y te garantizamos productos originales con garantía del fabricante. Ubicados en Ciudad de México con envíos a toda la República Mexicana.
 
-Tu seguridad es nuestra prioridad. Cada bombero que sale a una emergencia merece regresar a casa sano y salvo. Por eso trabajamos solo con marcas reconocidas internacionalmente que han demostrado su confiabilidad en miles de operaciones reales. Contáctanos al 55 2078 0102, escríbenos a ventas@bomberos.mx o visita nuestro sitio web bombero.mx. Estamos para servirte de lunes a domingo y resolver todas tus dudas técnicas sin compromiso.
+Tu seguridad es nuestra prioridad. Cada bombero que sale a una emergencia merece regresar a casa sano y salvo. Por eso trabajamos solo con marcas reconocidas internacionalmente que han demostrado su confiabilidad en miles de operaciones reales. Contáctanos al 55 2078 0102, escríbenos a ventas@bomberos.mx o visita nuestro sitio web bombero.mx. Estamos para atenderte en horario de oficina y resolver todas tus dudas técnicas sin compromiso.

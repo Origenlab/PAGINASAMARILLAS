@@ -1,0 +1,55 @@
+---
+/**
+ * Card de servicio — ÚNICA fuente de verdad del markup.
+ * La usan la ficha del negocio (L4) y el bloque "Otros servicios" de la
+ * página de servicio (L5). No duplicar este markup en ningún template:
+ * las dos copias anteriores ya habían divergido.
+ *
+ * El anchor text del botón es la keyword del servicio (SEO). Su ::after
+ * cubre toda la card, así que la card entera es clickeable.
+ */
+import { servicioHref, type ServicioData } from '@lib/servicios';
+
+interface Props {
+  servicio: ServicioData;
+  categoria: string;
+  negocioSlug: string;
+  negocioNombre: string;
+  /** Región del negocio; alimenta el fallback del anchor */
+  region: string;
+  /** Chips de highlights. Se apagan donde la card va en rejilla angosta */
+  chips?: boolean;
+}
+
+const { servicio: s, categoria, negocioSlug, negocioNombre, region, chips = true } = Astro.props;
+
+const href = servicioHref(categoria, negocioSlug, s);
+const anchor = s.keyword ?? `${s.name} ${region}`;
+const bullets = chips ? (s.highlights ?? []).slice(0, 2) : [];
+---
+
+<article class={`service-card${s.image ? ' has-media' : ''}`}>
+  {s.image && (
+    <div class="sc-media">
+      <img
+        src={s.image}
+        alt={s.imageAlt ?? `${s.name} — ${negocioNombre}`}
+        width="480"
+        height="300"
+        loading="lazy"
+        decoding="async"
+      />
+      {s.badge && <span class="sc-badge">{s.badge}</span>}
+    </div>
+  )}
+  <div class="sc-body">
+    <h3 class="sc-title">{s.name}</h3>
+    <p class="sc-text">{s.description}</p>
+    {bullets.length > 0 && (
+      <ul class="sc-chips">
+        {bullets.map((c) => <li>{c}</li>)}
+      </ul>
+    )}
+    <a href={href} class="sc-cta">{anchor}</a>
+  </div>
+</article>

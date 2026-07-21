@@ -53,8 +53,81 @@ const negocios = defineCollection({
     coverage: z.string().optional(),
     sectors: z.array(z.string()).default([]),
     whyUs: z.array(z.string()).default([]),
+    /**
+     * Servicios del negocio. `name` + `description` son lo mínimo.
+     * Si se agrega `image` la card se renderiza en versión enriquecida
+     * (imagen + título + texto + link); si no, cae al layout de solo texto.
+     * `slug` genera la página /negocios/{cat}/{negocio}/servicios/{slug}
+     * (si se omite se deriva del nombre).
+     */
     services: z
-      .array(z.object({ name: z.string(), description: z.string() }))
+      .array(
+        z.object({
+          name: z.string(),
+          description: z.string(),
+          slug: z.string().optional(),
+          /** Anchor text del botón de la card (fallback: name + región) */
+          keyword: z.string().optional(),
+          image: z.string().optional(),
+          imageAlt: z.string().optional(),
+          /** Etiqueta corta sobre la imagen, ej. "24/7" o "Certificado CNSP" */
+          badge: z.string().optional(),
+          /** 2 párrafos SEO para la columna derecha del hero de la página de servicio */
+          heroIntro: z.array(z.string()).default([]),
+          /** Bullets cortos para la card y la página de detalle */
+          highlights: z.array(z.string()).default([]),
+          /** Párrafos largos para la página del servicio */
+          detail: z.array(z.string()).default([]),
+          /** Pasos numerados de "cómo se implementa" */
+          proceso: z
+            .array(z.object({ title: z.string(), text: z.string() }))
+            .default([]),
+          /** Tabla comparativa de modalidades/alcances */
+          comparativa: z
+            .object({
+              title: z.string().optional(),
+              intro: z.string().optional(),
+              headers: z.array(z.string()),
+              rows: z.array(z.array(z.string())),
+              note: z.string().optional(),
+            })
+            .optional(),
+          /** Casos de uso: a qué tipo de cliente le sirve */
+          casos: z
+            .array(z.object({ title: z.string(), text: z.string() }))
+            .default([]),
+          /** Ficha técnica: pares dato/valor */
+          specs: z
+            .array(z.object({ label: z.string(), value: z.string() }))
+            .default([]),
+          /**
+           * Requerimientos logísticos/técnicos que el cliente debe prever
+           * para montar el servicio (energía, espacio, acceso, tiempo).
+           * Es el diferenciador de eventos: responde "¿funcionará en mi lugar?".
+           */
+          requisitos: z
+            .array(z.object({ concepto: z.string(), detalle: z.string() }))
+            .default([]),
+          /**
+           * Marco normativo aplicable al servicio (NOM, NFPA, etc.).
+           * `exige` = lo que dice la norma; `implica` = qué significa para el
+           * comprador. Solo citar normas verificadas: una referencia falsa
+           * en un sector regulado es peor que no citar ninguna.
+           */
+          normativa: z
+            .array(
+              z.object({
+                norma: z.string(),
+                titulo: z.string().optional(),
+                exige: z.string(),
+                implica: z.string().optional(),
+              })
+            )
+            .default([]),
+          /** FAQs específicas del servicio */
+          faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
+        })
+      )
       .default([]),
     faqs: z.array(z.object({ q: z.string(), a: z.string() })).default([]),
     /** Párrafo largo para el módulo "Empresa destacada" (fallback: description) */

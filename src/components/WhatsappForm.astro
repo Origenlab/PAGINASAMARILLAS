@@ -1,0 +1,90 @@
+---
+/**
+ * Formulario de contacto que abre WhatsApp con el mensaje ya redactado.
+ * No envía nada a un backend: arma el texto en el cliente y abre wa.me.
+ * Si el negocio no tiene WhatsApp, el componente no renderiza nada.
+ */
+interface Props {
+  negocio: string;
+  whatsapp?: string;
+  /** Nombres de servicios para el <select> */
+  servicios?: string[];
+  /** Servicio preseleccionado (páginas de servicio) */
+  servicioActual?: string;
+  titulo?: string;
+}
+
+const {
+  negocio,
+  whatsapp,
+  servicios = [],
+  servicioActual,
+  titulo = 'Solicita tu cotización',
+} = Astro.props;
+
+const waNumber = whatsapp ? `52${whatsapp.replace(/\D/g, '')}` : null;
+const opciones = servicios.length ? servicios : [];
+const formId = `wa-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+{waNumber && (
+  <form class="wa-form" data-wa={waNumber} data-negocio={negocio} id={formId}>
+    <h3 class="wa-form-title">{titulo}</h3>
+    <p class="wa-form-lead">
+      Llena tus datos y se abre WhatsApp con el mensaje listo para enviar a {negocio}.
+    </p>
+
+    <div class="wa-field">
+      <label for={`${formId}-nombre`}>Nombre</label>
+      <input id={`${formId}-nombre`} name="nombre" type="text" autocomplete="name" required placeholder="Tu nombre" />
+    </div>
+
+    <div class="wa-field">
+      <label for={`${formId}-telefono`}>Teléfono</label>
+      <input id={`${formId}-telefono`} name="telefono" type="tel" inputmode="tel" autocomplete="tel" required placeholder="55 1234 5678" />
+    </div>
+
+    {opciones.length > 0 && (
+      <div class="wa-field">
+        <label for={`${formId}-servicio`}>Servicio de interés</label>
+        <select id={`${formId}-servicio`} name="servicio">
+          {opciones.map((o) => (
+            <option value={o} selected={o === servicioActual}>{o}</option>
+          ))}
+          <option value="Otro / no estoy seguro">Otro / no estoy seguro</option>
+        </select>
+      </div>
+    )}
+
+    <div class="wa-field">
+      <label for={`${formId}-mensaje`}>Mensaje</label>
+      <textarea id={`${formId}-mensaje`} name="mensaje" rows="3" placeholder="Cuéntanos qué necesitas: ubicación, horarios, número de elementos…"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary wa-form-btn">Enviar por WhatsApp</button>
+    <p class="wa-form-note">No guardamos tus datos: el mensaje se abre directo en tu WhatsApp.</p>
+  </form>
+)}
+
+<script>
+  document.querySelectorAll<HTMLFormElement>('form.wa-form').forEach((form) => {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+
+      const data = new FormData(form);
+      const val = (k: string) => (data.get(k) ?? '').toString().trim();
+      const negocio = form.dataset.negocio ?? '';
+
+      const lineas = [
+        `Hola ${negocio}, soy ${val('nombre')}.`,
+        val('servicio') ? `Me interesa: ${val('servicio')}.` : '',
+        val('mensaje'),
+        val('telefono') ? `Mi teléfono: ${val('telefono')}` : '',
+      ].filter(Boolean);
+
+      const url = `https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(lineas.join('\n'))}`;
+      window.open(url, '_blank', 'noopener');
+    });
+  });
+</script>

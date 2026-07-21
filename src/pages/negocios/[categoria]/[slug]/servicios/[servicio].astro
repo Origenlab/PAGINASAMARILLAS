@@ -1,0 +1,424 @@
+---
+/**
+ * Página de detalle de un servicio de un negocio.
+ * Ruta: /negocios/{categoria}/{negocio}/servicios/{servicio}
+ * Se genera una por cada item de `services` en el frontmatter del negocio.
+ */
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import Breadcrumbs from '@components/Breadcrumbs.astro';
+import BusinessSidebar from '@components/BusinessSidebar.astro';
+import WhatsappForm from '@components/WhatsappForm.astro';
+import ServiceCard from '@components/ServiceCard.astro';
+import { site } from '@config/site';
+import {
+  servicioSlug,
+  servicioHref,
+  tituloServicio,
+  descripcionServicio,
+} from '@lib/servicios';
+import { breadcrumb, faqPage, jsonLdScript, type JsonLd } from '@lib/seo';
+
+export async function getStaticPaths() {
+  const negocios = await getCollection('negocios');
+  return negocios.flatMap((entry) => {
+    const [categoria, slug] = entry.id.split('/');
+    return entry.data.services.map((servicio) => ({
+      params: { categoria, slug, servicio: servicioSlug(servicio) },
+      props: { entry, servicio },
+    }));
+  });
+}
+
+const { entry, servicio: s } = Astro.props;
+const n = entry.data;
+const [categoria, slug] = entry.id.split('/');
+
+const negocioUrl = `/negocios/${categoria}/${slug}`;
+const url = `${site.url}${servicioHref(categoria, slug, s)}`;
+const heroImage = s.image ?? n.image;
+const ogImage = heroImage.startsWith('http') ? heroImage : `${site.url}${heroImage}`;
+
+const title = tituloServicio({
+  servicio: s.name,
+  negocio: n.name,
+  locality: n.address.locality,
+  region: n.address.region,
+});
+const description = descripcionServicio({
+  description: s.description,
+  negocio: n.name,
+  locality: n.address.locality,
+});
+
+/* "En qué consiste" solo existe si hay contenido propio. Antes repetía
+   `description`, que ya sale como lead del hero: mismo texto tres veces. */
+const detalle = s.detail;
+
+/* Columna derecha del hero: SOLO contenido propio del servicio.
+   Nunca `s.description` (ya es el lead) ni `summary`/`coverage` del negocio
+   (serían idénticos en todas las páginas hermanas). Sin contenido propio,
+   el hero se renderiza a una sola columna. */
+const heroParrafos = (s.heroIntro.length ? s.heroIntro : s.detail).slice(0, 2);
+
+/* Las FAQs del negocio NO se heredan: aparecerían idénticas en todas las
+   páginas hermanas y eso dispara la duplicación interna. Sin FAQs propias,
+   el bloque se reduce al formulario. */
+const faqsServicio = s.faqs;
+
+/* La sección de cuerpo solo se renderiza si hay algo propio que mostrar.
+   Sin esto, un servicio sin enriquecer dejaba un <h2> huérfano sin contenido. */
+const tieneCuerpo =
+  detalle.length > 0 ||
+  s.highlights.length > 0 ||
+  s.proceso.length > 0 ||
+  s.casos.length > 0 ||
+  s.specs.length > 0 ||
+  s.requisitos.length > 0 ||
+  s.normativa.length > 0 ||
+  Boolean(s.comparativa && s.comparativa.rows.length);
+/* 3 y no 6: cada card arrastra la descripción del servicio hermano, así que
+   este bloque es el mayor generador de texto repetido entre páginas del mismo
+   negocio. Con 3 el interlinking se mantiene y el ruido baja a la mitad.
+   La ventana rota a partir del servicio actual para que todos los hermanos
+   reciban enlaces y ninguno quede fuera del grafo interno. */
+const hermanos = n.services.filter((x) => servicioSlug(x) !== servicioSlug(s));
+const desde = n.services.findIndex((x) => servicioSlug(x) === servicioSlug(s));
+const otros = hermanos.length
+  ? Array.from({ length: Math.min(3, hermanos.length) }, (_, i) =>
+      hermanos[(desde + i) % hermanos.length]
+    )
+  : [];
+
+const waMsg = encodeURIComponent(
+  `Hola ${n.name}, me interesa el servicio de ${s.name}. ¿Me pueden dar una cotización?`
+);
+const waHref = n.whatsapp ? `https://wa.me/52${n.whatsapp.replace(/\D/g, '')}?text=${waMsg}` : null;
+
+const jsonld: JsonLd[] = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: s.name,
+    description: s.description,
+    url,
+    serviceType: s.name,
+    category: n.categoryName,
+    image: ogImage,
+    provider: {
+      '@type': 'LocalBusiness',
+      name: n.name,
+      url: `${site.url}${negocioUrl}`,
+      telephone: n.phone,
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: n.address.street,
+        addressLocality: n.address.locality,
+        addressRegion: n.address.region,
+        postalCode: n.address.postalCode,
+        addressCountry: n.address.country ?? 'MX',
+      },
+    },
+    areaServed: n.areaServed.map((a) => ({ '@type': 'AdministrativeArea', name: a })),
+  },
+  breadcrumb([
+    { name: 'Inicio', url: `${site.url}/` },
+    { name: n.categoryName, url: `${site.url}/categoria/${categoria}` },
+    { name: n.name, url: `${site.url}${negocioUrl}` },
+    { name: s.name, url },
+  ]),
+];
+if (s.faqs.length) jsonld.push(faqPage(s.faqs));
+
+const extraHead = `<script type="application/ld+json">${jsonLdScript(jsonld)}</script>`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={url}
+  ogTitle={`${s.name} — ${n.name}`}
+  ogDescription={description}
+  ogImage={ogImage}
+  ogType="article"
+  extraHead={extraHead}
+>
+  <Breadcrumbs items={[
+    { label: 'Categorías', href: '/categorias' },
+    { label: n.categoryName, href: `/categoria/${categoria}` },
+    { label: n.name, href: negocioUrl },
+    { label: s.name },
+  ]} />
+
+  <section class="service-hero">
+    <div class="container">
+      <div class={`svc-hero-grid${heroParrafos.length ? '' : ' is-solo'}`}>
+        <div class="svc-hero-copy">
+          <span class="business-category-tag">{n.categoryName} · {n.address.locality}</span>
+          <h1 class="svc-title">{s.name}</h1>
+          <p class="svc-lead">{s.description}</p>
+          <p class="svc-provider">
+            Servicio operado por <a href={negocioUrl}>{n.name}</a>
+            {n.yearsExperience ? ` · ${n.yearsExperience}+ años de experiencia` : ''}
+          </p>
+          <div class="business-cta-buttons">
+            {n.phone && <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>}
+            {waHref && (
+              <a href={waHref} class="btn btn-outline" rel="nofollow noopener" target="_blank">
+                Cotizar por WhatsApp
+              </a>
+            )}
+            <a href={`${negocioUrl}#servicios`} class="btn btn-ghost">Ver todos los servicios</a>
+          </div>
+        </div>
+        {heroParrafos.length > 0 && (
+          <div class="svc-copy-col">
+            {heroParrafos.map((p) => <p>{p}</p>)}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <div class="business-layout">
+    <div class="container">
+      <div class="with-sidebar">
+        <div class="main-col">
+
+          {tieneCuerpo && (
+          <section class="business-section">
+            <div class="container">
+              <h2>{detalle.length ? 'En qué consiste' : `Qué incluye ${s.name.toLowerCase()}`}</h2>
+
+              {detalle.length > 0 && (
+                <div class="svc-intro">
+                  {detalle.map((p) => <p class="svc-p">{p}</p>)}
+                </div>
+              )}
+
+              {s.highlights.length > 0 && (
+                <>
+                  {detalle.length > 0 && <h3 class="svc-h3">Qué incluye el servicio</h3>}
+                  <ul class="svc-checklist">
+                    {s.highlights.map((h) => <li>{h}</li>)}
+                  </ul>
+                </>
+              )}
+
+              {s.proceso.length > 0 && (
+                <>
+                  <h3 class="svc-h3">Cómo se implementa</h3>
+                  <ol class="svc-steps">
+                    {s.proceso.map((paso) => (
+                      <li class="svc-step">
+                        <div class="svc-step-head">
+                          <span class="svc-step-num" aria-hidden="true"></span>
+                          <h4>{paso.title}</h4>
+                        </div>
+                        <p>{paso.text}</p>
+                      </li>
+                    ))}
+                  </ol>
+                </>
+              )}
+
+              {s.comparativa && s.comparativa.rows.length > 0 && (
+                <>
+                  <h3 class="svc-h3">{s.comparativa.title ?? 'Comparativa de modalidades'}</h3>
+                  {s.comparativa.intro && <p class="svc-p">{s.comparativa.intro}</p>}
+                  <div class="svc-table-wrap">
+                    <table class="svc-table">
+                      <thead>
+                        <tr>{s.comparativa.headers.map((h) => <th scope="col">{h}</th>)}</tr>
+                      </thead>
+                      <tbody>
+                        {s.comparativa.rows.map((row) => (
+                          <tr>
+                            {row.map((celda, i) =>
+                              i === 0
+                                ? <th scope="row">{celda}</th>
+                                : <td data-col={s.comparativa!.headers[i]}>{celda}</td>
+                            )}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  {s.comparativa.note && <p class="svc-table-note">{s.comparativa.note}</p>}
+                </>
+              )}
+
+              {s.casos.length > 0 && (
+                <>
+                  <h3 class="svc-h3">Para quién es este servicio</h3>
+                  <div class="svc-casos">
+                    {s.casos.map((c) => (
+                      <div class="svc-caso">
+                        <h4>{c.title}</h4>
+                        <p>{c.text}</p>
+                      </div>
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {s.specs.length > 0 && (
+                <>
+                  <h3 class="svc-h3">Ficha técnica</h3>
+                  <dl class="svc-specs">
+                    {s.specs.map((sp) => (
+                      <div class="svc-spec">
+                        <dt>{sp.label}</dt>
+                        <dd>{sp.value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </>
+              )}
+
+              {s.requisitos.length > 0 && (
+                <>
+                  <h3 class="svc-h3">Qué necesitas para montarlo</h3>
+                  <div class="svc-table-wrap">
+                    <table class="svc-table svc-reqs">
+                      <thead>
+                        <tr>
+                          <th scope="col">Requerimiento</th>
+                          <th scope="col">Qué prever</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {s.requisitos.map((r) => (
+                          <tr>
+                            <th scope="row">{r.concepto}</th>
+                            <td>{r.detalle}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="svc-table-note">
+                    Requerimientos de referencia para planear. En la visita o cotización se
+                    ajustan al venue, al aforo y a las condiciones reales de tu evento.
+                  </p>
+                </>
+              )}
+
+              {s.normativa.length > 0 && (
+                <>
+                  <h3 class="svc-h3">Marco normativo aplicable</h3>
+                  <div class="svc-table-wrap">
+                    <table class="svc-table svc-normas">
+                      <thead>
+                        <tr>
+                          <th scope="col">Norma</th>
+                          <th scope="col">Qué establece</th>
+                          <th scope="col">Qué implica para tu empresa</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {s.normativa.map((nr) => (
+                          <tr>
+                            <th scope="row">
+                              <span class="svc-norma-id">{nr.norma}</span>
+                              {nr.titulo && <span class="svc-norma-tit">{nr.titulo}</span>}
+                            </th>
+                            <td>{nr.exige}</td>
+                            <td>{nr.implica}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                  <p class="svc-table-note">
+                    Referencia orientativa. La aplicabilidad exacta depende del giro, el
+                    grado de riesgo de incendio del centro de trabajo y lo que determine la
+                    autoridad local de protección civil.
+                  </p>
+                </>
+              )}
+            </div>
+          </section>
+          )}
+
+          {(faqsServicio.length > 0 || n.whatsapp) && (
+          <section class="business-section">
+            <div class="container">
+              <h2>{faqsServicio.length ? `Preguntas sobre ${s.name}` : `Cotiza ${s.name.toLowerCase()}`}</h2>
+              <div class={faqsServicio.length ? 'faq-contact-grid' : 'faq-contact-solo'}>
+                {faqsServicio.length > 0 && (
+                  <div class="faqs-section">
+                    {faqsServicio.map((f) => (
+                      <details class="faq-item">
+                        <summary>{f.q}</summary>
+                        <div class="faq-answer"><p>{f.a}</p></div>
+                      </details>
+                    ))}
+                  </div>
+                )}
+                <div class="faq-contact-col">
+                  <WhatsappForm
+                    negocio={n.name}
+                    whatsapp={n.whatsapp}
+                    servicios={n.services.map((x) => x.name)}
+                    servicioActual={s.name}
+                    titulo={`Cotiza ${s.name.toLowerCase()}`}
+                  />
+                  {!faqsServicio.length && n.faqs.length > 0 && (
+                    <p class="faq-remite">
+                      ¿Dudas generales? Consulta las
+                      <a href={`${negocioUrl}#faqs`}>preguntas frecuentes de {n.name}</a>.
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </section>
+          )}
+
+          {otros.length > 0 && (
+            <section class="business-section">
+              <div class="container">
+                <h2>Otros servicios de {n.name}</h2>
+                <div class="services-grid">
+                  {otros.map((x) => (
+                    <ServiceCard
+                      servicio={x}
+                      categoria={categoria}
+                      negocioSlug={slug}
+                      negocioNombre={n.name}
+                      region={n.address.region}
+                      chips={false}
+                    />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+        </div>
+
+        <BusinessSidebar entry={entry} />
+      </div>
+    </div>
+  </div>
+
+  <section class="business-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿Necesitas {s.name.toLowerCase()}?</h2>
+        <p>Solicita una cotización sin compromiso a {n.name}.</p>
+        <div class="business-cta-buttons">
+          {n.phone
+            ? <a href={`tel:${n.phone}`} class="btn btn-primary">Llamar ahora</a>
+            : n.email && <a href={`mailto:${n.email}`} class="btn btn-primary">Enviar correo</a>}
+          {waHref && (
+            <a href={waHref} class="btn btn-outline" rel="nofollow noopener" target="_blank">
+              Enviar WhatsApp
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
